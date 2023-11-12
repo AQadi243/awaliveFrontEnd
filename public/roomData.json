@@ -1,0 +1,57 @@
+[
+    {
+      "id": 1,
+      "roomName": "Deluxe Suite",
+      "category": "Suite",
+      "roomSize": "500 sqft",
+      "numberOfGuests": 2,
+      "description": "Luxurious suite with a king-size bed, private balcony, and breathtaking views.",
+      "image": "../src/assets/doubleRoom.jpg"
+    },
+    {
+      "id": 2,
+      "roomName": "Standard Room",
+      "category": "Standard",
+      "roomSize": "300 sqft",
+      "numberOfGuests": 2,
+      "description": "Comfortable room with a queen-size bed, suitable for couples or solo travelers.",
+      "image": "../src/assets/familyroom.jpg"
+    },
+    {
+      "id": 3,
+      "roomName": "Family Suite",
+      "category": "Suite",
+      "roomSize": "700 sqft",
+      "numberOfGuests": 4,
+      "description": "Spacious suite with two bedrooms, perfect for families. Includes a living area and kitchenette.",
+      "image": "../src/assets/luxuryRoom.jpg "
+    },
+    {
+      "id": 4,
+      "roomName": "Executive Room",
+      "category": "Executive",
+      "roomSize": "400 sqft",
+      "numberOfGuests": 2,
+      "description": "Elegant room designed for business travelers, featuring a comfortable workspace.",
+      "image": "../src/assets/roomsview.jpg  "
+    },
+    {
+      "id": 5,
+      "roomName": "Apartment",
+      "category": "Executive",
+      "roomSize": "700 sqft",
+      "numberOfGuests": 6,
+      "description": "Elegant room designed for business travelers, featuring a comfortable workspace.",
+      "image": "../src/assets/apartment Room.jpg  "
+    },
+    {
+      "id": 6,
+      "roomName": "Small Room",
+      "category": "Suite",
+      "roomSize": "300 sqft",
+      "numberOfGuests": 2,
+      "description": "Elegant room designed for business travelers, featuring a comfortable workspace.",
+      "image": "../src/assets/roomsview.jpg  "
+    }
+  ]
+  
