@@ -1,4 +1,4 @@
-import React from 'react'
+
 import heroSlide from '../../../assets/HerrooSlid.jpg'
 
 const RoomPrice = () => {
@@ -26,7 +26,7 @@ const RoomPrice = () => {
           </div>
           {/* 2nd price card start */}
           <div className="grid-cols-1 bg-[#BE9874] text-white text-center py-10 cardScale priceBest items-center flex flex-col justify-center">
-            <h2 className="text-2xl md:text-4xl " style={{ fontFamily: "Gilda Display, serif" }}>Single Room</h2>
+            <h2 className="text-xl md:text-2xl " style={{ fontFamily: "Gilda Display, serif" }}>Single Room</h2>
             <p className="py-3 text-xl md:text-2xl">$ <span className="text-3xl md:text-5xl" style={{ fontFamily: "Gilda Display, serif" }}>45</span> / night</p>
             <ul className="flex flex-col gap-2 text-sm">
               <li>Proin lacinia vehicula amet</li>
@@ -41,7 +41,7 @@ const RoomPrice = () => {
           {/* 2nd price card end */}
           {/* 3rd price card start */}
           <div className="grid-cols-1 bg-white text-center py-10">
-            <h2 className="text-2xl md:text-4xl " style={{ fontFamily: "Gilda Display, serif" }}>Single Room</h2>
+            <h2 className="text-2xl md:text-2xl " style={{ fontFamily: "Gilda Display, serif" }}>Single Room</h2>
             <p className="py-3 text-xl md:text-2xl">$ <span className="text-3xl md:text-5xl" style={{ fontFamily: "Gilda Display, serif" }}>45</span > / night</p>
             <ul className="flex flex-col gap-2 text-sm">
               <li>Proin lacinia vehicula amet</li>
