@@ -4,6 +4,7 @@ import './index.css'
 import {
   createBrowserRouter,
   RouterProvider,
+
 } from "react-router-dom";
 import App from './App';
 import Home from './components/pages/Home/Home';
@@ -13,7 +14,13 @@ import { initReactI18next } from 'react-i18next'
 import HttpApi from 'i18next-http-backend'
 import LanguageDetector from 'i18next-browser-languagedetector'
 import Check from './components/pages/Check/Check';
+import AuthProvider from './components/sharedPages/Context/AuthProvider';
+import BookNow from './components/pages/BookNow/BookNow';
+import BookingConfirm from './components/pages/BookNow/BookingConfirm';
+
 // import 'flag-icon-css/css/flag-icon.min.css'
+
+
 
 i18next
   .use(HttpApi)
@@ -58,17 +65,28 @@ const router = createBrowserRouter([
       {
         path: '/room/:id',
         element: <RoomDetails />
+      },
+      {
+        path: '/booking',
+        element: <BookNow />
+      },
+      {
+        path: '/BookingConfirm',
+        element: <BookingConfirm />
       }
     ]
   },
 ]);
 
 
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Suspense fallback={loadingMarkup}>
-
-  <React.StrictMode>
-     <RouterProvider router={router} />
-  </React.StrictMode>,
+    <React.StrictMode>
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
+    </React.StrictMode>
   </Suspense>
-)
+);
+

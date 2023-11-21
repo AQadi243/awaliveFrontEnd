@@ -7,7 +7,7 @@ import 'swiper/css/navigation';
 
 
 const RoomImageSlider = ({singleRoomDetails}) => {
-    console.log('slider', singleRoomDetails.DetailsImage);
+    
     const sliderImage = singleRoomDetails.DetailsImage
     
     // console.log(slideImage);

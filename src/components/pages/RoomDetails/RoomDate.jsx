@@ -1,16 +1,22 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import "react-date-range/dist/styles.css"; // main css file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import { DateRange } from "react-date-range";
 import { addDays } from "date-fns";
 import { FaAngleDown, FaAngleUp } from "react-icons/fa6";
+import { AuthContext } from "../../sharedPages/Context/AuthProvider";
+import { Link } from "react-router-dom";
 
-const RoomDate = () => {
-  const [night, setNight] = useState(0);
-  const [checkIn, setCheckIn] = useState("");
-  const [checkOut, setCheckOut] = useState("");
+const RoomDate = ({singleRoomDetails}) => {
+  const authInfo = useContext(AuthContext);
+  const { night, setNight, checkIn, setCheckIn, checkOut, setCheckOut,setGuests,guests,handleBookNow,setRoomImage,setRoomPrice,setRoomName, } = authInfo;
+  const { roomName, roomPrice, image,  } = singleRoomDetails;
   const [showDatePicker, setShowDatePicker] = useState(false);
-  const [guests, setGuests] = useState(1);
+
+  setRoomImage(image)
+  setRoomName(roomName)
+  setRoomPrice(roomPrice)
+  
   const [state, setState] = useState([
     {
       startDate: new Date(),
@@ -134,7 +140,7 @@ const RoomDate = () => {
               id="days-container"
               className="bg-black py-2 px-2 flex flex-col items-center justify-center cursor-pointer date-picker"
             >
-              <label for="selectedDays" className="text-xl text-white">
+              <label  className="text-xl text-white">
                 Days
               </label>
               <p
@@ -149,12 +155,12 @@ const RoomDate = () => {
             <div id="perfect-message" className="text-green-500 text-xs"></div>
           </div>
           
-          <a
-            href="bookingConfirmation.html"
-            className="bg-[#BE9874] w-full py-2 text-white text-xs bookNow"
+          <Link to={'/booking'}
+            onClick={handleBookNow}
+            className="bg-[#BE9874] w-full py-2 text-white text-xs md:text-sm bookNow "
           >
             Book Now
-          </a>
+          </Link>
         </div>
       </div>
       

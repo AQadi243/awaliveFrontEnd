@@ -3,7 +3,8 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import RoomBanner from "./RoomBanner";
 import RoomDetailsBody from "./RoomDetailsBody";
-import RoomDate from "./RoomDate";
+// import RoomDate from "./RoomDate";
+import SimilarRoom from "./SimilarRoom";
 
 const RoomDetails = () => {
   const { id } = useParams();
@@ -35,6 +36,8 @@ const RoomDetails = () => {
     }
   }, [allRoomData, id]);
 
+  
+
   return (
     <>
       {loading ? (
@@ -63,14 +66,12 @@ const RoomDetails = () => {
                   </ul>
                 </div>
               </div>
-              <div className="flex flex-col-reverse md:flex-row gap-5 py-5">
-                <div className="md:w-2/3">
+              
                   {/* slider  */}
                   <RoomDetailsBody singleRoomDetails={singleRoomDetails} />
                   
-                </div>
-                <RoomDate />
-              </div>
+                
+                <SimilarRoom  allRoomData={allRoomData} loading={loading} />
             </div>
           </section>
         </>
