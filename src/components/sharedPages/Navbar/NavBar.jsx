@@ -1,4 +1,9 @@
 import React from 'react';
+import enImg from '../../../assets/en.png'
+import arImg from '../../../assets/sa.jpg'
+import LanguageDopdown from './LanguageDopdown';
+
+
 
 const NavBar = () => {
   return (
@@ -32,7 +37,7 @@ const NavBar = () => {
         </svg>
 
         <div className="hidden w-full xl:flex xl:items-center xl:w-auto" id="menu">
-          <ul className="pt-4 md:flex md:justify-between md:pt-0 text-sm">
+          <ul className="pt-4 md:flex md:justify-between md:pt-0 text-sm items-center">
             <li>
               <a className="md:p-4 py-2 block navLink" href="index.html">
                 Home
@@ -96,13 +101,14 @@ const NavBar = () => {
               </a>
             </li>
             <li>
-              <img className="md:p-4 py-2 navLink" src="Asset/sa.jpg" alt="" />
+              <img className="md:p-4 py-2 navLink" src={arImg} alt="" />
               {/* <a className="md:p-4 py-2 block text-" href="#">Arabic</a> */}
             </li>
             <li>
-              <img className="md:p-4 py-2 navLink" src="Asset/en.png" alt="" />
+              <img className="md:p-4 py-2 navLink" src={enImg} alt="" />
               {/* <a className="md:p-4 py-2 block text-" href="#">Eng</a> */}
             </li>
+            <LanguageDopdown />
           </ul>
         </div>
       </nav>

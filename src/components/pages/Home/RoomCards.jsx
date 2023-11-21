@@ -1,12 +1,35 @@
-import React from 'react'
-import roomData from '../../../../public/roomData.json'
+import  { useEffect, useState } from 'react'
+import axios from 'axios';
+// import roomData from '/public/roomData.json'
+import { Link } from 'react-router-dom'
 
 const RoomCards = () => {
+  const [roomRates, setRoomRates] = useState([]);
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const fetchRoomRates = async () => {
+      try {
+        const response = await axios.get('/roomData.json'); 
+        setRoomRates(response.data);
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching room rates:', error);
+        setLoading(false);
+      }
+    };
+
+    fetchRoomRates();
+  }, []);
+
   return (
     <section className="w-[90%] mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {roomData.map((room) => (
-          <a key={room.id} href={`promotions/${room.roomName.toLowerCase()}.html`} className="grid-cols-1 cursor-pointer" style={{ position: 'relative' }}>
+        {loading ? (
+          <p>Loading...</p>
+        ) : (
+          roomRates?.map((room) => (
+          <Link key={room.id} to={`/room/${room.id}`} className="grid-cols-1 cursor-pointer" style={{ position: 'relative' }}>
             <img src={`../Asset/${room.image}`} alt="" className="w-full" loading="lazy" />
             <p className="bg-[#2E2E2E] py-2 px-6 absolute top-5 right-0 text-white text-xs tracking-widest">FROM 240 SR</p>
             <div className="absolute bottom-5 left-2">
@@ -24,8 +47,8 @@ const RoomCards = () => {
                 <p className='text-sm tracking-widest'>{room.roomSize}</p>
               </div>
             </div>
-          </a>
-        ))}
+          </Link>
+        )))}
 
         </div>
     </section>
