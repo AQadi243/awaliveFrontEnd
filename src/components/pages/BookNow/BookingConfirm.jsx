@@ -2,13 +2,21 @@ import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../sharedPages/Context/AuthProvider';
 import BannerPage from '../../sharedPages/PageBanner/BannerPage';
 import BookingDate from './BookingDate';
+import { Tabs, Modal  } from 'antd';
+// import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js';
+import { useNavigate } from 'react-router-dom';
+
+
+
 
 const BookingConfirm = () => {
   const authInfo = useContext(AuthContext);
   const { setLoading, loading } = authInfo;
-
-  // State to store the retrieved booking information
+  const [isModalVisible, setIsModalVisible] = useState(false);
   const [bookingInfo, setBookingInfo] = useState({});
+  const navigate = useNavigate();
+
+ 
 
   useEffect(() => {
     setLoading(true)
@@ -28,26 +36,123 @@ const BookingConfirm = () => {
    const { formData } = bookingInfo;
    const { firstName, lastName, email, address, message, phone, arrivalTime, city } = formData || {};
 
+   const handleBookNow = (paymentMethod) => {
+    setLoading(true);
+
+    const bookingInfoWithPaymentMethod = {
+      ...bookingInfo,
+      paymentMethod,
+    };
+
+    // Save updated booking information to localStorage
+    localStorage.setItem('bookingInfo', JSON.stringify(bookingInfoWithPaymentMethod));
+    setLoading(true)
+    const UpdateStoredBookingInfo = JSON.parse(localStorage.getItem('bookingInfo')) || {};
+    
+    // Update the state with the retrieved booking information
+    setBookingInfo(UpdateStoredBookingInfo);
+
+    console.log('Booking information saved:', UpdateStoredBookingInfo);
+    // Open the Ant Design modal
+    setIsModalVisible(true);
+
+    setLoading(false);
+  };
+
+  const handleModalCancel = () => {
+    // Close the Ant Design modal
+    setIsModalVisible(false);
+    navigate('/');
+
+  };
+
+
+   const onChange = (key) => {
+    console.log(key);
+  };
+  const items = [
+    {
+      key: '1',
+      label: 'Card Payment',
+      children: (
+        <div style={{ fontFamily: 'Gilda Display, serif' }}>
+          <p>Please inder your Card Number and Date</p>
+          <p>Your reservation will be confirmed when we receive the Payment.</p>
+          
+          <button className="bg-[#BE9874] py-2 px-8 text-sm text-white"  onClick={() => handleBookNow('Card Payment')}>Book Now</button>
+          
+        </div>
+      ),
+    },
+    {
+      key: '2',
+      label: 'Payment on Arrive',
+      children: (
+        <div style={{ fontFamily: 'Gilda Display, serif' }}>       
+          <p>NOTE : You could pay directly in our structure with any kind of credit card or cash.</p>       
+          <button className="bg-[#BE9874] py-2 px-8 text-sm text-white"  onClick={() => handleBookNow('Payment on Arrival')}>Book Now</button>
+        </div>
+        )
+    },
+    {
+      key: '3',
+      label: 'Booking Request',
+      children:(
+        <div style={{ fontFamily: 'Gilda Display, serif' }}>       
+          <p>	NOTE : This request is not a reservation but a simple request, we will get in touch with you.</p>       
+          <button className="bg-[#BE9874] py-2 px-8 text-sm text-white"  onClick={() => handleBookNow('Booking Request')}>Book Now</button>
+        </div>
+        ),
+    },
+  ];
+  
+
   return (
     <>
     <BannerPage text='Checkout' />
     <section className="w-[90%] mx-auto">
-      <div className="flex flex-col md:flex-row gap-2 md:gap-5 py-10 md:py-20">
+      <div className="flex flex-col md:flex-row gap-3 md:gap-5 py-10 md:py-20">
         <BookingDate />
-        <div className="md:w-2/3">
+        <div className="md:w-2/3" style={{ fontFamily: 'Gilda Display, serif' }}>
           <div>
-            <p className="text-xl md:text-2xl pb-3">Add Your Informations :</p>
+            <p className="text-2xl md:text-4xl pb-3">Your Order Details :</p>
             <div>
-              <form className="flex flex-col gap-5">
-                <div className="grid md:grid-cols-2 gap-5">
-                    <p className="py-2 px-2 "> First Name: <span id="firstName"> {firstName} </span></p>
-                    <p className="py-2 px-2 "> Last Name: <span id="lastName">{lastName}</span></p>
-                    <p className="py-2 px-2 "> Email: <span id="email">{email}</span></p>
-                    <p className="py-2 px-2 "> Phone: <span id="phone">{phone}</span></p>
-                    <p className="py-2 px-2 "> Address: <span id="address">{address}</span></p>
-                    <p className="py-2 px-2 "> City: <span id="city">{city}</span></p>
-                    <p className="py-2 px-2 "> Arrival Time: <span id="arrivalTime">{arrivalTime}</span></p>
-                    <p className="py-2 px-2 "> Message: <span id="message">{message}</span></p>
+              <form className="flex flex-col gap-3 md:gap-5">
+                <div className="grid md:grid-cols-2 gap-3 md:gap-5  ">
+                  <div className='flex items-center'>
+                    <p className="py-2 px-2 "> First Name: </p>
+                    <span className='font-semibold'> {firstName} </span>
+                  </div>
+                  <div className='flex items-center'>
+                    <p className="py-2 px-2 "> Last Name:</p>
+                    <span className='font-semibold'>{lastName}</span>
+                  </div>
+                  <div className='flex items-center'>
+                    <p className="py-2 px-2 "> Email:</p>
+                    <span className='font-semibold'>{email}</span>
+                  </div>
+                  <div className='flex items-center'>
+                    <p className="py-2 px-2 "> Phone:</p>
+                    <span className='font-semibold'>{phone}</span>
+                  </div>
+                  <div className='flex items-center'>
+                    <p className="py-2 px-2 "> Address:</p>
+                    <span className='font-semibold'>{address}</span>
+                  </div>
+                  <div className='flex items-center'>
+                    <p className="py-2 px-2 "> City:</p>
+                    <span className='font-semibold'>{city}</span>
+                  </div>
+                  <div className='flex items-center'>
+                    <p className="py-2 px-2 "> ArrivalTime:</p>
+                    <span className='font-semibold'>{arrivalTime}</span>
+                  </div>
+                  <div className='flex items-center'>
+                    <p className="py-2 px-2 "> Message:</p>
+                    <span className='font-semibold'>{message}</span>
+                  </div>
+                  
+                    
                   
                 </div>
                 
@@ -55,10 +160,23 @@ const BookingConfirm = () => {
               </form>
             </div>
           </div>
+          <Tabs defaultActiveKey="1" items={items} onChange={onChange} />
         </div>
 
       </div>
     </section>
+    <Modal
+        title="Booking Information"
+        visible={isModalVisible}
+        onCancel={handleModalCancel}
+        footer={[
+          <button key="cancel" onClick={handleModalCancel}>
+            Close
+          </button>,
+        ]}
+      >
+        <pre>{JSON.stringify(bookingInfo, null, 2)}</pre>
+      </Modal>
     </>
   );
 };

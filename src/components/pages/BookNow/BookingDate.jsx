@@ -23,6 +23,7 @@ useEffect(() => {
   const checkOutDate = bookingInformation.checkOut;
   const price = bookingInformation.RoomPrice;
   const Night = bookingInformation.night;
+  const Total = bookingInformation.totalPrice;
 
 const formatDateString = (dateString) => {
     const dateObject = new Date(dateString);
@@ -33,7 +34,7 @@ const formatDateString = (dateString) => {
     return `${day} ${date} ${month}`;
 };
 
-  const calculatedPrice = parseInt(price ) * parseInt(Night)
+  // const calculatedPrice = parseInt(price ) * parseInt(Night)
   const formattedCheckIn = formatDateString(checkInDate);
   const formattedCheckOut = formatDateString(checkOutDate);
 
@@ -120,7 +121,7 @@ const formatDateString = (dateString) => {
               className="py-2 uppercase text-xs text-white w-full tracking-widest"
             >
               <span id="total-price" className="text-6xl">
-                {calculatedPrice}
+                {Total}
               </span>{" "}
               / Total
             </p>

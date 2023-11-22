@@ -30,19 +30,11 @@ const AuthProvider = ({ children }) => {
         }
       }, []);
 
-    // const bookingInfo = {
-    //     checkIn,
-    //     checkOut,
-    //     guests,
-    //     night,
-    //     RoomName,
-    //     RoomPrice,
-    //     RoomImage,
     
-    // }
 
     const handleBookNow = () => {
         setLoading(true)
+        const totalPrice = night * RoomPrice;
         const bookingInfo = {
           checkIn,
           checkOut,
@@ -51,6 +43,7 @@ const AuthProvider = ({ children }) => {
           RoomName,
           RoomPrice,
           RoomImage,
+          totalPrice,
         };
     
         // Save booking information to localStorage
