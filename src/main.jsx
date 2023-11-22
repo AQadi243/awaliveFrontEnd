@@ -17,6 +17,8 @@ import Check from './components/pages/Check/Check';
 import AuthProvider from './components/sharedPages/Context/AuthProvider';
 import BookNow from './components/pages/BookNow/BookNow';
 import BookingConfirm from './components/pages/BookNow/BookingConfirm';
+import Search from './components/pages/SearchRoooms/Search';
+import { AnimatePresence } from "framer-motion";
 
 // import 'flag-icon-css/css/flag-icon.min.css'
 
@@ -63,6 +65,10 @@ const router = createBrowserRouter([
         element: <Check />
       },
       {
+        path: '/search',
+        element: <Search />
+      },
+      {
         path: '/room/:id',
         element: <RoomDetails />
       },
@@ -84,7 +90,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <Suspense fallback={loadingMarkup}>
     <React.StrictMode>
     <AuthProvider>
+      <AnimatePresence mode='wait'>
       <RouterProvider router={router} />
+      </AnimatePresence>
     </AuthProvider>
     </React.StrictMode>
   </Suspense>

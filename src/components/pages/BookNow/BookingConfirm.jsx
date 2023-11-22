@@ -5,6 +5,7 @@ import BookingDate from './BookingDate';
 import { Tabs, Modal  } from 'antd';
 // import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js';
 import { useNavigate } from 'react-router-dom';
+import PageAnimation from '../../PageAnimation/PageAnimation';
 
 
 
@@ -109,6 +110,7 @@ const BookingConfirm = () => {
 
   return (
     <>
+    <PageAnimation>
     <BannerPage text='Checkout' />
     <section className="w-[90%] mx-auto">
       <div className="flex flex-col md:flex-row gap-3 md:gap-5 py-10 md:py-20">
@@ -177,6 +179,7 @@ const BookingConfirm = () => {
       >
         <pre>{JSON.stringify(bookingInfo, null, 2)}</pre>
       </Modal>
+      </PageAnimation>
     </>
   );
 };

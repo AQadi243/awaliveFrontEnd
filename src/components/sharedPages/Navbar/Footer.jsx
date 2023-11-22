@@ -1,3 +1,4 @@
+import PageAnimation from "../../PageAnimation/PageAnimation"
 
 
 
@@ -5,6 +6,7 @@
 const Footer = () => {
   return (
     <>
+    <PageAnimation> 
     <section className="bg-[#1D1D1D]" style={{ fontFamily: "Gilda Display, serif" }}>
       <div className="">
         <div className="px-8 py-10 grid grid-cols-1 md:grid-cols-3 text-white text-center gap-3">
@@ -61,6 +63,7 @@ const Footer = () => {
         </div>
       </div>
     </footer>
+    </PageAnimation>
     </>
   )
 }

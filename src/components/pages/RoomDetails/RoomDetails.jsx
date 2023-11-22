@@ -5,6 +5,7 @@ import RoomBanner from "./RoomBanner";
 import RoomDetailsBody from "./RoomDetailsBody";
 // import RoomDate from "./RoomDate";
 import SimilarRoom from "./SimilarRoom";
+import PageAnimation from "../../PageAnimation/PageAnimation";
 
 const RoomDetails = () => {
   const { id } = useParams();
@@ -40,6 +41,7 @@ const RoomDetails = () => {
 
   return (
     <>
+    <PageAnimation>
       {loading ? (
         <p>Loading...</p>
       ) : singleRoomDetails ? (
@@ -78,6 +80,7 @@ const RoomDetails = () => {
       ) : (
         <p>Room not found</p>
       )}
+      </PageAnimation>
     </>
   );
 };

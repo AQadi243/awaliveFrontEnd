@@ -76,6 +76,8 @@ const LanguageDopdown = () => {
 
 
   return (
+    <>
+    
     <div className="language-select">
         <div className="flex justify-end items-center">
           <Dropdown overlay={<CustomMenu  onClose={() => setVisible(false)}/>} trigger={['click']} visible={visible} onVisibleChange={(visibility) => setVisible(visibility)}>
@@ -94,6 +96,7 @@ const LanguageDopdown = () => {
           </Dropdown>
         </div>
       </div>
+    </>
   );
 };
 

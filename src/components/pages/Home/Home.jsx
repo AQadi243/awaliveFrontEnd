@@ -1,3 +1,4 @@
+import PageAnimation from "../../PageAnimation/PageAnimation"
 import Banner from "./Banner"
 import BestPosition from "./BestPosition"
 import CheckPromotion from "./CheckPromotion"
@@ -12,6 +13,8 @@ const Home = () => {
   return (
     
     <>
+    <PageAnimation>
+
     <Banner />
     <Relax />
     <RoomCards />
@@ -21,8 +24,9 @@ const Home = () => {
     <BestPosition />
     <StayTune />
     <MapContact />
+    </PageAnimation>
     </>
   )
 }
 
-export default Home
+export default Home 

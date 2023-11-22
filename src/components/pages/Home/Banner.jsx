@@ -17,7 +17,7 @@ const Banner = () => {
             <source src={bannerImagVD} type="video/mp4" />
             {/* Add other video sources (e.g., WebM, Ogg) for cross-browser compatibility */}
           </video>
-          <div className="flex flex-col gap-3 md:gap-6 items-center justify-center h-full w-full absolute top-0 left-0 text-white z-40" >
+          <div className="flex flex-col gap-3 md:gap-6 items-center justify-center h-full w-full absolute top-0 left-0 text-white z-20" >
             <p className="text-xs md:text-sm tracking-widest heroText">
               Luxury Hotel & Best Resort
             </p>
@@ -36,7 +36,7 @@ const Banner = () => {
             </a>
           </div>
         </div>
-        <div className=" absolute w-full bottom-[10%] left-[50%] -translate-x-[50%]  z-50 ">
+        <div className=" absolute w-full bottom-[10%] left-[50%] -translate-x-[50%]  z-30 ">
 
         <DatePicker />
         </div>
