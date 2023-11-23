@@ -17,5 +17,5 @@ const Check = () => {
     </div>
   )
 }
-
+ 
 export default Check

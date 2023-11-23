@@ -7,7 +7,10 @@ import LanguageDopdown from "./LanguageDopdown";
 
 const navLinks = [
   { title: "Home", href: "/" },
-  { title: "search", href: "/search" },
+  { title: "Search",  nestedLinks: [
+    { title: "Room Search", href: "/roomSearch" },
+    { title: "Room Rates", href: "/roomRate" },
+  ] },
   { title: "About", href: "/" },
   { title: "Restaurant", href: "/" },
   { title: "Contact", href: "/" },
@@ -55,7 +58,7 @@ const Navbar = () => {
 
   return (
     <header>
-      <nav className=" w-[90%] mx-auto flex justify-between items-center py-8 lg:py-4 px-2">
+      <nav className=" w-[90%] mx-auto flex justify-between items-center py-8 lg:py-4 px-2" style={{ fontFamily: "Gilda Display, serif" }}>
         <div className=" flex items-center gap-[1ch]">
           <div className="w-5 h-5 bg-[#BE9874] rounded-full" />
           <span className="text-sm font-semibold tracking-widest">
@@ -63,13 +66,68 @@ const Navbar = () => {
           </span>
         </div>
         <div className="lg:flex hidden gap-5 text-md text-zinc-400">
-          <NavLink to={"/"} activeClassName="text-black">
-            <p className={({ isActive }) => { return isActive ? "text-black font-medium" : " font-medium";}}>Home</p>
+          <NavLink to={"/"} >
+            <p
+              // className={({ isActive }) => {
+              //   return isActive ? "text-black font-medium" : " font-medium";
+              // }}
+            >
+              Home
+            </p>
             {/* <AnimatedLink title={"Home"} /> */}
           </NavLink>
-          <NavLink to={"/search"} activeClassName="text-black">
-            Search
-            {/* <AnimatedLink title={"Projects"} /> */}
+          <li className="relative group list-none">
+            <NavLink >
+              <p
+                // className={({ isActive }) =>
+                //   isActive ? "text-black font-medium" : "font-medium"
+                // }
+              >
+                Search
+              </p>
+            </NavLink>
+
+            {/* Dropdown Content */}
+            <ul className="absolute w-36 left-0 hidden pt-2 bg-white drop-shadow-md text-md text-zinc-400 group-hover:block z-10 rounded-sm">
+              <li>
+                <NavLink
+                  to={"/roomSearch"} 
+                  className="p-2 block hover:bg-slate-50 transition duration-300 ease-in-out "
+                  
+                >
+                  Room Search
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to={"/roomRate"}
+                  className="p-2 block hover:bg-slate-50 transition duration-300 ease-in-out "
+                  
+                >
+                  Room Rates
+                </NavLink>
+              </li>
+            </ul>
+          </li>
+          <NavLink to={"/about"} >
+            <p
+              // className={({ isActive }) => {
+              //   return isActive ? "text-black font-medium" : " font-medium";
+              // }}
+            >
+              About
+            </p>
+            {/* <AnimatedLink title={"Home"} /> */}
+          </NavLink>
+          <NavLink to={"/promotion"}>
+            <p
+              // className={({ isActive }) => {
+              //   return isActive ? "text-black font-medium" : " font-medium";
+              // }}
+            >
+              Promotions
+            </p>
+            {/* <AnimatedLink title={"Home"} /> */}
           </NavLink>
           <LanguageDopdown />
           {/* <AnimatedLink title={"Contact"} /> */}
@@ -109,10 +167,11 @@ const Navbar = () => {
               >
                 {navLinks.map((link, index) => {
                   return (
-                    <div className="overflow-hidden">
-                      <MobileNavLink key={index}
+                    <div className="overflow-hidden" key={index}>
+                      <MobileNavLink
                         title={link.title}
                         href={link.href}
+                        nestedLinks={link.nestedLinks}
                         onClick={toggleMenu}
                       />
                     </div>
@@ -145,20 +204,34 @@ const mobileLinkVars = {
     },
   },
 };
-const MobileNavLink = ({ title, href, onClick }) => {
+const MobileNavLink = ({ title, href, onClick, nestedLinks  }) => {
+  const [isNestedVisible, setIsNestedVisible] = useState(false);
+
+  const handleToggleNested = () => {
+    setIsNestedVisible((prev) => !prev);
+  };
+
   return (
-    <motion.div
-      variants={mobileLinkVars}
-      className="text-5xl uppercase text-black"
-    >
-      <Link to={href} onClick={onClick} >{title}</Link>
+    <motion.div variants={mobileLinkVars} className="text-5xl uppercase text-black">
+      <div onClick={handleToggleNested}>
+        <Link to={href} onClick={onClick}>
+          {title}
+        </Link>
+      </div>
+      {isNestedVisible && nestedLinks && (
+        <ul className="ml-4">
+          {nestedLinks.map((nestedLink, index) => (
+            <li key={index}>
+              <Link to={nestedLink.href} onClick={onClick}>
+                {nestedLink.title}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      )}
     </motion.div>
   );
 };
-
-
-
-
 
 // import React from "react";
 // import enImg from "../../../assets/en.png";
@@ -166,7 +239,6 @@ const MobileNavLink = ({ title, href, onClick }) => {
 // import LanguageDopdown from "./LanguageDopdown";
 // import { Link } from "react-router-dom";
 // import { Button, Dropdown } from "antd";
-
 
 // const NavBar = () => {
 //   const items = [

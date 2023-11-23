@@ -65,7 +65,7 @@ const router = createBrowserRouter([
         element: <Check />
       },
       {
-        path: '/search',
+        path: '/roomSearch',
         element: <Search />
       },
       {

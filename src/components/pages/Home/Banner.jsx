@@ -3,6 +3,7 @@ import bannerImagVD from "../../../assets/video (1080p).mp4";
 import DatePicker from "./DatePicker";
 
 
+
 const Banner = () => {
   return (
     <>
@@ -17,7 +18,7 @@ const Banner = () => {
             <source src={bannerImagVD} type="video/mp4" />
             {/* Add other video sources (e.g., WebM, Ogg) for cross-browser compatibility */}
           </video>
-          <div className="flex flex-col gap-3 md:gap-6 items-center justify-center h-full w-full absolute top-0 left-0 text-white z-20" >
+          <div className="flex flex-col gap-3 md:gap-6 items-center justify-center h-full w-full absolute top-0 left-0 text-white " >
             <p className="text-xs md:text-sm tracking-widest heroText">
               Luxury Hotel & Best Resort
             </p>
