@@ -77,7 +77,7 @@ const Navbar = () => {
             {/* <AnimatedLink title={"Home"} /> */}
           </NavLink>
           <li className="relative group list-none">
-            <NavLink >
+           
               <p
                 // className={({ isActive }) =>
                 //   isActive ? "text-black font-medium" : "font-medium"
@@ -85,7 +85,7 @@ const Navbar = () => {
               >
                 Search
               </p>
-            </NavLink>
+            
 
             {/* Dropdown Content */}
             <ul className="absolute w-36 left-0 hidden pt-2 bg-white drop-shadow-md text-md text-zinc-400 group-hover:block z-10 rounded-sm">
@@ -127,6 +127,12 @@ const Navbar = () => {
             >
               Promotions
             </p>
+            {/* <AnimatedLink title={"Home"} /> */}
+          </NavLink>
+          <NavLink to={"/contact"}>
+            
+              Contact
+            
             {/* <AnimatedLink title={"Home"} /> */}
           </NavLink>
           <LanguageDopdown />

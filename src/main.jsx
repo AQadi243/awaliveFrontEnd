@@ -19,6 +19,7 @@ import BookNow from './components/pages/BookNow/BookNow';
 import BookingConfirm from './components/pages/BookNow/BookingConfirm';
 import Search from './components/pages/SearchRoooms/Search';
 import { AnimatePresence } from "framer-motion";
+import Contact from './components/pages/Contact/Contact';
 
 // import 'flag-icon-css/css/flag-icon.min.css'
 
@@ -63,6 +64,10 @@ const router = createBrowserRouter([
       {
         path: '/check',
         element: <Check />
+      },
+      {
+        path: '/contact',
+        element: <Contact />
       },
       {
         path: '/roomSearch',
