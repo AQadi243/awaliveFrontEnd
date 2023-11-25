@@ -150,10 +150,10 @@ const Contact = () => {
             </div>
           </div>
         </section>
-        <section style={backgroundImageStyle}>
+        <section className="w-full" style={backgroundImageStyle}>
           <div className="w-[90%] mx-auto">
-            <div className=" w-full flex flex-col md:flex-row items-center justify-center gap-5 py-10 md:py-20">
-              {/* <!-- team  --> */}
+            <div className=" w-full flex flex-col md:flex-row items-center justify-center gap-5  py-10 md:py-20">
+              
               <div className="md:w-[50%] text-center md:text-start text-white">
                 <p className="text-sm uppercase tracking-widest">Our Team</p>
                 <h1 className="text-3xl md:text-5xl tracking-widest py-5">
@@ -182,48 +182,36 @@ const Contact = () => {
                   </div>
                 </div>
               </div>
-              {/* <!-- team  end --> */}
-              {/* <!-- contact form  --> */}
-              <div className="md:w-[50%] text-center bg-white px-10 py-10">
+              
+              <div className="md:w-[50%] text-center bg-white  py-10 ">
                 <h2 className="text-2xl p-2 tracking-widest capitalize">
                   Contact us{" "}
                 </h2>
-                <p>
+                <p className="px-2">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                   Phasellus eu maximus ante, eget sollicitudin metus.
                 </p>
-                <form
-                  className="flex flex-col gap-5 py-10"
+
+                <form className=" w-[95%] mx-auto flex flex-col gap-5 py-10" onSubmit={handleSubmit}>
+                <input type="email" name="email" id="email" placeholder="Email" className="py-2 px-2 border" value={formData.email} onChange={handleChange} />
+                <textarea name="message" id="message" cols="10" rows="3" placeholder="Message" className="py-2 px-2 border" value={formData.message} onChange={handleChange}></textarea>
+                <button type="submit" className="py-3 px-5 bg-[#BE9874] text-white " >Submit</button>
+              </form>
+                {/* <form
+                  className=" w-[90%] mx-auto flex flex-col gap-5 py-10"
                   onSubmit={handleSubmit}
                 >
-                  <input
-                    type="email"
-                    name="email"
-                    id="email"
-                    placeholder="Email"
-                    className="py-2 px-2 border"
-                    value={formData.email}
-                    onChange={handleChange}
-                  />
-                  <textarea
-                    name="message"
-                    id="message"
-                    cols="30"
-                    rows="3"
-                    placeholder="Message"
-                    className="py-2 px-2 border"
-                    value={formData.message}
-                    onChange={handleChange}
-                  ></textarea>
+                  
+                  
                   <button
                     type="submit"
                     className="py-3 px-5 bg-[#BE9874] text-white"
                   >
                     Submit
                   </button>
-                </form>
+                </form> */}
               </div>
-              {/* <!-- contact form end --> */}
+              
             </div>
           </div>
         </section>

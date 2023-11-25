@@ -20,6 +20,8 @@ import BookingConfirm from './components/pages/BookNow/BookingConfirm';
 import Search from './components/pages/SearchRoooms/Search';
 import { AnimatePresence } from "framer-motion";
 import Contact from './components/pages/Contact/Contact';
+import About from './components/pages/About/About';
+import BookTable from './components/pages/Restaurent/BookTable/BookTable';
 
 // import 'flag-icon-css/css/flag-icon.min.css'
 
@@ -66,6 +68,10 @@ const router = createBrowserRouter([
         element: <Check />
       },
       {
+        path: '/about',
+        element: <About />
+      },
+      {
         path: '/contact',
         element: <Contact />
       },
@@ -84,6 +90,10 @@ const router = createBrowserRouter([
       {
         path: '/BookingConfirm',
         element: <BookingConfirm />
+      },
+      {
+        path: '/bookTable',
+        element: <BookTable />
       }
     ]
   },

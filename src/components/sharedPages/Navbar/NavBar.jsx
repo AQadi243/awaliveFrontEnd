@@ -1,5 +1,5 @@
 // import Link from "next/link";
-import { React, useState } from "react";
+import {  useState } from "react";
 // import AnimatedLink from "./AnimatedLink";
 import { AnimatePresence, motion } from "framer-motion";
 import { Link, NavLink } from "react-router-dom";
@@ -129,6 +129,35 @@ const Navbar = () => {
             </p>
             {/* <AnimatedLink title={"Home"} /> */}
           </NavLink>
+          <li className="relative group list-none">
+           
+              <p >
+                Restaurant
+              </p>
+            
+
+            {/* Dropdown Content */}
+            <ul className="absolute w-36 left-0 hidden pt-2 bg-white drop-shadow-md text-md text-zinc-400 group-hover:block z-10 rounded-sm">
+              <li>
+                <NavLink
+                  to={"/bookTable"} 
+                  className="p-2 block hover:bg-slate-50 transition duration-300 ease-in-out "
+                  
+                >
+                  Book Table
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to={"/restaurantMenu"}
+                  className="p-2 block hover:bg-slate-50 transition duration-300 ease-in-out "
+                  
+                >
+                  Menu
+                </NavLink>
+              </li>
+            </ul>
+          </li>
           <NavLink to={"/contact"}>
             
               Contact

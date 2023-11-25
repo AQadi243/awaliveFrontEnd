@@ -1,11 +1,13 @@
-import React from "react";
 import PageAnimation from "../../PageAnimation/PageAnimation";
+import BestPrice from "./BestPrice";
+import Slider from "./Slider";
 
 const About = () => {
   return (
     <>
       <PageAnimation>
-        <div>About</div>
+        <Slider />
+        <BestPrice />
       </PageAnimation>
     </>
   );
