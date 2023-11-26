@@ -80,7 +80,7 @@ const LanguageDopdown = () => {
     
     <div className="language-select">
         <div className="flex justify-end items-center">
-          <Dropdown overlay={<CustomMenu  onClose={() => setVisible(false)}/>} trigger={['click']} visible={visible} onVisibleChange={(visibility) => setVisible(visibility)}>
+          <Dropdown overlay={<CustomMenu  onClose={() => setVisible(false)}/>} trigger={['click']} open={visible} onOpenChange={(visibility) => setVisible(visibility)}>
             <a
               className="cursor-pointer"
               onClick={(e) => {

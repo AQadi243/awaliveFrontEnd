@@ -2,8 +2,11 @@
 import {  useState } from "react";
 // import AnimatedLink from "./AnimatedLink";
 import { AnimatePresence, motion } from "framer-motion";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import LanguageDopdown from "./LanguageDopdown";
+import { Button, Dropdown, Menu } from "antd";
+import { DownOutlined } from "@ant-design/icons";
+
 
 const navLinks = [
   { title: "Home", href: "/" },
@@ -16,7 +19,9 @@ const navLinks = [
   { title: "Contact", href: "/" },
 ];
 const Navbar = () => {
+  const navigate = useNavigate()
   const [open, setOpen] = useState(false);
+  const [isDropdownOpen, setDropdownOpen] = useState(false);
   const toggleMenu = () => {
     setOpen((prevOpen) => !prevOpen);
   };
@@ -54,6 +59,23 @@ const Navbar = () => {
         staggerDirection: 1,
       },
     },
+  };
+
+  
+
+  const toggleDropdown = () => {
+    setDropdownOpen(!isDropdownOpen);
+  };
+  
+  const handleLogIn = () => {
+    navigate('/login')
+    setDropdownOpen(!isDropdownOpen);
+
+  };
+  const handleSignIn = () => {
+    navigate('/signin')
+    setDropdownOpen(!isDropdownOpen);
+
   };
 
   return (
@@ -165,6 +187,34 @@ const Navbar = () => {
             {/* <AnimatedLink title={"Home"} /> */}
           </NavLink>
           <LanguageDopdown />
+          {/* login button  */}
+          <div className="relative group">
+      <p
+        onClick={toggleDropdown}
+        className="cursor-pointer text-md flex items-center"
+      >
+        Join/Log In
+        <DownOutlined />
+      </p>
+      {isDropdownOpen && (
+        <div className="absolute z-10 mt-2 bg-white border rounded-md shadow-md">
+          {/* Dropdown content goes here */}
+          <p 
+            onClick={handleLogIn}
+            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
+          >
+            Log In
+          </p>
+          <p 
+            onClick={handleSignIn}
+            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
+          >
+            Join
+          </p>
+        </div>
+      )}
+          </div>
+          {/* login button end  */}
           {/* <AnimatedLink title={"Contact"} /> */}
         </div>
         <div

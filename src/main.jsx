@@ -22,6 +22,8 @@ import { AnimatePresence } from "framer-motion";
 import Contact from './components/pages/Contact/Contact';
 import About from './components/pages/About/About';
 import BookTable from './components/pages/Restaurent/BookTable/BookTable';
+import Loginpage from './components/sharedPages/LoginPage/Loginpage';
+import SignInpage from './components/sharedPages/SignInPage/SignInpage';
 
 // import 'flag-icon-css/css/flag-icon.min.css'
 
@@ -58,6 +60,7 @@ const router = createBrowserRouter([
     path: "/",
     element: <App /> ,
     errorElement:<div>Error page</div>,
+    
     children:[
       {
         path: '/',
@@ -94,6 +97,14 @@ const router = createBrowserRouter([
       {
         path: '/bookTable',
         element: <BookTable />
+      },
+      {
+        path: '/login',
+        element: <Loginpage />
+      },
+      {
+        path: '/signin',
+        element: <SignInpage />
       }
     ]
   },
