@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 
-const SignInpage = () => {
+const SignUpPage = () => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -27,26 +27,66 @@ const SignInpage = () => {
         return Object.values(newErrors).every((error) => error === "");
       };
 
-      const handleSignIn = () => {
+      // const handleSignIn = () => {
+      //   // Validate fields before proceeding
+      //   if (!validateFields()) {
+      //     return;
+      //   }
+    
+      //   // Consolidate all information into an object
+      //   const registerData = {   
+      //     name: name,
+      //     email: email,
+      //     phone: phone,
+      //     password: password,
+          
+      //   };
+    
+      //   // Log the consolidated object to the console
+      //   console.log("login:", registerData);
+      //   // alert('table booked')
+      //   // navigate('/');
+
+        
+      // };
+      const handleRegister = async () => {
         // Validate fields before proceeding
         if (!validateFields()) {
           return;
         }
-    
+      
         // Consolidate all information into an object
-        const loginData = {   
+        const registerData = {
           name: name,
           email: email,
           phone: phone,
           password: password,
-          
         };
-    
-        // Log the consolidated object to the console
-        console.log("login:", loginData);
-        // alert('table booked')
-        // navigate('/');
+      
+        try {
+          // Make an HTTP POST request to the server
+          const response = await fetch('http://localhost:3000/register', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(registerData),
+          });
+      
+          // Check if the request was successful
+          if (response.ok) {
+            // Registration successful, you can handle the response here if needed
+            console.log('User registered successfully');
+          } else {
+            // Registration failed, handle the error
+            console.error('Registration failed');
+          }
+        } catch (error) {
+          console.error('Error during registration:', error);
+        }
       };
+      
+      
 
 
 
@@ -55,7 +95,7 @@ const SignInpage = () => {
       <section className="w-[90%] md:w-[60%] mx-auto">
         <div className="shadow-lg py-10" style={{ fontFamily: "Gilda Display, serif" }}>
             <h1 className="text-3xl nd:text-4xl">Become a Member</h1>
-            <h1 className="text-2xl"> It's free to join!</h1>
+            <h1 className="text-2xl"> Its free to join!</h1>
         <div className="py-20 px-4 md:px-10">
           <div className="w-full flex flex-col gap-5 " id="guest-info-form">
             <input
@@ -124,7 +164,7 @@ const SignInpage = () => {
               type="button"
               id="confirm-button"
               className="uppercase bg-[#BE9874] text-xs text-white py-3"
-              onClick={handleSignIn}
+              onClick={handleRegister}
             >
               Join
             </button>
@@ -136,4 +176,4 @@ const SignInpage = () => {
   );
 };
 
-export default SignInpage;
+export default SignUpPage;

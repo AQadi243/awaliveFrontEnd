@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import RoomBanner from "./RoomBanner";
 import RoomDetailsBody from "./RoomDetailsBody";
 // import RoomDate from "./RoomDate";
-import SimilarRoom from "./SimilarRoom";
+// import SimilarRoom from "./SimilarRoom";
 import PageAnimation from "../../PageAnimation/PageAnimation";
 
 const RoomDetails = () => {
@@ -73,7 +73,7 @@ const RoomDetails = () => {
                   <RoomDetailsBody singleRoomDetails={singleRoomDetails} />
                   
                 
-                <SimilarRoom  allRoomData={allRoomData} loading={loading} />
+                {/* <SimilarRoom  allRoomData={allRoomData} loading={loading} /> */}
             </div>
           </section>
         </>

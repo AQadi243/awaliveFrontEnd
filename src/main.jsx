@@ -23,7 +23,8 @@ import Contact from './components/pages/Contact/Contact';
 import About from './components/pages/About/About';
 import BookTable from './components/pages/Restaurent/BookTable/BookTable';
 import Loginpage from './components/sharedPages/LoginPage/Loginpage';
-import SignInpage from './components/sharedPages/SignInPage/SignInpage';
+import SignUpPage from './components/sharedPages/SignInPage/SignUpPage';
+import PrivateRoute from './components/PrivetAuth/PrivetRoute';
 
 // import 'flag-icon-css/css/flag-icon.min.css'
 
@@ -88,11 +89,11 @@ const router = createBrowserRouter([
       },
       {
         path: '/booking',
-        element: <BookNow />
+        element: <PrivateRoute> <BookNow />  </PrivateRoute> 
       },
       {
         path: '/BookingConfirm',
-        element: <BookingConfirm />
+        element:<PrivateRoute>  <BookingConfirm /> </PrivateRoute>
       },
       {
         path: '/bookTable',
@@ -104,7 +105,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/signin',
-        element: <SignInpage />
+        element: <SignUpPage />
       }
     ]
   },

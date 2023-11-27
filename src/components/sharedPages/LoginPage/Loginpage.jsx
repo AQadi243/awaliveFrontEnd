@@ -1,17 +1,25 @@
 
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { Spin } from 'antd';
 import img from '../../../assets/relaxArea.jpg'
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate,  } from 'react-router-dom';
+import { AuthContext } from '../Context/AuthProvider';
 // import { Link } from 'react-router-dom';
 
 const Loginpage = () => {
+  const navigate = useNavigate()
+  const { handleLogin , error, user, } = useContext(AuthContext);
+  const [loading, setLoading] = useState(false)
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [errors, setErrors] = useState({
         email: "",
         password: ""   
       });
-
+      const location = useLocation();
+  const from = location.state?.from?.pathname || '/';
+      
+      console.log(user);
       const validateFields = () => {
         const newErrors = {
          
@@ -24,25 +32,22 @@ const Loginpage = () => {
         return Object.values(newErrors).every((error) => error === "");
       };
 
-      const handleLogin = () => {
-        // Validate fields before proceeding
-        if (!validateFields()) {
-          return;
+      
+
+      const handleLoginClick = async () => {
+        setLoading(true)
+        if (validateFields()) {
+          await handleLogin(email, password);
         }
-    
-        // Consolidate all information into an object
-        const loginData = {
-          
-          email: email,
-          password: password,
-          
-        };
-    
-        // Log the consolidated object to the console
-        console.log("login:", loginData);
-        // alert('table booked')
-        // navigate('/');
+      
+        setLoading(false)
       };
+
+      useEffect(() => {
+        if (user) { // If user is logged in
+          navigate(from, { replace: true }); // Navigate to the 'from' route or default '/'
+        }
+      }, [user, navigate, from]);
 
 
   return (
@@ -79,15 +84,20 @@ const Loginpage = () => {
                       required
                     />
                     {errors.password && <p className="text-red-500 text-xs">{errors.password}</p>}
-                    
-                    <button
+                    {error && <p className="text-red-500 text-xs">{error}</p>}
+
+                    {loading ? <Spin /> : (
+                      <button
                       type="button"
                       id="confirm-button"
                       className="uppercase bg-[#BE9874] text-xs text-white py-3"
-                      onClick={handleLogin}
+                      onClick={handleLoginClick}
                     >
                       Log In
                     </button>
+                    ) 
+                    }
+                    
                   </div>
                   <p className='text-red-500 text-xs '>Forget Password</p>
                   
