@@ -25,6 +25,8 @@ import BookTable from './components/pages/Restaurent/BookTable/BookTable';
 import Loginpage from './components/sharedPages/LoginPage/Loginpage';
 import SignUpPage from './components/sharedPages/SignInPage/SignUpPage';
 import PrivateRoute from './components/PrivetAuth/PrivetRoute';
+import { Spin } from 'antd';
+import MyBookings from './components/pages/My Bookings/MyBookings';
 
 // import 'flag-icon-css/css/flag-icon.min.css'
 
@@ -51,8 +53,10 @@ i18next
   })
 
   const loadingMarkup = (
-    <div className="py-4 text-center">
-      <h3>Loading..</h3>
+    <div className=" h-screen flex flex-col items-center justify-center text-center gap-5">
+      <h1 className='text-6xl'>Awalive</h1>
+      <Spin />
+      <h3 className='text-3xl'>Loading..</h3>
     </div>
   )
 
@@ -94,6 +98,10 @@ const router = createBrowserRouter([
       {
         path: '/BookingConfirm',
         element:<PrivateRoute>  <BookingConfirm /> </PrivateRoute>
+      },
+      {
+        path: '/mybookings',
+        element:<PrivateRoute>  <MyBookings /> </PrivateRoute>
       },
       {
         path: '/bookTable',

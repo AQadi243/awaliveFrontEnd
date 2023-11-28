@@ -11,9 +11,12 @@ import PageAnimation from '../../PageAnimation/PageAnimation';
 
 
 const BookingConfirm = () => {
-  const authInfo = useContext(AuthContext);
-  const { setLoading, loading } = authInfo;
+  const {  user } = useContext(AuthContext);
+  
   const [isModalVisible, setIsModalVisible] = useState(false);
+  
+  const [order, setOrder] = useState('');
+  const [loading, setLoading] = useState(false);
   const [bookingInfo, setBookingInfo] = useState({});
   const navigate = useNavigate();
 
@@ -37,33 +40,69 @@ const BookingConfirm = () => {
    const { formData } = bookingInfo;
    const { firstName, lastName, email, address, message, phone, arrivalTime, city } = formData || {};
 
-   const handleBookNow = (paymentMethod) => {
-    setLoading(true);
+  //  const handleBookNow = (paymentMethod) => {
+  //   setLoading(true);
 
-    const bookingInfoWithPaymentMethod = {
-      ...bookingInfo,
-      paymentMethod,
+  //   const bookingInfoWithPaymentMethod = {
+  //     ...bookingInfo,
+  //     paymentMethod,
+  //   };
+
+  //   // Save updated booking information to localStorage
+  //   localStorage.setItem('bookingInfo', JSON.stringify(bookingInfoWithPaymentMethod));
+  //   setLoading(true)
+  //   const UpdateStoredBookingInfo = JSON.parse(localStorage.getItem('bookingInfo')) || {};
+    
+  //   // Update the state with the retrieved booking information
+  //   setBookingInfo(UpdateStoredBookingInfo);
+
+  //   console.log('Booking information saved:', UpdateStoredBookingInfo);
+  //   // Open the Ant Design modal
+  //   setIsModalVisible(true);
+
+  //   setLoading(false);
+  // };
+
+
+  const handleBookNow = async (paymentMethod) => {
+    // ... existing logic
+    setLoading(true)
+    const bookingData = {
+        ...bookingInfo,
+        userEmail: user?.email,  // Assuming 'user' has an 'email' field
+        paymentMethod,
     };
 
-    // Save updated booking information to localStorage
-    localStorage.setItem('bookingInfo', JSON.stringify(bookingInfoWithPaymentMethod));
-    setLoading(true)
-    const UpdateStoredBookingInfo = JSON.parse(localStorage.getItem('bookingInfo')) || {};
-    
-    // Update the state with the retrieved booking information
-    setBookingInfo(UpdateStoredBookingInfo);
+    // console.log("order cehck", bookingData);
+    try {
+        const response = await fetch('http://localhost:3000/allOrders', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(bookingData),
+        });
 
-    console.log('Booking information saved:', UpdateStoredBookingInfo);
-    // Open the Ant Design modal
+        if (response.ok) {
+            const result = await response.json();
+            setOrder(result.message); // Or handle the response as needed
+            console.log(result.message); // Or handle the response as needed
+            setLoading(false)
+        } else {
+            console.error('Failed to save order');
+            setOrder('Failed to save order');
+        }
+    } catch (error) {
+        console.error('Error sending booking info:', error);
+    }
+
     setIsModalVisible(true);
-
     setLoading(false);
-  };
+};
+
 
   const handleModalCancel = () => {
     // Close the Ant Design modal
     setIsModalVisible(false);
-    navigate('/');
+    navigate('/mybookings');
 
   };
 
@@ -167,7 +206,10 @@ const BookingConfirm = () => {
 
       </div>
     </section>
-    <Modal
+    {
+      loading ? <p>Loading...</p>  : 
+      (
+        <Modal
         title="Booking Information"
         visible={isModalVisible}
         onCancel={handleModalCancel}
@@ -177,8 +219,12 @@ const BookingConfirm = () => {
           </button>,
         ]}
       >
-        <pre>{JSON.stringify(bookingInfo, null, 2)}</pre>
+        <p>{order}</p>
+        {/* <pre>{JSON.stringify(bookingInfo, null, 2)}</pre> */}
       </Modal>
+      )
+    }
+    
       </PageAnimation>
     </>
   );

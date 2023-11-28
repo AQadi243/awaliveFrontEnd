@@ -1,11 +1,12 @@
 import axios from "axios";
+import { Spin } from 'antd';
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import RoomBanner from "./RoomBanner";
 import RoomDetailsBody from "./RoomDetailsBody";
 // import RoomDate from "./RoomDate";
 // import SimilarRoom from "./SimilarRoom";
-import PageAnimation from "../../PageAnimation/PageAnimation";
+// import PageAnimation from "../../PageAnimation/PageAnimation";
 
 const RoomDetails = () => {
   const { id } = useParams();
@@ -41,9 +42,12 @@ const RoomDetails = () => {
 
   return (
     <>
-    <PageAnimation>
+    
       {loading ? (
+        <div className="h-screen flex flex-col items-center text-center">
+          <Spin />
         <p>Loading...</p>
+        </div>
       ) : singleRoomDetails ? (
         <>
           <RoomBanner singleRoomDetails={singleRoomDetails} />
@@ -80,7 +84,7 @@ const RoomDetails = () => {
       ) : (
         <p>Room not found</p>
       )}
-      </PageAnimation>
+      
     </>
   );
 };

@@ -10,17 +10,13 @@ import { AuthContext } from "../Context/AuthProvider";
 
 const navLinks = [
   { title: "Home", href: "/" },
-  {
-    title: "Search",
-    nestedLinks: [
-      { title: "Room Search", href: "/roomSearch" },
-      { title: "Room Rates", href: "/roomRate" },
-    ],
-  },
-  { title: "About", href: "/" },
-  { title: "Restaurant", href: "/" },
-  { title: "Contact", href: "/" },
+  { title: "Room Search", href: "/roomSearch" },
+  { title: "About", href: "/about" },
+  { title: "Restaurant", href: "/bookTable" },
+  { title: "Contact", href: "/contact" },
 ];
+
+
 const Navbar = () => {
   const { error, user, loading, setLoading, handleLogout} = useContext(AuthContext);
 
@@ -166,6 +162,13 @@ const Navbar = () => {
             Contact
             {/* <AnimatedLink title={"Home"} /> */}
           </NavLink>
+          {user?.username ?(
+            <NavLink to={"/mybookings"}>
+            <p>My Bookings</p>
+            {/* <AnimatedLink title={"Home"} /> */}
+          </NavLink> ) : ""
+          }
+          
           <LanguageDopdown />
           {/* login button  */}
           {user?.username ? (
