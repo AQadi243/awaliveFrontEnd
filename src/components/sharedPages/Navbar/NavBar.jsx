@@ -131,7 +131,7 @@ const Navbar = () => {
             <p>About</p>
             {/* <AnimatedLink title={"Home"} /> */}
           </NavLink>
-          <NavLink to={"/promotion"}>
+          <NavLink >
             <p>Promotions</p>
             {/* <AnimatedLink title={"Home"} /> */}
           </NavLink>
@@ -278,6 +278,64 @@ const Navbar = () => {
                 })}
               </motion.div>
               <LanguageDopdown />
+              {/* mobile login button todo to solve  */}
+              {user?.username ? (
+            <div className="relative group">
+            <p
+              onClick={toggleDropdown}
+              className="cursor-pointer text-md flex items-center"
+            >
+              {user.username}
+
+              <DownOutlined />
+            </p>
+            {isDropdownOpen && (
+              <div
+                className="absolute z-10 mt-2 bg-white border rounded-md shadow-md"
+                onBlur={closeDropdown}
+              >
+                <p
+                  onClick={handleLogout}
+                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
+                >
+                  Log Out
+                </p>
+                
+              </div>
+            )}
+          </div>
+          ): (
+            <div className="relative group">
+            <p
+              onClick={toggleDropdown}
+              className="cursor-pointer text-md flex items-center"
+            >
+              Join/Log In
+
+              <DownOutlined />
+            </p>
+            {isDropdownOpen && (
+              <div
+                className="absolute z-10 mt-2 bg-white border rounded-md shadow-md"
+                onBlur={closeDropdown}
+              >
+                <p
+                  onClick={handleLogIn}
+                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
+                >
+                  Log In
+                </p>
+                <p
+                  onClick={handleSignIn}
+                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
+                >
+                  Join
+                </p>
+              </div>
+            )}
+          </div>
+          ) }
+          {/* mobile login button todo to solve  */}  
             </div>
           </motion.div>
         )}

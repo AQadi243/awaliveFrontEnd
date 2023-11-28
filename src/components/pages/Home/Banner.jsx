@@ -1,6 +1,6 @@
 
 import bannerImagVD from "../../../assets/video (1080p).mp4";
-import DatePicker from "./DatePicker";
+// import DatePicker from "./DatePicker";
 
 
 
@@ -11,7 +11,7 @@ const Banner = () => {
         <div className="relative">
           <div className="bg-black bg-opacity-75 w-full h-full absolute top-0 left-0"></div>
           <video
-            className="md:h-screen w-full object-cover"
+            className=" h-screen w-full object-cover"
             loop={true}
             autoPlay
           >
@@ -39,7 +39,9 @@ const Banner = () => {
         </div>
         <div className=" absolute w-full bottom-[10%] left-[50%] -translate-x-[50%]  z-30 ">
 
-        <DatePicker />
+          {/* ToDo to solve date finder  */}
+
+        {/* <DatePicker /> */}
         </div>
       </section>
     </>
