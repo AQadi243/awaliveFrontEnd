@@ -112,7 +112,7 @@ const Loginpage = () => {
                 <li className='text-xs '>Free in-room Wi-Fi</li>
                 
                 
-                    <Link className='w-full py-4  px-2 text-center  bg-[#BE9874] text-white  '>
+                    <Link  to={'/signup'} className='w-full py-4  px-2 text-center  bg-[#BE9874] text-white  '>
                         Join now
                   
                     </Link>

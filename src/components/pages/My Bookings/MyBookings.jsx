@@ -93,7 +93,7 @@ const MyBookings = () => {
         ) : (
             <>
           <p>Your cart is empty.</p>
-          <Link to={'/search'} className='py-4 btn'>Return To Rooms </Link >
+          <Link to={'/roomSearch'} className='py-4 btn'>Return To Rooms </Link >
             </>
         )}
       </div>

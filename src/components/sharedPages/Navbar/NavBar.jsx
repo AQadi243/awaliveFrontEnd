@@ -76,8 +76,8 @@ const Navbar = () => {
     navigate("/login");
     setDropdownOpen(!isDropdownOpen);
   };
-  const handleSignIn = () => {
-    navigate("/signin");
+  const handleSignUp = () => {
+    navigate("/signup");
     setDropdownOpen(!isDropdownOpen);
   };
 
@@ -162,7 +162,7 @@ const Navbar = () => {
             Contact
             {/* <AnimatedLink title={"Home"} /> */}
           </NavLink>
-          {user?.username ?(
+          {user?.name ?(
             <NavLink to={"/mybookings"}>
             <p>My Bookings</p>
             {/* <AnimatedLink title={"Home"} /> */}
@@ -171,13 +171,13 @@ const Navbar = () => {
           
           <LanguageDopdown />
           {/* login button  */}
-          {user?.username ? (
+          {user?.name ? (
             <div className="relative group">
             <p
               onClick={toggleDropdown}
               className="cursor-pointer text-md flex items-center"
             >
-              {user.username}
+              {user?.name}
 
               <DownOutlined />
             </p>
@@ -218,7 +218,7 @@ const Navbar = () => {
                   Log In
                 </p>
                 <p
-                  onClick={handleSignIn}
+                  onClick={handleSignUp}
                   className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
                 >
                   Join
@@ -279,13 +279,13 @@ const Navbar = () => {
               </motion.div>
               <LanguageDopdown />
               {/* mobile login button todo to solve  */}
-              {user?.username ? (
+              {user?.name ? (
             <div className="relative group">
             <p
               onClick={toggleDropdown}
               className="cursor-pointer text-md flex items-center"
             >
-              {user.username}
+              {user?.name}
 
               <DownOutlined />
             </p>
@@ -326,7 +326,7 @@ const Navbar = () => {
                   Log In
                 </p>
                 <p
-                  onClick={handleSignIn}
+                  onClick={handleSignUp}
                   className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
                 >
                   Join

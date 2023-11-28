@@ -1,3 +1,4 @@
+import axios from "axios";
 import { createContext, useEffect, useState } from "react";
 
 export const AuthContext = createContext(null);
@@ -116,30 +117,41 @@ const AuthProvider = ({ children }) => {
   //   }
   // };
 
-  const handleLogin = async (email, password) => {
-    setLoading(true);
-    try {
-      const response = await fetch("https://awalive-server-side-hzpa.vercel.app/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-      });
   
-      if (response.ok) {
-        const data = await response.json();
-        setUser(data.user);
-        localStorage.setItem('userData', JSON.stringify(data.user));
-        localStorage.setItem('token', data.token);
-      } else {
-        setError("Incorrect email or password");
-      }
-    } catch (error) {
-      console.error("Error during login:", error);
-      setError("Please Try Again");
-    } finally {
-      setLoading(false);
+
+const handleLogin = async (email, password) => {
+  setLoading(true);
+
+  try {
+    const response = await axios.post("https://awalive-server-side-hzpa.vercel.app/login", {
+      email,
+      password
+    });
+
+    const data = response.data;
+    setUser(data.user);
+    localStorage.setItem('userData', JSON.stringify(data.user));
+    localStorage.setItem('token', data.token);
+  } catch (error) {
+    if (error.response) {
+      // The request was made and the server responded with a status code
+      // that falls out of the range of 2xx
+      console.error("Error response:", error.response.data);
+      setError(error.response.data.message || "Incorrect email or password");
+    } else if (error.request) {
+      // The request was made but no response was received
+      console.error("Error request:", error.request);
+      setError("No response from the server");
+    } else {
+      // Something happened in setting up the request that triggered an Error
+      console.error("Error message:", error.message);
+      setError("Error during login");
     }
-  };
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   
   

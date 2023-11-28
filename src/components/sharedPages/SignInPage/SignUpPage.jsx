@@ -1,11 +1,17 @@
+import { Spin } from "antd";
+import axios from "axios";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 
 const SignUpPage = () => {
+  const navigate = useNavigate()
+    const [loading, setLoading] = useState(false);
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [phone, setPhone] = useState("");
+    const [errorMessageReg, setErrorMessageReg] = useState("");
     const [errors, setErrors] = useState({
         name: "",
         email: "",
@@ -27,29 +33,10 @@ const SignUpPage = () => {
         return Object.values(newErrors).every((error) => error === "");
       };
 
-      // const handleSignIn = () => {
-      //   // Validate fields before proceeding
-      //   if (!validateFields()) {
-      //     return;
-      //   }
-    
-      //   // Consolidate all information into an object
-      //   const registerData = {   
-      //     name: name,
-      //     email: email,
-      //     phone: phone,
-      //     password: password,
-          
-      //   };
-    
-      //   // Log the consolidated object to the console
-      //   console.log("login:", registerData);
-      //   // alert('table booked')
-      //   // navigate('/');
-
         
       // };
       const handleRegister = async () => {
+        setLoading(true)
         // Validate fields before proceeding
         if (!validateFields()) {
           return;
@@ -64,26 +51,38 @@ const SignUpPage = () => {
         };
       
         try {
-          // Make an HTTP POST request to the server
-          const response = await fetch('https://awalive-server-side-hzpa.vercel.app/register', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(registerData),
-          });
-      
-          // Check if the request was successful
-          if (response.ok) {
-            // Registration successful, you can handle the response here if needed
-            console.log('User registered successfully');
-          } else {
-            // Registration failed, handle the error
-            console.error('Registration failed');
-          }
+          
+          const response = await axios.post('https://awalive-server-side-hzpa.vercel.app/register', registerData);
+          console.log('User registered successfully:', response.data);
+          setErrorMessageReg('User registered successfully')
+          setLoading(false)
+
         } catch (error) {
-          console.error('Error during registration:', error);
+          // Registration failed, handle the error
+          if (error.response) {
+            // The request was made and the server responded with a status code
+            // that falls out of the range of 2xx
+            console.error('Registration failed:', error.response.data);
+            setErrorMessageReg('Registration failed:', error.response.data)
+          setLoading(false)
+
+          } else if (error.request) {
+            // The request was made but no response was received
+            console.error('No response received:', error.request);
+            setErrorMessageReg('No response received:', error.request)
+        setLoading(false)
+
+          } else {
+            // Something happened in setting up the request that triggered an Error
+            console.error('Error:', error.message);
+            setErrorMessageReg('Error:', error.message)
+        setLoading(false)
+
+          }
         }
+        navigate('/login')
+        setLoading(false)
+
       };
       
       
@@ -159,8 +158,12 @@ const SignUpPage = () => {
             {errors.password && (
               <p className="text-red-500 text-xs">{errors.password}</p>
             )}
-
-            <button
+            {errorMessageReg && (
+              <p className="text-red-500 text-xs">{errorMessageReg}</p>
+            )}
+            {
+              loading ?  <Spin />   : (
+                <button
               type="button"
               id="confirm-button"
               className="uppercase bg-[#BE9874] text-xs text-white py-3"
@@ -168,6 +171,9 @@ const SignUpPage = () => {
             >
               Join
             </button>
+              )
+            }
+            
           </div>
         </div>
         </div>
