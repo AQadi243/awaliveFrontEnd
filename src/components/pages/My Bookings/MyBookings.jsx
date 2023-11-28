@@ -20,7 +20,7 @@ const MyBookings = () => {
       try {
         // Replace 'userEmail' with the actual user's email or get it from your authentication context
         const userEmail = user?.email ;
-        const response = await fetch(`http://localhost:3000/userOrders/${userEmail}`);
+        const response = await fetch(`https://awalive-server-side-hzpa.vercel.app/userOrders/${userEmail}`);
         if (response.ok) {
           const data = await response.json();
           setUserOrders(data.orders);

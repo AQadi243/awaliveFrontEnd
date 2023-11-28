@@ -65,7 +65,7 @@ const SignUpPage = () => {
       
         try {
           // Make an HTTP POST request to the server
-          const response = await fetch('http://localhost:3000/register', {
+          const response = await fetch('https://awalive-server-side-hzpa.vercel.app/register', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
