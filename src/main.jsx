@@ -48,7 +48,7 @@ i18next
     // react: { useSuspense: false },
     backend: {
       // loadPath: '/locales/{{lng}}/translation.json',
-      loadPath: '/public/locales/{{lng}}/translation.json',
+      loadPath: '/Languages/{{lng}}/translation.json',
       // loadPath: './assets/locales/{{lng}}/translation.json',
     },
   })
