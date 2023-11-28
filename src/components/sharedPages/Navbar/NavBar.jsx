@@ -313,7 +313,7 @@ const MobileNavLink = ({ title, href, onClick, nestedLinks }) => {
   return (
     <motion.div
       variants={mobileLinkVars}
-      className="text-5xl uppercase text-black"
+      className="text-3xl uppercase text-black"
     >
       <div onClick={handleToggleNested}>
         <Link to={href} onClick={onClick}>

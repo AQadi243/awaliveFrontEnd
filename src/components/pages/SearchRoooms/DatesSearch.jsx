@@ -82,7 +82,7 @@ const DatesSearch = ({searchValue}) => {
   return (
     <>
       <div className=" md:w-1/3   ">
-        <div className="flex flex-col gap-5  items-center justify-center text-center bg-[#1C1C1D] py-5 px-5 md:py-10 md:px-10 relative z-50" style={{ fontFamily: "Gilda Display, serif" }}>
+        <div className="flex flex-col gap-5  items-center justify-center text-center bg-[#1C1C1D] py-5 px-5 md:py-10 md:px-10 relative z-40" style={{ fontFamily: "Gilda Display, serif" }}>
             
           <p className="text-white text-xl tracking-widest  bg-black w-full py-4 ">
             Select Dates
