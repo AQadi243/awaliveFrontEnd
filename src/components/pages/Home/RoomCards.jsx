@@ -3,24 +3,8 @@ import axios from 'axios';
 // import roomData from '/public/roomData.json'
 import { Link } from 'react-router-dom'
 
-const RoomCards = () => {
-  const [roomRates, setRoomRates] = useState([]);
-  const [loading, setLoading] = useState(true)
-
-  useEffect(() => {
-    const fetchRoomRates = async () => {
-      try {
-        const response = await axios.get('/roomData.json'); 
-        setRoomRates(response.data);
-        setLoading(false);
-      } catch (error) {
-        console.error('Error fetching room rates:', error);
-        setLoading(false);
-      }
-    };
-
-    fetchRoomRates();
-  }, []);
+const RoomCards = ({roomRates, loading}) => {
+  
 
   return (
     <section className="w-[90%] mx-auto">
@@ -30,7 +14,9 @@ const RoomCards = () => {
         ) : (
           roomRates?.map((room) => (
           <Link key={room.id} to={`/room/${room.id}`} className="grid-cols-1 cursor-pointer" style={{ position: 'relative' }}>
-            <img src={room.image} alt="" className="w-full" loading="lazy" />
+            <picture>
+            <img src={room.image} alt="" className="w-full"  />
+            </picture>
             <p className="bg-[#2E2E2E] py-2 px-6 absolute top-5 right-0 text-white text-xs tracking-widest">FROM 240 SR</p>
             <div className="absolute bottom-5 left-2">
               <h2 className="text-xl text-white " style={{ fontFamily: "Gilda Display, serif" }}>{room.roomName}</h2>

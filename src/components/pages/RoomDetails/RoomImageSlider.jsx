@@ -16,7 +16,9 @@ const RoomImageSlider = ({singleRoomDetails}) => {
       <Swiper navigation={true} modules={[Navigation, Autoplay]} className="mySwiper   " autoplay={{ delay: 2000 }} loop={true}>
         {sliderImage?.map((image, index) => (
           <SwiperSlide key={index} >
+            <picture>
             <img className='w-full aspect-video object-fill' src={image} alt="" />
+            </picture>
           </SwiperSlide>
         ))}
       </Swiper>

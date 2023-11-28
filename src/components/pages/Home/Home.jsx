@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react"
 import PageAnimation from "../../PageAnimation/PageAnimation"
 import Banner from "./Banner"
 import BestPosition from "./BestPosition"
@@ -8,8 +9,28 @@ import Relax from "./Relax"
 import RoomCards from "./RoomCards"
 import RoomPrice from "./RoomPrice"
 import StayTune from "./StayTune"
+import axios from "axios"
 
 const Home = () => {
+  const [roomRates, setRoomRates] = useState([]);
+  const [loading, setLoading] = useState(false)
+
+  useEffect(() => {
+    setLoading(true)
+    const fetchRoomRates = async () => {
+      try {
+        const response = await axios.get('/roomData.json'); 
+        setRoomRates(response.data);
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching room rates:', error);
+      }
+    };
+    
+    fetchRoomRates();
+    setLoading(false);
+  }, []);
+
   return (
     
     <>
@@ -17,7 +38,7 @@ const Home = () => {
 
     <Banner />
     <Relax />
-    <RoomCards />
+    <RoomCards roomRates={roomRates} loading={loading} />
     <CheckPromotion />
     <RoomPrice />
     <HotelStucture />

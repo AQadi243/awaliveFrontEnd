@@ -1,5 +1,5 @@
-import structure from '../../../assets/Structure.jpg'
-import structure2 from '../../../assets/structure-2.jpg'
+import structure from '../../../assets/Structure.webp'
+import structure2 from '../../../assets/structure-2.webp'
 import key16 from '../../../assets/icon-16.png'
 import Lag15 from '../../../assets/icon-15.png'
 import Ser17 from '../../../assets/icon-17.png'
