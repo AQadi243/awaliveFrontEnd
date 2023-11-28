@@ -37,7 +37,7 @@ const BestPosition = () => {
                 <p className="text-xs tracking-widest font-semibold uppercase" >on selected rooms</p>
               </div>
             
-            <img src={twal} alt="img" className="w-80" />
+            <img src={twal} alt="img" className="w-80 " />
           </div>
         </div>
       </div>
