@@ -1,21 +1,21 @@
  [
     {   
         
-        "image": "/src/assets/adam.jpg",
+        "image": "https://i.ibb.co/tPHPj9C/adam.jpg",
         "name": "Ketrin Wilson",
         "position": "Hotel Manger",
         "details": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eum reprehenderit, quam reiciendis soluta saepe nihil itaque tempora ipsa voluptatibus ipsam odit? Temporibus consectetur explicabo atque odit eius officia aliquam quia."
 
     },
     {   
-        "image": "/src/assets/katrin.jpg",
+        "image": "https://i.ibb.co/NCrrhz8/katrin.jpg",
         "name": "Ketrin Wilson",
         "position": "Hotel Manger",
         "details": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eum reprehenderit, quam reiciendis soluta saepe nihil itaque tempora ipsa voluptatibus ipsam odit? Temporibus consectetur explicabo atque odit eius officia aliquam quia."
 
     },
     {   
-        "image": "/src/assets/lwis.jpg",
+        "image": "https://i.ibb.co/QFRNYPf/lwis.jpg",
         "name": "Benzima Wilson",
         "position": "Hotel Manger",
         "details": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eum reprehenderit, quam reiciendis soluta saepe nihil itaque tempora ipsa voluptatibus ipsam odit? Temporibus consectetur explicabo atque odit eius officia aliquam quia."
