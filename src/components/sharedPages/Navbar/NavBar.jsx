@@ -2,11 +2,12 @@
 import { useContext, useState } from "react";
 // import AnimatedLink from "./AnimatedLink";
 import { AnimatePresence, motion } from "framer-motion";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import LanguageDopdown from "./LanguageDopdown";
 import { Button, Dropdown, Menu } from "antd";
 import { DownOutlined } from "@ant-design/icons";
 import { AuthContext } from "../Context/AuthProvider";
+import ButtonLoginSignUp from "./ButtonLoginSignUp";
 
 const navLinks = [
   { title: "Home", href: "/" },
@@ -17,11 +18,11 @@ const navLinks = [
   { title: "Contact", href: "/contact" },
 ];
 
-
 const Navbar = () => {
-  const { error, user, loading, setLoading, handleLogout} = useContext(AuthContext);
+  const { error, user, loading, setLoading, handleLogout } =
+    useContext(AuthContext);
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const toggleMenu = () => {
@@ -73,14 +74,11 @@ const Navbar = () => {
     setDropdownOpen(!isDropdownOpen);
   };
 
-  const handleLogIn = () => {
-    navigate("/login");
-    setDropdownOpen(!isDropdownOpen);
-  };
-  const handleSignUp = () => {
-    navigate("/signup");
-    setDropdownOpen(!isDropdownOpen);
-  };
+  // const handleLogIn = () => {
+  //   navigate("/login");
+  //   setDropdownOpen(!isDropdownOpen);
+  // };
+  
 
   return (
     <header>
@@ -90,9 +88,9 @@ const Navbar = () => {
       >
         <div className=" flex items-center gap-[1ch]">
           <div className="w-5 h-5 bg-[#BE9874] rounded-full" />
-            <Link to={'/'} className="text-sm font-semibold tracking-widest">
+          <Link to={"/"} className="text-sm font-semibold tracking-widest">
             Awalive Hotel
-            </Link>
+          </Link>
         </div>
         <div className="lg:flex hidden gap-5 text-md text-zinc-400">
           <NavLink to={"/"}>
@@ -132,7 +130,7 @@ const Navbar = () => {
             <p>About</p>
             {/* <AnimatedLink title={"Home"} /> */}
           </NavLink>
-          <NavLink to={'/promotions'}>
+          <NavLink to={"/promotions"}>
             <p>Promotions</p>
             {/* <AnimatedLink title={"Home"} /> */}
           </NavLink>
@@ -150,10 +148,7 @@ const Navbar = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink
-                  
-                  className="p-2 block hover:bg-slate-50 transition duration-300 ease-in-out "
-                >
+                <NavLink className="p-2 block hover:bg-slate-50 transition duration-300 ease-in-out ">
                   Menu
                 </NavLink>
               </li>
@@ -163,72 +158,48 @@ const Navbar = () => {
             Contact
             {/* <AnimatedLink title={"Home"} /> */}
           </NavLink>
-          {user?.name ?(
+          {user?.name ? (
             <NavLink to={"/mybookings"}>
-            <p>My Bookings</p>
-            {/* <AnimatedLink title={"Home"} /> */}
-          </NavLink> ) : ""
-          }
-          
+              <p>My Bookings</p>
+              {/* <AnimatedLink title={"Home"} /> */}
+            </NavLink>
+          ) : (
+            ""
+          )}
+
           <LanguageDopdown />
           {/* login button  */}
           {user?.name ? (
             <div className="relative group">
-            <p
-              onClick={toggleDropdown}
-              className="cursor-pointer text-md flex items-center"
-            >
-              {user?.name}
-
-              <DownOutlined />
-            </p>
-            {isDropdownOpen && (
-              <div
-                className="absolute z-10 mt-2 bg-white border rounded-md shadow-md"
-                onBlur={closeDropdown}
+              <p
+                onClick={toggleDropdown}
+                className="cursor-pointer text-md flex items-center"
               >
-                <p
-                  onClick={handleLogout}
-                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
-                >
-                  Log Out
-                </p>
-                
-              </div>
-            )}
-          </div>
-          ): (
-            <div className="relative group">
-            <p
-              onClick={toggleDropdown}
-              className="cursor-pointer text-md flex items-center"
-            >
-              Join/Log In
+                {user?.name}
 
-              <DownOutlined />
-            </p>
-            {isDropdownOpen && (
-              <div
-                className="absolute z-10 mt-2 bg-white border rounded-md shadow-md"
-                onBlur={closeDropdown}
-              >
-                <p
-                  onClick={handleLogIn}
-                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
+                <DownOutlined />
+              </p>
+              {isDropdownOpen && (
+                <div
+                  className="absolute z-10 mt-2 bg-white border rounded-md shadow-md"
+                  onBlur={closeDropdown}
                 >
-                  Log In
-                </p>
-                <p
-                  onClick={handleSignUp}
-                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
-                >
-                  Join
-                </p>
-              </div>
-            )}
-          </div>
-          ) }
-          
+                  <p
+                    onClick={handleLogout}
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
+                  >
+                    Log Out
+                  </p>
+                </div>
+              )}
+            </div>
+          ) : (
+            <>
+            
+            <ButtonLoginSignUp />
+            </>
+          )}
+
           {/* login button end  */}
           {/* <AnimatedLink title={"Contact"} /> */}
         </div>
@@ -278,65 +249,38 @@ const Navbar = () => {
                   );
                 })}
               </motion.div>
+            <div className="flex items-center justify-between">
               <LanguageDopdown />
               {/* mobile login button todo to solve  */}
               {user?.name ? (
-            <div className="relative group">
-            <p
-              onClick={toggleDropdown}
-              className="cursor-pointer text-md flex items-center"
-            >
-              {user?.name}
+                <div className="relative group">
+                  <p
+                    onClick={toggleDropdown}
+                    className="cursor-pointer text-md flex items-center"
+                  >
+                    {user?.name}
 
-              <DownOutlined />
-            </p>
-            {isDropdownOpen && (
-              <div
-                className="absolute z-10 mt-2 bg-white border rounded-md shadow-md"
-                onBlur={closeDropdown}
-              >
-                <p
-                  onClick={handleLogout}
-                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
-                >
-                  Log Out
-                </p>
-                
+                    <DownOutlined />
+                  </p>
+                  {isDropdownOpen && (
+                    <div
+                      className="absolute z-10 mt-2 bg-white border rounded-md shadow-md"
+                      onBlur={closeDropdown}
+                    >
+                      <p
+                        onClick={handleLogout}
+                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
+                      >
+                        Log Out
+                      </p>
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <ButtonLoginSignUp  />
+              )}
+              {/* mobile login button todo to solve  */}
               </div>
-            )}
-          </div>
-          ): (
-            <div className="relative group">
-            <p
-              onClick={toggleDropdown}
-              className="cursor-pointer text-md flex items-center"
-            >
-              Join/Log In
-
-              <DownOutlined />
-            </p>
-            {isDropdownOpen && (
-              <div
-                className="absolute z-10 mt-2 bg-white border rounded-md shadow-md"
-                onBlur={closeDropdown}
-              >
-                <p
-                  onClick={handleLogIn}
-                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
-                >
-                  Log In
-                </p>
-                <p
-                  onClick={handleSignUp}
-                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
-                >
-                  Join
-                </p>
-              </div>
-            )}
-          </div>
-          ) }
-          {/* mobile login button todo to solve  */}  
             </div>
           </motion.div>
         )}
@@ -372,7 +316,7 @@ const MobileNavLink = ({ title, href, onClick, nestedLinks }) => {
   return (
     <motion.div
       variants={mobileLinkVars}
-      className="text-3xl uppercase text-black"
+      className="text-2xl uppercase text-black"
     >
       <div onClick={handleToggleNested}>
         <Link to={href} onClick={onClick}>
@@ -393,181 +337,3 @@ const MobileNavLink = ({ title, href, onClick, nestedLinks }) => {
     </motion.div>
   );
 };
-
-// import React from "react";
-// import enImg from "../../../assets/en.png";
-// import arImg from "../../../assets/sa.jpg";
-// import LanguageDopdown from "./LanguageDopdown";
-// import { Link } from "react-router-dom";
-// import { Button, Dropdown } from "antd";
-
-// const NavBar = () => {
-//   const items = [
-//     {
-//       key: "1",
-//       label: (
-//         <a
-//           target="_blank"
-//           rel="noopener noreferrer"
-//           href="https://www.antgroup.com"
-//         >
-//           1st menu item
-//         </a>
-//       ),
-//     },
-//     {
-//       key: "2",
-//       label: (
-//         <a
-//           target="_blank"
-//           rel="noopener noreferrer"
-//           href="https://www.aliyun.com"
-//         >
-//           2nd menu item
-//         </a>
-//       ),
-//     },
-//     {
-//       key: "3",
-//       label: (
-//         <a
-//           target="_blank"
-//           rel="noopener noreferrer"
-//           href="https://www.luohanacademy.com"
-//         >
-//           3rd menu item
-//         </a>
-//       ),
-//     },
-//   ];
-
-//   return (
-//     <header className="bg-[#1C1C1D]">
-//       <nav
-//         id="nav"
-//         className="w-[90%] mx-auto flex flex-wrap flex-col md:flex-row items-center justify-center md:justify-between py-4 md:py-4 text-md text-gray-300"
-//       >
-//         <div>
-//           <Link to={"/"}>
-//             <h1 className="uppercase tracking-widest text-white text-xl md:text-2xl navLink">
-//               Hotel Booking
-//             </h1>
-//           </Link>
-//         </div>
-
-//         <svg
-//           xmlns="http://www.w3.org/2000/svg"
-//           id="menu-button"
-//           className="h-6 w-6 cursor-pointer xl:hidden block"
-//           fill="none"
-//           viewBox="0 0 24 24"
-//           stroke="currentColor"
-//         >
-//           <path
-//             strokeLinecap="round"
-//             strokeLinejoin="round"
-//             strokeWidth="2"
-//             d="M4 6h16M4 12h16M4 18h16"
-//           />
-//         </svg>
-
-//         <div
-//           className="hidden w-full xl:flex xl:items-center xl:w-auto"
-//           id="menu"
-//         >
-//           <ul className="pt-4 md:flex md:justify-between md:pt-0 text-sm items-center">
-//             <li>
-//               <Link
-//                 to={"/"}
-//                 className="md:p-4 py-2 block navLink"
-//                 href="index.html"
-//               >
-//                 Home
-//               </Link>
-//             </li>
-//             <Dropdown
-//               menu={{
-//                 items,
-//               }}
-//               placement="bottom"
-//               arrow
-//             >
-//               <Button className="text-[#5c5c5c] hover:text-[#BE9874] outline-0  rounded-md " style={{ border: 'none' }} >Search</Button>
-//             </Dropdown>
-//             {/* <li className="relative group">
-//               <a className="md:p-4 py-2 block navLink" >
-//                 Rooms
-//               </a>
-//               <ul className="absolute w-36 left-0 hidden pt-2 bg-white text-black group-hover:block z-10">
-//                 <li>
-//                   <Link to={'/searchRooms'} className="p-2 block" >
-//                     Search Room
-//                   </Link>
-//                 </li>
-//                 <li>
-//                   <a className="p-2 block" >
-//                     Room Rates
-//                   </a>
-//                 </li>
-//               </ul>
-//             </li> */}
-//             <li>
-//               <a className="md:p-4 py-2 block navLink" href="about.html">
-//                 About
-//               </a>
-//             </li>
-//             <li>
-//               <a
-//                 className="md:p-4 py-2 block navLink"
-//                 href="./promotions/Promotion-allRooms.html"
-//               >
-//                 Promotions
-//               </a>
-//             </li>
-//             <li className="relative group">
-//               <a className="md:p-4 py-2 block navLink" href="#">
-//                 Restaurant
-//               </a>
-//               <ul className="absolute w-36 left-0 hidden pt-2 space-y-2 bg-white text-black group-hover:block z-10">
-//                 <li>
-//                   <a
-//                     className="md:p-4 py-2 block"
-//                     href="./restaurant/bookTable.html"
-//                   >
-//                     Book Table
-//                   </a>
-//                 </li>
-//                 <li>
-//                   <a className="md:p-4 py-2 block" href="#">
-//                     Menu
-//                   </a>
-//                 </li>
-//               </ul>
-//             </li>
-//             <li>
-//               <a className="md:p-4 py-2 block navLink" href="contact.html">
-//                 Contact
-//               </a>
-//             </li>
-//             <li>
-//               <a className="md:p-4 py-2 block navLink" href="#">
-//                 Book Now
-//               </a>
-//             </li>
-//             <li>
-//               <img className="md:p-4 py-2 navLink" src={arImg} alt="" />
-//               {/* <a className="md:p-4 py-2 block text-" href="#">Arabic</a> */}
-//             </li>
-//             <li>
-//               <img className="md:p-4 py-2 navLink" src={enImg} alt="" />
-//               {/* <a className="md:p-4 py-2 block text-" href="#">Eng</a> */}
-//             </li>
-//             <LanguageDopdown />
-//           </ul>
-//         </div>
-//       </nav>
-//     </header>
-//   );
-// };
-
-// export default NavBar;

@@ -69,7 +69,7 @@ const LanguageDopdown = () => {
   const { t } = useTranslation();
 
   useEffect(() => {
-    console.log('Setting page stuff');
+    console.log('Setting page stuff.. from langu button');
     document.body.dir = currentLanguage.dir || 'ltr';
     document.title = t('app_title');
   }, [currentLanguage, t]);
