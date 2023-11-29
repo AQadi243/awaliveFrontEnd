@@ -1,158 +1,127 @@
 [
   {
-    "id": 1,
-    "name": "Small Room",
-    "rooms": [
+    "id": 101,
+    "roomName": "Small Room",
+    "roomType": "Luxury",
+    "roomImage": "https://i.ibb.co/cvpfmzx/familyroom.webp",
+    "price": 300,
+    "saleTag": "Special Offer",
+    "numberOfGuests": 2,
+    "breakfastAvailable": true,
+    "description": "Experience luxury in our spacious Deluxe Suite with stunning views.",
+    "reviews": [
       {
-        "id": 101,
-        "roomName": "Small Room",
-        "roomType": "Luxury",
-        "roomImage": "../src/assets/familyroom.jpg",
-        "price": 300,
-        "saleTag": "Special Offer",
-        "numberOfGuests": 2,
-        "breakfastAvailable": true,
-        "description": "Experience luxury in our spacious Deluxe Suite with stunning views.",
-        "reviews": [
-          {
-            "id": 1,
-            "username": "Guest123",
-            "rating": 4.5,
-            "comment": "Great room with excellent amenities."
-          }
-        ],
-        "qnt": 5
+        "id": 1,
+        "username": "Guest123",
+        "rating": 4.5,
+        "comment": "Great room with excellent amenities."
       }
-    ]
+    ],
+    "qnt": 5
   },
+
   {
-    "id": 2,
-    "name": "Family Suite",
-    "rooms": [
+    "id": 201,
+    "roomName": "Family Suite",
+    "roomType": "Luxury",
+    "roomImage": "https://i.ibb.co/6ncPmBS/apartment-Room.webp",
+    "price": 350,
+    "saleTag": "Special Offer",
+    "numberOfGuests": 4,
+    "breakfastAvailable": true,
+    "description": "Experience luxury in our spacious Deluxe Suite with stunning views.",
+    "reviews": [
       {
-        "id": 101,
-        "roomName": "Family Suite",
-        "roomType": "Luxury",
-        "roomImage": "../src/assets/familyroom.jpg",
-        "price": 350,
-        "saleTag": "Special Offer",
-        "numberOfGuests": 4,
-        "breakfastAvailable": true,
-        "description": "Experience luxury in our spacious Deluxe Suite with stunning views.",
-        "reviews": [
-          {
-            "id": 1,
-            "username": "Guest123",
-            "rating": 4.5,
-            "comment": "Great room with excellent amenities."
-          }
-        ],
-        "qnt": 10
+        "id": 1,
+        "username": "Guest123",
+        "rating": 4.5,
+        "comment": "Great room with excellent amenities."
       }
-    ]
+    ],
+    "qnt": 10
   },
+
   {
-    "id": 3,
-    "name": "Garden View",
-    "rooms": [
+    "id": 301,
+    "roomName": "Garden View",
+    "roomType": "Luxury",
+    "roomImage": "https://i.ibb.co/r28WDXZ/roomsview.webp ",
+    "price": 450,
+    "saleTag": "Special Offer",
+    "numberOfGuests": 4,
+    "breakfastAvailable": true,
+    "description": "Experience luxury in our spacious Deluxe Suite with stunning views.",
+    "reviews": [
       {
-        "id": 101,
-        "roomName": "Garden View",
-        "roomType": "Luxury",
-        "roomImage": "../src/assets/roomsview.jpg ",
-        "price": 450,
-        "saleTag": "Special Offer",
-        "numberOfGuests": 4,
-        "breakfastAvailable": true,
-        "description": "Experience luxury in our spacious Deluxe Suite with stunning views.",
-        "reviews": [
-          {
-            "id": 1,
-            "username": "Guest123",
-            "rating": 4.5,
-            "comment": "Great room with excellent amenities."
-          }
-        ],
-        "qnt": 10
+        "id": 1,
+        "username": "Guest123",
+        "rating": 4.5,
+        "comment": "Great room with excellent amenities."
       }
-    ]
+    ],
+    "qnt": 10
   },
+
   {
-    "id": 4,
-    "name": "Apartment",
-    "rooms": [
+    "id": 401,
+    "roomName": "Apartment",
+    "roomType": "Luxury",
+    "roomImage": "https://i.ibb.co/W6qW3X4/paralox.webp ",
+    "price": 500,
+    "saleTag": "Special Offer",
+    "numberOfGuests": 4,
+    "breakfastAvailable": true,
+    "description": "Experience luxury in our spacious Deluxe Suite with stunning views.",
+    "reviews": [
       {
-        "id": 101,
-        "roomName": "Apartment",
-        "roomType": "Luxury",
-        "roomImage": "../src/assets/apartment Room.jpg ",
-        "price": 500,
-        "saleTag": "Special Offer",
-        "numberOfGuests": 4,
-        "breakfastAvailable": true,
-        "description": "Experience luxury in our spacious Deluxe Suite with stunning views.",
-        "reviews": [
-          {
-            "id": 1,
-            "username": "Guest123",
-            "rating": 4.5,
-            "comment": "Great room with excellent amenities."
-          }
-        ],
-        "qnt": 10
+        "id": 1,
+        "username": "Guest123",
+        "rating": 4.5,
+        "comment": "Great room with excellent amenities."
       }
-    ]
+    ],
+    "qnt": 10
   },
+
   {
-    "id": 5,
-    "name": "Double Room",
-    "rooms": [
+    "id": 501,
+    "roomName": "Double Room",
+    "roomType": "Luxury",
+    "roomImage": "https://i.ibb.co/1YCFxWY/double-Room.webp ",
+    "price": 550,
+    "saleTag": "Special Offer",
+    "numberOfGuests": "4 - 6",
+    "breakfastAvailable": true,
+    "description": "Experience luxury in our spacious Deluxe Suite with stunning views.",
+    "reviews": [
       {
-        "id": 101,
-        "roomName": "Double Room",
-        "roomType": "Luxury",
-        "roomImage": "../src/assets/doubleRoom.jpg " ,
-        "price": 550,
-        "saleTag": "Special Offer",
-        "numberOfGuests": "4 - 6",
-        "breakfastAvailable": true,
-        "description": "Experience luxury in our spacious Deluxe Suite with stunning views.",
-        "reviews": [
-          {
-            "id": 1,
-            "username": "Guest123",
-            "rating": 4.5,
-            "comment": "Great room with excellent amenities."
-          }
-        ],
-        "qnt": 10
+        "id": 1,
+        "username": "Guest123",
+        "rating": 4.5,
+        "comment": "Great room with excellent amenities."
       }
-    ]
+    ],
+    "qnt": 10
   },
+
   {
-    "id": 6,
-    "name": "Luxury Suite",
-    "rooms": [
+    "id": 601,
+    "roomName": "Luxury Suite",
+    "roomType": "Luxury",
+    "roomImage": "https://i.ibb.co/5TYJfvF/luxury-Room-1.webp ",
+    "price": 650,
+    "saleTag": "Special Offer",
+    "numberOfGuests": "4 - 6",
+    "breakfastAvailable": true,
+    "description": "Experience luxury in our spacious Deluxe Suite with stunning views.",
+    "reviews": [
       {
-        "id": 101,
-        "roomName": "Luxury Suite",
-        "roomType": "Luxury",
-        "roomImage": "../src/assets/luxuryRoom.jpg ",
-        "price": 650,
-        "saleTag": "Special Offer",
-        "numberOfGuests": "4 - 6",
-        "breakfastAvailable": true,
-        "description": "Experience luxury in our spacious Deluxe Suite with stunning views.",
-        "reviews": [
-          {
-            "id": 1,
-            "username": "Guest123",
-            "rating": 4.5,
-            "comment": "Great room with excellent amenities."
-          }
-        ],
-        "qnt": 10
+        "id": 1,
+        "username": "Guest123",
+        "rating": 4.5,
+        "comment": "Great room with excellent amenities."
       }
-    ]
+    ],
+    "qnt": 10
   }
 ]

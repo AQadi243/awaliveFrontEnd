@@ -12,6 +12,7 @@ const navLinks = [
   { title: "Home", href: "/" },
   { title: "Room Search", href: "/roomSearch" },
   { title: "About", href: "/about" },
+  { title: "Promotions", href: "/promotions" },
   { title: "Restaurant", href: "/bookTable" },
   { title: "Contact", href: "/contact" },
 ];
@@ -89,9 +90,9 @@ const Navbar = () => {
       >
         <div className=" flex items-center gap-[1ch]">
           <div className="w-5 h-5 bg-[#BE9874] rounded-full" />
-          <span className="text-sm font-semibold tracking-widest">
+            <Link to={'/'} className="text-sm font-semibold tracking-widest">
             Awalive Hotel
-          </span>
+            </Link>
         </div>
         <div className="lg:flex hidden gap-5 text-md text-zinc-400">
           <NavLink to={"/"}>
@@ -131,7 +132,7 @@ const Navbar = () => {
             <p>About</p>
             {/* <AnimatedLink title={"Home"} /> */}
           </NavLink>
-          <NavLink >
+          <NavLink to={'/promotions'}>
             <p>Promotions</p>
             {/* <AnimatedLink title={"Home"} /> */}
           </NavLink>

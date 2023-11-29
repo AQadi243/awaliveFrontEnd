@@ -27,6 +27,8 @@ import SignUpPage from './components/sharedPages/SignInPage/SignUpPage';
 import PrivateRoute from './components/PrivetAuth/PrivetRoute';
 import { Spin } from 'antd';
 import MyBookings from './components/pages/My Bookings/MyBookings';
+import ErrorPage from './components/Error Page/ErrorPage';
+import Promotions from './components/pages/Promotion/Promotions';
 
 // import 'flag-icon-css/css/flag-icon.min.css'
 
@@ -65,7 +67,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <App /> ,
-    errorElement:<div>Error page</div>,
+    errorElement:<ErrorPage />,
     
     children:[
       {
@@ -103,6 +105,10 @@ const router = createBrowserRouter([
       {
         path: '/mybookings',
         element:<PrivateRoute>  <MyBookings /> </PrivateRoute>
+      },
+      {
+        path: '/promotions',
+        element: <Promotions />
       },
       {
         path: '/bookTable',
