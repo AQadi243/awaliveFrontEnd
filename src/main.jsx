@@ -29,6 +29,7 @@ import { Spin } from 'antd';
 import MyBookings from './components/pages/My Bookings/MyBookings';
 import ErrorPage from './components/Error Page/ErrorPage';
 import Promotions from './components/pages/Promotion/Promotions';
+import SinglePromoRoom from './components/pages/Promotion/SinglePromoPage/SinglePromoRoom';
 
 // import 'flag-icon-css/css/flag-icon.min.css'
 
@@ -109,6 +110,10 @@ const router = createBrowserRouter([
       {
         path: '/promotions',
         element: <Promotions />
+      },
+      {
+        path: '/singlePromotionRoom/:id',
+        element: <SinglePromoRoom />
       },
       {
         path: '/bookTable',

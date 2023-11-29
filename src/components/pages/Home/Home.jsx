@@ -13,10 +13,10 @@ import axios from "axios"
 
 const Home = () => {
   const [roomRates, setRoomRates] = useState([]);
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    setLoading(true)
+   
     const fetchRoomRates = async () => {
       try {
         const response = await axios.get('/roomData.json'); 

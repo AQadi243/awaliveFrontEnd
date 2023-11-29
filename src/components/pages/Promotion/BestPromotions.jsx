@@ -13,7 +13,7 @@ const BestPromotions = ({ data, loading }) => {
       ) : (
         <div className="grid md:grid-cols-3 gap-6">
           {data.slice(0, 6).map((room) => (
-            <div key={room.id} className="shadow-lg">
+            <Link to={`/singlePromotionRoom/${room.id}`} key={room.id} className="shadow-lg">
               <div>
                 <picture>
                   <img src={room.roomImage} alt="" />
@@ -23,12 +23,12 @@ const BestPromotions = ({ data, loading }) => {
                 <h3 className="text-xl md:text-3xl">{room.roomName}</h3>
                 <p className="text-md font-thin">{room.price} SR</p>
                 <div>
-                  <Link className="py-2 px-4 uppercase text-xs bg-[#1C1C1D] text-white">
+                  <button className="py-2 px-4 uppercase text-xs bg-[#1C1C1D] text-white">
                     Read More
-                  </Link>
+                  </button>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       )}
