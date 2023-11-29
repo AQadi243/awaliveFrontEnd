@@ -15,12 +15,12 @@ const CheckPromotion = () => {
           <h2 className="text-2xl md:text-6xl  " style={{ fontFamily: "Gilda Display, serif" }}>Check the Promotions</h2>
           <p className="py-6 md:py-10 text-sm">Pellentesque maximus pharetra tristique. Vestibulum eget odio blandit, finibus felis non, efficitur diam. Sed condimentum pellentesque eros. Etiam posuere turpis in ultricies ullamcorper.</p>
           <div className="flex items-center gap-10">
-            <img src={checkImg} alt="" loading="lazy" className="rounded-full w-20" />
-            <img src={singnature} alt="signature" className="w-[50%]" loading="lazy" />
+            <img src={checkImg} alt=""  className="rounded-full w-20" />
+            <img src={singnature} alt="signature" className="w-[50%]"  />
           </div>
         </div>
         <div className="md:w-[70%] " style={{ position: 'relative' }}>
-          <img src={caffeeBar} alt="coffee" loading="lazy" className="w-full md:w-[50%]" />
+          <img src={caffeeBar} alt="coffee"  className="w-full md:w-[50%]" />
           <div className="md:w-[50%] md:absolute md:right-10 md:top-1/3">
             <div className="grid grid-cols-4 gap-6 items-center justify-center h-32">
               <img src={luxuryRoom} alt="" className="col-span-1" />
