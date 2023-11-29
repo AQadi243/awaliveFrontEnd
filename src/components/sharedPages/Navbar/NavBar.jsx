@@ -151,7 +151,7 @@ const Navbar = () => {
               </li>
               <li>
                 <NavLink
-                  to={"/restaurantMenu"}
+                  
                   className="p-2 block hover:bg-slate-50 transition duration-300 ease-in-out "
                 >
                   Menu

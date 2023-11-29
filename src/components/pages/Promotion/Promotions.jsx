@@ -17,7 +17,6 @@ const Promotions = () => {
         const response = await axios.get('/PromotionRooms.json');
         const firstFourItems = response.data
     
-        console.log('Fetched data:', firstFourItems);
         setPromotionsData(firstFourItems)
         setLoading(false)
       } catch (error) {
