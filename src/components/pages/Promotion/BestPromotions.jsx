@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import LazyImage from "../../sharedPages/LazyImage";
 
 const BestPromotions = ({ data, loading }) => {
   
@@ -19,7 +18,7 @@ const BestPromotions = ({ data, loading }) => {
           {data.slice(0, 6).map((room) => (
             <Link to={`/singlePromotionRoom/${room.id}`} key={room.id} className="shadow-lg">
               <div>
-              <LazyImage src={room.roomImage} alt="" />
+              <img src={room.roomImage} alt="" />
               </div>
               <div className="text-center flex flex-col justify-center gap-3 py-8">
                 <h3 className="text-xl md:text-3xl">{room.roomName}</h3>

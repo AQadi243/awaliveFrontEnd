@@ -2,7 +2,7 @@ import  { useEffect, useState } from 'react'
 import axios from 'axios';
 // import roomData from '/public/roomData.json'
 import { Link } from 'react-router-dom'
-import LazyImage from '../../sharedPages/LazyImage';
+
 
 const RoomCards = ({roomRates, loading}) => {
   
@@ -14,7 +14,7 @@ const RoomCards = ({roomRates, loading}) => {
         {loading ? ' ': (
           roomRates?.map((room) => (
           <Link key={room.id} to={`/room/${room.id}`} className="grid-cols-1 cursor-pointer" style={{ position: 'relative' }}>
-            <LazyImage src={room.image} alt={room.image} className="w-full aspect-video" />
+            <img src={room.image} alt={room.image} className="w-full aspect-video" />
             
             <p className="bg-[#2E2E2E] py-2 px-6 absolute top-5 right-0 text-white text-xs tracking-widest">FROM 240 SR</p>
             <div className="absolute bottom-5 left-2">

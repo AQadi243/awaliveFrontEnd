@@ -1,6 +1,6 @@
 import relaxAreaImage from '../../../assets/relaxArea.webp'
 import relaxAreaImage2 from '../../../assets/relazArea2.webp'
-import LazyImage from '../../sharedPages/LazyImage'
+// import LazyImage from '../../sharedPages/LazyImage'
 
 const RelaxArea = () => {
   return (
@@ -22,7 +22,7 @@ const RelaxArea = () => {
                 <div className="relative" >
                     <picture>
 
-                    <LazyImage src={relaxAreaImage2} alt="" />
+                    <img src={relaxAreaImage2} alt="" />
                     </picture>
                     <div className="absolute top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 flex flex-col gap-2 items-center text-white">
                         <p className="text-xs tracking-widest">FREE WIFI</p>
