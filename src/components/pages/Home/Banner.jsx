@@ -20,7 +20,7 @@ const Banner = () => {
           navigation={true}
           modules={[Navigation, Autoplay]}
           className={` h-[calc(100vh-74px)]  overflow-hidden `}
-          autoplay={{ delay: 6000 }}
+          autoplay={{ delay: 3000 }}
           loop={true}
         >
           <SwiperSlide
