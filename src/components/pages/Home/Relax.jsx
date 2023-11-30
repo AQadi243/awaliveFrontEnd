@@ -1,6 +1,6 @@
 
 // import relax from '../../../assets/relax.jpg'
-import relaxB from '../../../assets/relax.webp'
+import relaxB from '../../../assets/relaxCom.jpg'
 import aveter from '../../../assets/avetar.png'
 import signature from '../../../assets/signature.png'
 
