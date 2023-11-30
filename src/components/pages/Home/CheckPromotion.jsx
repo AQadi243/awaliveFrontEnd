@@ -20,7 +20,7 @@ const CheckPromotion = () => {
           </div>
         </div>
         <div className="md:w-[70%] " style={{ position: 'relative' }}>
-          <img src={caffeeBar} alt="coffee"  className="w-full md:w-[50%]" />
+          <img src={caffeeBar} alt="coffee"  className="w-full md:w-[50%]" loading='lazy' />
           <div className="md:w-[50%] md:absolute md:right-10 md:top-1/3">
             <div className="grid grid-cols-4 gap-6 items-center justify-center h-32">
               <img src={luxuryRoom} alt="" className="col-span-1" />
@@ -56,29 +56,7 @@ const CheckPromotion = () => {
       </div>
       
     </section>
-    <section className="w-[90%] mx-auto pb-20">
-    <div className="flex flex-col md:flex-row gap-10 md:gap-[10%]">
-      <div className=" py-14 shadow-xl">
-        <div className="flex flex-col md:flex-row items-center justify-center gap-10">
-          <img src={checkImg} alt="" className="rounded-full w-24" />
-          <div className="text-center md:text-start px-3">
-            <h2 className="text-xl md:text-2xl md:font-semibold"  style={{ fontFamily: "Gilda Display, serif" }}>Reception 24h / 7 Days</h2>
-            <p className="pt-5 text-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec</p>
-          </div>
-        </div>
-      </div>
-      <div className=" py-14 shadow-xl">
-        <div className="flex flex-col md:flex-row items-center justify-center gap-10">
-          <img src={checkImg} alt="" className="rounded-full w-24" />
-          <div className="text-center md:text-start px-3">
-            <h2 className="text-xl md:text-2xl md:font-semibold"  style={{ fontFamily: "Gilda Display, serif" }}>Reception 24h / 7 Days</h2>
-            <p className="pt-5 text-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec</p>
-          </div>
-        </div>
-      </div>   
-    </div>
-    
-  </section>
+   
   </>
   )
 }

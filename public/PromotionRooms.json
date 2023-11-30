@@ -6,9 +6,10 @@
     "roomImage": "https://i.ibb.co/cvpfmzx/familyroom.webp",
     "price": 300,
     "saleTag": "Special Offer",
-    "numberOfGuests": 2,
-    "breakfastAvailable": true,
+    "numberOfGuests": "2 person",
+    "breakfastAvailable": "Not included",
     "description": "Experience luxury in our spacious Deluxe Suite with stunning views.",
+    "fullDatails":"Morbi malesuada imperdiet imperdiet. Fusce in neque a magna sagittis tincidunt sit amet facilisis purus. Etiam in semper arcu, quis vulputate nisl. Curabitur maximus orci a ex cursus consectetur.Fusce eu ante luctus ligula aliquam vestibulum. Sed non arcu sit amet nisl vestibulum posuere. Phasellus lorem nisl, porttitor in volutpat sit amet, congue malesuada neque. Orci varius natoque pena",
     "reviews": [
       {
         "id": 1,
@@ -27,9 +28,10 @@
     "roomImage": "https://i.ibb.co/6ncPmBS/apartment-Room.webp",
     "price": 350,
     "saleTag": "Special Offer",
-    "numberOfGuests": 4,
-    "breakfastAvailable": true,
+    "numberOfGuests": "4 person",
+    "breakfastAvailable": "Not included",
     "description": "Experience luxury in our spacious Deluxe Suite with stunning views.",
+    "fullDatails":"Morbi malesuada imperdiet imperdiet. Fusce in neque a magna sagittis tincidunt sit amet facilisis purus. Etiam in semper arcu, quis vulputate nisl. Curabitur maximus orci a ex cursus consectetur.Fusce eu ante luctus ligula aliquam vestibulum. Sed non arcu sit amet nisl vestibulum posuere. Phasellus lorem nisl, porttitor in volutpat sit amet, congue malesuada neque. Orci varius natoque pena",
     "reviews": [
       {
         "id": 1,
@@ -48,9 +50,10 @@
     "roomImage": "https://i.ibb.co/r28WDXZ/roomsview.webp ",
     "price": 450,
     "saleTag": "Special Offer",
-    "numberOfGuests": 4,
-    "breakfastAvailable": true,
+    "numberOfGuests": "4 person",
+    "breakfastAvailable": "Not included",
     "description": "Experience luxury in our spacious Deluxe Suite with stunning views.",
+    "fullDatails":"Morbi malesuada imperdiet imperdiet. Fusce in neque a magna sagittis tincidunt sit amet facilisis purus. Etiam in semper arcu, quis vulputate nisl. Curabitur maximus orci a ex cursus consectetur.Fusce eu ante luctus ligula aliquam vestibulum. Sed non arcu sit amet nisl vestibulum posuere. Phasellus lorem nisl, porttitor in volutpat sit amet, congue malesuada neque. Orci varius natoque pena",
     "reviews": [
       {
         "id": 1,
@@ -69,9 +72,10 @@
     "roomImage": "https://i.ibb.co/W6qW3X4/paralox.webp ",
     "price": 500,
     "saleTag": "Special Offer",
-    "numberOfGuests": 4,
-    "breakfastAvailable": true,
+    "numberOfGuests": "4 person",
+    "breakfastAvailable": "Not included",
     "description": "Experience luxury in our spacious Deluxe Suite with stunning views.",
+    "fullDatails":"Morbi malesuada imperdiet imperdiet. Fusce in neque a magna sagittis tincidunt sit amet facilisis purus. Etiam in semper arcu, quis vulputate nisl. Curabitur maximus orci a ex cursus consectetur.Fusce eu ante luctus ligula aliquam vestibulum. Sed non arcu sit amet nisl vestibulum posuere. Phasellus lorem nisl, porttitor in volutpat sit amet, congue malesuada neque. Orci varius natoque pena",
     "reviews": [
       {
         "id": 1,
@@ -90,9 +94,10 @@
     "roomImage": "https://i.ibb.co/1YCFxWY/double-Room.webp ",
     "price": 550,
     "saleTag": "Special Offer",
-    "numberOfGuests": "4 - 6",
-    "breakfastAvailable": true,
+    "numberOfGuests": "4 - 6 person",
+    "breakfastAvailable": "Not included",
     "description": "Experience luxury in our spacious Deluxe Suite with stunning views.",
+    "fullDatails":"Morbi malesuada imperdiet imperdiet. Fusce in neque a magna sagittis tincidunt sit amet facilisis purus. Etiam in semper arcu, quis vulputate nisl. Curabitur maximus orci a ex cursus consectetur.Fusce eu ante luctus ligula aliquam vestibulum. Sed non arcu sit amet nisl vestibulum posuere. Phasellus lorem nisl, porttitor in volutpat sit amet, congue malesuada neque. Orci varius natoque pena",
     "reviews": [
       {
         "id": 1,
@@ -111,9 +116,10 @@
     "roomImage": "https://i.ibb.co/5TYJfvF/luxury-Room-1.webp ",
     "price": 650,
     "saleTag": "Special Offer",
-    "numberOfGuests": "4 - 6",
-    "breakfastAvailable": true,
+    "numberOfGuests": "4 - 6 person",
+    "breakfastAvailable": "Not included",
     "description": "Experience luxury in our spacious Deluxe Suite with stunning views.",
+    "fullDatails":"Morbi malesuada imperdiet imperdiet. Fusce in neque a magna sagittis tincidunt sit amet facilisis purus. Etiam in semper arcu, quis vulputate nisl. Curabitur maximus orci a ex cursus consectetur.Fusce eu ante luctus ligula aliquam vestibulum. Sed non arcu sit amet nisl vestibulum posuere. Phasellus lorem nisl, porttitor in volutpat sit amet, congue malesuada neque. Orci varius natoque pena",
     "reviews": [
       {
         "id": 1,

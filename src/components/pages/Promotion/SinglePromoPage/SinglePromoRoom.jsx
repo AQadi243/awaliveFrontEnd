@@ -2,6 +2,7 @@ import axios from 'axios';
 import   { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import BannerPage from '../../../sharedPages/PageBanner/BannerPage';
+import PromoRoomDetails from './PromoRoomDetails';
 
 const SinglePromoRoom = () => {
   const { id } = useParams();
@@ -49,7 +50,7 @@ const SinglePromoRoom = () => {
   return (
     <>
     <BannerPage text={singlePromotionData.roomName} />
-    <div>{singlePromotionData.roomName}</div>
+    <PromoRoomDetails singlePromotionData={singlePromotionData} />
     </>
   );
 };

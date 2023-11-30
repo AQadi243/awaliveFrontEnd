@@ -8,15 +8,10 @@ import "swiper/css/navigation";
 
 import "../About/slider.css";
 import { Link } from "react-router-dom";
-// import { useEffect, useRef, useState } from "react";
-import gsap from "gsap";
+
 
 const Banner = () => {
-//   let timeline = gsap.timeline({ default: { duration: 1 } });
-//   timeline.from(".text-center", { y: -100, stagger: 0.1, delay: 7 });
-//   timeline.to(".text-center", { y: -100, stagger: 0.1, delay:  });
-//   timeline.from(".heroText", { y: -100, stagger: 0.1, opacity: 0 });
-//   timeline.from(".heroAvail", { y: 100, stagger: 0.1, opacity: 0 }, "<.3");
+
 
   return (
     <>
