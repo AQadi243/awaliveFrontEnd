@@ -49,7 +49,7 @@ const SinglePromoRoom = () => {
   return (
     <>
     <BannerPage text={singlePromotionData.roomName} />
-    
+    <div>{singlePromotionData.roomName}</div>
     </>
   );
 };
