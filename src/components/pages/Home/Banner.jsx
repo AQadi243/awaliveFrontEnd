@@ -1,5 +1,5 @@
-import bannerImagTwo from "../../../assets/apartment Room.jpg";
-import bannerImagOne from "../../../assets/familyroom.jpg";
+import bannerImagTwo from "../../../assets/appartment Slider.jpg";
+import bannerImagOne from "../../../assets/familySlider .jpg";
 // // import DatePicker from "./DatePicker";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation } from "swiper/modules";

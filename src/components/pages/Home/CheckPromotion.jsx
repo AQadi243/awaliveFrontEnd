@@ -1,9 +1,9 @@
 // import React from 'react'
 import checkImg from '../../../assets/check.jpg'
 import singnature from '../../../assets/signature.png'
-import caffeeBar from '../../../assets/coffeeBar.jpg'
-import luxuryRoom from '../../../assets/luxuryRoom.jpg'
-import familyRoom from '../../../assets/familyroom.jpg'
+import caffeeBar from '../../../assets/cofee Com.jpg'
+import luxuryRoom from '../../../assets/luxuryRoomCard.webp'
+import familyRoom from '../../../assets/familyCard .jpg'
 
 const CheckPromotion = () => {
   return (
