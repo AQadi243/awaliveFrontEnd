@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import LazyImage from "../../Utili/LazyImage";
+import LazyImage from "../../sharedPages/LazyImage";
 
 const BestPromotions = ({ data, loading }) => {
   

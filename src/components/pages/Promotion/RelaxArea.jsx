@@ -1,6 +1,6 @@
 import relaxAreaImage from '../../../assets/relaxArea.webp'
 import relaxAreaImage2 from '../../../assets/relazArea2.webp'
-import LazyImage from '../../Utili/LazyImage'
+import LazyImage from '../../sharedPages/LazyImage'
 
 const RelaxArea = () => {
   return (

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import ImagePlaceholder from './imagePlaceholder';
+import ImagePlaceholder from './ImagePlaceholder';
+
 
 
 const LazyImage = ({ src, alt, className }) => {

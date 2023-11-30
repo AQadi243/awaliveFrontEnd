@@ -3,7 +3,7 @@
 import { Link } from "react-router-dom";
 import bannerImage from "../../../assets/HerrooSlid.webp"; // Update with the actual path
 import { useEffect, useState } from "react";
-import LazyImage from "../../Utili/LazyImage";
+import LazyImage from "../../sharedPages/LazyImage";
 
 const Banner = ({ data, loading }) => {
   const componentStyle = {

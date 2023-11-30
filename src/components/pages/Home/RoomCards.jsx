@@ -2,7 +2,7 @@ import  { useEffect, useState } from 'react'
 import axios from 'axios';
 // import roomData from '/public/roomData.json'
 import { Link } from 'react-router-dom'
-import LazyImage from '../../Utili/LazyImage';
+import LazyImage from '../../sharedPages/LazyImage';
 
 const RoomCards = ({roomRates, loading}) => {
   
