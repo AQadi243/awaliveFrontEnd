@@ -2,35 +2,20 @@ import  { useEffect, useState } from 'react'
 import axios from 'axios';
 // import roomData from '/public/roomData.json'
 import { Link } from 'react-router-dom'
+import LazyImage from '../../Utili/LazyImage';
 
 const RoomCards = ({roomRates, loading}) => {
+  
   
 
   return (
     <section className="w-[90%] mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {loading ? (
-          <div className="border border-blue-300 shadow rounded-md p-4 max-w-sm w-full mx-auto">
-          <div className="animate-pulse flex space-x-4">
-            <div className="rounded-full bg-slate-700 h-10 w-10"></div>
-            <div className="flex-1 space-y-6 py-1">
-              <div className="h-2 bg-slate-700 rounded"></div>
-              <div className="space-y-3">
-                <div className="grid grid-cols-3 gap-4">
-                  <div className="h-2 bg-slate-700 rounded col-span-2"></div>
-                  <div className="h-2 bg-slate-700 rounded col-span-1"></div>
-                </div>
-                <div className="h-2 bg-slate-700 rounded"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-        ) : (
+        {loading ? ' ': (
           roomRates?.map((room) => (
           <Link key={room.id} to={`/room/${room.id}`} className="grid-cols-1 cursor-pointer" style={{ position: 'relative' }}>
-            <picture>
-            <img src={room.image} alt="" className="w-full aspect-video"  />
-            </picture>
+            <LazyImage src={room.image} alt={room.image} className="w-full aspect-video" />
+            
             <p className="bg-[#2E2E2E] py-2 px-6 absolute top-5 right-0 text-white text-xs tracking-widest">FROM 240 SR</p>
             <div className="absolute bottom-5 left-2">
               <h2 className="text-xl text-white " style={{ fontFamily: "Gilda Display, serif" }}>{room.roomName}</h2>

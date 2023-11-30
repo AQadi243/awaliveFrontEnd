@@ -1,6 +1,10 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import LazyImage from "../../Utili/LazyImage";
 
 const BestPromotions = ({ data, loading }) => {
+  
+
   return (
     <section className="w-[90%] mx-auto" style={{ fontFamily: "Gilda Display, serif" }}>
         <div className="p-10 md:py-20">
@@ -15,9 +19,7 @@ const BestPromotions = ({ data, loading }) => {
           {data.slice(0, 6).map((room) => (
             <Link to={`/singlePromotionRoom/${room.id}`} key={room.id} className="shadow-lg">
               <div>
-                <picture>
-                  <img src={room.roomImage} alt="" />
-                </picture>
+              <LazyImage src={room.roomImage} alt="" />
               </div>
               <div className="text-center flex flex-col justify-center gap-3 py-8">
                 <h3 className="text-xl md:text-3xl">{room.roomName}</h3>

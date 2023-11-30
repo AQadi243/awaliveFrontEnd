@@ -2,6 +2,8 @@
 
 import { Link } from "react-router-dom";
 import bannerImage from "../../../assets/HerrooSlid.webp"; // Update with the actual path
+import { useEffect, useState } from "react";
+import LazyImage from "../../Utili/LazyImage";
 
 const Banner = ({ data, loading }) => {
   const componentStyle = {
@@ -10,6 +12,8 @@ const Banner = ({ data, loading }) => {
     backgroundPosition: "center center",
     backgroundSize: "cover",
   };
+
+  
 
   return (
     <section className="py-20" style={componentStyle}>
@@ -38,9 +42,7 @@ const Banner = ({ data, loading }) => {
 
               {data.slice(0, 4).map((room) => (
                 <div key={room.id} className="grid-cols-1 relative">
-                  <picture>
-                    <img src={room.roomImage} alt="" className="w-full" />
-                  </picture>
+                  <LazyImage src={room.roomImage} alt="" />
                   <p className="bg-[#2E2E2E] py-1 px-4 absolute top-5 right-0 text-white text-sm">
                     {room.price} SR
                   </p>
