@@ -47,7 +47,7 @@
     "id": 301,
     "roomName": "Garden View",
     "roomType": "Luxury",
-    "roomImage": "/src/assets/roomViewCard.jpg ",
+    "roomImage": "https://i.ibb.co/DVjCHVX/room-View-Card.jpg ",
     "price": 450,
     "saleTag": "Special Offer",
     "numberOfGuests": "4 person",
