@@ -37,8 +37,8 @@ const Slider = () => {
   return (
     <div className=''>
       <Swiper navigation={true} modules={[Navigation, Autoplay]} className={` h-[calc(100vh-74px)]  overflow-hidden ` }autoplay={{ delay: 3000,  }} loop={true} >
-        {slider?.map((person, index) => (
-          <SwiperSlide className='bg-cover bg-center relative' key={index} style={{ fontFamily: "Gilda Display, serif" }}>
+        {slider?.map((person) => (
+          <SwiperSlide className='bg-cover bg-center relative' key={person.id} style={{ fontFamily: "Gilda Display, serif" }}>
           <div className='absolute top-0 left-0 w-full h-full bg-black opacity-50'></div>
             <img className='w-full h-full  object-cover block  ' src={person.image} alt="" />
             <div className='absolute top-0 left-0 w-full h-full bg-black opacity-50'></div>
