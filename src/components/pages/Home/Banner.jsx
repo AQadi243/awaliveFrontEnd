@@ -8,17 +8,34 @@ import "swiper/css/navigation";
 
 import "../About/slider.css";
 import { Link } from "react-router-dom";
+// import { useEffect } from "react";
+// import AOS from 'aos';
 
 
 const Banner = () => {
+  // useEffect(() => {
+  //   AOS.init({ duration: 2000, delay:1 })
+  // }, [])
+
+  // // Function to refresh AOS on scroll
+  // const handleScroll = () => {
+  //   AOS.refresh();
+  // };
+
+  // useEffect(() => {
+  //   window.addEventListener('scroll', handleScroll);
+  //   return () => {
+  //     window.removeEventListener('scroll', handleScroll);
+  //   };
+  // }, []);
 
 
   return (
     <>
-      <div>
+      <div data-aos="zoom-in" >
         <Swiper
           navigation={true}
-          modules={[Navigation, Autoplay]}
+          modules={[Navigation, Autoplay, ]}
           className={` h-[calc(100vh-74px)]  overflow-hidden `}
           autoplay={{ delay: 3000 }}
           loop={true}

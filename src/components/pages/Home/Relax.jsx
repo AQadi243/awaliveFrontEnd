@@ -6,7 +6,7 @@ import signature from '../../../assets/signature.png'
 
 const Relax = () => {
   return (
-    <section  className="w-[90%] mx-auto py-10 md:py-20 text-[#2E2E2E] " data-speed="2">
+    <section  data-aos="fade-up" className="w-[90%] mx-auto py-10 md:py-20 text-[#2E2E2E] " data-speed="2">
       <div className="md:h-full flex flex-col md:flex-row gap-10 md:gap-14 xl:gap-28 items-center justify-center ">
         <div  className="w-full md:w-[40%] h-full">
           {/* <img  className="w-full h-full" src={relax} alt="image" /> */}

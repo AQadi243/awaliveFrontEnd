@@ -6,6 +6,7 @@ import {
   RouterProvider,
 
 } from "react-router-dom";
+
 import App from './App';
 import Home from './components/pages/Home/Home';
 import RoomDetails from './components/pages/RoomDetails/RoomDetails';
@@ -56,6 +57,7 @@ i18next
     },
   })
 
+  
   const loadingMarkup = (
     <div className=" h-screen flex flex-col items-center justify-center text-center gap-5">
       <h1 className='text-6xl'>Awalive</h1>
