@@ -49,7 +49,7 @@ i18next
       order: ['path', 'cookie', 'htmlTag'],
       caches: ['cookie'],
     },
-    // react: { useSuspense: false },
+    
     // backend: {
       // loadPath: '/locales/{{lng}}/translation.json',
       // loadPath: '/Languages/{{lng}}/translation.json',
