@@ -8,7 +8,7 @@ import "swiper/css/navigation";
 
 import "../About/slider.css";
 import { Link } from "react-router-dom";
-import i18next from "i18next";
+// import i18next from "i18next";
 // import { useEffect } from "react";
 // import AOS from 'aos';
 
@@ -53,7 +53,7 @@ const Banner = () => {
           className={` h-[calc(100vh-74px)]  overflow-hidden `}
           autoplay={{ delay: 3000 }}
           loop={true}
-          key={i18next.language}
+          
         >
           <SwiperSlide
             className="bg-cover bg-center relative"

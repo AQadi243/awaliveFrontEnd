@@ -10,7 +10,7 @@ import sldierThree from '../../../assets/lwsSlider.jpg'
 // import { useEffect, useState } from 'react';
 import './slider.css'
 import { useTranslation } from 'react-i18next';
-import i18next from 'i18next';
+// import i18next from 'i18next';
 // import { useEffect, useState } from 'react';
 // import { useEffect, useState } from 'react';
 
@@ -36,7 +36,7 @@ const Slider = () => {
   return (
      
         <div className=''>
-      <Swiper key={i18next.language} navigation={true} modules={[Navigation, Autoplay]} className={` h-[calc(100vh-74px)]  overflow-hidden ` }autoplay={{ delay: 3000,  }} loop={true} >
+      <Swiper  navigation={true} modules={[Navigation, Autoplay]} className={` h-[calc(100vh-74px)]  overflow-hidden ` }autoplay={{ delay: 3000,  }} loop={true} >
         
           <SwiperSlide className='bg-cover bg-center relative' >
           <div className='absolute top-0 left-0 w-full h-full bg-black opacity-50'></div>
