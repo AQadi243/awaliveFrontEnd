@@ -4,19 +4,19 @@ import { AuthContext } from '../../sharedPages/Context/AuthProvider';
 
 const BookingForm = () => {
     const authInfo = useContext(AuthContext)
+    const { user, setLoading} = authInfo;
     const navigate = useNavigate();
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
-    email: '',
-    phone: '',
+    email: user?.email ||'',
+    phone: user?.phone || '',
     address: '',
     city: '',
     message: '',
     arrivalTime: '',
     
   });
-  const {  setLoading} = authInfo;
   const [formErrors, setFormErrors] = useState({});
 
   const handleInputChange = (e) => {

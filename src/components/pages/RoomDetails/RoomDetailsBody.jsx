@@ -62,7 +62,7 @@ const RoomDetailsBody = ({ singleRoomDetails }) => {
             </h2>
             <div className="flex flex-col md:flex-row gap-2 md:gap-3">
               <div className="relative">
-                <img src={arroundImage} alt="" className="" />
+                <img src={arroundImage}  alt="" className="w-full h-full" />
                 <p
                   className="absolute bottom-4 left-3 text-white"
                   style={{ fontFamily: "Gilda Display, serif" }}
@@ -71,7 +71,7 @@ const RoomDetailsBody = ({ singleRoomDetails }) => {
                 </p>
               </div>
               <div className="relative">
-                <img src={arroundImage2} alt="" className="" />
+                <img src={arroundImage2} alt="" className="w-full h-full" />
                 <p
                   className="absolute bottom-4 left-3 text-white"
                   style={{ fontFamily: "Gilda Display, serif" }}
@@ -80,7 +80,7 @@ const RoomDetailsBody = ({ singleRoomDetails }) => {
                 </p>
               </div>
               <div className="relative">
-                <img src={arroundImage3} alt="" className="" />
+                <img src={arroundImage3} alt="" className="w-full h-full" />
                 <p
                   className="absolute bottom-4 left-3 text-white"
                   style={{ fontFamily: "Gilda Display, serif" }}

@@ -10,35 +10,28 @@ import RoomDetailsBody from "./RoomDetailsBody";
 
 const RoomDetails = () => {
   const { id } = useParams();
-  const [allRoomData, setAllRoomData] = useState([]);
+
   const [loading, setLoading] = useState(true);
   const [singleRoomDetails, setSingleRoomDetails] = useState(null);
 
+  const searchById = parseInt(id)
+  console.log(searchById);
+
   useEffect(() => {
-    const fetchRoomData = async () => {
+    const fetchRoom = async () => {
       try {
-        const response = await axios.get("/roomData.json");
-        setAllRoomData(response.data);
+        const response = await axios.get(`https://awalive-server-side-hzpa.vercel.app/rooms/${searchById}`);
+        setSingleRoomDetails(response.data);
+        console.log('single detsilad', response.data);
         setLoading(false);
       } catch (error) {
+        console.error("Error fetching room data:", error);
         setLoading(false);
-        console.error("Error fetching room data", error);
       }
     };
 
-    fetchRoomData();
-  }, []);
-
-  useEffect(() => {
-    try {
-      const room = allRoomData.find((room) => room.id === parseInt(id));
-      setSingleRoomDetails(room);
-    } catch (error) {
-      console.error("error from finding single room data", error);
-    }
-  }, [allRoomData, id]);
-
-  
+    fetchRoom();
+  }, [searchById]);  
 
   return (
     <>
@@ -82,7 +75,7 @@ const RoomDetails = () => {
           </section>
         </>
       ) : (
-        <p>Room not found</p>
+        <p className="h-screen" >Room not found</p>
       )}
       
     </>

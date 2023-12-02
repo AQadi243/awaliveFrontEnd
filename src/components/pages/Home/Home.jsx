@@ -19,8 +19,9 @@ const Home = () => {
    
     const fetchRoomRates = async () => {
       try {
-        const response = await axios.get('/roomData.json'); 
+        const response = await axios.get('https://awalive-server-side-hzpa.vercel.app/rooms'); 
         setRoomRates(response.data);
+        console.log(response.data);
         setLoading(false);
       } catch (error) {
         console.error('Error fetching room rates:', error);

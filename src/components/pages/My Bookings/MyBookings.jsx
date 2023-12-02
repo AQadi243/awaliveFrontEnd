@@ -83,7 +83,7 @@ const MyBookings = () => {
     <section className=' md:w-[80%] mx-auto'>
     {loading ?  <Spin />  : (
         <div className='py-10 '>
-        <h1 className='text-3xl'>Hello, {user?.username}</h1>
+        <h1 className='text-3xl'>Hello, {user?.name}</h1>
         <h1 className='py-5 text-xl'>Your Bookings</h1>
 
 
@@ -92,8 +92,11 @@ const MyBookings = () => {
 
         ) : (
             <>
-          <p>Your cart is empty.</p>
-          <Link to={'/roomSearch'} className='py-4 btn'>Return To Rooms </Link >
+          <p className='py-2 font-semibold' >Your cart is empty.</p>
+          <p>
+
+          <Link to={'/roomSearch'} className='px-4 py-2 bg-[#BE9874] text-white '>Return To Rooms </Link >
+          </p>
             </>
         )}
       </div>

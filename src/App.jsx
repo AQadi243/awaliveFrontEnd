@@ -11,9 +11,9 @@ function App() {
  
   useEffect(() => {
     AOS.init({
-      duration: 400,
+      duration: 500,
       delay: 1,
-      easing: "ease-in-out",
+      easing: "ease-in-out",    
      
     });
   }, []);
