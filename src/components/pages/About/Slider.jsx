@@ -3,6 +3,9 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay,  Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
+import sldierOne from '../../../assets/katrinSlider.jpg'
+import sldierTwo from '../../../assets/adamSlider.jpg'
+import sldierThree from '../../../assets/lwsSlider.jpg'
 // import axios from 'axios';
 // import { useEffect, useState } from 'react';
 import './slider.css'
@@ -37,7 +40,7 @@ const Slider = () => {
         
           <SwiperSlide className='bg-cover bg-center relative' >
           <div className='absolute top-0 left-0 w-full h-full bg-black opacity-50'></div>
-          <img className='w-full h-full  object-cover block' src={t("About_katrin_img")} alt=""  />
+          <img className='w-full h-full  object-cover block' src={sldierOne} alt=""  />
             {/* <img className='w-full h-full  object-cover block  ' src={person.image} alt="" /> */}
             <div className='absolute top-0 left-0 w-full h-full bg-black opacity-50'></div>
             <div className='w-[60%] absolute  top-1/2 left-1/2  -translate-y-1/2 -translate-x-1/2 text-white '>
@@ -49,7 +52,7 @@ const Slider = () => {
         </SwiperSlide>
           <SwiperSlide className='bg-cover bg-center relative' >
           <div className='absolute top-0 left-0 w-full h-full bg-black opacity-50'></div>
-          <img className='w-full h-full  object-cover block' src={t("About_adam_img")} alt=""  />
+          <img className='w-full h-full  object-cover block' src={sldierThree} alt=""  />
             {/* <img className='w-full h-full  object-cover block  ' src={person.image} alt="" /> */}
             <div className='absolute top-0 left-0 w-full h-full bg-black opacity-50'></div>
             <div className='w-[60%] absolute  top-1/2 left-1/2  -translate-y-1/2 -translate-x-1/2 text-white '>
@@ -61,7 +64,7 @@ const Slider = () => {
         </SwiperSlide>
           <SwiperSlide className='bg-cover bg-center relative' >
           <div className='absolute top-0 left-0 w-full h-full bg-black opacity-50'></div>
-          <img className='w-full h-full  object-cover block' src={t("About_willson_img")} alt=""  />
+          <img className='w-full h-full  object-cover block' src={sldierTwo} alt=""  />
             {/* <img className='w-full h-full  object-cover block  ' src={person.image} alt="" /> */}
             <div className='absolute top-0 left-0 w-full h-full bg-black opacity-50'></div>
             <div className='w-[60%] absolute  top-1/2 left-1/2  -translate-y-1/2 -translate-x-1/2 text-white '>
