@@ -50,11 +50,11 @@ i18next
       caches: ['cookie'],
     },
     
-    // backend: {
+    backend: {
       // loadPath: '/locales/{{lng}}/translation.json',
-      // loadPath: '/Languages/{{lng}}/translation.json',
+      loadPath: '/Languages/{{lng}}/translation.json',
       // loadPath: './assets/locales/{{lng}}/translation.json',
-    // },
+    },
   })
 
   
