@@ -10,7 +10,7 @@ import ser from "../../../assets/icon-17.png";
 import wait from "../../../assets/icon-18.png";
 import { useTranslation } from "react-i18next";
 const BestPrice = () => {
-  const { t } = useTranslation("about");
+  const { t } = useTranslation("");
 
   return (
     <>

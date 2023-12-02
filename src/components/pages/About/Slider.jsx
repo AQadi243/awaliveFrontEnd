@@ -8,32 +8,32 @@ import 'swiper/css/navigation';
 import './slider.css'
 import { useTranslation } from 'react-i18next';
 import i18next from 'i18next';
-import { useEffect, useState } from 'react';
+// import { useEffect, useState } from 'react';
 // import { useEffect, useState } from 'react';
 
 
 const Slider = () => {
-  const { t } = useTranslation("about");
-  const [languageKey, setLanguageKey] = useState(i18next.language);
+  const { t } = useTranslation("");
+  // const [languageKey, setLanguageKey] = useState(i18next.language);
 
-  useEffect(() => {
-    const handleLanguageChange = (lng) => {
-      setLanguageKey(lng);
-    };
+  // useEffect(() => {
+  //   const handleLanguageChange = (lng) => {
+  //     setLanguageKey(lng);
+  //   };
 
-    i18next.on('languageChanged', handleLanguageChange);
+  //   i18next.on('languageChanged', handleLanguageChange);
 
-    return () => {
-      i18next.off('languageChanged', handleLanguageChange);
-    };
-  }, []);
+  //   return () => {
+  //     i18next.off('languageChanged', handleLanguageChange);
+  //   };
+  // }, []);
     
 
   
   return (
      
         <div className=''>
-      <Swiper key={languageKey} navigation={true} modules={[Navigation, Autoplay]} className={` h-[calc(100vh-74px)]  overflow-hidden ` }autoplay={{ delay: 3000,  }} loop={true} >
+      <Swiper key={i18next.language} navigation={true} modules={[Navigation, Autoplay]} className={` h-[calc(100vh-74px)]  overflow-hidden ` }autoplay={{ delay: 3000,  }} loop={true} >
         
           <SwiperSlide className='bg-cover bg-center relative' >
           <div className='absolute top-0 left-0 w-full h-full bg-black opacity-50'></div>
