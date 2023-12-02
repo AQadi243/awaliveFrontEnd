@@ -8,11 +8,26 @@ import "swiper/css/navigation";
 
 import "../About/slider.css";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import i18next from "i18next";
 // import { useEffect } from "react";
 // import AOS from 'aos';
 
 
 const Banner = () => {
+  const [languageKey, setLanguageKey] = useState(i18next.language);
+
+  useEffect(() => {
+    const handleLanguageChange = (lng) => {
+      setLanguageKey(lng);
+    };
+
+    i18next.on('languageChanged', handleLanguageChange);
+
+    return () => {
+      i18next.off('languageChanged', handleLanguageChange);
+    };
+  }, []);
   // useEffect(() => {
   //   AOS.init({ duration: 2000, delay:1 })
   // }, [])
@@ -39,6 +54,7 @@ const Banner = () => {
           className={` h-[calc(100vh-74px)]  overflow-hidden `}
           autoplay={{ delay: 3000 }}
           loop={true}
+          key={languageKey}
         >
           <SwiperSlide
             className="bg-cover bg-center relative"
