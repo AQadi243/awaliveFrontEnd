@@ -3,55 +3,78 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay,  Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
-import axios from 'axios';
-import { useEffect, useState } from 'react';
+// import axios from 'axios';
+// import { useEffect, useState } from 'react';
 import './slider.css'
+import { useTranslation } from 'react-i18next';
+import i18next from 'i18next';
+import { useEffect, useState } from 'react';
+// import { useEffect, useState } from 'react';
 
 
 const Slider = () => {
-    const [loading, setLoading] = useState(true)
-    const [slider, setSlider] = useState([])
+  const { t } = useTranslation("about");
+  const [languageKey, setLanguageKey] = useState(i18next.language);
 
-    useEffect(() => {
-        setLoading(true);
-        const fetchRoomData = async () => {
-          try {
-            const response = await axios.get("/staff.json");
-            setSlider(response.data);
-            
-            setLoading(false);
-          } catch (error) {
-            // setLoading(false);
-            console.error("Error fetching room data", error);
-          }
-        };
+  useEffect(() => {
+    const handleLanguageChange = (lng) => {
+      setLanguageKey(lng);
+    };
+
+    i18next.on('languageChanged', handleLanguageChange);
+
+    return () => {
+      i18next.off('languageChanged', handleLanguageChange);
+    };
+  }, []);
     
-        fetchRoomData();
-      }, []);
-    
-    // const sliderImage = singleRoomDetails.DetailsImage
-    
-    // console.log(slideImage);
 
   
   return (
-    <div className=''>
-      <Swiper navigation={true} modules={[Navigation, Autoplay]} className={` h-[calc(100vh-74px)]  overflow-hidden ` }autoplay={{ delay: 3000,  }} loop={true} >
-        {slider?.map((person) => (
-          <SwiperSlide className='bg-cover bg-center relative' key={person.id} style={{ fontFamily: "Gilda Display, serif" }}>
+     
+        <div className=''>
+      <Swiper key={languageKey} navigation={true} modules={[Navigation, Autoplay]} className={` h-[calc(100vh-74px)]  overflow-hidden ` }autoplay={{ delay: 3000,  }} loop={true} >
+        
+          <SwiperSlide className='bg-cover bg-center relative' >
           <div className='absolute top-0 left-0 w-full h-full bg-black opacity-50'></div>
-            <img className='w-full h-full  object-cover block  ' src={person.image} alt="" />
+          <img className='w-full h-full  object-cover block' src={t("About_katrin_img")} alt=""  />
+            {/* <img className='w-full h-full  object-cover block  ' src={person.image} alt="" /> */}
             <div className='absolute top-0 left-0 w-full h-full bg-black opacity-50'></div>
             <div className='w-[60%] absolute  top-1/2 left-1/2  -translate-y-1/2 -translate-x-1/2 text-white '>
-              <h2 className='text-2xl md:text-5xl'>{person.name}</h2>
-              <p className='text py-2 md:py-3'>{person.position}</p>
-              <p className='text-xs text-slate-300'>{person.details}</p>
+              <h2 className='text-2xl md:text-5xl'>{t("About_katrin_name")}</h2>
+              <p className='text py-2 md:py-3'>{t("About_katrin_position")}</p>
+              <p className='text-xs text-slate-300'>{t("About_katrin_details")}</p>
             </div>
           
         </SwiperSlide>
-        ))}
+          <SwiperSlide className='bg-cover bg-center relative' >
+          <div className='absolute top-0 left-0 w-full h-full bg-black opacity-50'></div>
+          <img className='w-full h-full  object-cover block' src={t("About_adam_img")} alt=""  />
+            {/* <img className='w-full h-full  object-cover block  ' src={person.image} alt="" /> */}
+            <div className='absolute top-0 left-0 w-full h-full bg-black opacity-50'></div>
+            <div className='w-[60%] absolute  top-1/2 left-1/2  -translate-y-1/2 -translate-x-1/2 text-white '>
+              <h2 className='text-2xl md:text-5xl'>{t("About_adam_name")}</h2>
+              <p className='text py-2 md:py-3'>{t("About_adam_position")}</p>
+              <p className='text-xs text-slate-300'>{t("About_adam_details")}</p>
+            </div>
+          
+        </SwiperSlide>
+          <SwiperSlide className='bg-cover bg-center relative' >
+          <div className='absolute top-0 left-0 w-full h-full bg-black opacity-50'></div>
+          <img className='w-full h-full  object-cover block' src={t("About_willson_img")} alt=""  />
+            {/* <img className='w-full h-full  object-cover block  ' src={person.image} alt="" /> */}
+            <div className='absolute top-0 left-0 w-full h-full bg-black opacity-50'></div>
+            <div className='w-[60%] absolute  top-1/2 left-1/2  -translate-y-1/2 -translate-x-1/2 text-white '>
+              <h2 className='text-2xl md:text-5xl'>{t("About_willson_name")}</h2>
+              <p className='text py-2 md:py-3'>{t("About_willson_position")}</p>
+              <p className='text-xs text-slate-300'>{t("About_willson_details")}</p>
+            </div>
+          
+        </SwiperSlide>
+        
       </Swiper>
     </div>
+      
   )
 }
 

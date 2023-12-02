@@ -12,9 +12,9 @@ import ButtonLoginSignUp from "./ButtonLoginSignUp";
 const navLinks = [
   { title: "Home", href: "/" },
   { title: "Room Search", href: "/roomSearch" },
-  { title: "About", href: "/about" },
   { title: "Promotions", href: "/promotions" },
   { title: "Restaurant", href: "/bookTable" },
+  { title: "About", href: "/about" },
   { title: "Contact", href: "/contact" },
 ];
 
