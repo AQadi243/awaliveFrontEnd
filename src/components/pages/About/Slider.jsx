@@ -75,7 +75,7 @@ const Slider = () => {
  
     
         <div className=''>
-      <Swiper key={languageKey} navigation={true} modules={[Navigation, Autoplay]} className={` h-[calc(100vh-74px)]  overflow-hidden ` }autoplay={{ delay: 3000,  }} loop={true} >
+      <Swiper key={languageKey} dir={!languageKey ? "rtl" : "ltr"} navigation={true} modules={[Navigation, Autoplay]} className={` h-[calc(100vh-74px)]  overflow-hidden ` }autoplay={{ delay: 3000,  }} loop={true} >
         
           <SwiperSlide className='bg-cover bg-center relative' >
           <div className='absolute top-0 left-0 w-full h-full bg-black opacity-50'></div>
