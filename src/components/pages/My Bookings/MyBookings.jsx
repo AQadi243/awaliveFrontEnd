@@ -38,6 +38,7 @@ const MyBookings = () => {
     fetchUserOrders();
   }, [user]);
 
+  console.log(userOrders);
   const handleRowClick = (record) => {
     // Set the state with the data of the clicked row
     setSelectedOrder(record);
@@ -48,30 +49,31 @@ const MyBookings = () => {
     {
       title: 'Room Image',
       dataIndex: 'RoomImage',
-      key: 'RoomImage',
+      key: '_id',
       render: (text) => <img src={text} alt="Room" style={{ width: '40px', height: '40px' }} />,
     },
     {
       title: 'Room Name',
       dataIndex: 'RoomName',
-      key: 'RoomName',
+      key: '_id',
     },
     {
-      title: 'Payment Method',
-      dataIndex: 'paymentMethod',
-      key: 'paymentMethod',
+      title: 'Booking',
+      dataIndex: 'status',
+      key: '_id',
+      
     },
     
     {
       title: 'Total Price',
       dataIndex: 'totalPrice',
-      key: 'totalPrice',
+      key: '_id',
     },
     {
         title: 'Action',
-        key: 'action',
+        key: '_id',
         render: (_, record) => (
-          <button onClick={() => handleRowClick(record)}>View Details</button>
+          <button onClick={() => handleRowClick(record)} className='bg-black text-white px-2 rounded-md' >View Details</button>
         ),
       },
   ];
@@ -114,14 +116,38 @@ const MyBookings = () => {
         ]}
       >
         {selectedOrder ? (
-          <div>
+          <div className='flex flex-col gap-2'>
             <img className='w-full h-[8rem] object-cover aspect-video' src={selectedOrder?.RoomImage} alt={selectedOrder.RoomImage} />
-            <p>Room Name: {selectedOrder?.RoomName}</p>
-            <p>Payment Method: {selectedOrder?.paymentMethod}</p>
-            <p>Payment Method: {selectedOrder?.totalPrice}</p>
-            <p>Payment Method: {selectedOrder?.checkIn}</p>
-            <p>Payment Method: {selectedOrder?.checkOut}</p>
-            {/* ... display other fields from the selected order */}
+            <div className='flex justify-between font-semibold'>
+              <p>Room Name:</p>
+              <p >{selectedOrder?.RoomName}</p>
+            </div>
+            <div className='flex justify-between font-semibold'>
+              <p>Check In:</p>
+              <p >{selectedOrder?.checkIn}</p>
+            </div>
+            <div className='flex justify-between font-semibold'>
+              <p>Check out:</p>
+              <p >{selectedOrder?.checkOut}</p>
+            </div>
+            <div className='flex justify-between font-semibold'>
+              <p>Room Price:</p>
+              <p >{selectedOrder?.RoomPrice}/ Night</p>
+            </div>
+            <div className='flex justify-between font-semibold'>
+              <p>Total Price </p>
+              <p >{selectedOrder?.totalPrice} SAR</p>
+            </div>
+            <div className='flex justify-between font-semibold'>
+              <p>Payment Method:</p>
+              <p >{selectedOrder?.paymentMethod}</p>
+            </div>
+            <div className='flex justify-between font-semibold'>
+              <p>Booking:</p>
+              <p className='px-2 py-2 bg-yellow-400 rounded-md text-white'>{selectedOrder?.status}</p>
+            </div>
+            
+    
           </div>
         ) : (
           <p>No details available.</p>

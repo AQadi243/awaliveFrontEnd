@@ -19,7 +19,7 @@ const Loginpage = () => {
       const location = useLocation();
   const from = location.state?.from?.pathname || '/';
       
-      console.log(user);
+      
       const validateFields = () => {
         const newErrors = {
          
