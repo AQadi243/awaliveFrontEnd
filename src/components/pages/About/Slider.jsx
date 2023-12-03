@@ -6,15 +6,10 @@ import 'swiper/css/navigation';
 import sldierOne from '../../../assets/katrinSlider.jpg'
 import sldierTwo from '../../../assets/adamSlider.jpg'
 import sldierThree from '../../../assets/lwsSlider.jpg'
-// import axios from 'axios';
-// import { useEffect, useState } from 'react';
 import './slider.css'
-// import { useTranslation } from 'react-i18next';
 import { useEffect, useState } from 'react';
 import i18next from 'i18next';
 import { useTranslation } from 'react-i18next';
-// import { useEffect,  } from 'react';
-// import {  useState } from 'react';
 
 
 const Slider = () => {
@@ -33,43 +28,7 @@ const Slider = () => {
     };
   }, []);
  
-    // const [currentSlide, setCurrentSlide] = useState(0);
-    // const slides = [
-    //   {
-    //     id: 1,
-    //     img: '/src/assets/katrinSlider.jpg',
-    //     title: 'Ketrin Wilson',
-    //     subtitle: 'Hotel Manager',
-    //     description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit...'
-    //   },
-    //   {
-    //     id: 2,
-    //     img: '/src/assets/lwsSlider.jpg',
-    //     title: 'Kabby Wilson',
-    //     subtitle: 'Hotel Manager',
-    //     description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit...'
-    //   },
-    //   {
-    //     id: 3,
-    //     img: '/src/assets/adamSlider.jpg',
-    //     title: 'Benzima Wilson',
-    //     subtitle: 'Hotel Manager',
-    //     description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit...'
-    //   }
-    // ];
   
-    // const plusDivs = (n) => {
-    //   setCurrentSlide((prevCurrentSlide) => {
-    //     let newSlide = prevCurrentSlide + n;
-    //     if (newSlide >= slides.length) {
-    //       newSlide = 0;
-    //     } else if (newSlide < 0) {
-    //       newSlide = slides.length - 1;
-    //     }
-    //     return newSlide;
-    //   });
-    // };
-
   
   return (
  
