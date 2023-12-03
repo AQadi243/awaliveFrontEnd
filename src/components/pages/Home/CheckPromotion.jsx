@@ -8,9 +8,9 @@ import familyRoom from '../../../assets/familyCard.jpg'
 const CheckPromotion = () => {
   return (
     <>
-    <section className="w-[90%] mx-auto pt-10 md:py-28 text-[#2E2E2E]">
-      <div className=" flex flex-col md:flex-row items-center justify-center gap-10">
-        <div className="md:w-[30%] text-center md:text-start">
+    <section  className="w-[90%] mx-auto pt-10 md:py-28 text-[#2E2E2E]">
+      <div data-aos="fade-up" className=" flex flex-col md:flex-row items-center justify-center gap-10">
+        <div  className="md:w-[30%] text-center md:text-start">
           <p className=" pb-4 md:pb-8 text-sm tracking-widest">BEST SUMMER OFFERS</p>
           <h2 className="text-2xl md:text-6xl  " style={{ fontFamily: "Gilda Display, serif" }}>Check the Promotions</h2>
           <p className="py-6 md:py-10 text-sm">Pellentesque maximus pharetra tristique. Vestibulum eget odio blandit, finibus felis non, efficitur diam. Sed condimentum pellentesque eros. Etiam posuere turpis in ultricies ullamcorper.</p>

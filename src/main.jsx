@@ -32,6 +32,7 @@ import ErrorPage from './components/Error Page/ErrorPage';
 import Promotions from './components/pages/Promotion/Promotions';
 import SinglePromoRoom from './components/pages/Promotion/SinglePromoPage/SinglePromoRoom';
 
+
 // import 'flag-icon-css/css/flag-icon.min.css'
 
 
@@ -69,7 +70,7 @@ i18next
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App /> ,
+    element: <App />,
     errorElement:<ErrorPage />,
     
     children:[
@@ -140,7 +141,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
     <AuthProvider>
       <AnimatePresence mode='wait'>
+      
       <RouterProvider router={router} />
+        
       </AnimatePresence>
     </AuthProvider>
     </React.StrictMode>

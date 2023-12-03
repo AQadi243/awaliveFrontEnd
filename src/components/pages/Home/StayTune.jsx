@@ -1,5 +1,5 @@
-import family from '../../../assets/familyroom.jpg'
-import roomv from '../../../assets/roomsview.jpg'
+import family from '../../../assets/familyCard.jpg'
+import roomv from '../../../assets/roomViewCard.jpg'
 
 
 
@@ -15,7 +15,7 @@ const StayTune = () => {
         <div className="py-5">
           <div className="grid grid-cols-1 md:grid-cols-3 grid-rows-4 gap-4">
             <div className="bg-white row-span-3 ">
-              <img src={family} alt="" />
+              <img className='' src={family} alt="" />
               <div className="py-8 px-8 flex flex-col gap-2">
                 <p className="text-xs tracking-widest">MARCH 14, 2022</p>
                 <h2 className="text-2xl" style={{ fontFamily: "Gilda Display, serif" }}>New Website</h2>
