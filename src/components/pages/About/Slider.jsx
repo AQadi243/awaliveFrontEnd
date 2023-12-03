@@ -9,34 +9,73 @@ import sldierThree from '../../../assets/lwsSlider.jpg'
 // import axios from 'axios';
 // import { useEffect, useState } from 'react';
 import './slider.css'
+// import { useTranslation } from 'react-i18next';
+import { useEffect, useState } from 'react';
+import i18next from 'i18next';
 import { useTranslation } from 'react-i18next';
-// import i18next from 'i18next';
-// import { useEffect, useState } from 'react';
-// import { useEffect, useState } from 'react';
+// import { useEffect,  } from 'react';
+// import {  useState } from 'react';
 
 
 const Slider = () => {
-  const { t } = useTranslation("");
-  // const [languageKey, setLanguageKey] = useState(i18next.language);
+  const { t } = useTranslation("tran");
+  const [languageKey, setLanguageKey] = useState(i18next.language);
 
-  // useEffect(() => {
-  //   const handleLanguageChange = (lng) => {
-  //     setLanguageKey(lng);
-  //   };
+  useEffect(() => {
+    const handleLanguageChange = (lng) => {
+      setLanguageKey(lng);
+    };
 
-  //   i18next.on('languageChanged', handleLanguageChange);
+    i18next.on('languageChanged', handleLanguageChange);
 
-  //   return () => {
-  //     i18next.off('languageChanged', handleLanguageChange);
-  //   };
-  // }, []);
-    
+    return () => {
+      i18next.off('languageChanged', handleLanguageChange);
+    };
+  }, []);
+ 
+    // const [currentSlide, setCurrentSlide] = useState(0);
+    // const slides = [
+    //   {
+    //     id: 1,
+    //     img: '/src/assets/katrinSlider.jpg',
+    //     title: 'Ketrin Wilson',
+    //     subtitle: 'Hotel Manager',
+    //     description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit...'
+    //   },
+    //   {
+    //     id: 2,
+    //     img: '/src/assets/lwsSlider.jpg',
+    //     title: 'Kabby Wilson',
+    //     subtitle: 'Hotel Manager',
+    //     description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit...'
+    //   },
+    //   {
+    //     id: 3,
+    //     img: '/src/assets/adamSlider.jpg',
+    //     title: 'Benzima Wilson',
+    //     subtitle: 'Hotel Manager',
+    //     description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit...'
+    //   }
+    // ];
+  
+    // const plusDivs = (n) => {
+    //   setCurrentSlide((prevCurrentSlide) => {
+    //     let newSlide = prevCurrentSlide + n;
+    //     if (newSlide >= slides.length) {
+    //       newSlide = 0;
+    //     } else if (newSlide < 0) {
+    //       newSlide = slides.length - 1;
+    //     }
+    //     return newSlide;
+    //   });
+    // };
 
   
   return (
-     
+ 
+    
         <div className=''>
-      <Swiper  navigation={true} modules={[Navigation, Autoplay]} className={` h-[calc(100vh-74px)]  overflow-hidden ` }autoplay={{ delay: 3000,  }} loop={true} >
+      <Swiper key={languageKey} navigation={true} modules={[Navigation, Autoplay]} className={` h-[calc(100vh-74px)]  overflow-hidden ` }autoplay={{ delay: 3000,  }} loop={true} >
         
           <SwiperSlide className='bg-cover bg-center relative' >
           <div className='absolute top-0 left-0 w-full h-full bg-black opacity-50'></div>
