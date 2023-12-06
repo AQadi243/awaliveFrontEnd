@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Pagination } from "antd";
+import axios from "axios";
 
 const AllRooms = ({ allRooms, searchValue }) => {
   const [filteredRooms, setFilteredRooms] = useState([]);
@@ -11,11 +12,53 @@ const AllRooms = ({ allRooms, searchValue }) => {
     searchCheckIn,
     searchCheckOut,
     sortByPrice,
+    searchGuest,
     setSearchCheckIn,
     setSearchCheckOut,
     setSearchGuest,
     setSearchNight,
+    searchCategory,
+    isSearched,
+    setIsSearched,
+    searchResults,
+    setSearchResults
   } = searchValue;
+
+  const [searchParams, setSearchParams] = useState({
+    category: '',
+    guests: searchGuest,
+    checkIn: searchCheckIn,
+    checkOut: searchCheckOut
+  });
+
+  useEffect(() => {
+    setSearchParams({
+      category: searchCategory,
+      guests: searchGuest,
+      checkIn: searchCheckIn,
+      checkOut: searchCheckOut,
+    });
+  }, [searchGuest, searchCheckIn, searchCheckOut,searchCategory]);
+  
+
+useEffect(()=>{
+
+  const handleSearch = async () => {
+    try {
+      const response = await axios.get('https://awalive-server-side-hzpa.vercel.app/searchRooms', { params: searchParams });
+      // Display the search results
+      setSearchResults(  response.data);
+      setIsSearched(true)
+    } catch (error) {
+      console.error('Error fetching search results:', error);
+    }
+  };
+  
+  handleSearch()
+  
+},[searchParams])
+
+{isSearched ? console.log('yes', searchResults) : console.log('moye moey'); }
 
   useEffect(() => {
     // Function to filter and sort rooms based on selected criteria
@@ -57,6 +100,8 @@ const AllRooms = ({ allRooms, searchValue }) => {
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
+
+  
 
   return (
     <div className="md:w-2/3 grid grid-cols-1 md:grid-cols-2  gap-5 roomCards">

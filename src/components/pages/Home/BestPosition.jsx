@@ -14,7 +14,7 @@ const BestPosition = () => {
         backgroundSize: 'cover',
       };
   return (
-    <section className=" text-white" style={styles} >
+    <section  className=" text-white" style={styles} >
       <div className="w-[90%] mx-auto py-10 md:py-28">
         <div className="flex flex-col md:flex-row items-center">
           <div className="md:w-[50%] flex flex-col gap-3 ">
@@ -29,15 +29,15 @@ const BestPosition = () => {
               <img src={stripe} alt="logo" className="w-14" />
             </div>
           </div>
-          <div className="md:w-[50%] flex flex-col items-center">
+          <div data-aos="fade-up" className="md:w-[50%] flex flex-col items-center">
             
-              <div data-aos="fade-left" className="w-56 h-56 bg-[#BE9874] opacity-90 rounded-full text-center flex flex-col justify-center gap-2 offerScale" style={{ fontFamily: "Gilda Display, serif" }}  >
+              <div  className="w-56 h-56 bg-[#BE9874] opacity-90 rounded-full text-center flex flex-col justify-center gap-2 offerScale" style={{ fontFamily: "Gilda Display, serif" }}  >
                 <p className="text-xs tracking-widest font-semibold ">Up to </p>
                 <p className="text-7xl">50%</p>
                 <p className="text-xs tracking-widest font-semibold uppercase" >on selected rooms</p>
               </div>
             
-            <img data-aos="fade-left" src={twal} alt="img" className="w-80 " />
+            <img  src={twal} alt="img" className="w-[80%] " />
           </div>
         </div>
       </div>

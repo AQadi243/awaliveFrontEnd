@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from "framer-motion";
 const PageAnimation = ({ children }) => {
   return (
     <>
-    <AnimatePresence mode="wait">
+    <AnimatePresence >
 
       {children}
       <motion.div

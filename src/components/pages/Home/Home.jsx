@@ -11,9 +11,13 @@ import RoomPrice from "./RoomPrice"
 import StayTune from "./StayTune"
 import axios from "axios"
 
+import { FaArrowUp } from "react-icons/fa";
+
+
 const Home = () => {
   const [roomRates, setRoomRates] = useState([]);
   const [loading, setLoading] = useState(true)
+  const [showButton, setShowButton] = useState(false)
 
   useEffect(() => {
    
@@ -32,11 +36,29 @@ const Home = () => {
     setLoading(false);
   }, []);
 
+  useEffect(()=>{
+    const handleHomeScrollButton = ()=>{
+      window.scrollY> 30 ? setShowButton(true) : setShowButton(false)
+    }
+
+    window.addEventListener('scroll', handleHomeScrollButton)
+
+    return()=>{
+      window.removeEventListener('scroll', handleHomeScrollButton)
+    }
+  },[])
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
+
   return (
     
     <>
     <PageAnimation>
-
     <Banner />
     <Relax />
     <RoomCards roomRates={roomRates} loading={loading} />
@@ -47,6 +69,12 @@ const Home = () => {
     <StayTune />
     <MapContact />
     </PageAnimation>
+    
+
+    {
+        showButton &&  <button className="  fixed bg-slate-400 bg-opacity-20 z-40 p-5 rounded-full bottom-10 right-5 md:bottom-10 md:right-10" onClick={scrollToTop}><FaArrowUp /> </button>
+    }
+    
     </>
   )
 }

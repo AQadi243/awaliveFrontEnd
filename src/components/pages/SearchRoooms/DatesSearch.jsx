@@ -8,7 +8,7 @@ import { FaAngleDown, FaAngleUp } from "react-icons/fa6";
 // import { Link } from "react-router-dom";
 
 const DatesSearch = ({searchValue}) => {
-    console.log("dateSearch", searchValue);
+    
 //   const authInfo = useContext(AuthContext);
   const { searchCheckIn,
     setSearchCheckIn,
@@ -24,7 +24,8 @@ const DatesSearch = ({searchValue}) => {
 //   setRoomImage(image)
 //   setRoomName(roomName)
 //   setRoomPrice(roomPrice)
-  
+   
+
   const [state, setState] = useState([
     {
       startDate: new Date(),

@@ -10,11 +10,14 @@ import { FaChevronDown } from "react-icons/fa6";
 const Search = () => {
   const [loading, setLoading] = useState(true);
   const[allRooms , setAllRooms] = useState([])
+  const [searchResults, setSearchResults] = useState([]);
   const[searchCheckIn , setSearchCheckIn] = useState("")
   const[searchCheckOut , setSearchCheckOut] = useState("")
-  const [searchGuest, setSearchGuest] = useState(1);
+  const [searchGuest, setSearchGuest] = useState(2);
   const [searchNight, setSearchNight] = useState(0);
   const [sortByPrice, setSortByPrice] = useState('')
+  const [searchCategory , setSearchCategory] = useState('')
+  const [isSearched , setIsSearched] = useState(false)
   
 
   useEffect(() => {
@@ -36,9 +39,6 @@ const Search = () => {
   const handleValue = (value) => {
     setSortByPrice(value)
   }
-
-  
-    
     const searchValue = {
       loading,
       setLoading,
@@ -50,8 +50,14 @@ const Search = () => {
       setSearchGuest,
       searchNight,
       setSearchNight,
-      sortByPrice
+      sortByPrice,
+      searchCategory,
+      setIsSearched,
+      setSearchResults,
+      searchResults
+
     }
+
   return (
     <PageAnimation>
       <BannerPage  text={'Search'} />
