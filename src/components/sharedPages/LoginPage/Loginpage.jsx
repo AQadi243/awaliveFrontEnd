@@ -8,8 +8,9 @@ import { AuthContext } from '../Context/AuthProvider';
 
 const Loginpage = () => {
   const navigate = useNavigate()
-  const { handleLogin , error, user, } = useContext(AuthContext);
-  const [loading, setLoading] = useState(false)
+  const { handleLogin , error, user, loading , setLoading } = useContext(AuthContext);
+  const [showPassword, setShowPassword] = useState(false);
+  // const [loading, setLoading] = useState(false)
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [errors, setErrors] = useState({
@@ -35,7 +36,7 @@ const Loginpage = () => {
       
 
       const handleLoginClick = async () => {
-        setLoading(true)
+        
         if (validateFields()) {
           await handleLogin(email, password);
         }
@@ -73,7 +74,7 @@ const Loginpage = () => {
                     />
                     {errors.email && <p className="text-red-500 text-xs">{errors.email}</p>}
                     
-                    <input
+                    {/* <input
                       type="password"
                       name="password"
                       id="password"
@@ -83,7 +84,27 @@ const Loginpage = () => {
                       className={`py-2 px-2 border bg-slate-50 ${errors.password && 'border-red-500'}`}
                       required
                     />
-                    {errors.password && <p className="text-red-500 text-xs">{errors.password}</p>}
+                    {errors.password && <p className="text-red-500 text-xs">{errors.password}</p>} */}
+                    <div className="relative">
+                        <input
+                            type={showPassword ? "text" : "password"}
+                            name="password"
+                            id="password"
+                            placeholder="Password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            className={`py-2 px-2 border bg-slate-50 w-full ${errors.password && 'border-red-500'}`}
+                            required
+                        />
+                        <button
+                            type="button"
+                            onClick={() => setShowPassword(!showPassword)}
+                            className="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5"
+                        >
+                            {showPassword ? 'Hide' : 'Show'}
+                        </button>
+                        {errors.password && <p className="text-red-500 text-xs">{errors.password}</p>}
+                    </div>
                     {error && <p className="text-red-500 text-xs">{error}</p>}
 
                     {loading ? <Spin /> : (

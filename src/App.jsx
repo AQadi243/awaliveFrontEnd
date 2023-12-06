@@ -6,6 +6,7 @@ import AOS from 'aos';
 
 import 'aos/dist/aos.css';
 import { useEffect } from "react";
+import ScrollToTop from "./components/sharedPages/ScrollToTop";
 // import ScrollToTop from "./components/sharedPages/ScrollToTop";
 
 function App() {
@@ -22,7 +23,7 @@ function App() {
 
   return (
     <>
-    {/* <ScrollToTop> */}
+    <ScrollToTop />
 
     <div className="App">
           <Navbar />

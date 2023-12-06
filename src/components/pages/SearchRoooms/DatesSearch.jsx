@@ -1,14 +1,15 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import "react-date-range/dist/styles.css"; // main css file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import { DateRange } from "react-date-range";
 import { addDays } from "date-fns";
 import { FaAngleDown, FaAngleUp } from "react-icons/fa6";
+import { AuthContext } from "../../sharedPages/Context/AuthProvider";
 // import { AuthContext } from "../../sharedPages/Context/AuthProvider";
 // import { Link } from "react-router-dom";
 
-const DatesSearch = ({searchValue}) => {
-    
+const DatesSearch = () => {
+    const authInfo = useContext(AuthContext)
 //   const authInfo = useContext(AuthContext);
   const { searchCheckIn,
     setSearchCheckIn,
@@ -17,7 +18,7 @@ const DatesSearch = ({searchValue}) => {
     searchCheckOut,
     setSearchCheckOut,
     searchGuest,
-    setSearchGuest } = searchValue ;
+    setSearchGuest } = authInfo.searchValue ;
 //   const { roomName, roomPrice, image,  } = singleRoomDetails;
   const [showDatePicker, setShowDatePicker] = useState(false);
 

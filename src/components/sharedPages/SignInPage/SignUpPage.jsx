@@ -1,4 +1,4 @@
-import { Spin } from "antd";
+import { Spin, notification } from "antd";
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 const SignUpPage = () => {
   const navigate = useNavigate()
+  const [showPassword, setShowPassword] = useState(false);
     const [loading, setLoading] = useState(false);
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
@@ -19,17 +20,19 @@ const SignUpPage = () => {
         password: ""   
       });
 
+      const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+
 
       const validateFields = () => {
         const newErrors = {  
           name: name ? "" : "Email is required",
-          email: email ? "" : "Email is required",
+          email: email && emailRegex.test(email) ? "" : "Please enter a valid email",
           phone: email ? "" : "Email is required",
           password: password ? "" : "Phone is required",
         };
     
         setErrors(newErrors);
-    
+        
         return Object.values(newErrors).every((error) => error === "");
       };
 
@@ -37,8 +40,10 @@ const SignUpPage = () => {
       // };
       const handleRegister = async () => {
         setLoading(true)
+        
         // Validate fields before proceeding
         if (!validateFields()) {
+          setLoading(false)
           return;
         }
       
@@ -56,7 +61,15 @@ const SignUpPage = () => {
           console.log('User registered successfully:', response.data);
           setErrorMessageReg('User registered successfully')
           setLoading(false)
+          
+          notification['success']({
+            message: 'Joining success',
+            description: 'PLease login now',
+            placement: 'topRight',
+            duration: 3.5, 
+          });
 
+          navigate('/login')
         } catch (error) {
           // Registration failed, handle the error
           if (error.response) {
@@ -80,7 +93,6 @@ const SignUpPage = () => {
 
           }
         }
-        navigate('/login')
         setLoading(false)
 
       };
@@ -143,7 +155,7 @@ const SignUpPage = () => {
               <p className="text-red-500 text-xs">{errors.phone}</p>
             )}
 
-            <input
+            {/* <input
               type="password"
               name="password"
               id="password"
@@ -157,12 +169,32 @@ const SignUpPage = () => {
             />
             {errors.password && (
               <p className="text-red-500 text-xs">{errors.password}</p>
-            )}
+            )} */}
+            <div className="relative">
+                <input
+                    type={showPassword ? "text" : "password"}
+                    name="password"
+                    id="password"
+                    placeholder="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className={`py-2 px-2 border bg-slate-50 w-full ${errors.password && 'border-red-500'}`}
+                    required
+                />
+                <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5"
+                >
+                    {showPassword ? 'Hide' : 'Show'}
+                </button>
+                {errors.password && <p className="text-red-500 text-xs">{errors.password}</p>}
+              </div>
             {errorMessageReg && (
               <p className="text-red-500 text-xs">{errorMessageReg}</p>
             )}
             {
-              loading ?  <Spin />   : (
+              loading ?   <Spin />  :    (
                 <button
               type="button"
               id="confirm-button"
@@ -171,7 +203,7 @@ const SignUpPage = () => {
             >
               Join
             </button>
-              )
+              ) 
             }
             
           </div>

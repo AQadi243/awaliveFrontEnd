@@ -45,3 +45,11 @@ z-index: 1 ;
   background: #BE9874 !important;
   pointer-events: none;
 }
+
+.ant-btn-primary:hover {
+  background: none !important;
+  color: #0f0f0f !important;
+}
+.ant-btn-primary {
+  color: none;
+}

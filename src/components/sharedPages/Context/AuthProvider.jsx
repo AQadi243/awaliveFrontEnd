@@ -1,11 +1,12 @@
 import axios from "axios";
 import { createContext, useEffect, useState } from "react";
+import { notification } from 'antd';
 
 export const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [night, setNight] = useState(0);
   const [checkIn, setCheckIn] = useState("");
   const [checkOut, setCheckOut] = useState("");
@@ -14,9 +15,26 @@ const AuthProvider = ({ children }) => {
   const [RoomPrice, setRoomPrice] = useState("");
   const [RoomImage, setRoomImage] = useState("");
   const [error, setError] = useState("");
+  
+  // all are in search value 
+  const [searchResults, setSearchResults] = useState([]);
+  const [searchLoading, setSearchLoading] = useState(true);
+  const[searchCheckIn , setSearchCheckIn] = useState("")
+  const[searchCheckOut , setSearchCheckOut] = useState("")
+  const [searchGuest, setSearchGuest] = useState(2);
+  const [searchNight, setSearchNight] = useState(0);
+  const [sortByPrice, setSortByPrice] = useState('')
+  const [searchCategory , setSearchCategory] = useState('')
+  const [isSearched , setIsSearched] = useState(false)
+  const [searchParams, setSearchParams] = useState({
+    category: '',
+    guests: '',
+    checkIn: '',
+    checkOut: ''
+  });
+
 
   useEffect(() => {
-    
     // Retrieve booking information from localStorage on component mount
     const storedBookingInfo = localStorage.getItem("bookingInfo");
     if (storedBookingInfo) {
@@ -32,7 +50,7 @@ const AuthProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    setLoading(true)
+    
     const storedUserData = localStorage.getItem("userData");
     if (storedUserData) {
       setUser(JSON.parse(storedUserData));
@@ -41,7 +59,7 @@ const AuthProvider = ({ children }) => {
   },[])
 
   const handleBookNow = () => {
-    setLoading(true);
+    
     const totalPrice = night * RoomPrice;
     const bookingInfo = {
       checkIn,
@@ -132,6 +150,11 @@ const handleLogin = async (email, password) => {
     setUser(data.user);
     localStorage.setItem('userData', JSON.stringify(data.user));
     localStorage.setItem('token', data.token);
+    notification['success']({
+      message: 'Welcome Nice to see you',
+      placement: 'topRight',
+      duration: 3.5, 
+    });
   } catch (error) {
     if (error.response) {
       // The request was made and the server responded with a status code
@@ -147,6 +170,12 @@ const handleLogin = async (email, password) => {
       console.error("Error message:", error.message);
       setError("Error during login");
     }
+    notification['error']({
+      message: 'Access denied',
+      description: 'PLease check Email and Password is correct',
+      placement: 'topRight',
+      duration: 3.5, 
+    });
   } finally {
     setLoading(false);
   }
@@ -160,10 +189,72 @@ const handleLogin = async (email, password) => {
     // Clear user data and token from state and localStorage
     setUser(null);
     localStorage.removeItem('userData');
-    localStorage.removeItem('token'); 
+    localStorage.removeItem('token');
+    notification['info']({
+      message: 'Log out success',
+      description: 'See you. Come back soon',
+      placement: 'topRight',
+      duration: 3.5, 
+    });
     
 
   };
+
+  // search logic start
+  
+
+  useEffect(() => {
+    setSearchParams({
+      category: searchCategory,
+      guests: searchGuest,
+      checkIn: searchCheckIn,
+      checkOut: searchCheckOut,
+    });
+  }, [searchGuest, searchCheckIn, searchCheckOut,searchCategory]);
+  
+
+useEffect(()=>{
+
+  const handleSearch = async () => {
+    try {
+      const response = await axios.get('https://awalive-server-side-hzpa.vercel.app/searchRooms', { params: searchParams });
+      // Display the search results
+      setSearchResults(  response.data);
+      setIsSearched(true)
+      setSearchLoading(false)
+    } catch (error) {
+      console.error('Error fetching search results:', error);
+    }
+    setSearchLoading(false)
+  };
+  
+  handleSearch()
+  
+},[searchParams]) 
+  // search execution end  
+
+  // all that field are search all in a obj 
+  const searchValue = {
+    searchLoading,
+    setSearchLoading,
+    searchCheckIn,
+    setSearchCheckIn,
+    searchCheckOut,
+    setSearchCheckOut,
+    searchGuest,
+    setSearchGuest,
+    searchNight,
+    setSearchNight,
+    sortByPrice,
+    setSortByPrice,
+    searchCategory,
+    setIsSearched,
+    isSearched,
+    setSearchResults,
+    searchResults,
+
+
+  }
 
   const authInfo = {
     loading,
@@ -188,6 +279,7 @@ const handleLogin = async (email, password) => {
     handleLogout,
     error,
     user,
+    searchValue
   };
 
   return (

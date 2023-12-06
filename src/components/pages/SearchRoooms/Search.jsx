@@ -1,62 +1,44 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import PageAnimation from "../../PageAnimation/PageAnimation"
 import BannerPage from "../../sharedPages/PageBanner/BannerPage"
 import DatesSearch from "./DatesSearch"
 import axios from "axios"
 import AllRooms from "./AllRooms"
 import { FaChevronDown } from "react-icons/fa6";
+import { AuthContext } from "../../sharedPages/Context/AuthProvider"
 // import Filter from "./filter"
 
 const Search = () => {
-  const [loading, setLoading] = useState(true);
+  const authInfo = useContext(AuthContext)
+  // const [loading, setLoading] = useState(true);
   const[allRooms , setAllRooms] = useState([])
-  const [searchResults, setSearchResults] = useState([]);
-  const[searchCheckIn , setSearchCheckIn] = useState("")
-  const[searchCheckOut , setSearchCheckOut] = useState("")
-  const [searchGuest, setSearchGuest] = useState(2);
-  const [searchNight, setSearchNight] = useState(0);
-  const [sortByPrice, setSortByPrice] = useState('')
-  const [searchCategory , setSearchCategory] = useState('')
-  const [isSearched , setIsSearched] = useState(false)
   
+  const {
+    setSearchLoading,
+    setSortByPrice
+
+  } = authInfo.searchValue
 
   useEffect(() => {
-    const fetchRoomRates = async () => {
-      setLoading(true)
+    const fetchRoomRates = async () => {     
       try {
         const response = await axios.get('/roomData.json'); 
         setAllRooms(response.data);
-        setLoading(false);
+        setSearchLoading(false);
       } catch (error) {
         console.error('Error fetching room rates:', error);
-        setLoading(false);
+        setSearchLoading(false);
       }
     };
 
     fetchRoomRates();
-  }, []);
+    setSearchLoading(false)
+  }, [setSearchLoading]);
 
   const handleValue = (value) => {
     setSortByPrice(value)
   }
-    const searchValue = {
-      loading,
-      setLoading,
-      searchCheckIn,
-      setSearchCheckIn,
-      searchCheckOut,
-      setSearchCheckOut,
-      searchGuest,
-      setSearchGuest,
-      searchNight,
-      setSearchNight,
-      sortByPrice,
-      searchCategory,
-      setIsSearched,
-      setSearchResults,
-      searchResults
-
-    }
+    
 
   return (
     <PageAnimation>
@@ -108,8 +90,8 @@ const Search = () => {
       </section>
       <section className="w-[90%] mx-auto py-10">
       <div className="flex flex-col md:flex-row gap-5">
-      <DatesSearch searchValue={searchValue} />
-      <AllRooms allRooms={allRooms}  searchValue={searchValue} />
+      <DatesSearch  />
+      <AllRooms allRooms={allRooms}   />
       </div>
 
       </section>

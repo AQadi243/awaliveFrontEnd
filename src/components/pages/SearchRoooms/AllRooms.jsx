@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Pagination } from "antd";
-import axios from "axios";
+import { AuthContext } from "../../sharedPages/Context/AuthProvider";
 
-const AllRooms = ({ allRooms, searchValue }) => {
+const AllRooms = ({ allRooms }) => {
+  const authInfo = useContext(AuthContext)
   const [filteredRooms, setFilteredRooms] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   // console.log('allRooms', allRooms, searchValue);
@@ -22,41 +23,9 @@ const AllRooms = ({ allRooms, searchValue }) => {
     setIsSearched,
     searchResults,
     setSearchResults
-  } = searchValue;
+  } = authInfo.searchValue;
 
-  const [searchParams, setSearchParams] = useState({
-    category: '',
-    guests: searchGuest,
-    checkIn: searchCheckIn,
-    checkOut: searchCheckOut
-  });
-
-  useEffect(() => {
-    setSearchParams({
-      category: searchCategory,
-      guests: searchGuest,
-      checkIn: searchCheckIn,
-      checkOut: searchCheckOut,
-    });
-  }, [searchGuest, searchCheckIn, searchCheckOut,searchCategory]);
   
-
-useEffect(()=>{
-
-  const handleSearch = async () => {
-    try {
-      const response = await axios.get('https://awalive-server-side-hzpa.vercel.app/searchRooms', { params: searchParams });
-      // Display the search results
-      setSearchResults(  response.data);
-      setIsSearched(true)
-    } catch (error) {
-      console.error('Error fetching search results:', error);
-    }
-  };
-  
-  handleSearch()
-  
-},[searchParams])
 
 {isSearched ? console.log('yes', searchResults) : console.log('moye moey'); }
 
