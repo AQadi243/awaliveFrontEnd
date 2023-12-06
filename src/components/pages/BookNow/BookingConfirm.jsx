@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../sharedPages/Context/AuthProvider';
 import BannerPage from '../../sharedPages/PageBanner/BannerPage';
 import BookingDate from './BookingDate';
-import { Tabs, Modal  } from 'antd';
+import { Tabs, Modal, notification, Spin  } from 'antd';
 // import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js';
 import { useNavigate } from 'react-router-dom';
 import PageAnimation from '../../PageAnimation/PageAnimation';
@@ -25,7 +25,7 @@ const BookingConfirm = () => {
   const navigate = useNavigate();
 
 
-  console.log("confo", bookingInfo);
+  // console.log("confo", bookingInfo);
   // Destructure properties only if formData exists in bookingInfo
   const { formData } = bookingInfo;
   const { firstName, lastName, email, address, message, phone, arrivalTime, city } = formData || {};
@@ -45,9 +45,6 @@ const BookingConfirm = () => {
     // setLoading(false);
   }, [email, phone]); // Empty dependency array to run the effect only once on mount
 
-  
-
-
 
   const handleBookNow = async (paymentMethod) => {
     // if (!validateEmail(editedEmail) || !validatePhone(editedPhone)) {
@@ -63,7 +60,6 @@ const BookingConfirm = () => {
         paymentMethod,
     };
 
-    // console.log("order cehck", bookingData);
     try {
         const response = await fetch('https://awalive-server-side-hzpa.vercel.app/allOrders', {
             method: 'POST',
@@ -73,20 +69,34 @@ const BookingConfirm = () => {
 
         if (response.ok) {
             const result = await response.json();
+            notification['success']({
+              message: 'Booking request send',
+              description: `${result.message} please wait for confirmation Email.`,
+              placement: 'topRight',
+              duration: 3.5, // duration in seconds
+          });
             setOrder(result.message); // Or handle the response as needed
-            console.log(result.message); // Or handle the response as needed
+            // console.log(result.message); // Or handle the response as needed
             // Clear bookingInfo from local storage after successful booking
-            await localStorage.removeItem('bookingInfo');
+             localStorage.removeItem('bookingInfo');
 
           // Optionally reset bookingInfo state
             setBookingInfo({});
             setLoading(false)
         } else {
             console.error('Failed to save order');
-            setOrder('Failed to save order');
+            // setOrder('Failed to save order');
+            notification['error']({
+              message: 'Booking request not accept',
+              description: ` Please check all info .`,
+              placement: 'topRight',
+              duration: 3.5, // duration in seconds
+          });
+          navigate('/roomSearch')
         }
     } catch (error) {
         console.error('Error sending booking info:', error);
+        navigate('/roomSearch')
     }
 
     setIsModalVisible(true);
@@ -177,8 +187,11 @@ const validateEmail = (email) => {
       label: 'Payment on Arrive',
       children: (
         <div style={{ fontFamily: 'Gilda Display, serif' }}>       
-          <p>NOTE : You could pay directly in our structure with any kind of credit card or cash.</p>       
-          <button className="bg-[#BE9874] py-2 px-8 text-sm text-white"  onClick={() => handleBookNow('Payment on Arrival')}>Book Now</button>
+          <p>NOTE : You could pay directly in our structure with any kind of credit card or cash.</p> 
+          {
+            loading ? <Spin /> : <button className="bg-[#BE9874] py-2 px-8 text-sm text-white"  onClick={() => handleBookNow('Payment on Arrival')}>Book Now</button>
+          }       
+          
         </div>
         )
     },
@@ -187,8 +200,11 @@ const validateEmail = (email) => {
       label: 'Booking Request',
       children:(
         <div style={{ fontFamily: 'Gilda Display, serif' }}>       
-          <p>	NOTE : This request is not a reservation but a simple request, we will get in touch with you.</p>       
-          <button className="bg-[#BE9874] py-2 px-8 text-sm text-white"  onClick={() => handleBookNow('Booking Request')}>Book Now</button>
+          <p>	NOTE : This request is not a reservation but a simple request, we will get in touch with you.</p> 
+          {
+            loading ? <Spin /> : <button className="bg-[#BE9874] py-2 px-8 text-sm text-white"  onClick={() => handleBookNow('Booking Request')}>Book Now</button>
+          }      
+          
         </div>
         ),
     },
