@@ -18,7 +18,7 @@ const RoomDetailsBody = ({ singleRoomDetails }) => {
           <div>
             <div className="flex flex-col md:flex-row gap-2 justify-between items-center text-center text-sm md:text-lg py-2 md:py-5 px-2">
               {RoomService?.map((service, index) => (
-                <div className="flex flex-col gap-2 items-center" key={index}>
+                <div className="flex flex-col gap-2 items-center " key={index}>
                   <img className="w-8" src={service.Icon} alt="" />
                   {/* <img > /> */}
                   <p
@@ -44,8 +44,8 @@ const RoomDetailsBody = ({ singleRoomDetails }) => {
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {RoomLogs?.map((service, index) => (
-                <div key={index} className="flex gap-2 ">
-                  <img className="w-6" src={service.Icon} alt="serviceImage" />
+                <div key={index} className="flex gap-2 items-center ">
+                  <img className="w-6 md:w-8 " src={service.Icon} alt="serviceImage" />
                   <p className="text-sm">{service.name}</p>
                 </div>
               ))}
