@@ -1,6 +1,7 @@
 import { DownOutlined } from "@ant-design/icons";
 import {  Dropdown, Space } from "antd";
 import { Link } from "react-router-dom";
+import { UserOutlined } from '@ant-design/icons';
 
 const ButtonLoginSignUp = () => {
   const items = [
@@ -43,10 +44,10 @@ const ButtonLoginSignUp = () => {
             placement="bottom"
             
           >
-            <div className="flex gap-1">
-
-            <p className="cursor-pointer text-md flex items-center">Join / Log In</p>
-            <DownOutlined className="text-xs" />
+            <div className="flex  items-center justify-center px-2">
+            <UserOutlined className="text-lg" />
+            {/* <p className="cursor-pointer text-md flex items-center"></p> */}
+            {/* <DownOutlined className="text-xs" /> */}
             </div>
             
           </Dropdown>

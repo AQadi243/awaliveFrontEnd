@@ -7,6 +7,7 @@ import { useTranslation } from "react-i18next";
 import Cookies from "js-cookie";
 import en from '../../../assets/en.png'
 import ar from '../../../assets/sa.jpg'
+import { GlobalOutlined } from '@ant-design/icons';
 
 const languages = [
   {
@@ -66,8 +67,8 @@ const LanguageDropdown = () => {
         >
           <a className="cursor-pointer">
             <Space>
-              <FaGlobe />
-              <DownOutlined />
+            <GlobalOutlined />
+              <DownOutlined className="text-xs" />
             </Space>
           </a>
         </Dropdown>

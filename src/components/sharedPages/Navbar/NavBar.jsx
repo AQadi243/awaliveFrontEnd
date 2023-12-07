@@ -8,6 +8,7 @@ import { Button, Dropdown, Menu } from "antd";
 import { DownOutlined } from "@ant-design/icons";
 import { AuthContext } from "../Context/AuthProvider";
 import ButtonLoginSignUp from "./ButtonLoginSignUp";
+import { UserOutlined } from '@ant-design/icons';
 
 const navLinks = [
   { title: "Home", href: "/" },
@@ -78,136 +79,178 @@ const Navbar = () => {
   //   navigate("/login");
   //   setDropdownOpen(!isDropdownOpen);
   // };
-  
 
   return (
     <header>
       <nav
-        className=" w-[90%] mx-auto flex justify-between items-center py-8 lg:py-4 px-2"
+        className="w-[90%] mx-auto"
         style={{ fontFamily: "Gilda Display, serif" }}
       >
-        <div className=" flex items-center gap-[1ch]">
-          <div className="w-5 h-5 bg-[#BE9874] rounded-full" />
-          <Link to={"/"} className="text-sm font-semibold tracking-widest">
-            Awalive Hotel
-          </Link>
-        </div>
-        <div className="lg:flex hidden gap-5 text-md text-zinc-400">
-          <NavLink to={"/"}>
-            <p>Home</p>
-            {/* <AnimatedLink title={"Home"} /> */}
-          </NavLink>
-          <li className="relative group list-none">
-            <p
-            // className={({ isActive }) =>
-            //   isActive ? "text-black font-medium" : "font-medium"
-            // }
-            >
-              Search
-            </p>
-
-            {/* Dropdown Content */}
-            <ul className="absolute w-36 left-0 hidden pt-2 bg-white drop-shadow-md text-md text-zinc-400 group-hover:block z-10 rounded-sm">
-              <li>
-                <NavLink
-                  to={"/roomSearch"}
-                  className="p-2 block hover:bg-slate-50 transition duration-300 ease-in-out "
-                >
-                  Room Search
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to={"/roomRate"}
-                  className="p-2 block hover:bg-slate-50 transition duration-300 ease-in-out "
-                >
-                  Room Rates
-                </NavLink>
-              </li>
-            </ul>
-          </li>
-          <NavLink to={"/about"}>
-            <p>About</p>
-            {/* <AnimatedLink title={"Home"} /> */}
-          </NavLink>
-          <NavLink to={"/promotions"}>
-            <p>Promotions</p>
-            {/* <AnimatedLink title={"Home"} /> */}
-          </NavLink>
-          <li className="relative group list-none">
-            <p>Restaurant</p>
-
-            {/* Dropdown Content */}
-            <ul className="absolute w-36 left-0 hidden pt-2 bg-white drop-shadow-md text-md text-zinc-400 group-hover:block z-10 rounded-sm">
-              <li>
-                <NavLink
-                  to={"/bookTable"}
-                  className="p-2 block hover:bg-slate-50 transition duration-300 ease-in-out "
-                >
-                  Book Table
-                </NavLink>
-              </li>
-              <li>
-                <NavLink className="p-2 block hover:bg-slate-50 transition duration-300 ease-in-out ">
-                  Menu
-                </NavLink>
-              </li>
-            </ul>
-          </li>
-          <NavLink to={"/contact"}>
-            Contact
-            {/* <AnimatedLink title={"Home"} /> */}
-          </NavLink>
-          {user?.name ? (
-            <NavLink to={"/mybookings"}>
-              <p>My Bookings</p>
+        <div className=" flex items-center justify-between py-8 lg:py-4 px-2">
+          <div className=" flex items-center gap-[1ch]">
+            <div className="w-5 h-5 bg-[#BE9874] rounded-full" />
+            <Link to={"/"} className="text-sm font-semibold tracking-widest">
+              Awalive Hotel
+            </Link>
+          </div>
+          <div className="lg:flex hidden   gap-5 text-md text-zinc-400">
+            <NavLink to={"/"}>
+              <p>Home</p>
               {/* <AnimatedLink title={"Home"} /> */}
             </NavLink>
-          ) : (
-            ""
-          )}
-
-          <LanguageDopdown />
-          {/* login button  */}
-          {user?.name ? (
-            <div className="relative group">
+            <li className="relative group list-none">
               <p
-                onClick={toggleDropdown}
-                className="cursor-pointer text-md flex items-center"
+              // className={({ isActive }) =>
+              //   isActive ? "text-black font-medium" : "font-medium"
+              // }
               >
-                {user?.name}
-
-                <DownOutlined />
+                Search
               </p>
-              {isDropdownOpen && (
-                <div
-                  className="absolute z-10 mt-2 bg-white border rounded-md shadow-md"
-                  onBlur={closeDropdown}
-                >
-                  <p
-                    onClick={handleLogout}
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
-                  >
-                    Log Out
-                  </p>
-                </div>
-              )}
-            </div>
-          ) : (
-            <>
-            
-            <ButtonLoginSignUp />
-            </>
-          )}
 
-          {/* login button end  */}
-          {/* <AnimatedLink title={"Contact"} /> */}
-        </div>
-        <div
-          className="cursor-pointer lg:hidden text-md text-black"
-          onClick={toggleMenu}
-        >
-          Menu
+              {/* Dropdown Content */}
+              <ul className="absolute w-36 left-0 hidden pt-2 bg-white drop-shadow-md text-md text-zinc-400 group-hover:block z-10 rounded-sm">
+                <li>
+                  <NavLink
+                    to={"/roomSearch"}
+                    className="p-2 block hover:bg-slate-50 transition duration-300 ease-in-out "
+                  >
+                    Room Search
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to={"/roomRate"}
+                    className="p-2 block hover:bg-slate-50 transition duration-300 ease-in-out "
+                  >
+                    Room Rates
+                  </NavLink>
+                </li>
+              </ul>
+            </li>
+            <NavLink to={"/about"}>
+              <p>About</p>
+              {/* <AnimatedLink title={"Home"} /> */}
+            </NavLink>
+            <NavLink to={"/promotions"}>
+              <p>Promotions</p>
+              {/* <AnimatedLink title={"Home"} /> */}
+            </NavLink>
+            <li className="relative group list-none">
+              <p>Restaurant</p>
+
+              {/* Dropdown Content */}
+              <ul className="absolute w-36 left-0 hidden pt-2 bg-white drop-shadow-md text-md text-zinc-400 group-hover:block z-10 rounded-sm">
+                <li>
+                  <NavLink
+                    to={"/bookTable"}
+                    className="p-2 block hover:bg-slate-50 transition duration-300 ease-in-out "
+                  >
+                    Book Table
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink className="p-2 block hover:bg-slate-50 transition duration-300 ease-in-out ">
+                    Menu
+                  </NavLink>
+                </li>
+              </ul>
+            </li>
+            <NavLink to={"/contact"}>
+              Contact
+              {/* <AnimatedLink title={"Home"} /> */}
+            </NavLink>
+            {user?.name ? (
+              <NavLink to={"/mybookings"}>
+                <p>My Bookings</p>
+                {/* <AnimatedLink title={"Home"} /> */}
+              </NavLink>
+            ) : (
+              ""
+            )}
+
+            <LanguageDopdown />
+            {/* login button  */}
+            {user?.name ? (
+              <div className="relative group">
+                <p
+                  onClick={toggleDropdown}
+                  className="cursor-pointer text-md flex items-center"
+                >
+                  {user?.name}
+
+                  <DownOutlined />
+                </p>
+                {isDropdownOpen && (
+                  <div
+                    className="absolute z-10 mt-2 bg-white border rounded-md shadow-md"
+                    onBlur={closeDropdown}
+                  >
+                    <p
+                      onClick={handleLogout}
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
+                    >
+                      Log Out
+                    </p>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <>
+                <ButtonLoginSignUp />
+              </>
+            )}
+
+            {/* login button end  */}
+            {/* <AnimatedLink title={"Contact"} /> */}
+          </div>
+          <div className="lg:hidden flex gap-2 items-center">
+            <div className="lg:hidden">
+              <LanguageDopdown />
+            </div>
+            <div className="lg:hidden">
+              {/* mobile login button todo to solve  */}
+              {user?.name ? (
+                <div className="relative group">
+                  <p
+                    onClick={toggleDropdown}
+                    className="cursor-pointer text-md flex items-center"
+                  >
+                    <UserOutlined className="text-lg" />
+
+                    <DownOutlined />
+                  </p>
+                  {isDropdownOpen && (
+                    <>
+                      <div
+                        className="absolute z-10 mt-2 bg-white border rounded-md shadow-md"
+                        onBlur={closeDropdown}
+                      >
+                        <p className="px-2 py-1"
+                        >
+                          {user?.name}
+                        </p>
+                        <p
+                          onClick={handleLogout}
+                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
+                        >
+                          Log Out
+                        </p>
+                      </div>
+                    </>
+                  )}
+                </div>
+              ) : (
+                <ButtonLoginSignUp />
+              )}
+              {/* mobile login button todo to solve  */}
+            </div>
+            <div
+              className="cursor-pointer lg:hidden text-md text-black"
+              onClick={toggleMenu}
+            >
+              Menu
+            </div>
+          </div>
         </div>
       </nav>
       <AnimatePresence>
@@ -249,38 +292,7 @@ const Navbar = () => {
                   );
                 })}
               </motion.div>
-            <div className="flex items-center justify-between">
-              <LanguageDopdown />
-              {/* mobile login button todo to solve  */}
-              {user?.name ? (
-                <div className="relative group">
-                  <p
-                    onClick={toggleDropdown}
-                    className="cursor-pointer text-md flex items-center"
-                  >
-                    {user?.name}
-
-                    <DownOutlined />
-                  </p>
-                  {isDropdownOpen && (
-                    <div
-                      className="absolute z-10 mt-2 bg-white border rounded-md shadow-md"
-                      onBlur={closeDropdown}
-                    >
-                      <p
-                        onClick={handleLogout}
-                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
-                      >
-                        Log Out
-                      </p>
-                    </div>
-                  )}
-                </div>
-              ) : (
-                <ButtonLoginSignUp  />
-              )}
-              {/* mobile login button todo to solve  */}
-              </div>
+              <div className="flex items-center justify-between"></div>
             </div>
           </motion.div>
         )}
