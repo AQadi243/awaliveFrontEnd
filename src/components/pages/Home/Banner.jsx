@@ -1,6 +1,6 @@
 import bannerImagTwo from "../../../assets/appartment Slider.jpg";
 import bannerImagOne from "../../../assets/familySlider .jpg";
-// // import DatePicker from "./DatePicker";
+
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation } from "swiper/modules";
 import "swiper/css";
@@ -10,6 +10,7 @@ import "../About/slider.css";
 import { Link } from "react-router-dom";
 import i18next from "i18next";
 import { useEffect, useState } from "react";
+import SearchBar from "./SearchBar";
 // import i18next from "i18next";
 // import { useEffect } from "react";
 // import AOS from 'aos';
@@ -33,11 +34,12 @@ const Banner = () => {
 
   return (
     <>
-      <div data-aos="zoom-in" >
+      <div className="md:relative md:z-10" >
+        <div data-aos="zoom-in" >
         <Swiper
           navigation={true}
           modules={[Navigation, Autoplay, ]}
-          className={` h-[calc(100vh-74px)]  overflow-hidden `}
+          className={` h-[calc(100vh-74px)] `}
           autoplay={{ delay: 3000 }}
           loop={true}
           dir={!languageKey ? "rtl" : "ltr" }
@@ -105,8 +107,11 @@ const Banner = () => {
               </div>
             </div>
           </SwiperSlide>
-          {/* <DatePicker /> */}
         </Swiper>
+        </div>
+          <div className="md:absolute   md:left-1/2 md:transform md:-translate-x-1/2 md:bottom-0 md:z-50 w-full">
+          <SearchBar  />
+          </div>
       </div>
     </>
   );
