@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../sharedPages/Context/AuthProvider';
-import BannerPage from '../../sharedPages/PageBanner/BannerPage';
 import BookingDate from './BookingDate';
 import { Tabs, Modal, notification, Spin  } from 'antd';
 // import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js';
@@ -151,7 +150,12 @@ const validateEmail = (email) => {
   
     // Update local storage
     localStorage.setItem('bookingInfo', JSON.stringify(updatedBookingInfo));
-  
+    
+    notification['success']({
+      message: 'Email change saved',
+      placement: 'topRight',
+      duration: 2.5, // duration in seconds
+    });
     setIsEditingEmail(false);
     setEmailError('');
   };
@@ -168,7 +172,11 @@ const validateEmail = (email) => {
   
     // Update local storage
     localStorage.setItem('bookingInfo', JSON.stringify(updatedBookingInfo));
-  
+    notification['success']({
+      message: 'Phone number change saved',
+      placement: 'topRight',
+      duration: 2.5, // duration in seconds
+    });
     setIsEditingPhone(false);
     // setPhoneError('')
   };
@@ -214,8 +222,9 @@ const validateEmail = (email) => {
   return (
     <>
     <PageAnimation>
-    <BannerPage text='Checkout' />
-    <section className="w-[90%] mx-auto">
+    
+    <section className="bg-slate-50">
+     <div className='w-[90%] mx-auto '>
       <div className="flex flex-col md:flex-row gap-3 md:gap-5 py-10 md:py-20">
         <BookingDate />
         <div className="md:w-2/3" style={{ fontFamily: 'Gilda Display, serif' }}>
@@ -227,11 +236,11 @@ const validateEmail = (email) => {
                 <div className="grid md:grid-cols-2 gap-3 md:gap-5  ">
                   <div className='flex items-center'>
                     <p className="py-2 px-2 "> First Name: </p>
-                    <span className='font-semibold'> {firstName} </span>
+                    <span className=''> {firstName} </span>
                   </div>
                   <div className='flex items-center'>
                     <p className="py-2 px-2 "> Last Name:</p>
-                    <span className='font-semibold'>{lastName}</span>
+                    <span className=''>{lastName}</span>
                   </div>
                   {/* <div className='flex items-center'>
                     <p className="py-2 px-2 "> Email:</p>
@@ -250,7 +259,7 @@ const validateEmail = (email) => {
           </>
         ) : (
           <>
-            <span className='font-semibold' onClick={handleEmailEdit}>{editedEmail}</span>
+            <span className='' onClick={handleEmailEdit}>{editedEmail}</span>
             <p className=' px-2 rounded-sm bg-black text-white ml-3 text-xs'>Edit</p>
           </>
         )}
@@ -266,7 +275,7 @@ const validateEmail = (email) => {
           </>
         ) : (
           <>
-            <span className='font-semibold' onClick={handlePhoneEdit}>{editedPhone}</span>
+            <span className='' onClick={handlePhoneEdit}>{editedPhone}</span>
             <p className=' px-2 rounded-sm bg-black text-white ml-3 text-xs' >Edit</p>
           </>
         )}
@@ -302,6 +311,7 @@ const validateEmail = (email) => {
         </div>
 
       </div>
+     </div>
     </section>
     {
       loading ? <p>Loading...</p>  : 

@@ -28,7 +28,7 @@ const BookingForm = () => {
     });
   };
 
-  const handleConfirmButtonClick = () => {
+  const handleSubmitButtonClick = () => {
     console.log('Button clicked');
     const errors = {};
   
@@ -198,10 +198,10 @@ const BookingForm = () => {
             <div>
               <button
                 type="button"
-                onClick={handleConfirmButtonClick}
+                onClick={handleSubmitButtonClick}
                 className="bg-[#BE9874] py-2 px-8 text-sm text-white"
               >
-                Confirm
+                Submit
               </button>
             </div>
           </form>

@@ -11,11 +11,14 @@ const BookNow = () => {
     <>
     <PageAnimation>
     <BannerPage text={'Booking'} />
-    <section className="w-[90%] mx-auto">
+    <section className="bg-slate-50">
+      <div className="w-[90%] mx-auto">
+
       <div className="flex flex-col md:flex-row gap-5 py-10 md:py-20">
         <BookingDate />
         <BookingForm />
 
+      </div>
       </div>
     </section>
     </PageAnimation>
