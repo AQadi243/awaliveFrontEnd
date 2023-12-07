@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import RoomBanner from "./RoomBanner";
 import RoomDetailsBody from "./RoomDetailsBody";
 // import RoomDate from "./RoomDate";
-// import SimilarRoom from "./SimilarRoom";
+import SimilarRoom from "./SimilarRoom";
 // import PageAnimation from "../../PageAnimation/PageAnimation";
 
 const RoomDetails = () => {
@@ -15,14 +15,13 @@ const RoomDetails = () => {
   const [singleRoomDetails, setSingleRoomDetails] = useState(null);
 
   const searchById = parseInt(id)
-  console.log(searchById);
+  
 
   useEffect(() => {
     const fetchRoom = async () => {
       try {
         const response = await axios.get(`https://awalive-server-side-hzpa.vercel.app/rooms/${searchById}`);
         setSingleRoomDetails(response.data);
-        console.log('single detsilad', response.data);
         setLoading(false);
       } catch (error) {
         console.error("Error fetching room data:", error);
@@ -72,7 +71,7 @@ const RoomDetails = () => {
                   <RoomDetailsBody singleRoomDetails={singleRoomDetails} />
                   
                 
-                {/* <SimilarRoom  allRoomData={allRoomData} loading={loading} /> */}
+                <SimilarRoom  currentRoomId={singleRoomDetails._id} /> 
             </div>
           </section>
         </>

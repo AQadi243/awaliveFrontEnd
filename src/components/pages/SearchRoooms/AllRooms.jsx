@@ -133,7 +133,7 @@ const AllRooms = ({ allRooms, loading }) => {
               <div>
                 <Link
                 to={`/room/${room.id}`}
-                  data-price="56"
+                  data-price={room.roomPrice}
                   className="px-4 py-2 md:px-6 md:py-2 border border-[#BE9874] text-[#BE9874] uppercase text-sm tracking-widest font-semibold  "
                 >
                   Book Now for <span className="">{room.roomPrice} </span> SR

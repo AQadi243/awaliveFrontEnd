@@ -5,7 +5,6 @@ import arroundImage3 from "../../../assets/serviceImage3.jpeg";
 import RoomDate from "./RoomDate";
 
 const RoomDetailsBody = ({ singleRoomDetails }) => {
-    console.log("details", singleRoomDetails);
   const { RoomService, description, RoomLogs,  } = singleRoomDetails;
 
   return (
