@@ -37,9 +37,11 @@ const RoomDetails = () => {
     <>
     
       {loading ? (
-        <div className="h-screen flex flex-col items-center text-center">
+        <div className="h-[20rem] flex  items-center justify-center text-center">
+          <div>
           <Spin />
         <p>Loading...</p>
+          </div>
         </div>
       ) : singleRoomDetails ? (
         <>

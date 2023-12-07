@@ -15,23 +15,28 @@ const AuthProvider = ({ children }) => {
   const [RoomPrice, setRoomPrice] = useState("");
   const [RoomImage, setRoomImage] = useState("");
   const [error, setError] = useState("");
+
+  const [searchCategory , setSearchCategory] = useState('')
+  const [searchResults, setSearchResults] = useState([]);
+  const [isSearched , setIsSearched] = useState(false)
+  const [searchLoading, setSearchLoading] = useState(true);
   
   // all are in search value 
-  const [searchResults, setSearchResults] = useState([]);
-  const [searchLoading, setSearchLoading] = useState(true);
-  const[searchCheckIn , setSearchCheckIn] = useState("")
-  const[searchCheckOut , setSearchCheckOut] = useState("")
-  const [searchGuest, setSearchGuest] = useState(2);
-  const [searchNight, setSearchNight] = useState(0);
+  // const [searchResults, setSearchResults] = useState([]);
+  // const [searchLoading, setSearchLoading] = useState(true);
+  // const[searchCheckIn , setSearchCheckIn] = useState("")
+  // const[searchCheckOut , setSearchCheckOut] = useState("")
+  // const [searchGuest, setSearchGuest] = useState(2);
+  // const [searchNight, setSearchNight] = useState(0);
   const [sortByPrice, setSortByPrice] = useState('')
-  const [searchCategory , setSearchCategory] = useState('')
-  const [isSearched , setIsSearched] = useState(false)
-  const [searchParams, setSearchParams] = useState({
-    category: '',
-    guests: '',
-    checkIn: '',
-    checkOut: ''
-  });
+  // const [searchCategory , setSearchCategory] = useState('')
+  // const [isSearched , setIsSearched] = useState(false)
+  // const [searchParams, setSearchParams] = useState({
+  //   category: '',
+  //   guests: 1,
+  //   checkIn: '',
+  //   checkOut: ''
+  // });
 
 
   useEffect(() => {
@@ -41,7 +46,7 @@ const AuthProvider = ({ children }) => {
       const parsedBookingInfo = JSON.parse(storedBookingInfo);
       setCheckIn(parsedBookingInfo.checkIn);
       setCheckOut(parsedBookingInfo.checkOut);
-      setGuests(parsedBookingInfo.guests);
+      setGuests(parsedBookingInfo.guests || 1);
       setNight(parsedBookingInfo.night);
       setRoomName(parsedBookingInfo.roomName);
       setRoomPrice(parsedBookingInfo.roomPrice);
@@ -203,48 +208,48 @@ const handleLogin = async (email, password) => {
   // search logic start
   
 
-  useEffect(() => {
-    setSearchParams({
-      category: searchCategory,
-      guests: searchGuest,
-      checkIn: searchCheckIn,
-      checkOut: searchCheckOut,
-    });
-  }, [searchGuest, searchCheckIn, searchCheckOut,searchCategory]);
+  // useEffect(() => {
+  //   setSearchParams({
+  //     category: searchCategory,
+  //     guests: guests,
+  //     checkIn: checkIn,
+  //     checkOut: checkOut,
+  //   });
+  // }, [guests, checkIn, checkOut,searchCategory]);
   
 
-useEffect(()=>{
+// useEffect(()=>{
 
-  const handleSearch = async () => {
-    try {
-      const response = await axios.get('https://awalive-server-side-hzpa.vercel.app/searchRooms', { params: searchParams });
-      // Display the search results
-      setSearchResults(  response.data);
-      setIsSearched(true)
-      setSearchLoading(false)
-    } catch (error) {
-      console.error('Error fetching search results:', error);
-    }
-    setSearchLoading(false)
-  };
+//   const handleSearch = async () => {
+//     try {
+//       const response = await axios.get('https://awalive-server-side-hzpa.vercel.app/searchRooms', { params: searchParams });
+//       // Display the search results
+//       setSearchResults(  response.data);
+//       setIsSearched(true)
+//       setSearchLoading(false)
+//     } catch (error) {
+//       console.error('Error fetching search results:', error);
+//     }
+//     setSearchLoading(false)
+//   };
   
-  handleSearch()
+//   handleSearch()
   
-},[searchParams]) 
+// },[searchParams]) 
   // search execution end  
 
   // all that field are search all in a obj 
   const searchValue = {
     searchLoading,
     setSearchLoading,
-    searchCheckIn,
-    setSearchCheckIn,
-    searchCheckOut,
-    setSearchCheckOut,
-    searchGuest,
-    setSearchGuest,
-    searchNight,
-    setSearchNight,
+    // searchCheckIn,
+    // setSearchCheckIn,
+    // searchCheckOut,
+    // setSearchCheckOut,
+    // searchGuest,
+    // setSearchGuest,
+    // searchNight,
+    // setSearchNight,
     sortByPrice,
     setSortByPrice,
     searchCategory,

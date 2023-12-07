@@ -11,21 +11,23 @@ import { AuthContext } from "../../sharedPages/Context/AuthProvider";
 const DatesSearch = () => {
     const authInfo = useContext(AuthContext)
 //   const authInfo = useContext(AuthContext);
-  const { searchCheckIn,
-    setSearchCheckIn,
-    searchNight,
-    setSearchNight,
-    searchCheckOut,
-    setSearchCheckOut,
-    searchGuest,
-    setSearchGuest } = authInfo.searchValue ;
+  // const { searchCheckIn,
+  //   setSearchCheckIn,
+  //   searchNight,
+  //   setSearchNight,
+  //   searchCheckOut,
+  //   setSearchCheckOut,
+  //   searchGuest,
+  //   setSearchGuest } = authInfo.searchValue ;
 //   const { roomName, roomPrice, image,  } = singleRoomDetails;
+
+const {night, setNight, checkIn, setCheckIn, checkOut, setCheckOut,setGuests,guests,handleBookNow,setRoomImage,setRoomPrice,setRoomName,} = authInfo
   const [showDatePicker, setShowDatePicker] = useState(false);
 
 //   setRoomImage(image)
 //   setRoomName(roomName)
 //   setRoomPrice(roomPrice)
-   
+  
 
   const [state, setState] = useState([
     {
@@ -37,8 +39,8 @@ const DatesSearch = () => {
 
   useEffect(() => {
     if (state.length > 0) {
-      let firstObject = state[0];
-      const { startDate, endDate } = firstObject;
+      // let firstObject = state[0];
+      const { startDate, endDate } = state[0];
       const onlyStartDate = new Date(startDate);
       const onlyEndDate = new Date(endDate);
 
@@ -49,21 +51,24 @@ const DatesSearch = () => {
       const timeDifference = onlyEndDate.getTime() - onlyStartDate.getTime();
       const differenceInNights = Math.ceil(timeDifference / (1000 * 3600 * 24));
 
-      setSearchNight(differenceInNights);
-      setSearchCheckIn(startDateString);
-      setSearchCheckOut(endDateString);
+      // setSearchNight(differenceInNights);
+      // setSearchCheckIn(startDateString);
+      // setSearchCheckOut(endDateString);
+      setNight(differenceInNights);
+      setCheckIn(startDateString);
+      setCheckOut(endDateString);
     } else {
       console.log("The state array is empty");
     }
-  }, [state]);
+  }, [state, setCheckIn,setCheckOut,setNight]);
 
   const handleIncrement = () => {
-    setSearchGuest((prevGuests) => prevGuests + 1);
+    setGuests((prevGuests) => prevGuests + 1);
   };
 
   const handleDecrement = () => {
-    if (searchGuest > 0) {
-        setSearchGuest((prevGuests) => prevGuests - 1);
+    if (guests > 1) {
+      setGuests((prevGuests) => prevGuests - 1);
     }
   };
 
@@ -98,7 +103,7 @@ const DatesSearch = () => {
                 onClick={handleSelectDate}
                 className="text-xl text-white"
               >
-                {searchCheckIn}
+                {checkIn}
               </button>
             </div>
             <div
@@ -107,7 +112,7 @@ const DatesSearch = () => {
               <button
                 onClick={handleSelectDate}
                 className="text-xl text-white">
-                {searchCheckOut}
+                {checkOut}
               </button>
             </div>
             {showDatePicker && (
@@ -135,7 +140,7 @@ const DatesSearch = () => {
               id="guest-container"
               className="bg-black py-2 px-2 flex flex-col items-center justify-center cursor-pointer date-picker">
               <div className="flex items-center gap-4 text-xl">
-                <p>{searchGuest}</p>
+                <p>{guests}</p>
                 <div className="flex flex-col text-xl">
                   <button className="text-[#BE9874] " onClick={handleIncrement}>
                     <FaAngleUp />
@@ -151,13 +156,13 @@ const DatesSearch = () => {
               className="bg-black py-2 px-2 flex flex-col items-center justify-center cursor-pointer date-picker"
             >
               <label  className="text-xl text-white">
-                Days
+                Night
               </label>
               <p
                 id="selectedDays"
                 className="bg-transparent outline-none w-28 text-[#BE9874] text-2xl"
               >
-                {searchNight}
+                {night}
               </p>
             </div>
             

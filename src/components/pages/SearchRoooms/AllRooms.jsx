@@ -3,13 +3,13 @@ import { Link } from "react-router-dom";
 import { Pagination } from "antd";
 import { AuthContext } from "../../sharedPages/Context/AuthProvider";
 
-const AllRooms = ({ allRooms }) => {
+const AllRooms = ({ allRooms, loading }) => {
   const authInfo = useContext(AuthContext)
   const [filteredRooms, setFilteredRooms] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   // console.log('allRooms', allRooms, searchValue);
   const {
-    loading,
+    // loading,
     searchCheckIn,
     searchCheckOut,
     sortByPrice,
@@ -27,7 +27,7 @@ const AllRooms = ({ allRooms }) => {
 
   
 
-{isSearched ? console.log('yes', searchResults) : console.log('moye moey'); }
+{isSearched ? console.log('search result', searchResults) : console.log('not search result '); }
 
   useEffect(() => {
     // Function to filter and sort rooms based on selected criteria
@@ -75,7 +75,7 @@ const AllRooms = ({ allRooms }) => {
   return (
     <div className="md:w-2/3 grid grid-cols-1 md:grid-cols-2  gap-5 roomCards">
       {loading ? (
-        <div>Loading...</div>
+        <div className="h-[10rem] flex items-center justify-center"><p>Loading...</p></div>
       ) : (
         currentRooms.map((room) => (
           <div

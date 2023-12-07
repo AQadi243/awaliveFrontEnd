@@ -10,7 +10,7 @@ import { AuthContext } from "../../sharedPages/Context/AuthProvider"
 
 const Search = () => {
   const authInfo = useContext(AuthContext)
-  // const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
   const[allRooms , setAllRooms] = useState([])
   
   const {
@@ -22,13 +22,16 @@ const Search = () => {
   useEffect(() => {
     const fetchRoomRates = async () => {     
       try {
-        const response = await axios.get('/roomData.json'); 
+        const response = await axios.get('https://awalive-server-side-hzpa.vercel.app/rooms'); 
         setAllRooms(response.data);
+        
         setSearchLoading(false);
+        setLoading(false)
       } catch (error) {
         console.error('Error fetching room rates:', error);
         setSearchLoading(false);
       }
+      setLoading(false)
     };
 
     fetchRoomRates();
@@ -91,7 +94,7 @@ const Search = () => {
       <section className="w-[90%] mx-auto py-10">
       <div className="flex flex-col md:flex-row gap-5">
       <DatesSearch  />
-      <AllRooms allRooms={allRooms}   />
+      <AllRooms allRooms={allRooms} loading={loading}  />
       </div>
 
       </section>

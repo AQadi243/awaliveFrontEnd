@@ -13,22 +13,30 @@ const RoomDate = ({singleRoomDetails}) => {
   const { roomName, roomPrice, image,  } = singleRoomDetails;
   const [showDatePicker, setShowDatePicker] = useState(false);
 
-  setRoomImage(image)
-  setRoomName(roomName)
-  setRoomPrice(roomPrice)
+  console.log(guests,'guesssssssss');
+
+  // setRoomImage(image)
+  // setRoomName(roomName)
+  // setRoomPrice(roomPrice)
   
   const [state, setState] = useState([
     {
-      startDate: new Date(),
-      endDate: addDays(new Date(), 1),
+      startDate: checkIn ? new Date(checkIn) : new Date(),
+      endDate: checkOut ? new Date(checkOut) : addDays(new Date(), 1),
       key: "selection",
     },
   ]);
 
+  // Update room details
+  useEffect(() => {
+    setRoomImage(image);
+    setRoomName(roomName);
+    setRoomPrice(roomPrice);
+  }, [image, roomName, roomPrice, setRoomImage, setRoomName, setRoomPrice]);
+ 
   useEffect(() => {
     if (state.length > 0) {
-      let firstObject = state[0];
-      const { startDate, endDate } = firstObject;
+      const { startDate, endDate } = state[0];
       const onlyStartDate = new Date(startDate);
       const onlyEndDate = new Date(endDate);
 
@@ -45,14 +53,14 @@ const RoomDate = ({singleRoomDetails}) => {
     } else {
       console.log("The state array is empty");
     }
-  }, [state]);
+  }, [state, setNight, setCheckIn, setCheckOut]);
 
   const handleIncrement = () => {
     setGuests((prevGuests) => prevGuests + 1);
   };
 
   const handleDecrement = () => {
-    if (guests > 0) {
+    if (guests > 1) {
       setGuests((prevGuests) => prevGuests - 1);
     }
   };
@@ -141,7 +149,7 @@ const RoomDate = ({singleRoomDetails}) => {
               className="bg-black py-2 px-2 flex flex-col items-center justify-center cursor-pointer date-picker"
             >
               <label  className="text-xl text-white">
-                Days
+                Night
               </label>
               <p
                 id="selectedDays"
