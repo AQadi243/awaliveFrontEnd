@@ -44,8 +44,8 @@ const ButtonLoginSignUp = () => {
             placement="bottom"
             
           >
-            <div className="flex  items-center justify-center px-2">
-            <UserOutlined className="text-lg" />
+            <div className="flex  items-center justify-center   cursor-pointer">
+            <UserOutlined className="text-xl cursor-pointer px-4 py-1 md:py-0" />
             {/* <p className="cursor-pointer text-md flex items-center"></p> */}
             {/* <DownOutlined className="text-xs" /> */}
             </div>
