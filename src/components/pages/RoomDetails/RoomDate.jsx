@@ -93,7 +93,7 @@ const RoomDate = ({singleRoomDetails}) => {
             >
               <button
                 onClick={handleSelectDate}
-                className="text-xl text-white"
+                className="text-md md:text-x text-white"
               >
                 {checkIn}
               </button>
@@ -103,7 +103,7 @@ const RoomDate = ({singleRoomDetails}) => {
               className="bg-black py-2 px-2 flex flex-col items-center justify-center cursor-pointer date-picker">
               <button
                 onClick={handleSelectDate}
-                className="text-xl text-white">
+                className="text-md md:text-x text-white">
                 {checkOut}
               </button>
             </div>
@@ -131,23 +131,28 @@ const RoomDate = ({singleRoomDetails}) => {
             <div
               id="guest-container"
               className="bg-black py-2 px-2 flex flex-col items-center justify-center cursor-pointer date-picker">
-              <div className="flex items-center gap-4 text-xl">
-                <p>{guests}</p>
-                <div className="flex flex-col text-xl">
-                  <button className="text-[#BE9874] " onClick={handleIncrement}>
-                    <FaAngleUp />
-                  </button>
-                  <button className="text-[#BE9874]" onClick={handleDecrement}>
+              <div className="flex flex-col items-center gap-1 ">
+                <div>
+                <p className="text-md md:text-xl text-white">Guest</p>
+                
+                </div>
+                <div className="flex flex-row gap-2 items-center text-xl">
+                <button className="text-[#BE9874] p-2" onClick={handleDecrement}>
                     <FaAngleDown />
                   </button>
+                  <p className="text-[#BE9874]">{guests}</p>
+                  <button className="text-[#BE9874] p-2 " onClick={handleIncrement}>
+                    <FaAngleUp />
+                  </button>
+                  
                 </div>
               </div>
             </div>
             <div
               id="days-container"
-              className="bg-black py-2 px-2 flex flex-col items-center justify-center cursor-pointer date-picker"
+              className="bg-black py-2 px-2 flex flex-col gap-1 items-center justify-center cursor-pointer date-picker"
             >
-              <label  className="text-xl text-white">
+              <label  className="text-md md:text-xl text-white">
                 Night
               </label>
               <p

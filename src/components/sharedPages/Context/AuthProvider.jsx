@@ -15,19 +15,19 @@ const AuthProvider = ({ children }) => {
   const [RoomName, setRoomName] = useState("");
   const [RoomPrice, setRoomPrice] = useState("");
   const [RoomImage, setRoomImage] = useState("");
+  const [sortByPrice, setSortByPrice] = useState('')
   const [error, setError] = useState("");
 
-  const [searchCategory , setSearchCategory] = useState('')
-  const [searchResults, setSearchResults] = useState([]);
-  const [isSearched , setIsSearched] = useState(false)
-  const [searchLoading, setSearchLoading] = useState(true);
-  const [sortByPrice, setSortByPrice] = useState('')
-  const [searchParams, setSearchParams] = useState({
-    category: '',
-    guests: 1,
-    checkIn: '',
-    checkOut: ''
-  });
+  // const [searchCategory , setSearchCategory] = useState('')
+  // const [searchResults, setSearchResults] = useState([]);
+  // const [isSearched , setIsSearched] = useState(false)
+  // const [searchLoading, setSearchLoading] = useState(true);
+  // const [searchParams, setSearchParams] = useState({
+  //   category: '',
+  //   guests: 1,
+  //   checkIn: '',
+  //   checkOut: ''
+  // });
   
   console.log(roomId,'room id auth');
   // all are in search value 
@@ -85,63 +85,6 @@ const AuthProvider = ({ children }) => {
 
     console.log("Booking information saved:", bookingInfo);
   };
-
-  // const handleLogin = async (email, password) => {
-
-  //   try {
-  //     // Make an HTTP POST request to the login endpoint
-  //     const response = await fetch('http://localhost:3000/login', {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify({ email, password }),
-  //     });
-
-  //     // Check if the request was successful
-  //     if (response.ok) {
-  //       const data = await response.json();
-  //       // Assuming the backend sends a token upon successful login
-  //       console.log('Login successful. Token:', data.token);
-  //       console.log('Login successful. Token:', data);
-  //       // You can set user information in the context here
-  //       // setError("Success")
-  //     } else {
-  //       // Login failed, handle the error
-  //       setError("Incorrect email or password")
-  //     }
-  //   } catch (error) {
-  //     console.error('Error during login:', error);
-  //     setError("Pleas Try Again")
-  //   }
-  // };
-
-  // const handleLogin = async (email, password) => {
-  //   try {
-  //     const response = await fetch("http://localhost:3000/login", {
-  //       method: "POST",
-  //       headers: { "Content-Type": "application/json" },
-  //       body: JSON.stringify({ email, password }),
-  //     });
-
-  //     if (response.ok) {
-  //       const data = await response.json();
-  //       console.log("Login successful. Token:", data.token);
-
-  //       // Set user information here
-  //       // Assuming the backend sends user details along with the token
-  //       // Save user data to state and localStorage
-  //     setUser(data.user);
-  //     localStorage.setItem('userData', JSON.stringify(data.user));
-  //     localStorage.setItem('token', data.token);
-  //     } else {
-  //       setError("Incorrect email or password");
-  //     }
-  //   } catch (error) {
-  //     console.error("Error during login:", error);
-  //     setError("Please Try Again");
-  //   }
-  // };
 
   
 
@@ -211,60 +154,18 @@ const handleLogin = async (email, password) => {
   // search logic start
   
 
-  useEffect(() => {
-    setSearchParams({
-      searchCategory: searchCategory,
-      searchGuests: guests,
-      searchCheckIn: checkIn,
-      searchCheckOut: checkOut,
-    });
-  }, [guests, checkIn, checkOut,searchCategory]);
+  // useEffect(() => {
+  //   setSearchParams({
+  //     searchCategory: searchCategory,
+  //     searchGuests: guests,
+  //     searchCheckIn: checkIn,
+  //     searchCheckOut: checkOut,
+  //   });
+  // }, [guests, checkIn, checkOut,searchCategory]);
   
 
-useEffect(()=>{
 
-  const handleSearch = async () => {
-    try {
-      const response = await axios.get('https://awalive-server-side-hzpa.vercel.app/searchRooms', { params: searchParams });
-      // Display the search results
-      setSearchResults(  response.data);
-      // console.log( 'search rooms auth', response.data);
-      setIsSearched(true)
-      setSearchLoading(false)
-    } catch (error) {
-      console.error('Error fetching search results:', error);
-    }
-    setSearchLoading(false)
-  };
-  
-  handleSearch()
-  
-},[searchParams]) 
-  // search execution end  
-
-  // all that field are search all in a obj 
-  const searchValue = {
-    searchLoading,
-    setSearchLoading,
-    // searchCheckIn,
-    // setSearchCheckIn,
-    // searchCheckOut,
-    // setSearchCheckOut,
-    // searchGuest,
-    // setSearchGuest,
-    // searchNight,
-    // setSearchNight,
-    sortByPrice,
-    setSortByPrice,
-    searchCategory,
-    setSearchCategory,
-    setIsSearched,
-    isSearched,
-    setSearchResults,
-    searchResults,
-
-
-  }
+ 
 
   const authInfo = {
     loading,
@@ -281,6 +182,8 @@ useEffect(()=>{
     RoomImage,
     RoomPrice,
     RoomName,
+    sortByPrice,
+    setSortByPrice,
     // roomId,
     setRoomImage,
     setRoomPrice,
@@ -291,7 +194,7 @@ useEffect(()=>{
     handleLogout,
     error,
     user,
-    searchValue
+    
   };
 
   return (

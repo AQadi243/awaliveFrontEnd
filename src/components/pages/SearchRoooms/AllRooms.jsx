@@ -1,70 +1,72 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Pagination } from "antd";
-import { AuthContext } from "../../sharedPages/Context/AuthProvider";
+// import { AuthContext } from "../../sharedPages/Context/AuthProvider";
 
-const AllRooms = ({ allRooms, loading }) => {
-  const authInfo = useContext(AuthContext)
-  const [filteredRooms, setFilteredRooms] = useState([]);
+const AllRooms = ({ allRooms, loading,  }) => {
+  // const authInfo = useContext(AuthContext)
+  // const [filteredRooms, setFilteredRooms] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   // console.log('allRooms', allRooms, searchValue);
-  const {
-    // loading,
-    searchCheckIn,
-    searchCheckOut,
-    sortByPrice,
-    searchGuest,
-    setSearchCheckIn,
-    setSearchCheckOut,
-    setSearchGuest,
-    setSearchNight,
-    searchCategory,
-    isSearched,
-    setIsSearched,
-    searchResults,
-    setSearchResults
-  } = authInfo.searchValue;
+  // const {
+  //   // loading,
+  //   searchCheckIn,
+  //   searchCheckOut,
+    // sortByPrice,
+  //   searchGuest,
+  //   setSearchCheckIn,
+  //   setSearchCheckOut,
+  //   setSearchGuest,
+  //   setSearchNight,
+  //   searchCategory,
+  //   isSearched,
+  //   setIsSearched,
+  //   searchResults,
+  //   setSearchResults
+  // } = authInfo.searchValue;
 
   
 
-{isSearched ? console.log('search result', searchResults) : console.log('not search result '); }
+// {isSearched ? console.log('search result', searchResults) : console.log('not search result '); }
 
-  useEffect(() => {
-    // Function to filter and sort rooms based on selected criteria
-    const filterAndSortRooms = () => {
-      // Your logic to filter and sort rooms based on search criteria
-      let filteredRooms = allRooms;
+  // useEffect(() => {
+  //   // Function to filter and sort rooms based on selected criteria
+  //   const filterAndSortRooms = () => {
+  //     // Your logic to filter and sort rooms based on search criteria
+  //     let filteredRooms = allRooms;
 
-      // Filter based on date range
-      if (searchCheckIn && searchCheckOut) {
-        filteredRooms = filteredRooms.filter((room) => {
-          // Your date range comparison logic
-          return (
-            // Your date range comparison logic here
-            <p>{console.log("filter", room)}</p>
-          );
-        });
-      }
+  //     // Filter based on date range
+  //     if (searchCheckIn && searchCheckOut) {
+  //       filteredRooms = filteredRooms.filter((room) => {
+  //         // Your date range comparison logic
+  //         return (
+  //           // Your date range comparison logic here
+  //           <p>{console.log("filter", room)}</p>
+  //         );
+  //       });
+  //     }
 
-      // Sort based on price
-      if (sortByPrice === "lowPrice") {
-        filteredRooms.sort((a, b) => a.roomPrice - b.roomPrice);
-      } else if (sortByPrice === "highPrice") {
-        filteredRooms.sort((a, b) => b.roomPrice - a.roomPrice);
-      }
+  //     // Sort based on price
+  //     if (sortByPrice === "lowPrice") {
+  //       filteredRooms.sort((a, b) => a.roomPrice - b.roomPrice);
+  //     } else if (sortByPrice === "highPrice") {
+  //       filteredRooms.sort((a, b) => b.roomPrice - a.roomPrice);
+  //     }
 
-      setFilteredRooms(filteredRooms);
-    };
+  //     setFilteredRooms(filteredRooms);
+  //   };
 
-    filterAndSortRooms();
-  }, [allRooms, searchCheckIn, searchCheckOut, sortByPrice, setFilteredRooms]);
+  //   filterAndSortRooms();
+  // }, [allRooms, searchCheckIn, searchCheckOut, sortByPrice, setFilteredRooms]);
+
+  
 
   // Calculate the start and end indices of the current page
   const PAGE_SIZE = 4; // Number of rooms per page
   const startIndex = (currentPage - 1) * PAGE_SIZE;
   const endIndex = startIndex + PAGE_SIZE;
 
-  const currentRooms = filteredRooms.slice(startIndex, endIndex);
+  const currentRooms = allRooms.slice(startIndex, endIndex);
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
@@ -157,7 +159,7 @@ const AllRooms = ({ allRooms, loading }) => {
       <div className="flex justify-center mt-4">
         <Pagination
           defaultCurrent={1}
-          total={filteredRooms.length}
+          total={allRooms.length}
           pageSize={PAGE_SIZE}
           onChange={handlePageChange}
         />

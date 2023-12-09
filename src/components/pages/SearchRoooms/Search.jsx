@@ -14,10 +14,10 @@ const Search = () => {
   const[allRooms , setAllRooms] = useState([])
   
   const {
-    setSearchLoading,
+    sortByPrice,
     setSortByPrice
 
-  } = authInfo.searchValue
+  } = authInfo
 
   useEffect(() => {
     const fetchRoomRates = async () => {     
@@ -25,21 +25,27 @@ const Search = () => {
         const response = await axios.get('https://awalive-server-side-hzpa.vercel.app/rooms'); 
         setAllRooms(response.data);
         
-        setSearchLoading(false);
+        // setSearchLoading(false);
         setLoading(false)
       } catch (error) {
         console.error('Error fetching room rates:', error);
-        setSearchLoading(false);
+        // setSearchLoading(false);
       }
       setLoading(false)
     };
 
     fetchRoomRates();
-    setSearchLoading(false)
-  }, [setSearchLoading]);
+    // setSearchLoading(false)
+  }, []);
 
   const handleValue = (value) => {
     setSortByPrice(value)
+  }
+
+  if (sortByPrice === "lowPrice") {
+    allRooms.sort((a, b) => a.roomPrice - b.roomPrice);
+  } else if (sortByPrice === "highPrice") {
+    allRooms.sort((a, b) => b.roomPrice - a.roomPrice);
   }
     
 
