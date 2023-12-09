@@ -26,13 +26,23 @@ const BookingConfirm = () => {
 
   // console.log("confo", bookingInfo);
   // Destructure properties only if formData exists in bookingInfo
-  const { formData } = bookingInfo;
+  console.log(bookingInfo,'cinfirm page chek id ');
+  const { formData, id } = bookingInfo;
+  console.log(id,"okkkk");
   const { firstName, lastName, email, address, message, phone, arrivalTime, city } = formData || {};
 
   useEffect(() => {
     
     // Retrieve booking information from localStorage
     const storedBookingInfo = JSON.parse(localStorage.getItem('bookingInfo')) || {};
+
+    // Convert checkIn and checkOut to ISO format if they exist
+    if (storedBookingInfo.checkIn) {
+      storedBookingInfo.checkIn = new Date(storedBookingInfo.checkIn).toLocaleDateString();
+    }
+    if (storedBookingInfo.checkOut) {
+        storedBookingInfo.checkOut = new Date(storedBookingInfo.checkOut).toLocaleDateString();
+    }
     
     // Update the state with the retrieved booking information
     setBookingInfo(storedBookingInfo);
@@ -55,9 +65,13 @@ const BookingConfirm = () => {
     setLoading(true)
     const bookingData = {
         ...bookingInfo,
-        userEmail: user?.email,  // Assuming 'user' has an 'email' field
+        checkIn: bookingInfo.checkIn ? new Date(bookingInfo.checkIn).toLocaleDateString() : null,
+        checkOut: bookingInfo.checkOut ? new Date(bookingInfo.checkOut).toLocaleDateString() : null,
+        userEmail: user.email,  // Assuming 'user' has an 'email' field
         paymentMethod,
     };
+
+    console.log(bookingData,'all booking data ai am passing ');
 
     try {
         const response = await fetch('https://awalive-server-side-hzpa.vercel.app/allOrders', {
@@ -92,15 +106,19 @@ const BookingConfirm = () => {
               duration: 3.5, // duration in seconds
           });
           navigate('/roomSearch')
+          localStorage.removeItem('bookingInfo');
+
         }
     } catch (error) {
         console.error('Error sending booking info:', error);
+        localStorage.removeItem('bookingInfo');
         navigate('/roomSearch')
+
     }
 
     setIsModalVisible(true);
     setLoading(false);
-};
+  };
 
 
   const handleModalCancel = () => {

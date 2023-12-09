@@ -7,6 +7,7 @@ const BookingDate = () => {
     const authInfo = useContext(AuthContext);
   const [bookingInformation, setBookingInformation] = useState("");
   const { loading, setLoading, } = authInfo;
+  console.log(bookingInformation,'checkingh room id ');
 
 useEffect(() => {
     // Retrieve data from localStorage on component mount

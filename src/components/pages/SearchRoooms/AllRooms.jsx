@@ -70,7 +70,7 @@ const AllRooms = ({ allRooms, loading }) => {
     setCurrentPage(page);
   };
 
-  
+  console.log(currentRooms, 'current rooms');
 
   return (
     <div className="md:w-2/3 grid grid-cols-1 md:grid-cols-2  gap-5 roomCards">
@@ -79,7 +79,7 @@ const AllRooms = ({ allRooms, loading }) => {
       ) : (
         currentRooms.map((room) => (
           <div
-            key={room.id}
+            key={room.roomId}
             className="col-span-1 border border-gray-200 flex flex-col gap-3 card"
             data-price="56"
             style={{ fontFamily: "Gilda Display, serif" }}
@@ -132,7 +132,7 @@ const AllRooms = ({ allRooms, loading }) => {
               </p>
               <div>
                 <Link
-                to={`/room/${room.id}`}
+                to={`/room/${room.roomId}`}
                   data-price={room.roomPrice}
                   className="px-4 py-2 md:px-6 md:py-2 border border-[#BE9874] text-[#BE9874] uppercase text-sm tracking-widest font-semibold  "
                 >

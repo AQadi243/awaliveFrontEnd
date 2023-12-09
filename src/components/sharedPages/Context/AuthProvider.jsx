@@ -11,6 +11,7 @@ const AuthProvider = ({ children }) => {
   const [checkIn, setCheckIn] = useState("");
   const [checkOut, setCheckOut] = useState("");
   const [guests, setGuests] = useState(1);
+  const [roomId, setRoomId] = useState(0);
   const [RoomName, setRoomName] = useState("");
   const [RoomPrice, setRoomPrice] = useState("");
   const [RoomImage, setRoomImage] = useState("");
@@ -28,6 +29,7 @@ const AuthProvider = ({ children }) => {
     checkOut: ''
   });
   
+  console.log(roomId,'room id auth');
   // all are in search value 
   // const [searchResults, setSearchResults] = useState([]);
   // const [searchLoading, setSearchLoading] = useState(true);
@@ -67,6 +69,7 @@ const AuthProvider = ({ children }) => {
     
     const totalPrice = night * RoomPrice;
     const bookingInfo = {
+      roomId,
       checkIn,
       checkOut,
       guests,
@@ -225,7 +228,7 @@ useEffect(()=>{
       const response = await axios.get('https://awalive-server-side-hzpa.vercel.app/searchRooms', { params: searchParams });
       // Display the search results
       setSearchResults(  response.data);
-      console.log( 'search rooms auth', response.data);
+      // console.log( 'search rooms auth', response.data);
       setIsSearched(true)
       setSearchLoading(false)
     } catch (error) {
@@ -278,9 +281,11 @@ useEffect(()=>{
     RoomImage,
     RoomPrice,
     RoomName,
+    // roomId,
     setRoomImage,
     setRoomPrice,
     setRoomName,
+    setRoomId,
     // bookingInfo,
     handleLogin,
     handleLogout,

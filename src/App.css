@@ -5,11 +5,16 @@
 .fontFamily {
   
 } */
+/* html {
+  
+} */
 
 .App {
+  scroll-behavior: smooth;
   font-family: 'Roboto Serif', serif;
   font-weight: 100;
   color: #5c5c5c;
+
 }
 
 .slideIn {

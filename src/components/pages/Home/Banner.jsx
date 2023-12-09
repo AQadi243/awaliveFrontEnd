@@ -69,7 +69,7 @@ const Banner = () => {
                 </h1>
 
                 <div className="py-3">
-                  <Link className=" py-2 md:py-3  text-xs md:text-sm  px-4 border  md:px-8 md:border tracking-widest heroText">
+                  <Link to={'/roomSearch'} className=" py-2 md:py-3  text-xs md:text-sm  px-4 border  md:px-8 md:border tracking-widest heroText">
                     Rooms & Suites
                   </Link>
                 </div>
@@ -100,7 +100,7 @@ const Banner = () => {
                 </h1>
 
                 <div className="py-3">
-                  <Link className=" py-2 md:py-3  text-xs md:text-sm  px-4 border  md:px-8 md:border tracking-widest heroText">
+                  <Link to={'/roomSearch'} className=" py-2 md:py-3  text-xs md:text-sm  px-4 border  md:px-8 md:border tracking-widest heroText">
                     Rooms & Suites
                   </Link>
                 </div>

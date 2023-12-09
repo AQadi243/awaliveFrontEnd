@@ -10,11 +10,13 @@ import SimilarRoom from "./SimilarRoom";
 
 const RoomDetails = () => {
   const { id } = useParams();
+  console.log("checkiing finding id ", id);
 
   const [loading, setLoading] = useState(true);
   const [singleRoomDetails, setSingleRoomDetails] = useState(null);
 
   const searchById = parseInt(id)
+  console.log('seatch id', searchById);
   
 
   useEffect(() => {

@@ -14,7 +14,7 @@ const RoomCards = ({roomRates, loading}) => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {loading ? <p>Loading...</p> : (
           roomRates?.map((room) => (
-          <Link data-aos="fade-up" key={room.id} to={`/room/${room.id}`} className="grid-cols-1 cursor-pointer" style={{ position: 'relative' }}>
+          <Link data-aos="fade-up" key={room.roomId} to={`/room/${room.roomId}`} className="grid-cols-1 cursor-pointer" style={{ position: 'relative' }}>
             {/* <img src={room.image} alt={room.image} className="w-full aspect-video" /> */}
             <LazyImage src={room.image} alt={room.image} className="w-full aspect-video" />
             

@@ -6,17 +6,27 @@ import { addDays } from "date-fns";
 // import { FaAngleDown, FaAngleUp } from "react-icons/fa6";
 import { Button, Modal } from "antd";
 import { UserOutlined, PlusCircleOutlined, MinusCircleOutlined  } from "@ant-design/icons";
+import axios from "axios";
 
 const SearchBar = () => {
   const [modal2Open, setModal2Open] = useState(false);
 
+  const [searchParams, setSearchParams] = useState({
+    category: '',
+    numberOfGuests: 1,
+    checkIn: '',
+    checkOut: ''
+  });
   
+
+  
+  const [category, setCategory] = useState('Suite');
   const [room, setRooms] = useState(1);
   const [night, setNight] = useState(0);
   const [checkIn, setCheckIn] = useState("");
   const [checkOut, setCheckOut] = useState("");
   const [showDatePicker, setShowDatePicker] = useState(false);
-  const [guests, setGuests] = useState(1);
+  const [numberOfGuests, setGuests] = useState(1);
   const [child, setChild] = useState(0);
   const [childAges, setChildAges] = useState([]);
   const [state, setState] = useState([
@@ -54,7 +64,7 @@ const SearchBar = () => {
   };
 
   const handleDecrement = () => {
-    if (guests > 1) {
+    if (numberOfGuests > 1) {
       setGuests((prevGuests) => prevGuests - 1);
     }
   };
@@ -110,6 +120,36 @@ const SearchBar = () => {
     };
   }, []);
 
+  useEffect(() => {
+    setSearchParams({
+      category,
+      numberOfGuests,
+      checkIn,
+      checkOut,
+    });
+  }, [numberOfGuests, checkIn, checkOut,category]);
+  
+
+useEffect(()=>{
+
+  const handleSearch = async () => {
+    try {
+      const response = await axios.get('https://awalive-server-side-hzpa.vercel.app/searchRooms', { params: searchParams });
+      // Display the search results
+      // setSearchResults(  response.data);
+      console.log( 'search rooms bar', response.data);
+      // setIsSearched(true)
+      // setSearchLoading(false)
+    } catch (error) {
+      console.error('Error fetching search results:', error.message);
+    }
+    // setSearchLoading(false)
+  };
+  
+  handleSearch()
+  
+},[searchParams]) 
+
   const handleDateChange = (item) => {
     const newRange = item.selection;
     setState([newRange]);
@@ -152,7 +192,7 @@ const SearchBar = () => {
                 <div>
                   <p className="text-xs">Travelers</p>
                   <p className="text-sm">
-                    <span>{guests}-Travelers,</span>
+                    <span>{numberOfGuests}-Travelers,</span>
                     <span> {room}-Room</span>
                     {
                       child ? <span> {child}-children</span> : ''
@@ -227,7 +267,7 @@ const SearchBar = () => {
             <p className="text-sm md:text-xl">Adults</p>
             <div className="flex gap-2 md:gap-5 items-center">
               <p><MinusCircleOutlined className="text-xl md:text-2xl font-light" onClick={handleDecrement} /></p>
-              <p className="text-xl md:text-2xl  px-3" >{guests}</p>
+              <p className="text-xl md:text-2xl  px-3" >{numberOfGuests}</p>
               <p ><PlusCircleOutlined className="text-xl md:text-2xl" onClick={handleIncrement} /></p>
             </div>
           </div>
