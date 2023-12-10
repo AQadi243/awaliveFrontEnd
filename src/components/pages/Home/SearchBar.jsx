@@ -265,13 +265,16 @@ useEffect(()=>{
             )}
           </div>
           
-          <div className="bg-[#1C1C1D]  px-5 rounded-md py-2 md:py-4 cursor-pointer text-white text-center ">
+          
           {pageContext === 'home' ? (
-          <Link to={'/roomSearch'} >Find Room</Link>
+            <Link to={'/roomSearch'} className="bg-[#1C1C1D]  px-5 rounded-md py-2 md:py-4 cursor-pointer text-white text-center ">
+           Find Room
+          </Link>
         ) : (
-          <p onClick={handleSearchReset}>Reset</p>
+          <p onClick={handleSearchReset} className="bg-[#1C1C1D]  px-5 rounded-md py-2 md:py-4 cursor-pointer text-white text-center ">
+          Reset
+          </p>
         )}
-          </div>
         </div>
       </div>
 
