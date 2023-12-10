@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import "react-date-range/dist/styles.css"; // main css file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import { DateRange } from "react-date-range";
@@ -7,8 +7,28 @@ import { addDays } from "date-fns";
 import { Button, Modal } from "antd";
 import { UserOutlined, PlusCircleOutlined, MinusCircleOutlined  } from "@ant-design/icons";
 import axios from "axios";
+import { AuthContext } from "../../sharedPages/Context/AuthProvider";
+import { Link } from "react-router-dom";
 
-const SearchBar = () => {
+const SearchBar = ({setAllRooms, setNoRoomsMessage, pageContext}) => {
+  const {
+    numberOfGuests,
+    childAges,
+    checkIn,
+    checkOut,
+    category,
+    child,
+    night,
+    setChild,
+    setNight,
+    setGuests,
+    setCheckIn,
+    setCategory,
+    setCheckOut,
+    setChildAges,
+    setSearchLoader
+    
+  } = useContext(AuthContext)
   const [modal2Open, setModal2Open] = useState(false);
 
   const [searchParams, setSearchParams] = useState({
@@ -20,15 +40,11 @@ const SearchBar = () => {
   
 
   
-  const [category, setCategory] = useState('Suite');
+  
   const [room, setRooms] = useState(1);
-  const [night, setNight] = useState(0);
-  const [checkIn, setCheckIn] = useState("");
-  const [checkOut, setCheckOut] = useState("");
+  
   const [showDatePicker, setShowDatePicker] = useState(false);
-  const [numberOfGuests, setGuests] = useState(1);
-  const [child, setChild] = useState(0);
-  const [childAges, setChildAges] = useState([]);
+ 
   const [state, setState] = useState([
     {
       startDate: new Date(),
@@ -57,7 +73,7 @@ const SearchBar = () => {
     } else {
       console.log("The state array is empty");
     }
-  }, [state]);
+  }, [state, setNight, setCheckIn,setCheckOut]);
 
   const handleIncrement = () => {
     setGuests((prevGuests) => prevGuests + 1);
@@ -70,6 +86,18 @@ const SearchBar = () => {
   };
   const handleCancelModal = () => {
     // Reset the guests state to its default value (1 in this case)
+    setGuests(1);
+    setChild(0);
+    setChildAges([]);
+
+    // Close the modal
+    setModal2Open(false);
+  };
+  const handleSearchReset = () => {
+    // Reset the guests state to its default value (1 in this case)
+    setCheckIn('')
+    setCheckOut('')
+    setCategory('')
     setGuests(1);
     setChild(0);
     setChildAges([]);
@@ -135,20 +163,27 @@ useEffect(()=>{
   const handleSearch = async () => {
     try {
       const response = await axios.get('https://awalive-server-side-hzpa.vercel.app/searchRooms', { params: searchParams });
-      // Display the search results
-      // setSearchResults(  response.data);
-      console.log( 'search rooms bar', response.data);
-      // setIsSearched(true)
-      // setSearchLoading(false)
+      
+      if (response.data.message) {
+        // Handle the case where no rooms are available
+        setNoRoomsMessage(response.data.message);
+        setAllRooms([]); // Reset the rooms data
+      } else {
+        setAllRooms(response.data);
+        setNoRoomsMessage(""); // Reset the no rooms message
+      }
+
+      console.log('search rooms bar', response.data);
+      
     } catch (error) {
       console.error('Error fetching search results:', error.message);
     }
-    // setSearchLoading(false)
+    
   };
   
   handleSearch()
   
-},[searchParams]) 
+},[searchParams, setAllRooms, setSearchLoader,setNoRoomsMessage]) 
 
   const handleDateChange = (item) => {
     const newRange = item.selection;
@@ -201,22 +236,7 @@ useEffect(()=>{
                 </div>
               </div>
             </div>
-            {/* <div >
-              <p className="uppercase text-xs tracking-widest" >Guest</p>
-            <div className="flex items-center gap-4 text-xl">
-              <p>{guests}</p>
-              <div className="flex flex-col text-xl">
-                <button className="text-[#BE9874] " onClick={handleIncrement}>
-                  <FaAngleUp />
-                </button>
-                <button className="text-[#BE9874]" onClick={handleDecrement}>
-                  <FaAngleDown />
-                </button>
-              </div>
-            </div>
-          </div> */}
-
-            {/* <hr className=" h-10 border-l-[1px] border-dashed border-[#1C1C1D]" /> */}
+            
           </div>
           <div
             className="flex flex-col relative z-10   px-2 border border-black rounded-md py-1 md:py-2 bg-white cursor-pointer "
@@ -246,7 +266,11 @@ useEffect(()=>{
           </div>
           
           <div className="bg-[#1C1C1D]  px-5 rounded-md py-2 md:py-4 cursor-pointer text-white text-center ">
-              <p  >Find Room</p >
+          {pageContext === 'home' ? (
+          <Link to={'/roomSearch'} >Find Room</Link>
+        ) : (
+          <p onClick={handleSearchReset}>Reset</p>
+        )}
           </div>
         </div>
       </div>

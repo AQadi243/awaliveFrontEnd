@@ -110,7 +110,7 @@ const Banner = () => {
         </Swiper>
         </div>
           <div className="md:absolute   md:left-1/2 md:transform md:-translate-x-1/2 md:bottom-0 md:z-50 w-full">
-          <SearchBar  />
+          <SearchBar  pageContext="home"  />
           </div>
       </div>
     </>

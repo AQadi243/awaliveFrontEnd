@@ -7,10 +7,7 @@ export const AuthContext = createContext(null);
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [night, setNight] = useState(0);
-  const [checkIn, setCheckIn] = useState("");
-  const [checkOut, setCheckOut] = useState("");
-  const [guests, setGuests] = useState(1);
+  
   const [roomId, setRoomId] = useState(0);
   const [RoomName, setRoomName] = useState("");
   const [RoomPrice, setRoomPrice] = useState("");
@@ -18,27 +15,15 @@ const AuthProvider = ({ children }) => {
   const [sortByPrice, setSortByPrice] = useState('')
   const [error, setError] = useState("");
 
-  // const [searchCategory , setSearchCategory] = useState('')
-  // const [searchResults, setSearchResults] = useState([]);
-  // const [isSearched , setIsSearched] = useState(false)
-  // const [searchLoading, setSearchLoading] = useState(true);
-  // const [searchParams, setSearchParams] = useState({
-  //   category: '',
-  //   guests: 1,
-  //   checkIn: '',
-  //   checkOut: ''
-  // });
-  
-  console.log(roomId,'room id auth');
-  // all are in search value 
-  // const [searchResults, setSearchResults] = useState([]);
-  // const [searchLoading, setSearchLoading] = useState(true);
-  // const[searchCheckIn , setSearchCheckIn] = useState("")
-  // const[searchCheckOut , setSearchCheckOut] = useState("")
-  // const [searchGuest, setSearchGuest] = useState(2);
-  // const [searchNight, setSearchNight] = useState(0);
-  // const [searchCategory , setSearchCategory] = useState('')
-  // const [isSearched , setIsSearched] = useState(false)
+  const [searchLoader, setSearchLoader] = useState(true);
+  const [category, setCategory] = useState('');
+  const [night, setNight] = useState(0);
+  const [checkIn, setCheckIn] = useState("");
+  const [checkOut, setCheckOut] = useState("");
+  // const [guests, setGuests] = useState(1);
+  const [numberOfGuests, setGuests] = useState(1);
+  const [child, setChild] = useState(0);
+  const [childAges, setChildAges] = useState([]);
 
 
   useEffect(() => {
@@ -48,7 +33,7 @@ const AuthProvider = ({ children }) => {
       const parsedBookingInfo = JSON.parse(storedBookingInfo);
       setCheckIn(parsedBookingInfo.checkIn);
       setCheckOut(parsedBookingInfo.checkOut);
-      setGuests(parsedBookingInfo.guests || 1);
+      setGuests(parsedBookingInfo.numberOfGuests || 1);
       setNight(parsedBookingInfo.night);
       setRoomName(parsedBookingInfo.roomName);
       setRoomPrice(parsedBookingInfo.roomPrice);
@@ -72,7 +57,8 @@ const AuthProvider = ({ children }) => {
       roomId,
       checkIn,
       checkOut,
-      guests,
+      // guests,
+      numberOfGuests,
       night,
       RoomName,
       RoomPrice,
@@ -132,9 +118,6 @@ const handleLogin = async (email, password) => {
   }
 };
 
-
-  
-  
   const handleLogout = () => {
     
     // Clear user data and token from state and localStorage
@@ -151,39 +134,32 @@ const handleLogin = async (email, password) => {
 
   };
 
-  // search logic start
-  
-
-  // useEffect(() => {
-  //   setSearchParams({
-  //     searchCategory: searchCategory,
-  //     searchGuests: guests,
-  //     searchCheckIn: checkIn,
-  //     searchCheckOut: checkOut,
-  //   });
-  // }, [guests, checkIn, checkOut,searchCategory]);
-  
-
-
- 
-
   const authInfo = {
     loading,
     setLoading,
-    night,
-    setNight,
-    checkIn,
-    setCheckIn,
-    checkOut,
-    setCheckOut,
-    guests,
-    setGuests,
-    handleBookNow,
+    // guests,
+    numberOfGuests,
     RoomImage,
     RoomPrice,
     RoomName,
+    searchLoader,
     sortByPrice,
+    childAges,
+    checkIn,
+    checkOut,
+    category,
+    child,
+    night,
+    setChild,
+    setNight,
+    setGuests,
+    setCheckIn,
+    setCheckOut,
+    setChildAges,
     setSortByPrice,
+    setCategory,
+    setSearchLoader,
+    handleBookNow,
     // roomId,
     setRoomImage,
     setRoomPrice,

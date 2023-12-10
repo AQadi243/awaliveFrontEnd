@@ -6,21 +6,24 @@ import axios from "axios"
 import AllRooms from "./AllRooms"
 import { FaChevronDown } from "react-icons/fa6";
 import { AuthContext } from "../../sharedPages/Context/AuthProvider"
+import SearchBar from "../Home/SearchBar"
 // import Filter from "./filter"
 
 const Search = () => {
-  const authInfo = useContext(AuthContext)
   const [loading, setLoading] = useState(true);
   const[allRooms , setAllRooms] = useState([])
-  
+  const [noRoomsMessage, setNoRoomsMessage] = useState("");
   const {
     sortByPrice,
-    setSortByPrice
-
-  } = authInfo
-
+    category,
+    setSortByPrice,
+    setCategory,
+  } = useContext(AuthContext)
+  // const [category, setCategory] = useState('All Categories');
+  
+ 
   useEffect(() => {
-    const fetchRoomRates = async () => {     
+    const fetchAllRooms = async () => {     
       try {
         const response = await axios.get('https://awalive-server-side-hzpa.vercel.app/rooms'); 
         setAllRooms(response.data);
@@ -34,7 +37,7 @@ const Search = () => {
       setLoading(false)
     };
 
-    fetchRoomRates();
+    fetchAllRooms();
     // setSearchLoading(false)
   }, []);
 
@@ -47,12 +50,17 @@ const Search = () => {
   } else if (sortByPrice === "highPrice") {
     allRooms.sort((a, b) => b.roomPrice - a.roomPrice);
   }
-    
+
+  const handleCategoryChange = (e) => {
+    setCategory(e.target.value);
+  };
 
   return (
     <PageAnimation>
       <BannerPage  text={'Search'} />
-      <section className="bg-[#1a1919] flex gap-5 justify-center items-center py-8  " style={{ fontFamily: "Gilda Display, serif" }}>
+      <section className="bg-[#1a1919]  py-8  " style={{ fontFamily: "Gilda Display, serif" }}>
+      <SearchBar setAllRooms={setAllRooms} setNoRoomsMessage={setNoRoomsMessage} pageContext="search"  />
+      <div className="flex gap-5 py-3 justify-center items-center">
         <div>
         <li className="relative group list-none">
             <div className="flex gap-2 items-center">
@@ -60,7 +68,7 @@ const Search = () => {
               <p
                className="text-white" 
                >
-                Stay Price
+                Sort Price
               </p>
               <FaChevronDown className="font-thin text-xs text-white" />
                 </div>
@@ -89,18 +97,33 @@ const Search = () => {
           </li>
           
         </div>
+          
         <div>
-            <select id="cars" className="text-white bg-transparent outline-none">
-                <option className="bg-[#1C1C1D] py-2  border-b" value="volvo">Room Size</option>
-                <option className="bg-[#1C1C1D]" value="volvo">Smaller Rooms</option>
-                <option className="bg-[#1C1C1D]" value="volvo">Larger Rooms</option>
-              </select>
+          <select
+            id=""
+            className="text-white bg-transparent outline-none "
+            onChange={handleCategoryChange}
+            value={category} // This is important to make the selected value controlled
+          >
+            <option className="bg-[#1C1C1D] py-2  border-b hover:bg-[#BE9874] " value="">All Categories</option>
+          
+            <option className="bg-[#1C1C1D] py-2  border-b" value="Suite">
+              Suite
+            </option>
+            <option className="bg-[#1C1C1D]" value="Standard">
+              Standard
+            </option>
+            <option className="bg-[#1C1C1D]" value="Executive">
+              Executive
+            </option>
+          </select>
+        </div>
         </div>
       </section>
       <section className="w-[90%] mx-auto py-10">
       <div className="flex flex-col md:flex-row gap-5">
-      <DatesSearch  />
-      <AllRooms allRooms={allRooms} loading={loading}  />
+      <DatesSearch   />
+      <AllRooms allRooms={allRooms} noRoomsMessage={noRoomsMessage} loading={loading} setLoading={setLoading}  />
       </div>
 
       </section>

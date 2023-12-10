@@ -1,64 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Pagination } from "antd";
+import { Button, Pagination } from "antd";
 // import { AuthContext } from "../../sharedPages/Context/AuthProvider";
 
-const AllRooms = ({ allRooms, loading,  }) => {
-  // const authInfo = useContext(AuthContext)
-  // const [filteredRooms, setFilteredRooms] = useState([]);
+const AllRooms = ({ allRooms, noRoomsMessage, loading, setLoading }) => {
   const [currentPage, setCurrentPage] = useState(1);
-  // console.log('allRooms', allRooms, searchValue);
-  // const {
-  //   // loading,
-  //   searchCheckIn,
-  //   searchCheckOut,
-    // sortByPrice,
-  //   searchGuest,
-  //   setSearchCheckIn,
-  //   setSearchCheckOut,
-  //   setSearchGuest,
-  //   setSearchNight,
-  //   searchCategory,
-  //   isSearched,
-  //   setIsSearched,
-  //   searchResults,
-  //   setSearchResults
-  // } = authInfo.searchValue;
-
-  
-
-// {isSearched ? console.log('search result', searchResults) : console.log('not search result '); }
-
-  // useEffect(() => {
-  //   // Function to filter and sort rooms based on selected criteria
-  //   const filterAndSortRooms = () => {
-  //     // Your logic to filter and sort rooms based on search criteria
-  //     let filteredRooms = allRooms;
-
-  //     // Filter based on date range
-  //     if (searchCheckIn && searchCheckOut) {
-  //       filteredRooms = filteredRooms.filter((room) => {
-  //         // Your date range comparison logic
-  //         return (
-  //           // Your date range comparison logic here
-  //           <p>{console.log("filter", room)}</p>
-  //         );
-  //       });
-  //     }
-
-  //     // Sort based on price
-  //     if (sortByPrice === "lowPrice") {
-  //       filteredRooms.sort((a, b) => a.roomPrice - b.roomPrice);
-  //     } else if (sortByPrice === "highPrice") {
-  //       filteredRooms.sort((a, b) => b.roomPrice - a.roomPrice);
-  //     }
-
-  //     setFilteredRooms(filteredRooms);
-  //   };
-
-  //   filterAndSortRooms();
-  // }, [allRooms, searchCheckIn, searchCheckOut, sortByPrice, setFilteredRooms]);
-
   
 
   // Calculate the start and end indices of the current page
@@ -66,18 +12,33 @@ const AllRooms = ({ allRooms, loading,  }) => {
   const startIndex = (currentPage - 1) * PAGE_SIZE;
   const endIndex = startIndex + PAGE_SIZE;
 
-  const currentRooms = allRooms.slice(startIndex, endIndex);
+  const currentRooms = allRooms?.slice(startIndex, endIndex);
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
+  useEffect(() => {
+    // Reset to the first page whenever the allRooms data changes
+    setCurrentPage(1);
+    setLoading(false);
+  }, [allRooms, setLoading]);
 
-  console.log(currentRooms, 'current rooms');
+  const handleReload = () => {
+    window.location.reload();
+};
 
   return (
     <div className="md:w-2/3 grid grid-cols-1 md:grid-cols-2  gap-5 roomCards">
       {loading ? (
-        <div className="h-[10rem] flex items-center justify-center"><p>Loading...</p></div>
+        <div className="h-[10rem] flex items-center justify-center">
+          <p>Loading...</p>
+        </div>
+      ) : noRoomsMessage ? (
+        // Display the no rooms message if it's set
+        <div className="text-center">
+          <p className="py-10 text-xs">{noRoomsMessage}</p>
+          <Button  onClick={handleReload} >Refresh</Button>
+        </div>
       ) : (
         currentRooms.map((room) => (
           <div
@@ -134,7 +95,7 @@ const AllRooms = ({ allRooms, loading,  }) => {
               </p>
               <div>
                 <Link
-                to={`/room/${room.roomId}`}
+                  to={`/room/${room.roomId}`}
                   data-price={room.roomPrice}
                   className="px-4 py-2 md:px-6 md:py-2 border border-[#BE9874] text-[#BE9874] uppercase text-sm tracking-widest font-semibold  "
                 >
