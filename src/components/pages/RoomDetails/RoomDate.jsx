@@ -13,7 +13,7 @@ const RoomDate = ({singleRoomDetails}) => {
   const { roomName, roomPrice, image, roomId  } = singleRoomDetails;
   const [showDatePicker, setShowDatePicker] = useState(false);
 
-  // setRoomImage(image)
+  // setRoomImage(image) 
   // setRoomName(roomName)
   // setRoomPrice(roomPrice)
   

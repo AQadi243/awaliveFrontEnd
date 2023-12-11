@@ -3,6 +3,8 @@ import { AuthContext } from '../../sharedPages/Context/AuthProvider'
 import BannerPage from '../../sharedPages/PageBanner/BannerPage'
 import { Modal, Spin, Table  } from 'antd'
 import { Link } from 'react-router-dom'
+import BookingInformation from './BookingInformation/BookingInformation'
+import BookingUserInformation from './BookingInformation/BookingUserInformation'
 
 const MyBookings = () => {
     const {user} = useContext(AuthContext)
@@ -107,7 +109,7 @@ const MyBookings = () => {
     {loading ?    <Spin />     : (
         <Modal
         title="Booking Information"
-        visible={isModalVisible}
+        open={isModalVisible}
         onCancel={() => setIsModalVisible(false)}
         footer={[
           <button key="cancel" onClick={() => setIsModalVisible(false)}>
@@ -115,7 +117,18 @@ const MyBookings = () => {
           </button>,
         ]}
       >
-        {selectedOrder ? (
+        {
+          selectedOrder ? (
+            <div className="flex flex-col md:flex-row gap-3 md:gap-5 py-10 md:py-20">
+
+            <BookingInformation selectedOrder={selectedOrder} />
+            <BookingUserInformation selectedOrder={selectedOrder} />
+            </div>
+          ): (
+            <div> okky noooee</div>
+          )
+        }
+        {/* {selectedOrder ? (
           <div className='flex flex-col gap-2'>
             <img className='w-full h-[8rem] object-cover aspect-video' src={selectedOrder?.RoomImage} alt={selectedOrder.RoomImage} />
             <div className='flex justify-between font-semibold'>
@@ -151,7 +164,7 @@ const MyBookings = () => {
           </div>
         ) : (
           <p>No details available.</p>
-        )}
+        )} */}
           </Modal>
     )}
 

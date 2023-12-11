@@ -1,59 +1,67 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { AuthContext } from '../../sharedPages/Context/AuthProvider';
-import BookingDate from './BookingDate';
-import { Tabs, Modal, notification, Spin  } from 'antd';
+import React, { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../../sharedPages/Context/AuthProvider";
+import BookingDate from "./BookingDate";
+import { Tabs, Modal, notification, Spin } from "antd";
 // import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js';
-import { useNavigate } from 'react-router-dom';
-import PageAnimation from '../../PageAnimation/PageAnimation';
-
-
-
+import { useNavigate } from "react-router-dom";
+import PageAnimation from "../../PageAnimation/PageAnimation";
 
 const BookingConfirm = () => {
-  const {  user } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [order, setOrder] = useState('');
+  const [order, setOrder] = useState("");
   const [loading, setLoading] = useState(true);
   const [bookingInfo, setBookingInfo] = useState({});
   const [isEditingEmail, setIsEditingEmail] = useState(false);
   const [isEditingPhone, setIsEditingPhone] = useState(false);
-  const [editedEmail, setEditedEmail] = useState('');
-  const [editedPhone, setEditedPhone] = useState('');
-  const [emailError, setEmailError] = useState('');
+  const [editedEmail, setEditedEmail] = useState("");
+  const [editedPhone, setEditedPhone] = useState("");
+  const [emailError, setEmailError] = useState("");
   // const [phoneError, setPhoneError] = useState('');
   const navigate = useNavigate();
 
-
   // console.log("confo", bookingInfo);
   // Destructure properties only if formData exists in bookingInfo
-  console.log(bookingInfo,'cinfirm page chek id ');
+  console.log(bookingInfo, "cinfirm page chek id ");
   const { formData, id } = bookingInfo;
-  console.log(id,"okkkk");
-  const { firstName, lastName, email, address, message, phone, arrivalTime, city } = formData || {};
+  console.log(id, "okkkk");
+  const {
+    firstName,
+    lastName,
+    email,
+    address,
+    message,
+    phone,
+    arrivalTime,
+    city,
+  } = formData || {};
 
   useEffect(() => {
-    
     // Retrieve booking information from localStorage
-    const storedBookingInfo = JSON.parse(localStorage.getItem('bookingInfo')) || {};
+    const storedBookingInfo =
+      JSON.parse(localStorage.getItem("bookingInfo")) || {};
 
     // Convert checkIn and checkOut to ISO format if they exist
     if (storedBookingInfo.checkIn) {
-      storedBookingInfo.checkIn = new Date(storedBookingInfo.checkIn).toLocaleDateString();
+      storedBookingInfo.checkIn = new Date(
+        storedBookingInfo.checkIn
+      ).toLocaleDateString();
     }
     if (storedBookingInfo.checkOut) {
-        storedBookingInfo.checkOut = new Date(storedBookingInfo.checkOut).toLocaleDateString();
+      storedBookingInfo.checkOut = new Date(
+        storedBookingInfo.checkOut
+      ).toLocaleDateString();
     }
-    
+
     // Update the state with the retrieved booking information
     setBookingInfo(storedBookingInfo);
-     setEditedEmail(email);
+    setEditedEmail(email);
     setEditedPhone(phone);
-    
-    setLoading(false)
+
+    setLoading(false);
     // Optionally, you can do something with the retrieved information, such as setLoading or other logic
     // setLoading(false);
   }, [email, phone]); // Empty dependency array to run the effect only once on mount
-
 
   const handleBookNow = async (paymentMethod) => {
     // if (!validateEmail(editedEmail) || !validatePhone(editedPhone)) {
@@ -62,84 +70,86 @@ const BookingConfirm = () => {
     //   return;
     // }
     // ... existing logic
-    setLoading(true)
+    setLoading(true);
     const bookingData = {
-        ...bookingInfo,
-        checkIn: bookingInfo.checkIn ? new Date(bookingInfo.checkIn).toLocaleDateString() : null,
-        checkOut: bookingInfo.checkOut ? new Date(bookingInfo.checkOut).toLocaleDateString() : null,
-        userEmail: user.email,  // Assuming 'user' has an 'email' field
-        paymentMethod,
+      ...bookingInfo,
+      checkIn: bookingInfo.checkIn
+        ? new Date(bookingInfo.checkIn).toLocaleDateString()
+        : null,
+      checkOut: bookingInfo.checkOut
+        ? new Date(bookingInfo.checkOut).toLocaleDateString()
+        : null,
+      userEmail: user.email, // Assuming 'user' has an 'email' field
+      paymentMethod,
     };
 
-    console.log(bookingData,'all booking data ai am passing ');
+    console.log(bookingData, "all booking data ai am passing ");
 
     try {
-        const response = await fetch('https://awalive-server-side-hzpa.vercel.app/allOrders', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(bookingData),
-        });
-
-        if (response.ok) {
-            const result = await response.json();
-            notification['success']({
-              message: 'Booking request send',
-              description: `${result.message} please wait for confirmation Email.`,
-              placement: 'topRight',
-              duration: 3.5, // duration in seconds
-          });
-            setOrder(result.message); // Or handle the response as needed
-            // console.log(result.message); // Or handle the response as needed
-            // Clear bookingInfo from local storage after successful booking
-             localStorage.removeItem('bookingInfo');
-
-          // Optionally reset bookingInfo state
-            setBookingInfo({});
-            setLoading(false)
-        } else {
-            console.error('Failed to save order');
-            // setOrder('Failed to save order');
-            notification['error']({
-              message: 'Booking request not accept',
-              description: ` Please check all info .`,
-              placement: 'topRight',
-              duration: 3.5, // duration in seconds
-          });
-          navigate('/roomSearch')
-          localStorage.removeItem('bookingInfo');
-
+      const response = await fetch(
+        "https://awalive-server-side-hzpa.vercel.app/allOrders",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(bookingData),
         }
-    } catch (error) {
-        console.error('Error sending booking info:', error);
-        localStorage.removeItem('bookingInfo');
-        navigate('/roomSearch')
+      );
 
+      if (response.ok) {
+        const result = await response.json();
+        notification["success"]({
+          message: "Booking request send",
+          description: `${result.message} please wait for confirmation Email.`,
+          placement: "topRight",
+          duration: 3.5, // duration in seconds
+        });
+        setOrder(result.message); // Or handle the response as needed
+        // console.log(result.message); // Or handle the response as needed
+        // Clear bookingInfo from local storage after successful booking
+        localStorage.removeItem("bookingInfo");
+
+        // Optionally reset bookingInfo state
+        setBookingInfo({});
+        setLoading(false);
+      } else {
+        console.error("Failed to save order");
+        // setOrder('Failed to save order');
+        notification["error"]({
+          message: "Booking request not accept",
+          description: ` Please check all info .`,
+          placement: "topRight",
+          duration: 3.5, // duration in seconds
+        });
+        navigate("/roomSearch");
+        localStorage.removeItem("bookingInfo");
+      }
+    } catch (error) {
+      console.error("Error sending booking info:", error);
+      localStorage.removeItem("bookingInfo");
+      navigate("/roomSearch");
     }
 
     setIsModalVisible(true);
     setLoading(false);
   };
 
-
   const handleModalCancel = () => {
     // Close the Ant Design modal
     setIsModalVisible(false);
-    navigate('/mybookings');
-
+    navigate("/mybookings");
   };
 
   // Validation functions
-const validateEmail = (email) => {
-  const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return re.test(String(email).toLowerCase());
-};
+  const validateEmail = (email) => {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(String(email).toLowerCase());
+  };
 
-// const validatePhone = (phone) => {
-//   // validate phone field 
-//   // const re = /^[0-9]{7,15}$/; 
-//   // return re.test(String(phone));
-// };
-
+  // const validatePhone = (phone) => {
+  //   // validate phone field
+  //   // const re = /^[0-9]{7,15}$/;
+  //   // return re.test(String(phone));
+  // };
 
   const handleEmailEdit = () => {
     setIsEditingEmail(true);
@@ -159,25 +169,28 @@ const validateEmail = (email) => {
 
   const saveEmail = () => {
     if (!editedEmail || !validateEmail(editedEmail)) {
-      setEmailError('Invalid email format');
+      setEmailError("Invalid email format");
       return;
     }
     // Update email in bookingInfo and close edit mode
-    const updatedBookingInfo = { ...bookingInfo, formData: { ...formData, email: editedEmail } };
+    const updatedBookingInfo = {
+      ...bookingInfo,
+      formData: { ...formData, email: editedEmail },
+    };
     setBookingInfo(updatedBookingInfo);
-  
+
     // Update local storage
-    localStorage.setItem('bookingInfo', JSON.stringify(updatedBookingInfo));
-    
-    notification['success']({
-      message: 'Email change saved',
-      placement: 'topRight',
+    localStorage.setItem("bookingInfo", JSON.stringify(updatedBookingInfo));
+
+    notification["success"]({
+      message: "Email change saved",
+      placement: "topRight",
       duration: 2.5, // duration in seconds
     });
     setIsEditingEmail(false);
-    setEmailError('');
+    setEmailError("");
   };
-  
+
   const savePhone = () => {
     // if (!editedPhone || !validatePhone(editedPhone)) {
     //   setPhoneError('Invalid phone format');
@@ -185,82 +198,105 @@ const validateEmail = (email) => {
     // }
 
     // Update phone in bookingInfo and close edit mode
-    const updatedBookingInfo = { ...bookingInfo, formData: { ...formData, phone: editedPhone } };
+    const updatedBookingInfo = {
+      ...bookingInfo,
+      formData: { ...formData, phone: editedPhone },
+    };
     setBookingInfo(updatedBookingInfo);
-  
+
     // Update local storage
-    localStorage.setItem('bookingInfo', JSON.stringify(updatedBookingInfo));
-    notification['success']({
-      message: 'Phone number change saved',
-      placement: 'topRight',
+    localStorage.setItem("bookingInfo", JSON.stringify(updatedBookingInfo));
+    notification["success"]({
+      message: "Phone number change saved",
+      placement: "topRight",
       duration: 2.5, // duration in seconds
     });
     setIsEditingPhone(false);
     // setPhoneError('')
   };
 
-
-  
-
-
-   const onChange = (key) => {
+  const onChange = (key) => {
     console.log(key);
   };
   const items = [
-    
     {
-      key: '2',
-      label: 'Payment on Arrive',
+      key: "2",
+      label: "Payment on Arrive",
       children: (
-        <div style={{ fontFamily: 'Gilda Display, serif' }}>       
-          <p>NOTE : You could pay directly in our structure with any kind of credit card or cash.</p> 
-          {
-            loading ? <Spin /> : <button className="bg-[#BE9874] py-2 px-8 text-sm text-white"  onClick={() => handleBookNow('Payment on Arrival')}>Book Now</button>
-          }       
-          
+        <div style={{ fontFamily: "Gilda Display, serif" }}>
+          <p>
+            NOTE : You could pay directly in our structure with any kind of
+            credit card or cash.
+          </p>
+          {loading ? (
+            <Spin />
+          ) : (
+            <button
+              className="bg-[#BE9874] py-2 px-8 text-sm text-white"
+              onClick={() => handleBookNow("Payment on Arrival")}
+            >
+              Book Now
+            </button>
+          )}
         </div>
-        )
+      ),
     },
     {
-      key: '3',
-      label: 'Booking Request',
-      children:(
-        <div style={{ fontFamily: 'Gilda Display, serif' }}>       
-          <p>	NOTE : This request is not a reservation but a simple request, we will get in touch with you.</p> 
-          {
-            loading ? <Spin /> : <button className="bg-[#BE9874] py-2 px-8 text-sm text-white"  onClick={() => handleBookNow('Booking Request')}>Book Now</button>
-          }      
-          
+      key: "3",
+      label: "Booking Request",
+      children: (
+        <div style={{ fontFamily: "Gilda Display, serif" }}>
+          <p>
+            {" "}
+            NOTE : This request is not a reservation but a simple request, we
+            will get in touch with you.
+          </p>
+          {loading ? (
+            <Spin />
+          ) : (
+            <button
+              className="bg-[#BE9874] py-2 px-8 text-sm text-white"
+              onClick={() => handleBookNow("Booking Request")}
+            >
+              Book Now
+            </button>
+          )}
         </div>
-        ),
+      ),
     },
   ];
-  
 
   return (
     <>
-    <PageAnimation>
-    
-    <section className="bg-slate-50">
-     <div className='w-[90%] mx-auto '>
-      <div className="flex flex-col md:flex-row gap-3 md:gap-5 py-10 md:py-20">
-        <BookingDate />
-        <div className="md:w-2/3" style={{ fontFamily: 'Gilda Display, serif' }}>
-          <div>
-            <h2 className="text-2xl md:text-4xl pb-3">Your Order Details :</h2>
-            <p className='text-yellow-300'>Please make use you have enter correct Email and phone number </p>
-            <div>
-              <form className="flex flex-col gap-3 md:gap-5">
-                <div className="grid md:grid-cols-2 gap-3 md:gap-5  ">
-                  <div className='flex items-center'>
-                    <p className="py-2 px-2 "> First Name: </p>
-                    <span className=''> {firstName} </span>
-                  </div>
-                  <div className='flex items-center'>
-                    <p className="py-2 px-2 "> Last Name:</p>
-                    <span className=''>{lastName}</span>
-                  </div>
-                  {/* <div className='flex items-center'>
+      <PageAnimation>
+        <section className="bg-slate-50">
+          <div className="w-[90%] mx-auto ">
+            <div className="flex flex-col md:flex-row gap-3 md:gap-5 py-10 md:py-20">
+              <BookingDate />
+              <div
+                className="md:w-2/3"
+                style={{ fontFamily: "Gilda Display, serif" }}
+              >
+                <div>
+                  <h2 className="text-2xl md:text-4xl pb-3">
+                    Your Order Details :
+                  </h2>
+                  <p className="text-yellow-300">
+                    Please make use you have enter correct Email and phone
+                    number{" "}
+                  </p>
+                  <div>
+                    <form className="flex flex-col gap-3 md:gap-5">
+                      <div className="grid md:grid-cols-2 gap-3 md:gap-5  ">
+                        <div className="flex items-center">
+                          <p className="py-2 px-2 "> First Name: </p>
+                          <span className=""> {firstName} </span>
+                        </div>
+                        <div className="flex items-center">
+                          <p className="py-2 px-2 "> Last Name:</p>
+                          <span className="">{lastName}</span>
+                        </div>
+                        {/* <div className='flex items-center'>
                     <p className="py-2 px-2 "> Email:</p>
                     <span className='font-semibold'>{email}</span>
                   </div>
@@ -268,88 +304,108 @@ const validateEmail = (email) => {
                     <p className="py-2 px-2 "> Phone:</p>
                     <span className='font-semibold'>{phone}</span>
                   </div> */}
-                    <div className='flex items-center'>
-        <p className="py-2 px-2 "> Email:</p>
-        {isEditingEmail ? (
-          <>
-            <input type="email" value={editedEmail} onChange={handleEmailChange} />
-            <button onClick={saveEmail} className='bg-[#BE9874] px-2 rounded-sm text-white'>Save</button>
-          </>
-        ) : (
-          <>
-            <span className='' onClick={handleEmailEdit}>{editedEmail}</span>
-            <p className=' px-2 rounded-sm bg-black text-white ml-3 text-xs'>Edit</p>
-          </>
-        )}
-        {emailError && <p className="error-message">{emailError}</p>}
-      </div>
-      <div className='flex items-center'>
-        <p className="py-2 px-2 "> Phone:</p>
-        {isEditingPhone ? (
-          <>
-            <input type="tel" required value={editedPhone} onChange={handlePhoneChange} />
-            <button onClick={savePhone} className='bg-[#BE9874] px-2 rounded-sm text-white' >Save</button>
-            
-          </>
-        ) : (
-          <>
-            <span className='' onClick={handlePhoneEdit}>{editedPhone}</span>
-            <p className=' px-2 rounded-sm bg-black text-white ml-3 text-xs' >Edit</p>
-          </>
-        )}
-        {/* {phoneError && <p className="error-message">{phoneError}</p>} */}
-      </div>
+                        <div className="flex items-center">
+                          <p className="py-2 px-2 "> Email:</p>
+                          {isEditingEmail ? (
+                            <>
+                              <input
+                                type="email"
+                                value={editedEmail}
+                                onChange={handleEmailChange}
+                              />
+                              <button
+                                onClick={saveEmail}
+                                className="bg-[#BE9874] px-2 rounded-sm text-white"
+                              >
+                                Save
+                              </button>
+                            </>
+                          ) : (
+                            <>
+                              <span className="" onClick={handleEmailEdit}>
+                                {editedEmail}
+                              </span>
+                              <p className=" px-2 rounded-sm bg-black text-white ml-3 text-xs">
+                                Edit
+                              </p>
+                            </>
+                          )}
+                          {emailError && (
+                            <p className="error-message">{emailError}</p>
+                          )}
+                        </div>
+                        <div className="flex items-center">
+                          <p className="py-2 px-2 "> Phone:</p>
+                          {isEditingPhone ? (
+                            <>
+                              <input
+                                type="tel"
+                                required
+                                value={editedPhone}
+                                onChange={handlePhoneChange}
+                              />
+                              <button
+                                onClick={savePhone}
+                                className="bg-[#BE9874] px-2 rounded-sm text-white"
+                              >
+                                Save
+                              </button>
+                            </>
+                          ) : (
+                            <>
+                              <span className="" onClick={handlePhoneEdit}>
+                                {editedPhone}
+                              </span>
+                              <p className=" px-2 rounded-sm bg-black text-white ml-3 text-xs">
+                                Edit
+                              </p>
+                            </>
+                          )}
+                          {/* {phoneError && <p className="error-message">{phoneError}</p>} */}
+                        </div>
 
-                  <div className='flex items-center'>
-                    <p className="py-2 px-2 "> Address:</p>
-                    <span className='font-semibold'>{address}</span>
+                        <div className="flex items-center">
+                          <p className="py-2 px-2 "> Address:</p>
+                          <span className="font-semibold">{address}</span>
+                        </div>
+                        <div className="flex items-center">
+                          <p className="py-2 px-2 "> City:</p>
+                          <span className="font-semibold">{city}</span>
+                        </div>
+                        <div className="flex items-center">
+                          <p className="py-2 px-2 "> ArrivalTime:</p>
+                          <span className="font-semibold">{arrivalTime}</span>
+                        </div>
+                        <div className="flex items-center">
+                          <p className="py-2 px-2 "> Message:</p>
+                          <span className="font-semibold">{message}</span>
+                        </div>
+                      </div>
+                    </form>
                   </div>
-                  <div className='flex items-center'>
-                    <p className="py-2 px-2 "> City:</p>
-                    <span className='font-semibold'>{city}</span>
-                  </div>
-                  <div className='flex items-center'>
-                    <p className="py-2 px-2 "> ArrivalTime:</p>
-                    <span className='font-semibold'>{arrivalTime}</span>
-                  </div>
-                  <div className='flex items-center'>
-                    <p className="py-2 px-2 "> Message:</p>
-                    <span className='font-semibold'>{message}</span>
-                  </div>
-                  
-                    
-                  
                 </div>
-                
-                
-              </form>
+                <Tabs defaultActiveKey="1" items={items} onChange={onChange} />
+              </div>
             </div>
           </div>
-          <Tabs defaultActiveKey="1" items={items} onChange={onChange} />
-        </div>
-
-      </div>
-     </div>
-    </section>
-    {
-      loading ? <p>Loading...</p>  : 
-      (
-        <Modal
-        title="Booking Information"
-        visible={isModalVisible}
-        onCancel={handleModalCancel}
-        footer={[
-          <button key="cancel" onClick={handleModalCancel}>
-            Close
-          </button>,
-        ]}
-      >
-        <p>{order}</p>
-        {/* <pre>{JSON.stringify(bookingInfo, null, 2)}</pre> */}
-      </Modal>
-      )
-    }
-    
+        </section>
+        {loading ? (
+          <p>Loading...</p>
+        ) : (
+          <Modal
+            title="Booking Information"
+            open={isModalVisible}
+            onCancel={handleModalCancel}
+            footer={[
+              <button key="cancel" onClick={handleModalCancel}>
+                Close
+              </button>,
+            ]}
+          >
+            <p>{order}</p>
+            {/* <pre>{JSON.stringify(bookingInfo, null, 2)}</pre> */}
+          </Modal>
+        )}
       </PageAnimation>
     </>
   );

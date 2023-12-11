@@ -53,12 +53,18 @@ const AuthProvider = ({ children }) => {
   const handleBookNow = () => {
     
     const totalPrice = night * RoomPrice;
+    const taxPercentage = 0.15; // 15% tax rate
+    const tax = totalPrice * taxPercentage;
+    const totalWithTax = totalPrice + tax;
+
     const bookingInfo = {
       roomId,
       checkIn,
       checkOut,
       // guests,
       numberOfGuests,
+      tax,
+      totalWithTax,
       night,
       RoomName,
       RoomPrice,

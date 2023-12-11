@@ -23,14 +23,14 @@ useEffect(() => {
 
 // tex calculation 
 console.log("after", bookingInformation);
-const calculatedTexes = bookingInformation && bookingInformation.totalPrice 
-        ? parseInt(bookingInformation.totalPrice) * 0.15 // Assuming 15% tax
-        : 0;
+// const calculatedTexes = bookingInformation && bookingInformation.totalPrice 
+//         ? parseInt(bookingInformation.totalPrice) * 0.15 // Assuming 15% tax
+//         : 0;
 
-        // after tex total room price 
-  const totalRoomCost = bookingInformation.totalPrice + calculatedTexes
-  console.log(totalRoomCost);
-  console.log(calculatedTexes);
+//         // after tex total room price 
+//   const totalRoomCost = bookingInformation.totalPrice + calculatedTexes
+//   console.log(totalRoomCost);
+//   console.log(calculatedTexes);
 
   return loading ? (
     <div>
@@ -82,7 +82,7 @@ const calculatedTexes = bookingInformation && bookingInformation.totalPrice
                   <p>Texes</p>
                   <p className="text-xs ">15% gov. texes </p>
                 </div>
-                  <p>{calculatedTexes}-SAR </p>
+                  <p>{bookingInformation.tax}-SAR </p>
               </div>
               
               <div className="flex items-center justify-between font-semibold  border-t-2 py-4">
@@ -90,11 +90,11 @@ const calculatedTexes = bookingInformation && bookingInformation.totalPrice
                   <p className="text-md">Total Cost Per Room* </p>
                   {/* <p className="text-xs ">*Changes in taxes or fees will affect the total price. </p> */}
                 </div>
-                  <p>{totalRoomCost}-SAR </p>
+                  <p>{bookingInformation.totalWithTax}-SAR </p>
               </div>
               {/* <p>You have good taste! Book now before someone else grabs it!</p> */}
           </div>
-        </div>
+      </div>
 )
 }
 
