@@ -16,7 +16,7 @@ const BookingUserInformation = ({selectedOrder}) => {
                     number{" "}
                   </p> */}
                   <div>
-                    <form className="flex flex-col gap-3 md:gap-5">
+                    <form className="flex flex-col gap-2 md:gap-5">
                       <div className="grid grid-cols-1  md:gap-5  ">
                         <div className="flex items-center">
                           <p className=" px-2 "> First Name: </p>

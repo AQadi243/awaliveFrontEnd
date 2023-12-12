@@ -5,6 +5,7 @@ import { Modal, Spin, Table  } from 'antd'
 import { Link } from 'react-router-dom'
 import BookingInformation from './BookingInformation/BookingInformation'
 import BookingUserInformation from './BookingInformation/BookingUserInformation'
+import { color } from 'framer-motion'
 
 const MyBookings = () => {
     const {user} = useContext(AuthContext)
@@ -59,11 +60,35 @@ const MyBookings = () => {
       dataIndex: 'RoomName',
       key: '_id',
     },
+    // {
+    //   title: 'Booking',
+    //   dataIndex: 'status',
+    //   key: '_id',
+      
+    // },
     {
       title: 'Booking',
       dataIndex: 'status',
       key: '_id',
-      
+      render: (text, record) => {
+        let backgroundColor = '';
+        switch (text) {
+          case 'pending':
+            backgroundColor = 'yellow'; // You can use your preferred color
+            
+            break;
+          case 'confirmed':
+            backgroundColor = 'green';
+            break;
+          case 'denied':
+            backgroundColor = 'red';
+            break;
+          default:
+            break;
+        }
+  
+        return <span style={{ backgroundColor,  padding: '0.3em 0.5em', borderRadius: '4px', color: 'black'  }}>{text}</span>;
+      },
     },
     
     {
@@ -108,7 +133,7 @@ const MyBookings = () => {
     
     {loading ?    <Spin />     : (
         <Modal
-        title="Booking Information"
+        title="Awalive International Hotel "
         open={isModalVisible}
         onCancel={() => setIsModalVisible(false)}
         footer={[
@@ -119,13 +144,13 @@ const MyBookings = () => {
       >
         {
           selectedOrder ? (
-            <div className="flex flex-col md:flex-row gap-3 md:gap-5 py-10 md:py-20">
+            <div className="flex flex-col md:flex-row gap-3 md:gap-5 py-10 ">
 
             <BookingInformation selectedOrder={selectedOrder} />
             <BookingUserInformation selectedOrder={selectedOrder} />
             </div>
           ): (
-            <div> okky noooee</div>
+            <div> please refresh </div>
           )
         }
         {/* {selectedOrder ? (
