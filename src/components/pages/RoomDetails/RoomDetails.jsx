@@ -6,24 +6,29 @@ import RoomBanner from "./RoomBanner";
 import RoomDetailsBody from "./RoomDetailsBody";
 // import RoomDate from "./RoomDate";
 import SimilarRoom from "./SimilarRoom";
+import { useTranslation } from "react-i18next";
+import i18next from "i18next";
 // import PageAnimation from "../../PageAnimation/PageAnimation";
 
 const RoomDetails = () => {
   const { id } = useParams();
+  const currentLanguage = i18next.language;
+  const { t } = useTranslation();
   console.log("checkiing finding id ", id);
 
   const [loading, setLoading] = useState(true);
   const [singleRoomDetails, setSingleRoomDetails] = useState(null);
 
-  const searchById = parseInt(id)
-  console.log('seatch id', searchById);
+  // const searchById = parseInt(id)
+  // console.log('seatch id', searchById);
   
 
   useEffect(() => {
     const fetchRoom = async () => {
       try {
-        const response = await axios.get(`https://awalive-server-side-hzpa.vercel.app/rooms/${searchById}`);
-        setSingleRoomDetails(response.data);
+        // const response = await axios.get(`https://awalive-server-side-hzpa.vercel.app/rooms/${searchById}`);
+        const response = await axios.get(`http://localhost:5000/api/room/${id}?lang=${currentLanguage}`);
+        setSingleRoomDetails(response.data.data);
         setLoading(false);
       } catch (error) {
         console.error("Error fetching room data:", error);
@@ -32,7 +37,8 @@ const RoomDetails = () => {
     };
 
     fetchRoom();
-  }, [searchById]);  
+  }, [id,currentLanguage,t]);  
+  console.log(singleRoomDetails,'single room');
 
   return (
     <>
@@ -55,7 +61,7 @@ const RoomDetails = () => {
                   className="text-2xl md:text-5xl py-2"
                   style={{ fontFamily: "Gilda Display, serif" }}
                 >
-                  {singleRoomDetails.roomName}
+                  {singleRoomDetails.title}
                 </h1>
                 <div className="flex gap-1 items-center text-xs">
                   <p>HOTEL ROME</p>

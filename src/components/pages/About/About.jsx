@@ -2,9 +2,11 @@
 import PageAnimation from "../../PageAnimation/PageAnimation";
 import BestPrice from "./BestPrice";
 import Slider from "./Slider";
+// import { LanguageContext } from "../../sharedPages/Context/LanguageProvider";
 // import i18next from "i18next";
 
 const About = () => {
+  // const { isLoading } = useContext(LanguageContext);
   // const [translationsLoaded, setTranslationsLoaded] = useState(false);
   // useEffect(() => {
   //   const loadTranslations = async () => {
@@ -31,9 +33,16 @@ const About = () => {
 
   return (
     <>
+
       <PageAnimation>
-        <Slider />
-        <BestPrice />
+        {/* { isLoading ?  <Spin /> :( */}
+
+          <>
+          <Slider />
+          <BestPrice />
+          </>
+          {/* ) */}
+      
       </PageAnimation>
     </>
   );

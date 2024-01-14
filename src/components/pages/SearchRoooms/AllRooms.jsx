@@ -1,27 +1,30 @@
-import React, { useContext, useEffect, useState } from "react";
+/* eslint-disable react/prop-types */
+
+import{  useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Button, Pagination } from "antd";
+import { Button, Pagination, Spin } from "antd";
 // import { AuthContext } from "../../sharedPages/Context/AuthProvider";
 
 const AllRooms = ({ allRooms, noRoomsMessage, loading, setLoading }) => {
-  const [currentPage, setCurrentPage] = useState(1);
   
-
+  const [currentPage, setCurrentPage] = useState(1);
   // Calculate the start and end indices of the current page
   const PAGE_SIZE = 4; // Number of rooms per page
   const startIndex = (currentPage - 1) * PAGE_SIZE;
   const endIndex = startIndex + PAGE_SIZE;
 
+  // Slicing the 'data' array inside 'allRooms' object
   const currentRooms = allRooms?.slice(startIndex, endIndex);
-
+console.log(currentRooms,'current rooms');
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
+
   useEffect(() => {
     // Reset to the first page whenever the allRooms data changes
     setCurrentPage(1);
     setLoading(false);
-  }, [allRooms, setLoading]);
+  }, [allRooms, setLoading]); // Depend on allRooms.data
 
   const handleReload = () => {
     window.location.reload();
@@ -31,6 +34,7 @@ const AllRooms = ({ allRooms, noRoomsMessage, loading, setLoading }) => {
     <div className="md:w-2/3 grid grid-cols-1 md:grid-cols-2  gap-5 roomCards">
       {loading ? (
         <div className="h-[10rem] flex items-center justify-center">
+          <p><Spin /></p>
           <p>Loading...</p>
         </div>
       ) : noRoomsMessage ? (
@@ -40,20 +44,20 @@ const AllRooms = ({ allRooms, noRoomsMessage, loading, setLoading }) => {
           <Button  onClick={handleReload} >Refresh</Button>
         </div>
       ) : (
-        currentRooms.map((room) => (
+        currentRooms?.map((room) => (
           <div
-            key={room.roomId}
+            key={room.id}
             className="col-span-1 border border-gray-200 flex flex-col gap-3 card"
             data-price="56"
             style={{ fontFamily: "Gilda Display, serif" }}
           >
             <img
-              src={room.image}
+              src={room.images[0]}
               alt=""
               className="w-full aspect-video object-fill "
             />
             <div className="px-4 py-2 flex flex-col gap-3">
-              <h2 className="text-2xl  text-slate-900  ">{room.roomName}</h2>
+              <h2 className="text-2xl  text-slate-900  ">{room.title}</h2>
               <div className="flex  gap-2 md:gap-3 items-center  text-sm md:text-md">
                 <p className="">
                   <svg
@@ -71,7 +75,7 @@ const AllRooms = ({ allRooms, noRoomsMessage, loading, setLoading }) => {
                     />
                   </svg>
                 </p>
-                <p>{room.numberOfGuests} Guests </p>
+                <p>{room.maxGuests} Guests </p>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -95,24 +99,23 @@ const AllRooms = ({ allRooms, noRoomsMessage, loading, setLoading }) => {
               </p>
               <div>
                 <Link
-                  to={`/room/${room.roomId}`}
-                  data-price={room.roomPrice}
+                  to={`/room/${room.id}`}
+                  // data-price={room.roomPrice}
                   className="px-4 py-2 md:px-6 md:py-2 border border-[#BE9874] text-[#BE9874] uppercase text-sm tracking-widest font-semibold  "
                 >
-                  Book Now for <span className="">{room.roomPrice} </span> SR
+                  Book Now for <span className="">{room.priceOptions[0].price} {room.priceOptions[0].currency}</span> SR
                 </Link>
               </div>
               <hr className="mt-2" />
-              <div className="flex flex-row justify-between ">
-                {room.RoomService.map((service, index) => (
-                  <div key={index} className="w-6">
-                    <img className="w-full" src={service.Icon} alt="" />
+              <div className="grid grid-cols-3 justify-between">
+                {room?.features?.map((feature, index) => (
+                  <div key={index} className="">
+                    {/* <img className="w-full" src={service.Icon} alt="" /> */}
+                    <p className="text-xs">{feature}</p>
                   </div>
                 ))}
               </div>
-              {/* <a href="samllRoom.html" className="text-sm ">
-              Full Info
-            </a> */}
+              
             </div>
           </div>
         ))
@@ -120,7 +123,7 @@ const AllRooms = ({ allRooms, noRoomsMessage, loading, setLoading }) => {
       <div className="flex justify-center mt-4">
         <Pagination
           defaultCurrent={1}
-          total={allRooms.length}
+          total={allRooms?.length}
           pageSize={PAGE_SIZE}
           onChange={handlePageChange}
         />

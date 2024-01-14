@@ -7,9 +7,9 @@ import 'swiper/css/navigation';
 import i18next from 'i18next';
 
 
-const RoomImageSlider = ({singleRoomDetails}) => {
+const RoomImageSlider = ({images}) => {
   const [languageKey, setLanguageKey] = useState(i18next.language);
-
+console.log(images);
   useEffect(() => {
     const handleLanguageChange = (lng) => {
       setLanguageKey(lng);
@@ -20,16 +20,16 @@ const RoomImageSlider = ({singleRoomDetails}) => {
     return () => {
       i18next.off('languageChanged', handleLanguageChange);
     };
-  }, []);
+  }, [setLanguageKey]);
  
     
-    const sliderImage = singleRoomDetails.DetailsImage
+    
     
     // console.log(slideImage);
   return (
     <div className=''>
       <Swiper key={languageKey} dir={!languageKey ? "rtl" : "ltr"} navigation={true} modules={[Navigation, Autoplay]} className="mySwiper   " autoplay={{ delay: 2000 }} loop={true}>
-        {sliderImage?.map((image, index) => (
+        {images?.map((image, index) => (
           <SwiperSlide key={index} >
             <picture>
             <img className='w-full aspect-video object-fill' src={image} alt="" />

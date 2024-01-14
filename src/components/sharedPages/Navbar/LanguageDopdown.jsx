@@ -1,31 +1,34 @@
-import  {  useEffect } from "react";
+import  {   useEffect } from "react";
 import { DownOutlined } from "@ant-design/icons";
 import { Dropdown, Space, notification, } from "antd";
-import { FaGlobe } from "react-icons/fa6";
+// import { FaGlobe } from "react-icons/fa6";
 import i18next from 'i18next';
 import { useTranslation } from "react-i18next";
 import Cookies from "js-cookie";
-import en from '../../../assets/en.png'
-import ar from '../../../assets/sa.jpg'
+import enFlag  from '../../../../public/img/en.png'
+import arFlag  from '../../../../public/img/sa.jpg'
 import { GlobalOutlined } from '@ant-design/icons';
+// import { LanguageContext } from "../Context/LanguageProvider";
 
 const languages = [
   {
     code: "en",
     name: "English",
     country_code: "gb",
-    flag: {en},
+    flag: enFlag ,
   },
   {
     code: "ar",
     name: "العربية",
     dir: "rtl",
     country_code: "sa",
-    flag: {ar},
+    flag: arFlag ,
   },
 ];
 
+
 const LanguageDropdown = () => {
+  // const { changeLanguage } = useContext(LanguageContext);
   const { t } = useTranslation();
   const currentLanguageCode = Cookies.get('i18next') || 'en';
   const currentLanguage = languages.find((l) => l.code === currentLanguageCode);
@@ -39,13 +42,14 @@ const LanguageDropdown = () => {
     key: code,
     label: (
       <Space style={{ opacity: i18next.language === code ? 0.5 : 1 }}>
-        <img src={flag} alt={name} className="w-10" style={{ opacity: i18next.language === code ? 0.5 : 1 }} />
+        <img src={flag} alt={name} className="w-4" style={{ opacity: i18next.language === code ? 0.5 : 1 }} />
         <span>{name}</span>
       </Space>
     ),
   }));
 
   const handleMenuClick = (e) => {
+    // changeLanguage(e.key);
     i18next.changeLanguage(e.key);
     notification['warning']({
       message: 'Language Changed',
