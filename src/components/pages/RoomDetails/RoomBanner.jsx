@@ -2,6 +2,7 @@ import React from 'react'
 import bgImg from "../../../assets/singleRoomCover.jpg";
 
 const RoomBanner = ({singleRoomDetails}) => {
+  const {priceOptions,} = singleRoomDetails;
 
     const containerStyle = {
         backgroundImage: `url(${bgImg})`,
@@ -32,9 +33,9 @@ const RoomBanner = ({singleRoomDetails}) => {
               <div>
                 <p className='uppercase'>
                   <span id="roomPrice" className="text-4xl  italic " style={{ fontFamily: "Gilda Display, serif" }}>
-                    {singleRoomDetails.roomPrice}
+                    {priceOptions[0].price}
                   </span>{" "}
-                  / Per Night
+                  /SAR Per Night
                 </p>
               </div>
             </div>

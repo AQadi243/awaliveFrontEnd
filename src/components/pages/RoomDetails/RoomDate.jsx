@@ -10,9 +10,9 @@ import { Link } from "react-router-dom";
 const RoomDate = ({singleRoomDetails}) => {
   const authInfo = useContext(AuthContext);
   const { setRoomId, night, setNight, checkIn, setCheckIn, checkOut, setCheckOut,setGuests,numberOfGuests,handleBookNow,setRoomImage,setRoomPrice,setRoomName, } = authInfo;
-  const { roomName, roomPrice, image, roomId  } = singleRoomDetails;
+  const { roomName, roomPrice, image, id,priceOptions  } = singleRoomDetails;
   const [showDatePicker, setShowDatePicker] = useState(false);
-
+  console.log(priceOptions[0].price,"single p");
   // setRoomImage(image) 
   // setRoomName(roomName)
   // setRoomPrice(roomPrice)
@@ -27,11 +27,11 @@ const RoomDate = ({singleRoomDetails}) => {
 
   // Update room details
   useEffect(() => {
-    setRoomId(roomId);
-    setRoomImage(image);
+    setRoomId(id);
+    // setRoomImage(image);
     setRoomName(roomName);
-    setRoomPrice(roomPrice);
-  }, [roomId,setRoomId,image, roomName, roomPrice, setRoomImage, setRoomName, setRoomPrice]);
+    setRoomPrice(priceOptions[0].price);
+  }, [id,setRoomId, roomName, priceOptions, setRoomImage, setRoomName, setRoomPrice]);
  
   useEffect(() => {
     if (state.length > 0) {

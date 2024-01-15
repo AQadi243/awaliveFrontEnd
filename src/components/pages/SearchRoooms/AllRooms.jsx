@@ -1,13 +1,14 @@
 /* eslint-disable react/prop-types */
 
-import{  useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Button, Pagination, Spin } from "antd";
+import {  UserOutlined,ArrowsAltOutlined  } from "@ant-design/icons";
 // import { AuthContext } from "../../sharedPages/Context/AuthProvider";
 
 const AllRooms = ({ allRooms, noRoomsMessage, loading, setLoading }) => {
-  
   const [currentPage, setCurrentPage] = useState(1);
+
   // Calculate the start and end indices of the current page
   const PAGE_SIZE = 4; // Number of rooms per page
   const startIndex = (currentPage - 1) * PAGE_SIZE;
@@ -15,7 +16,7 @@ const AllRooms = ({ allRooms, noRoomsMessage, loading, setLoading }) => {
 
   // Slicing the 'data' array inside 'allRooms' object
   const currentRooms = allRooms?.slice(startIndex, endIndex);
-console.log(currentRooms,'current rooms');
+  
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
@@ -28,20 +29,22 @@ console.log(currentRooms,'current rooms');
 
   const handleReload = () => {
     window.location.reload();
-};
+  };
 
   return (
     <div className="md:w-2/3 grid grid-cols-1 md:grid-cols-2  gap-5 roomCards">
       {loading ? (
         <div className="h-[10rem] flex items-center justify-center">
-          <p><Spin /></p>
+          <p>
+            <Spin />
+          </p>
           <p>Loading...</p>
         </div>
       ) : noRoomsMessage ? (
         // Display the no rooms message if it's set
         <div className="text-center">
           <p className="py-10 text-xs">{noRoomsMessage}</p>
-          <Button  onClick={handleReload} >Refresh</Button>
+          <Button onClick={handleReload}>Refresh</Button>
         </div>
       ) : (
         currentRooms?.map((room) => (
@@ -58,7 +61,13 @@ console.log(currentRooms,'current rooms');
             />
             <div className="px-4 py-2 flex flex-col gap-3">
               <h2 className="text-2xl  text-slate-900  ">{room.title}</h2>
-              <div className="flex  gap-2 md:gap-3 items-center  text-sm md:text-md">
+              <div className="flex justify-between ">
+              <div className="flex gap-2 items-center"><p className="text-2xl"><UserOutlined /> </p> <p>{room.maxGuests}</p></div>
+              <div className="flex gap-2 items-center"><p className="text-xl md:text-2xl"><ArrowsAltOutlined /> </p> <p>{room.size}</p></div>
+              {/* <div className="flex flex-col items-center"><p className="text-xl  md:text-xl">SAR </p> <p>{priceOptions[0].price}</p></div> */}
+              {/* <div className="flex flex-col items-center"><p className="text-xl  md:text-2xl"><CalendarOutlined /> </p> </div> */}
+            </div>
+              {/* <div className="flex  gap-2 md:gap-3 items-center  text-sm md:text-md">
                 <p className="">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -91,7 +100,7 @@ console.log(currentRooms,'current rooms');
                   />
                 </svg>
                 <p>15 FT</p>
-              </div>
+              </div> */}
               <p className="text-sm ">
                 {room.description.length > 100
                   ? `${room.description.slice(0, 100)}...`
@@ -103,19 +112,22 @@ console.log(currentRooms,'current rooms');
                   // data-price={room.roomPrice}
                   className="px-4 py-2 md:px-6 md:py-2 border border-[#BE9874] text-[#BE9874] uppercase text-sm tracking-widest font-semibold  "
                 >
-                  Book Now for <span className="">{room.priceOptions[0].price} {room.priceOptions[0].currency}</span> SR
+                  Book Now for{" "}
+                  <span className="">
+                    {room.priceOptions[0].price} {room.priceOptions[0].currency}
+                  </span>{" "}
+                  SR
                 </Link>
               </div>
               <hr className="mt-2" />
-              <div className="grid grid-cols-3 justify-between">
+              {/* <div className="grid grid-cols-3 justify-between">
                 {room?.features?.map((feature, index) => (
                   <div key={index} className="">
-                    {/* <img className="w-full" src={service.Icon} alt="" /> */}
+                    
                     <p className="text-xs">{feature}</p>
                   </div>
                 ))}
-              </div>
-              
+              </div> */}
             </div>
           </div>
         ))

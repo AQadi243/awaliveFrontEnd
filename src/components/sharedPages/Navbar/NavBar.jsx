@@ -1,15 +1,15 @@
 // import Link from "next/link";
-import { useContext, useState } from "react";
+import {  useContext, useState } from "react";
 // import AnimatedLink from "./AnimatedLink";
 import { AnimatePresence, motion } from "framer-motion";
 import { Link, NavLink } from "react-router-dom";
 import LanguageDopdown from "./LanguageDopdown";
-import { Button, Dropdown, Menu } from "antd";
-import { DownOutlined } from "@ant-design/icons";
-import { AuthContext } from "../Context/AuthProvider";
+// import { Button, Dropdown, Menu } from "antd";
+// import { DownOutlined } from "@ant-design/icons";
 import ButtonLoginSignUp from "./Buttons/ButtonLoginSignUp";
-import { UserOutlined } from '@ant-design/icons';
+// import { UserOutlined } from '@ant-design/icons';
 import ButtonAfterLogin from "./Buttons/BuutonAfterLogin";
+import { AuthContext } from "../Context/AuthProvider";
 
 const navLinks = [
   { title: "Home", href: "/" },
@@ -21,12 +21,11 @@ const navLinks = [
 ];
 
 const Navbar = () => {
-  const { error, user, loading, setLoading, handleLogout } =
-    useContext(AuthContext);
+  const {  user,  handleLogout } = useContext(AuthContext);
 
   // const navigate = useNavigate();
   const [open, setOpen] = useState(false);
-  const [isDropdownOpen, setDropdownOpen] = useState(false);
+  // const [isDropdownOpen, setDropdownOpen] = useState(false);
   const toggleMenu = () => {
     setOpen((prevOpen) => !prevOpen);
   };
@@ -66,15 +65,15 @@ const Navbar = () => {
     },
   };
 
-  console.log("user", user?.name);
+ 
 
-  const toggleDropdown = () => {
-    setDropdownOpen(!isDropdownOpen);
-  };
+  // const toggleDropdown = () => {
+  //   setDropdownOpen(!isDropdownOpen);
+  // };
 
-  const closeDropdown = () => {
-    setDropdownOpen(!isDropdownOpen);
-  };
+  // const closeDropdown = () => {
+  //   setDropdownOpen(!isDropdownOpen);
+  // };
 
   // const handleLogIn = () => {
   //   navigate("/login");
@@ -160,7 +159,7 @@ const Navbar = () => {
               Contact
               {/* <AnimatedLink title={"Home"} /> */}
             </NavLink>
-            {user?.name ? (
+            {user?.fullName ? (
               <NavLink to={"/mybookings"}>
                 <p>My Bookings</p>
                 {/* <AnimatedLink title={"Home"} /> */}
@@ -171,8 +170,8 @@ const Navbar = () => {
 
             <LanguageDopdown />
             {/* login button  */}
-            {user?.name ? (
-              <ButtonAfterLogin userName={user?.name} handleLogout={handleLogout} />
+            {user?.fullName ? (
+              <ButtonAfterLogin userName={user?.fullName} handleLogout={handleLogout} />
             ) : (
               <>
                 <ButtonLoginSignUp />
@@ -189,9 +188,9 @@ const Navbar = () => {
               {/* mobile login button todo to solve  */}
             <div className="lg:hidden">
               {
-                user?.name ? ( 
+                user?.Name ? ( 
 
-                  <ButtonAfterLogin userName={user?.name} handleLogout={handleLogout} />
+                  <ButtonAfterLogin userName={user?.fullName} handleLogout={handleLogout} />
 
                 ) : (
 

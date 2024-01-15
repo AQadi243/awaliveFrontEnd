@@ -1,44 +1,43 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext,  useState } from "react";
 import PageAnimation from "../../PageAnimation/PageAnimation";
 import BannerPage from "../../sharedPages/PageBanner/BannerPage";
 import DatesSearch from "./DatesSearch";
-import axios from "axios";
+// import axios from "axios";
 import AllRooms from "./AllRooms";
 import { FaChevronDown } from "react-icons/fa6";
 import { AuthContext } from "../../sharedPages/Context/AuthProvider";
 import SearchBar from "../Home/SearchBar";
-import i18next from "i18next";
-import { useTranslation } from "react-i18next";
+// import i18next from "i18next";
+// import { useTranslation } from "react-i18next";
 // import Filter from "./filter"
 
 const Search = () => {
-  const [loading, setLoading] = useState(true);
-  const [allRooms, setAllRooms] = useState([]);
-  const [noRoomsMessage, setNoRoomsMessage] = useState("");
-  const { sortByPrice, category, setSortByPrice, setCategory } = useContext(AuthContext);
+  
+  // const [noRoomsMessage, setNoRoomsMessage] = useState("");
+  const { sortByPrice, category, setSortByPrice, setCategory, allRooms,setLoading, loading } = useContext(AuthContext);
   // const [category, setCategory] = useState('All Categories');
-  const { t } = useTranslation();
-  const currentLanguage = i18next.language; // Get the current language from i18next
-  useEffect(() => {
-    const fetchAllRooms = async () => {
-      try {
-        const response = await axios.get(
-          `http://localhost:5000/api/room/?lang=${currentLanguage}`
-          // "https://awalive-server-side-hzpa.vercel.app/rooms" 
-        );
-        setAllRooms(response.data.data);
-        // setSearchLoading(false);
-        setLoading(false);
-      } catch (error) {
-        console.error("Error fetching room rates:", error);
-        // setSearchLoading(false);
-      }
-      setLoading(false);
-    };
+  // const { t } = useTranslation();
+  // const currentLanguage = i18next.language; // Get the current language from i18next
+  // useEffect(() => {
+  //   const fetchAllRooms = async () => {
+  //     try {
+  //       const response = await axios.get(
+  //         `http://localhost:5000/api/room/?lang=${currentLanguage}`
+  //         // "https://awalive-server-side-hzpa.vercel.app/rooms" 
+  //       );
+  //       setAllRooms(response.data.data);
+  //       // setSearchLoading(false);
+  //       setLoading(false);
+  //     } catch (error) {
+  //       console.error("Error fetching room rates:", error);
+  //       // setSearchLoading(false);
+  //     }
+  //     setLoading(false);
+  //   };
 
-    fetchAllRooms();
-    // setSearchLoading(false)
-  }, [currentLanguage,t]);
+  //   fetchAllRooms();
+  //   // setSearchLoading(false)
+  // }, [currentLanguage,t]);
 
   const handleValue = (value) => {
     setSortByPrice(value);
@@ -63,7 +62,7 @@ const Search = () => {
       >
         <SearchBar
           // setAllRooms={setAllRooms}
-          setNoRoomsMessage={setNoRoomsMessage}
+          // setNoRoomsMessage={setNoRoomsMessage}
           pageContext="search"
         />
         <div className="flex gap-5 py-3 justify-center items-center">

@@ -16,7 +16,7 @@ useEffect(() => {
       const parsedBookingInfo = JSON.parse(storedBookingInfo);
       setBookingInformation(parsedBookingInfo);
 
-      setLoading(false);
+      setLoading(false); 
     }
 }, [setLoading]);
 
@@ -71,7 +71,7 @@ console.log("after", bookingInformation);
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm">1 Room X {bookingInformation.night}-nights </p>
-                  <p className="text-xs ">{bookingInformation.RoomPrice}-SAR average per night </p>
+                  <p className="text-xs font-semibold ">{bookingInformation.RoomPrice} / SAR average per night </p>
                 </div>
                 <div>
                 <p>{bookingInformation.totalPrice}-SAR </p>

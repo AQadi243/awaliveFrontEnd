@@ -24,7 +24,7 @@ const BookingConfirm = () => {
   // Destructure properties only if formData exists in bookingInfo
   console.log(bookingInfo, "cinfirm page chek id ");
   const { formData, id } = bookingInfo;
-  console.log(id, "okkkk");
+  console.log(user.email, "okkkk");
   const {
     firstName,
     lastName,
@@ -73,6 +73,7 @@ const BookingConfirm = () => {
     setLoading(true);
     const bookingData = {
       ...bookingInfo,
+      
       checkIn: bookingInfo.checkIn
         ? new Date(bookingInfo.checkIn).toLocaleDateString()
         : null,

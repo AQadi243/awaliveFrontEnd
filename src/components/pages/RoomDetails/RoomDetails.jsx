@@ -11,22 +11,16 @@ import i18next from "i18next";
 // import PageAnimation from "../../PageAnimation/PageAnimation";
 
 const RoomDetails = () => {
-  const { id } = useParams();
   const currentLanguage = i18next.language;
   const { t } = useTranslation();
-  console.log("checkiing finding id ", id);
-
+  const { id } = useParams();
+  
   const [loading, setLoading] = useState(true);
   const [singleRoomDetails, setSingleRoomDetails] = useState(null);
-
-  // const searchById = parseInt(id)
-  // console.log('seatch id', searchById);
-  
 
   useEffect(() => {
     const fetchRoom = async () => {
       try {
-        // const response = await axios.get(`https://awalive-server-side-hzpa.vercel.app/rooms/${searchById}`);
         const response = await axios.get(`http://localhost:5000/api/room/${id}?lang=${currentLanguage}`);
         setSingleRoomDetails(response.data.data);
         setLoading(false);
@@ -79,7 +73,7 @@ const RoomDetails = () => {
                   <RoomDetailsBody singleRoomDetails={singleRoomDetails} />
                   
                 
-                <SimilarRoom  currentRoomId={singleRoomDetails._id} /> 
+                <SimilarRoom  currentRoomId={singleRoomDetails.id} /> 
             </div>
           </section>
         </>
