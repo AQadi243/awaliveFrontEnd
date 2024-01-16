@@ -44,12 +44,12 @@ i18next
       order: ["path", "cookie", "htmlTag"],
       caches: ["cookie"],
     },
-
+    ns: ["about", "home", "contact","booking"], // Define your namespaces
+    defaultNS: "home",
     backend: {
-      // loadPath: '/locales/{{lng}}/translation.json',
-      loadPath: "/Languages/{{lng}}/translation.json",
-      // loadPath: './assets/locales/{{lng}}/translation.json',
+      loadPath: "/Languages/{{lng}}/{{ns}}.json",
     },
+    preload: ['about', 'home', 'contact', 'booking'],
   });
 
 const loadingMarkup = (
@@ -75,14 +75,14 @@ const router = createBrowserRouter([
         path: "/check",
         element: <Check />,
       },
-      {
-        path: "/about",
-        element: <About />,
-      },
-      {
-        path: "/contact",
-        element: <Contact />,
-      },
+      // {
+      //   path: "/about",
+      //   element: <About />,
+      // },
+      // {
+      //   path: "/contact",
+      //   element: <Contact />,
+      // },
       {
         path: "/roomSearch",
         element: <Search />,
@@ -118,18 +118,18 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
-      {
-        path: "/promotions",
-        element: <Promotions />,
-      },
+      // {
+      //   path: "/promotions",
+      //   element: <Promotions />,
+      // },
       {
         path: "/singlePromotionRoom/:id",
         element: <SinglePromoRoom />,
       },
-      {
-        path: "/bookTable",
-        element: <BookTable />,
-      },
+      // {
+      //   path: "/bookTable",
+      //   element: <BookTable />,
+      // },
       {
         path: "/login",
         element: <Loginpage />,

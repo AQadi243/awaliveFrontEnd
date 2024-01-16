@@ -15,7 +15,7 @@ const AuthProvider = ({ children }) => {
 
   const [roomId, setRoomId] = useState(0);
   const [RoomName, setRoomName] = useState("");
-  const [RoomPrice, setRoomPrice] = useState("");
+  const [RoomPrice, setRoomPrice] = useState(0);
   const [RoomImage, setRoomImage] = useState("");
   const [sortByPrice, setSortByPrice] = useState("");
   const [error, setError] = useState("");

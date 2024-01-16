@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import ImagePlaceholder from './ImagePlaceholder';
+import { AuthContext } from './Context/AuthProvider';
 
 
 
 const LazyImage = ({ src, alt, className }) => {
   const [imageSrc, setImageSrc] = useState(null);
-  const [loading, setLoading] = useState(true); // State to track loading
+  // const [loading, setLoading] = useState(true); // State to track loading
+  const {  loading} = useContext(AuthContext)
 
   useEffect(() => {
     const img = new Image();

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import PageAnimation from "../../PageAnimation/PageAnimation"
 import Banner from "./Banner"
 import BestPosition from "./BestPosition"
@@ -12,37 +12,43 @@ import StayTune from "./StayTune"
 import axios from "axios"
 
 import { FaArrowUp } from "react-icons/fa";
+import { AuthContext } from "../../sharedPages/Context/AuthProvider"
 
 
 const Home = () => {
+  const {allRooms,  loading} = useContext(AuthContext)
   const [roomRates, setRoomRates] = useState([]);
-  const [loading, setLoading] = useState(true)
+  // const [loading, setLoading] = useState(true)
   const [showButton, setShowButton] = useState(false)
 
-  useEffect(() => {
+  // useEffect(() => {
    
-    const fetchRoomRates = async () => {
-      try {
-        const response = await axios.get('https://awalive-server-side-hzpa.vercel.app/rooms'); 
-        setRoomRates(response.data);
-        console.log(response.data);
-        setLoading(false);
-      } catch (error) {
-        console.error('Error fetching room rates:', error);
-      }
-    };
+  //   const fetchRoomRates = async () => {
+  //     try {
+  //       const response = await axios.get('https://awalive-server-side-hzpa.vercel.app/rooms'); 
+  //       setRoomRates(response.data);
+  //       console.log(response.data);
+  //       setLoading(false);
+  //     } catch (error) {
+  //       console.error('Error fetching room rates:', error);
+  //     }
+  //   };
     
-    fetchRoomRates();
-    setLoading(false);
-  }, []);
+  //   fetchRoomRates();
+  //   setLoading(false);
+  // }, []);
+
+  useEffect(() => {
+    if (allRooms && allRooms.length > 0) {
+      setRoomRates(allRooms.slice(0, 6)); // Take the first 6 rooms
+    }
+  }, [allRooms]);
 
   useEffect(()=>{
     const handleHomeScrollButton = ()=>{
       window.scrollY> 30 ? setShowButton(true) : setShowButton(false)
     }
-
     window.addEventListener('scroll', handleHomeScrollButton)
-
     return()=>{
       window.removeEventListener('scroll', handleHomeScrollButton)
     }

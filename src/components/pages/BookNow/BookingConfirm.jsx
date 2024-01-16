@@ -1,10 +1,12 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../sharedPages/Context/AuthProvider";
 import BookingDate from "./BookingDate";
 import { Tabs, Modal, notification, Spin } from "antd";
 // import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js';
 import { useNavigate } from "react-router-dom";
 import PageAnimation from "../../PageAnimation/PageAnimation";
+import axios from "axios";
+import { useTranslation } from "react-i18next";
 
 const BookingConfirm = () => {
   const { user } = useContext(AuthContext);
@@ -17,14 +19,9 @@ const BookingConfirm = () => {
   const [editedEmail, setEditedEmail] = useState("");
   const [editedPhone, setEditedPhone] = useState("");
   const [emailError, setEmailError] = useState("");
-  // const [phoneError, setPhoneError] = useState('');
+  const [userToken, setUserToken] = useState("");
   const navigate = useNavigate();
-
-  // console.log("confo", bookingInfo);
-  // Destructure properties only if formData exists in bookingInfo
-  console.log(bookingInfo, "cinfirm page chek id ");
-  const { formData, id } = bookingInfo;
-  console.log(user.email, "okkkk");
+  const { formData } = bookingInfo;
   const {
     firstName,
     lastName,
@@ -35,8 +32,10 @@ const BookingConfirm = () => {
     arrivalTime,
     city,
   } = formData || {};
+  const { t } = useTranslation("booking");
 
   useEffect(() => {
+    const token = localStorage.getItem("token");
     // Retrieve booking information from localStorage
     const storedBookingInfo =
       JSON.parse(localStorage.getItem("bookingInfo")) || {};
@@ -57,81 +56,88 @@ const BookingConfirm = () => {
     setBookingInfo(storedBookingInfo);
     setEditedEmail(email);
     setEditedPhone(phone);
+    setUserToken(token);
 
     setLoading(false);
     // Optionally, you can do something with the retrieved information, such as setLoading or other logic
     // setLoading(false);
-  }, [email, phone]); // Empty dependency array to run the effect only once on mount
+  }, [email, phone, setUserToken]); // Empty dependency array to run the effect only once on mount
 
   const handleBookNow = async (paymentMethod) => {
-    // if (!validateEmail(editedEmail) || !validatePhone(editedPhone)) {
-    //   setEmailError(!validateEmail(editedEmail) ? 'Invalid email format' : '');
-    //   // setPhoneError(!validatePhone(editedPhone) ? 'Invalid phone format' : '');
-    //   return;
-    // }
-    // ... existing logic
     setLoading(true);
+
+    const formatDateString = (dateString) => {
+      return dateString ? new Date(dateString).toLocaleDateString() : null;
+    };
+
     const bookingData = {
       ...bookingInfo,
-      
-      checkIn: bookingInfo.checkIn
-        ? new Date(bookingInfo.checkIn).toLocaleDateString()
-        : null,
-      checkOut: bookingInfo.checkOut
-        ? new Date(bookingInfo.checkOut).toLocaleDateString()
-        : null,
+      checkIn: formatDateString(bookingInfo.checkIn),
+      checkOut: formatDateString(bookingInfo.checkOut),
       userEmail: user.email, // Assuming 'user' has an 'email' field
       paymentMethod,
     };
 
-    console.log(bookingData, "all booking data ai am passing ");
+    console.log(bookingData, "all booking data I am passing");
 
+    // try {
+
+    //   console.log(response);
+    // } catch (error) {
+    //   if (error.response) {
+    //     // The request was made and the server responded with a status code
+    //     // that falls out of the range of 2xx
+    //     console.error(error.response.data);
+    //     console.error(error.response.status);
+    //     console.error(error.response.headers);
+    //   } else if (error.request) {
+    //     // The request was made but no response was received
+    //     console.error(error.request);
+    //   } else {
+    //     // Something happened in setting up the request that triggered an Error
+    //     console.error('Error', error.message);
+    //   }
+    //   console.error(error.config);
+    // }
     try {
-      const response = await fetch(
-        "https://awalive-server-side-hzpa.vercel.app/allOrders",
+      const response = await axios.post(
+        "http://localhost:5000/api/booking",
+        bookingData,
         {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(bookingData),
+          headers: {
+            Authorization: `${userToken}`,
+          },
         }
       );
-
-      if (response.ok) {
-        const result = await response.json();
+      if (response.status === 200) {
+        // Checking for HTTP status code 200 (OK)
+        const result = response.data;
         notification["success"]({
-          message: "Booking request send",
-          description: `${result.message} please wait for confirmation Email.`,
+          message: "Booking request sent",
+          description: `${result.message} Please wait for confirmation email.`,
           placement: "topRight",
-          duration: 3.5, // duration in seconds
+          duration: 3.5,
         });
-        setOrder(result.message); // Or handle the response as needed
-        // console.log(result.message); // Or handle the response as needed
-        // Clear bookingInfo from local storage after successful booking
+        setOrder(result.message);
         localStorage.removeItem("bookingInfo");
-
-        // Optionally reset bookingInfo state
         setBookingInfo({});
-        setLoading(false);
       } else {
-        console.error("Failed to save order");
-        // setOrder('Failed to save order');
-        notification["error"]({
-          message: "Booking request not accept",
-          description: ` Please check all info .`,
-          placement: "topRight",
-          duration: 3.5, // duration in seconds
-        });
-        navigate("/roomSearch");
-        localStorage.removeItem("bookingInfo");
+        throw new Error("Failed to save booking");
       }
     } catch (error) {
       console.error("Error sending booking info:", error);
-      localStorage.removeItem("bookingInfo");
+      notification["error"]({
+        message: "Booking request not accepted",
+        description: "Please check all info.",
+        placement: "topRight",
+        duration: 3.5,
+      });
       navigate("/roomSearch");
+      localStorage.removeItem("bookingInfo");
+    } finally {
+      setLoading(false);
+      setIsModalVisible(true);
     }
-
-    setIsModalVisible(true);
-    setLoading(false);
   };
 
   const handleModalCancel = () => {
@@ -145,12 +151,6 @@ const BookingConfirm = () => {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(String(email).toLowerCase());
   };
-
-  // const validatePhone = (phone) => {
-  //   // validate phone field
-  //   // const re = /^[0-9]{7,15}$/;
-  //   // return re.test(String(phone));
-  // };
 
   const handleEmailEdit = () => {
     setIsEditingEmail(true);
@@ -193,11 +193,6 @@ const BookingConfirm = () => {
   };
 
   const savePhone = () => {
-    // if (!editedPhone || !validatePhone(editedPhone)) {
-    //   setPhoneError('Invalid phone format');
-    //   return;
-    // }
-
     // Update phone in bookingInfo and close edit mode
     const updatedBookingInfo = {
       ...bookingInfo,
@@ -280,21 +275,18 @@ const BookingConfirm = () => {
               >
                 <div>
                   <h2 className="text-2xl md:text-4xl pb-3">
-                    Your Order Details :
+                    {t("yourOrderDetails")} :
                   </h2>
-                  <p className="text-yellow-300">
-                    Please make use you have enter correct Email and phone
-                    number{" "}
-                  </p>
+                  <p className="text-yellow-300">{t("emailPhoneError")} </p>
                   <div>
                     <form className="flex flex-col gap-3 md:gap-5">
                       <div className="grid md:grid-cols-2 gap-3 md:gap-5  ">
                         <div className="flex items-center">
-                          <p className="py-2 px-2 "> First Name: </p>
+                          <p className="py-2 px-2 "> {t("firstN")}: </p>
                           <span className=""> {firstName} </span>
                         </div>
                         <div className="flex items-center">
-                          <p className="py-2 px-2 "> Last Name:</p>
+                          <p className="py-2 px-2 "> {t("lastN")}:</p>
                           <span className="">{lastName}</span>
                         </div>
                         {/* <div className='flex items-center'>
@@ -306,7 +298,7 @@ const BookingConfirm = () => {
                     <span className='font-semibold'>{phone}</span>
                   </div> */}
                         <div className="flex items-center">
-                          <p className="py-2 px-2 "> Email:</p>
+                          <p className="py-2 px-2 "> {t("emailN")}:</p>
                           {isEditingEmail ? (
                             <>
                               <input
@@ -336,7 +328,7 @@ const BookingConfirm = () => {
                           )}
                         </div>
                         <div className="flex items-center">
-                          <p className="py-2 px-2 "> Phone:</p>
+                          <p className="py-2 px-2 "> {t("phoneN")}:</p>
                           {isEditingPhone ? (
                             <>
                               <input
@@ -366,7 +358,7 @@ const BookingConfirm = () => {
                         </div>
 
                         <div className="flex items-center">
-                          <p className="py-2 px-2 "> Address:</p>
+                          <p className="py-2 px-2 "> {t("addressN")}:</p>
                           <span className="font-semibold">{address}</span>
                         </div>
                         <div className="flex items-center">
@@ -378,7 +370,7 @@ const BookingConfirm = () => {
                           <span className="font-semibold">{arrivalTime}</span>
                         </div>
                         <div className="flex items-center">
-                          <p className="py-2 px-2 "> Message:</p>
+                          <p className="py-2 px-2 "> {t("messageN")}:</p>
                           <span className="font-semibold">{message}</span>
                         </div>
                       </div>
