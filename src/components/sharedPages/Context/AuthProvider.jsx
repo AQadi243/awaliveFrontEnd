@@ -70,7 +70,7 @@ const AuthProvider = ({ children }) => {
     try {
       const response = await axios.post(
         // "https://awalive-server-side-hzpa.vercel.app/login",
-        "http://localhost:5000/api/auth/login",
+        "https://type-script-server.vercel.app/api/auth/login",
         {
           email,
           password,
@@ -154,7 +154,7 @@ const AuthProvider = ({ children }) => {
     const fetchAllRooms = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/room/?lang=${currentLanguage}`
+          `https://type-script-server.vercel.app/api/room/?lang=${currentLanguage}`
           // "https://awalive-server-side-hzpa.vercel.app/rooms" 
         );
         setAllRooms(response.data.data);

@@ -101,7 +101,7 @@ const BookingConfirm = () => {
     // }
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/booking",
+        "https://type-script-server.vercel.app/api/booking",
         bookingData,
         {
           headers: {
