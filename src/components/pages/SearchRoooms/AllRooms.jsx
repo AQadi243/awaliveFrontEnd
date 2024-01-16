@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Button, Pagination, Spin } from "antd";
 import {  UserOutlined,ArrowsAltOutlined  } from "@ant-design/icons";
+import CoverSlider from "./CoverSlider";
+
 // import { AuthContext } from "../../sharedPages/Context/AuthProvider";
 
 const AllRooms = ({ allRooms, noRoomsMessage, loading, setLoading }) => {
@@ -47,6 +49,7 @@ const AllRooms = ({ allRooms, noRoomsMessage, loading, setLoading }) => {
           <Button onClick={handleReload}>Refresh</Button>
         </div>
       ) : (
+        
         currentRooms?.map((room) => (
           <div
             key={room.id}
@@ -54,11 +57,12 @@ const AllRooms = ({ allRooms, noRoomsMessage, loading, setLoading }) => {
             data-price="56"
             style={{ fontFamily: "Gilda Display, serif" }}
           >
-            <img
+            <CoverSlider images={room.images}  />
+            {/* <img
               src={room.images[0]}
               alt=""
               className="w-full aspect-video object-fill "
-            />
+            /> */}
             <div className="px-4 py-2 flex flex-col gap-3">
               <h2 className="text-2xl  text-slate-900  ">{room.title}</h2>
               <div className="flex justify-between ">
@@ -140,6 +144,7 @@ const AllRooms = ({ allRooms, noRoomsMessage, loading, setLoading }) => {
           onChange={handlePageChange}
         />
       </div>
+      
     </div>
   );
 };

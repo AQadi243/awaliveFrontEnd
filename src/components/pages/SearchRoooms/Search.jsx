@@ -7,38 +7,13 @@ import AllRooms from "./AllRooms";
 import { FaChevronDown } from "react-icons/fa6";
 import { AuthContext } from "../../sharedPages/Context/AuthProvider";
 import SearchBar from "../Home/SearchBar";
-// import i18next from "i18next";
-// import { useTranslation } from "react-i18next";
-// import Filter from "./filter"
+import CoverSlider from "./CoverSlider";
+
 
 const Search = () => {
   
-  // const [noRoomsMessage, setNoRoomsMessage] = useState("");
   const { sortByPrice, category, setSortByPrice, setCategory, allRooms,setLoading, loading } = useContext(AuthContext);
-  // const [category, setCategory] = useState('All Categories');
-  // const { t } = useTranslation();
-  // const currentLanguage = i18next.language; // Get the current language from i18next
-  // useEffect(() => {
-  //   const fetchAllRooms = async () => {
-  //     try {
-  //       const response = await axios.get(
-  //         `http://localhost:5000/api/room/?lang=${currentLanguage}`
-  //         // "https://awalive-server-side-hzpa.vercel.app/rooms" 
-  //       );
-  //       setAllRooms(response.data.data);
-  //       // setSearchLoading(false);
-  //       setLoading(false);
-  //     } catch (error) {
-  //       console.error("Error fetching room rates:", error);
-  //       // setSearchLoading(false);
-  //     }
-  //     setLoading(false);
-  //   };
-
-  //   fetchAllRooms();
-  //   // setSearchLoading(false)
-  // }, [currentLanguage,t]);
-
+ 
   const handleValue = (value) => {
     setSortByPrice(value);
   };
@@ -56,6 +31,7 @@ const Search = () => {
   return (
     <PageAnimation>
       <BannerPage text={"Search"} />
+      <CoverSlider />
       <section
         className="bg-[#1a1919]  py-8  "
         style={{ fontFamily: "Gilda Display, serif" }}
@@ -127,6 +103,7 @@ const Search = () => {
       <section className="w-[90%] mx-auto py-10">
         <div className="flex flex-col md:flex-row gap-5">
           <DatesSearch />
+          
           <AllRooms
             allRooms={allRooms}
             // noRoomsMessage={noRoomsMessage}

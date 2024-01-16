@@ -59,3 +59,7 @@ z-index: 1 ;
   color: none;
   background: #BE9874   /*check modal button  */
 }
+
+:root {
+  --swiper-theme-color: #BE9874 !important; 
+}
