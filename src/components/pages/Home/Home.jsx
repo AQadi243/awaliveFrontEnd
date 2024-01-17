@@ -9,38 +9,23 @@ import Relax from "./Relax"
 import RoomCards from "./RoomCards"
 import RoomPrice from "./RoomPrice"
 import StayTune from "./StayTune"
-import axios from "axios"
 
 import { FaArrowUp } from "react-icons/fa";
 import { AuthContext } from "../../sharedPages/Context/AuthProvider"
 
 
 const Home = () => {
-  const {allRooms,  loading} = useContext(AuthContext)
+  const {allRooms, } = useContext(AuthContext)
   const [roomRates, setRoomRates] = useState([]);
-  // const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(true)
   const [showButton, setShowButton] = useState(false)
 
-  // useEffect(() => {
-   
-  //   const fetchRoomRates = async () => {
-  //     try {
-  //       const response = await axios.get('https://awalive-server-side-hzpa.vercel.app/rooms'); 
-  //       setRoomRates(response.data);
-  //       console.log(response.data);
-  //       setLoading(false);
-  //     } catch (error) {
-  //       console.error('Error fetching room rates:', error);
-  //     }
-  //   };
-    
-  //   fetchRoomRates();
-  //   setLoading(false);
-  // }, []);
+  
 
   useEffect(() => {
     if (allRooms && allRooms.length > 0) {
       setRoomRates(allRooms.slice(0, 6)); // Take the first 6 rooms
+      setLoading(false)
     }
   }, [allRooms]);
 
