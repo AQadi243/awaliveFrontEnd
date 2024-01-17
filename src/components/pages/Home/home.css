@@ -1,0 +1,40 @@
+/* Base styles for the hero text */
+.hero-text {
+    font-family: "Gilda Display, serif";
+    text-align: center;
+    color: white;
+    text-transform: uppercase;
+    padding: 0rem; /* Example padding */
+  }
+  
+  /* English-specific styles */
+  .hero-text.english {
+    font-size: 1.5rem; /* Example base size for English */
+  }
+  
+  /* Arabic-specific styles */
+  .hero-text.arabic {
+    font-size: 2rem; /* Example base size for Arabic */
+    font-weight: 600;
+  }
+  
+  /* Responsive font sizes for different screen widths */
+  @media (min-width: 768px) {
+    .hero-text.english {
+      font-size: 3rem; /* Larger size for wider screens */
+      
+    }
+  
+    .hero-text.arabic {
+      font-size: 4rem; /* Adjust if necessary for design consistency */
+      font-weight: 600;
+      
+    }
+  }
+  
+  /* Apply max-width to contain the text */
+  .hero-text {
+    /* max-width: 60%; Or whatever max-width suits your design */
+    margin: 0 auto; /* This centers the div if it's a block element */
+  }
+  
