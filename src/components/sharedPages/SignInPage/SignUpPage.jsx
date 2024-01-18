@@ -8,13 +8,15 @@ const SignUpPage = () => {
   const navigate = useNavigate()
   const [showPassword, setShowPassword] = useState(false);
     const [loading, setLoading] = useState(false);
-    const [name, setName] = useState("");
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [phone, setPhone] = useState("");
     const [errorMessageReg, setErrorMessageReg] = useState("");
     const [errors, setErrors] = useState({
-        name: "",
+      firstName: "",
+      lastName: "",
         email: "",
         phone: "",
         password: ""   
@@ -25,14 +27,13 @@ const SignUpPage = () => {
 
       const validateFields = () => {
         const newErrors = {  
-          name: name ? "" : "Email is required",
+          firstName: firstName ? "" : "First Name is required",
+          lastName: lastName ? "" : "Last Name is required",
           email: email && emailRegex.test(email) ? "" : "Please enter a valid email",
           phone: email ? "" : "Email is required",
           password: password ? "" : "Phone is required",
         };
-    
         setErrors(newErrors);
-        
         return Object.values(newErrors).every((error) => error === "");
       };
 
@@ -49,7 +50,8 @@ const SignUpPage = () => {
       
         // Consolidate all information into an object
         const registerData = {
-          name: name,
+          firstName: firstName,
+          lastName: lastName,
           email: email,
           phone: phone,
           password: password,
@@ -57,7 +59,7 @@ const SignUpPage = () => {
       
         try {
           
-          const response = await axios.post('https://awalive-server-side-hzpa.vercel.app/register', registerData);
+          const response = await axios.post('https://type-script-server.vercel.app/api/auth/resister', registerData);
           console.log('User registered successfully:', response.data);
           setErrorMessageReg('User registered successfully')
           setLoading(false)
@@ -96,11 +98,7 @@ const SignUpPage = () => {
         setLoading(false)
 
       };
-      
-      
-
-
-
+    
   return (
    
       <section className="w-[90%] md:w-[60%] mx-auto">
@@ -111,18 +109,33 @@ const SignUpPage = () => {
           <div className="w-full flex flex-col gap-5 " id="guest-info-form">
             <input
               type="name"
-              name="name"
-              id="name"
-              placeholder="name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              name="firstName"
+              id="firstName"
+              placeholder="firstName"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
               className={`py-2 px-2 border bg-slate-50 ${
-                errors.name && "border-red-500"
+                errors.firstName && "border-red-500"
               }`}
               required
             />
-            {errors.name && (
-              <p className="text-red-500 text-xs">{errors.name}</p>
+            {errors.firstName && (
+              <p className="text-red-500 text-xs">{errors.firstName}</p>
+            )}
+            <input
+              type="name"
+              name="lastName"
+              id="lastName"
+              placeholder="lastName"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+              className={`py-2 px-2 border bg-slate-50 ${
+                errors.lastName && "border-red-500"
+              }`}
+              required
+            />
+            {errors.firstName && (
+              <p className="text-red-500 text-xs">{errors.lastName}</p>
             )}
             <input
               type="email"

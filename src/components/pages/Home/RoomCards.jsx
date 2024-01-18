@@ -1,8 +1,6 @@
-import  { useEffect, useState } from 'react'
-import axios from 'axios';
-// import roomData from '/public/roomData.json'
 import { Link } from 'react-router-dom'
 import LazyImage from '../../sharedPages/LazyImage';
+import ImagePlaceholder from '../../sharedPages/ImagePlaceholder';
 
 
 const RoomCards = ({roomRates, loading}) => {
@@ -11,8 +9,9 @@ const RoomCards = ({roomRates, loading}) => {
 
   return (
     <section className="w-[90%] mx-auto">
+      
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {loading ? <p>Loading...</p> : (
+        {loading ? <ImagePlaceholder /> : (
           roomRates?.map((room) => (
            
           <Link data-aos="fade-up" key={room.id} to={`/room/${room.id}`} className="grid-cols-1 cursor-pointer" style={{ position: 'relative' }}>
