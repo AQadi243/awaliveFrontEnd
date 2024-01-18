@@ -41,6 +41,12 @@
   "guest":"Guest",
   "night":"Night",
   "bookNow":"Book Now",
-  "sqm":"sqm"
+  "sqm":"sqm",
+  "adult":"Adult",
+  "children":"Children",
+  "child":"Child",
+  "age":"Age",
+  "findRoom":"Find Room",
+  "reset":"Reset"
 
 }

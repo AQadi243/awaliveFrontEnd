@@ -9,8 +9,10 @@ import { UserOutlined, PlusCircleOutlined, MinusCircleOutlined  } from "@ant-des
 import axios from "axios";
 import { AuthContext } from "../../sharedPages/Context/AuthProvider";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const SearchBar = ({setAllRooms, setNoRoomsMessage, pageContext}) => {
+  const {t}= useTranslation('booking')
   const {
     numberOfGuests,
     childAges,
@@ -225,10 +227,10 @@ useEffect(()=>{
               <div className="flex items-center gap-4">
                 <UserOutlined className="text-2xl" />
                 <div>
-                  <p className="text-xs">Travelers</p>
+                  <p className="text-xs">{t('guest')}</p>
                   <p className="text-sm">
-                    <span>{numberOfGuests}-Travelers,</span>
-                    <span> {room}-Room</span>
+                    <span>{numberOfGuests}-{t('guest')},</span>
+                    <span> {room}-{t('room')}</span>
                     {
                       child ? <span> {child}-children</span> : ''
                     }
@@ -245,7 +247,7 @@ useEffect(()=>{
           >
             <div>
               <p className="tracking-widest text-xs  ">
-                {night} -Night </p>
+                {night} -{t('night')} </p>
               <button className="text-sm ">{`${checkIn} - ${checkOut}`}</button>
             </div>
             {showDatePicker && (
@@ -267,12 +269,12 @@ useEffect(()=>{
           
           
           {pageContext === 'home' ? (
-            <Link to={'/roomSearch'} className="bg-[#1C1C1D]  px-5 rounded-md py-2 md:py-4 cursor-pointer text-white text-center ">
-           Find Room
+            <Link to={'/roomSearch'} className="bg-[#1C1C1D]  px-5 rounded-md py-2 md:py-4 cursor-pointer text-white text-center uppercase ">
+           {t('findRoom')}
           </Link>
         ) : (
-          <p onClick={handleSearchReset} className="bg-[#1C1C1D]  px-5 rounded-md py-2 md:py-4 cursor-pointer text-white text-center ">
-          Reset
+          <p onClick={handleSearchReset} className="bg-[#1C1C1D]  px-5 rounded-md py-2 md:py-4 cursor-pointer text-white text-center uppercase ">
+          {t('reset')}
           </p>
         )}
         </div>
@@ -280,7 +282,7 @@ useEffect(()=>{
 
       
       <Modal
-        title="Travelers"
+        title={t('guest')}
         centered
         open={modal2Open}
         onOk={() => setModal2Open(false)}
@@ -291,7 +293,7 @@ useEffect(()=>{
         <div>
           
           <div className="flex justify-between py-4">
-            <p className="text-sm md:text-xl">Adults</p>
+            <p className="text-sm md:text-xl">{t('adult')}</p>
             <div className="flex gap-2 md:gap-5 items-center">
               <p><MinusCircleOutlined className="text-xl md:text-2xl font-light" onClick={handleDecrement} /></p>
               <p className="text-xl md:text-2xl  px-3" >{numberOfGuests}</p>
@@ -299,7 +301,7 @@ useEffect(()=>{
             </div>
           </div>
           <div className="flex justify-between py-4">
-            <p className="text-sm md:text-xl">Children</p>
+            <p className="text-sm md:text-xl">{t('children')}</p>
             <div className="flex gap-2 md:gap-5 items-center">
               <p><MinusCircleOutlined className="text-xl md:text-2xl font-light" onClick={handleChildDecrement} /></p>
               <p className="text-xl md:text-2xl  px-3" >{child}</p>
@@ -309,7 +311,7 @@ useEffect(()=>{
           {/* Render child age selectors based on the number of children */}
           {childAges.map((age, index) => (
             <div key={index} className="flex justify-between py-2">
-              <p className="text-sm md:text-md ">Child {index + 1} Age</p>
+              <p className="text-sm md:text-md ">{t('child')} {index + 1} {t('age')}</p>
               <div className="flex gap-2 md:gap-5 items-center">
                 {/* Use a Select component or any other input for age selection */}
                 <select
@@ -319,7 +321,7 @@ useEffect(()=>{
                 >
                   {Array.from({ length: 14 }, (_, i) => i + 1).map((num) => (
                     <option key={num} value={num} className="">
-                     Age - {num}  
+                     {t('age')} - {num}  
                     </option>
                   ))}
                 </select>
