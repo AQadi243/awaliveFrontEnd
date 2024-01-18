@@ -71,7 +71,7 @@ const BookingDate = () => {
             </p>
           </div>
           <div>
-            <p>{bookingInformation.totalPrice}-{t('SAR')} </p>
+            <p>{bookingInformation.totalPrice}{" "}-{" "} {t('SAR')} </p>
           </div>
         </div>
         <div className="flex items-center justify-between">

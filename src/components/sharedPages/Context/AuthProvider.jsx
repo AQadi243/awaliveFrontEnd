@@ -38,8 +38,13 @@ const AuthProvider = ({ children }) => {
   const handleBookNow = () => {
     const totalPrice = night * RoomPrice;
     const taxPercentage = 0.15; // 15% tax rate
-    const tax = totalPrice * taxPercentage;
-    const totalWithTax = totalPrice + tax;
+    const tax = parseFloat((totalPrice * taxPercentage).toFixed(2));
+    const totalWithTax = parseFloat((totalPrice + tax).toFixed(2));
+    // const tax = totalPrice * taxPercentage;
+    // const totalWithTax = totalPrice + tax;
+    const formattedTotalPrice = totalPrice.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    const formattedTax = tax.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    const formattedTotalWithTax = totalWithTax.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
     const bookingInfo = {
       roomId,
@@ -47,13 +52,13 @@ const AuthProvider = ({ children }) => {
       checkOut,
       // guests,
       numberOfGuests,
-      tax,
-      totalWithTax,
+      tax: formattedTax,
+      totalWithTax: formattedTotalWithTax,
       night,
       RoomName,
       RoomPrice,
       RoomImage,
-      totalPrice,
+      totalPrice: formattedTotalPrice,
     };
 
     // Save booking information to localStorage
@@ -166,7 +171,6 @@ const AuthProvider = ({ children }) => {
       }
       setLoading(false);
     };
-
     fetchAllRooms();
     // setSearchLoading(false)
   }, [currentLanguage,t]);

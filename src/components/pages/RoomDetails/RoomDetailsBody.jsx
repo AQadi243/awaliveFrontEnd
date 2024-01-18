@@ -5,8 +5,10 @@ import arroundImage2 from "../../../assets/serviceImage2.jpeg";
 import arroundImage3 from "../../../assets/serviceImage3.jpeg";
 import RoomDate from "./RoomDate";
 import { CheckOutlined, UserOutlined,ArrowsAltOutlined , CalendarOutlined    } from "@ant-design/icons";
+import { useTranslation } from "react-i18next";
 
 const RoomDetailsBody = ({ singleRoomDetails }) => {
+  const {t} = useTranslation('booking')
   
   const {
     description,
@@ -30,7 +32,7 @@ const RoomDetailsBody = ({ singleRoomDetails }) => {
             <div className="flex justify-between py-2 md:py-5 px-2">
               <div className="flex flex-col items-center"><p className="text-2xl"><UserOutlined /> </p> <p>{maxGuests}</p></div>
               <div className="flex flex-col items-center"><p className="text-xl md:text-2xl"><ArrowsAltOutlined /> </p> <p>{size}</p></div>
-              <div className="flex flex-col items-center"><p className="text-xl  md:text-xl">SAR </p> <p>{priceOptions[0].price}</p></div>
+              <div className="flex flex-col items-center"><p className="text-xl  md:text-xl">{t('SAR')} </p> <p>{priceOptions[0].price}{" "}{priceOptions[0].currency}</p></div>
               <div className="flex flex-col items-center"><p className="text-xl  md:text-2xl"><CalendarOutlined /> </p> </div>
             </div>
           </div>
@@ -43,7 +45,7 @@ const RoomDetailsBody = ({ singleRoomDetails }) => {
               className="text-2xl md:text-3xl py-5 md:py-5 "
               style={{ fontFamily: "Gilda Display, serif" }}
             >
-              Room Features
+              {t('roomFeatures')}
             </h2>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
               {features?.map((feature, index) => (
@@ -61,7 +63,7 @@ const RoomDetailsBody = ({ singleRoomDetails }) => {
               className="text-2xl md:text-3xl py-5 md:py-5 "
               style={{ fontFamily: "Gilda Display, serif" }}
             >
-              Room Services
+              {t('roomService')}
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {services?.map((service, index) => (

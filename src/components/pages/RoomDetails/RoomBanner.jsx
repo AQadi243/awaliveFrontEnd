@@ -6,12 +6,12 @@ const RoomBanner = ({singleRoomDetails}) => {
   const { t } = useTranslation('booking');
   const {priceOptions,} = singleRoomDetails;
 
-    const containerStyle = {
-        backgroundImage: `url(${bgImg})`,
-        backgroundRepeat: "no-repeat",
-        backgroundPosition: "center center",
-        backgroundSize: "cover",
-      };
+  const containerStyle = {
+    backgroundImage: `linear-gradient(to top, rgba(0, 0, 0, 0.7) 25%, rgba(0, 0, 0, 0) 100%), url(${bgImg})`,
+    backgroundRepeat: "no-repeat",
+    backgroundPosition: "center center",
+    backgroundSize: "cover",
+};
 
   return (
     <section className="h-[350px] w-full relative" style={containerStyle}>

@@ -36,6 +36,8 @@
   "addressN": "Address",
   "messageN": "Message",
   "bookNowFor": "Book Now For",
+  "roomFeatures": "Room Features",
+  "roomService": "Room Services",
 
   "selectDates": "Select Dates",
   "guest":"Guest",
