@@ -1,7 +1,9 @@
 import React from 'react'
 import bgImg from "../../../assets/singleRoomCover.jpg";
+import { useTranslation } from 'react-i18next';
 
 const RoomBanner = ({singleRoomDetails}) => {
+  const { t } = useTranslation('booking');
   const {priceOptions,} = singleRoomDetails;
 
     const containerStyle = {
@@ -18,16 +20,16 @@ const RoomBanner = ({singleRoomDetails}) => {
             <div className="w-[90%] mx-auto flex flex-col md:flex-row justify-between py-10 text-white tracking-widest">
               <div className="flex flex-col md:flex-row gap-2 md:gap-5 text-xs">
                 <div className="flex gap-2 items-center">
-                  <p className=" uppercase">Description</p>
+                  <p className=" uppercase">{t('description')}</p>
                 </div>
                 <div className="flex gap-2 items-center">
-                  <p className=" uppercase">ROOM SERVICES</p>
+                  <p className=" uppercase">{t('roomServices')}</p>
                 </div>
                 <div className="flex gap-2 items-center">
-                  <p className=" uppercase">AROUND THE HOTEL</p>
+                  <p className=" uppercase">{t('aroundTheHotel')}</p>
                 </div>
                 <div className="flex gap-2 items-center">
-                  <p className=" uppercase">SIMILAR ROOMS</p>
+                  <p className=" uppercase">{t('similarRooms')}</p>
                 </div>
               </div>
               <div>
@@ -35,7 +37,7 @@ const RoomBanner = ({singleRoomDetails}) => {
                   <span id="roomPrice" className="text-4xl  italic " style={{ fontFamily: "Gilda Display, serif" }}>
                     {priceOptions[0].price}
                   </span>{" "}
-                  /SAR Per Night
+                  {t('averagePerNight')}
                 </p>
               </div>
             </div>

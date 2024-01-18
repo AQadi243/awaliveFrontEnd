@@ -1,4 +1,10 @@
 {
+
+  "description":"الوصف",
+  "roomServices":"خدمات الغرف",
+  "aroundTheHotel":"حول الفندق",
+  "similarRooms":"غرف مماثلة",
+
   "property": "1 ممتلكة",
   "from": "تسجيل الوصول",
   "to": "تسجيل الخروج",
@@ -7,8 +13,8 @@
   "goodTasteMessage": "لديك ذوق رائع! احجز الآن قبل أن يتمكن شخص آخر من الإمساك به!",
   "room": "غرفة",
   "nights": "ليالي",
-  "averagePerNight": " / SAR متوسط لليلة",
-  "SAR": "ريال سعودي",
+  "averagePerNight": " / ر.س متوسط لليلة",
+  "SAR": "ر.س",
   "taxes": "الضرائب",
   "governmentTaxes": "15% ضرائب حكومية",
   "totalCostPerRoom": "التكلفة الإجمالية للغرفة*",
@@ -26,5 +32,17 @@
   "emailN": "البريد الإلكتروني ",
   "phoneN": "الهاتف ",
   "addressN": "العنوان",
-  "messageN": "رسالة"
+  "messageN": "رسالة",
+  "bookNowFor": "احجز الآن لـ",
+
+  "selectDates":"اختر التواريخ",
+  "guest":"الضيف",
+  "night":"ليلة",
+  "bookNow":"احجز الآن",
+  "sqm":"متر مربع"
+
+
+
+
+
 }

@@ -5,11 +5,13 @@ import { Link } from "react-router-dom";
 import { Button, Pagination, Spin } from "antd";
 import {  UserOutlined,ArrowsAltOutlined  } from "@ant-design/icons";
 import CoverSlider from "./CoverSlider";
+import { useTranslation } from "react-i18next";
 
 // import { AuthContext } from "../../sharedPages/Context/AuthProvider";
 
 const AllRooms = ({ allRooms, noRoomsMessage, loading, setLoading }) => {
   const [currentPage, setCurrentPage] = useState(1);
+  const { t } = useTranslation("booking");
 
   // Calculate the start and end indices of the current page
   const PAGE_SIZE = 4; // Number of rooms per page
@@ -18,6 +20,7 @@ const AllRooms = ({ allRooms, noRoomsMessage, loading, setLoading }) => {
 
   // Slicing the 'data' array inside 'allRooms' object
   const currentRooms = allRooms?.slice(startIndex, endIndex);
+ 
   
   const handlePageChange = (page) => {
     setCurrentPage(page);
@@ -116,11 +119,11 @@ const AllRooms = ({ allRooms, noRoomsMessage, loading, setLoading }) => {
                   // data-price={room.roomPrice}
                   className="px-4 py-2 md:px-6 md:py-2 border border-[#BE9874] text-[#BE9874] uppercase text-sm tracking-widest font-semibold  "
                 >
-                  Book Now for{" "}
+                  {t('bookNowFor')}{" "}
                   <span className="">
-                    {room.priceOptions[0].price} {room.priceOptions[0].currency}
-                  </span>{" "}
-                  SR
+                    {room.priceOptions[0].price}{" "} {room.priceOptions[0].currency}
+                  </span>
+                  
                 </Link>
               </div>
               <hr className="mt-2" />

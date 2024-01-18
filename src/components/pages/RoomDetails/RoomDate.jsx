@@ -6,17 +6,34 @@ import { addDays } from "date-fns";
 import { FaAngleDown, FaAngleUp } from "react-icons/fa6";
 import { AuthContext } from "../../sharedPages/Context/AuthProvider";
 import { Link } from "react-router-dom";
+import i18next from "i18next";
+import { useTranslation } from "react-i18next";
 
-const RoomDate = ({singleRoomDetails}) => {
+const RoomDate = ({ singleRoomDetails }) => {
+  const { t } = useTranslation("booking");
   const authInfo = useContext(AuthContext);
-  const { setRoomId, night, setNight, checkIn, setCheckIn, checkOut, setCheckOut,setGuests,numberOfGuests,handleBookNow,setRoomImage,setRoomPrice,setRoomName, } = authInfo;
-  const { roomName, roomPrice, image, id,priceOptions  } = singleRoomDetails;
+  const {
+    setRoomId,
+    night,
+    setNight,
+    checkIn,
+    setCheckIn,
+    checkOut,
+    setCheckOut,
+    setGuests,
+    numberOfGuests,
+    handleBookNow,
+    setRoomImage,
+    setRoomPrice,
+    setRoomName,
+  } = authInfo;
+  const { roomName, roomPrice, image, id, priceOptions } = singleRoomDetails;
   const [showDatePicker, setShowDatePicker] = useState(false);
-  console.log(priceOptions[0].price,"single p");
-  // setRoomImage(image) 
+  console.log(priceOptions[0].price, "single p");
+  // setRoomImage(image)
   // setRoomName(roomName)
   // setRoomPrice(roomPrice)
-  
+
   const [state, setState] = useState([
     {
       startDate: checkIn ? new Date(checkIn) : new Date(),
@@ -31,8 +48,16 @@ const RoomDate = ({singleRoomDetails}) => {
     // setRoomImage(image);
     setRoomName(roomName);
     setRoomPrice(priceOptions[0].price);
-  }, [id,setRoomId, roomName, priceOptions, setRoomImage, setRoomName, setRoomPrice]);
- 
+  }, [
+    id,
+    setRoomId,
+    roomName,
+    priceOptions,
+    setRoomImage,
+    setRoomName,
+    setRoomPrice,
+  ]);
+
   useEffect(() => {
     if (state.length > 0) {
       const { startDate, endDate } = state[0];
@@ -81,10 +106,12 @@ const RoomDate = ({singleRoomDetails}) => {
   return (
     <>
       <div className=" md:w-1/3   ">
-        <div className="flex flex-col gap-5  items-center justify-center text-center bg-[#1C1C1D] py-5 px-5 md:py-10 md:px-10 relative z-40" style={{ fontFamily: "Gilda Display, serif" }}>
-            
+        <div
+          className="flex flex-col gap-5  items-center justify-center text-center bg-[#1C1C1D] py-5 px-5 md:py-10 md:px-10 relative z-40"
+          style={{ fontFamily: "Gilda Display, serif" }}
+        >
           <p className="text-white text-xl tracking-widest  bg-black w-full py-4 ">
-            Select Dates
+            {t("selectDates")}
           </p>
           <div className="grid grid-cols-2 gap-5  w-full">
             <div
@@ -92,24 +119,16 @@ const RoomDate = ({singleRoomDetails}) => {
               className="bg-black py-2 px-2  flex flex-col items-center justify-center cursor-pointer date-picker"
               onClick={handleSelectDate}
             >
-              <p className="text-white">Check in</p>
-              <button
-                
-                className="text-md  text-[#BE9874]"
-              >
-                {checkIn}
-              </button>
+              <p className="text-white">{t("from")}</p>
+              <button className="text-md  text-[#BE9874]">{checkIn}</button>
             </div>
             <div
               id="end-container"
-              className="bg-black py-2 px-2 flex flex-col items-center justify-center cursor-pointer date-picker" onClick={handleSelectDate}
-              >
-                <p className="text-white">Check Out</p>
-              <button
-                
-                className="text-md  text-[#BE9874] ">
-                {checkOut}
-              </button>
+              className="bg-black py-2 px-2 flex flex-col items-center justify-center cursor-pointer date-picker"
+              onClick={handleSelectDate}
+            >
+              <p className="text-white">{t("to")}</p>
+              <button className="text-md  text-[#BE9874] ">{checkOut}</button>
             </div>
             {showDatePicker && (
               <div className="absolute left-0 w-[100%]  bg-white">
@@ -134,21 +153,26 @@ const RoomDate = ({singleRoomDetails}) => {
 
             <div
               id="guest-container"
-              className="bg-black py-2 px-2 flex flex-col items-center justify-center cursor-pointer date-picker">
+              className="bg-black py-2 px-2 flex flex-col items-center justify-center cursor-pointer date-picker"
+            >
               <div className="flex flex-col items-center gap-1 ">
                 <div>
-                <p className="text-md  text-white">Guest</p>
-                
+                  <p className="text-md  text-white">{t("guest")}</p>
                 </div>
                 <div className="flex flex-row gap-2 items-center text-xl">
-                <button className="text-[#BE9874] p-2" onClick={handleDecrement}>
+                  <button
+                    className="text-[#BE9874] p-2"
+                    onClick={handleDecrement}
+                  >
                     <FaAngleDown />
                   </button>
                   <p className="text-[#BE9874]">{numberOfGuests}</p>
-                  <button className="text-[#BE9874] p-2 " onClick={handleIncrement}>
+                  <button
+                    className="text-[#BE9874] p-2 "
+                    onClick={handleIncrement}
+                  >
                     <FaAngleUp />
                   </button>
-                  
                 </div>
               </div>
             </div>
@@ -156,9 +180,7 @@ const RoomDate = ({singleRoomDetails}) => {
               id="days-container"
               className="bg-black py-2 px-2 flex flex-col gap-1 items-center justify-center cursor-pointer date-picker"
             >
-              <label  className="text-md text-white">
-                Night
-              </label>
+              <label className="text-md text-white">{t("night")}</label>
               <p
                 id="selectedDays"
                 className="bg-transparent outline-none w-28 text-[#BE9874] text-2xl"
@@ -166,20 +188,20 @@ const RoomDate = ({singleRoomDetails}) => {
                 {night}
               </p>
             </div>
-            
+
             <div id="error-message" className="text-red-500 text-xs"></div>
             <div id="perfect-message" className="text-green-500 text-xs"></div>
           </div>
-          
-          <Link to={'/booking'}
+
+          <Link
+            to={"/booking"}
             onClick={handleBookNow}
             className="bg-[#BE9874] w-full py-2 text-white text-xs md:text-sm bookNow "
           >
-            Book Now
+            {t("bookNow")}
           </Link>
         </div>
       </div>
-      
     </>
   );
 };

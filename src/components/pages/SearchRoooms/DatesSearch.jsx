@@ -5,29 +5,32 @@ import { DateRange } from "react-date-range";
 import { addDays } from "date-fns";
 import { FaAngleDown, FaAngleUp } from "react-icons/fa6";
 import { AuthContext } from "../../sharedPages/Context/AuthProvider";
+import { useTranslation } from "react-i18next";
 // import { AuthContext } from "../../sharedPages/Context/AuthProvider";
 // import { Link } from "react-router-dom";
 
 const DatesSearch = () => {
-    const authInfo = useContext(AuthContext)
-//   const authInfo = useContext(AuthContext);
-  // const { searchCheckIn,
-  //   setSearchCheckIn,
-  //   searchNight,
-  //   setSearchNight,
-  //   searchCheckOut,
-  //   setSearchCheckOut,
-  //   searchGuest,
-  //   setSearchGuest } = authInfo.searchValue ;
-//   const { roomName, roomPrice, image,  } = singleRoomDetails;
-
-const {night, setNight, checkIn, setCheckIn, checkOut, setCheckOut,setGuests,numberOfGuests,handleBookNow,setRoomImage,setRoomPrice,setRoomName,} = authInfo
+  const authInfo = useContext(AuthContext);
+  const { t } = useTranslation('booking');
+  const {
+    night,
+    setNight,
+    checkIn,
+    setCheckIn,
+    checkOut,
+    setCheckOut,
+    setGuests,
+    numberOfGuests,
+    handleBookNow,
+    setRoomImage,
+    setRoomPrice,
+    setRoomName,
+  } = authInfo;
   const [showDatePicker, setShowDatePicker] = useState(false);
 
-//   setRoomImage(image)
-//   setRoomName(roomName)
-//   setRoomPrice(roomPrice)
-  
+  //   setRoomImage(image)
+  //   setRoomName(roomName)
+  //   setRoomPrice(roomPrice)
 
   const [state, setState] = useState([
     {
@@ -60,7 +63,7 @@ const {night, setNight, checkIn, setCheckIn, checkOut, setCheckOut,setGuests,num
     } else {
       console.log("The state array is empty");
     }
-  }, [state, setCheckIn,setCheckOut,setNight]);
+  }, [state, setCheckIn, setCheckOut, setNight]);
 
   const handleIncrement = () => {
     setGuests((prevGuests) => prevGuests + 1);
@@ -89,10 +92,12 @@ const {night, setNight, checkIn, setCheckIn, checkOut, setCheckOut,setGuests,num
   return (
     <>
       <div className=" md:w-1/3   ">
-        <div className="flex flex-col gap-5  items-center justify-center text-center bg-[#1C1C1D] py-5 px-5 md:py-10 md:px-10 relative " style={{ fontFamily: "Gilda Display, serif" }}>
-            
+        <div
+          className="flex flex-col gap-5  items-center justify-center text-center bg-[#1C1C1D] py-5 px-5 md:py-10 md:px-10 relative "
+          style={{ fontFamily: "Gilda Display, serif" }}
+        >
           <p className="text-white text-xl tracking-widest  bg-black w-full py-4 ">
-            Select Dates
+            {t('selectDates')}
           </p>
           <div className="grid grid-cols-2 gap-5  w-full">
             <div
@@ -100,7 +105,7 @@ const {night, setNight, checkIn, setCheckIn, checkOut, setCheckOut,setGuests,num
               className="bg-black py-2 px-2  flex flex-col items-center justify-center cursor-pointer date-picker"
               onClick={handleSelectDate}
             >
-              <p className="text-white">Check In</p>
+              <p className="text-white">{t('from')}</p>
               <button
                 onClick={handleSelectDate}
                 className="text-md  text-[#BE9874]"
@@ -111,11 +116,13 @@ const {night, setNight, checkIn, setCheckIn, checkOut, setCheckOut,setGuests,num
             <div
               id="end-container"
               onClick={handleSelectDate}
-              className="bg-black py-2 px-2 flex flex-col items-center justify-center cursor-pointer date-picker" >
-                <p className="text-white">Check Out</p>
+              className="bg-black py-2 px-2 flex flex-col items-center justify-center cursor-pointer date-picker"
+            >
+              <p className="text-white">{t('to')}</p>
               <button
                 onClick={handleSelectDate}
-                className="text-md  text-[#BE9874]">
+                className="text-md  text-[#BE9874]"
+              >
                 {checkOut}
               </button>
             </div>
@@ -142,21 +149,26 @@ const {night, setNight, checkIn, setCheckIn, checkOut, setCheckOut,setGuests,num
 
             <div
               id="guest-container"
-              className="bg-black py-2 px-2 flex flex-col items-center justify-center cursor-pointer date-picker">
+              className="bg-black py-2 px-2 flex flex-col items-center justify-center cursor-pointer date-picker"
+            >
               <div className="flex flex-col items-center gap-1 ">
                 <div>
-                <p className="text-md  text-white">Guest</p>
-                
+                  <p className="text-md  text-white">{t('guest')}</p>
                 </div>
                 <div className="flex flex-row gap-1 items-center text-xl">
-                <button className="text-[#BE9874] p-2" onClick={handleDecrement}>
+                  <button
+                    className="text-[#BE9874] p-2"
+                    onClick={handleDecrement}
+                  >
                     <FaAngleDown />
                   </button>
                   <p className="text-[#BE9874]">{numberOfGuests}</p>
-                  <button className="text-[#BE9874] p-2 " onClick={handleIncrement}>
+                  <button
+                    className="text-[#BE9874] p-2 "
+                    onClick={handleIncrement}
+                  >
                     <FaAngleUp />
                   </button>
-                  
                 </div>
               </div>
             </div>
@@ -164,9 +176,7 @@ const {night, setNight, checkIn, setCheckIn, checkOut, setCheckOut,setGuests,num
               id="days-container"
               className="bg-black py-2 px-2 flex flex-col gap-1 items-center justify-center cursor-pointer date-picker"
             >
-              <label  className="text-md  text-white">
-                Night
-              </label>
+              <label className="text-md  text-white">{t('night')}</label>
               <p
                 id="selectedDays"
                 className="bg-transparent outline-none w-28 text-[#BE9874] text-2xl"
@@ -174,11 +184,11 @@ const {night, setNight, checkIn, setCheckIn, checkOut, setCheckOut,setGuests,num
                 {night}
               </p>
             </div>
-            
+
             <div id="error-message" className="text-red-500 text-xs"></div>
             <div id="perfect-message" className="text-green-500 text-xs"></div>
           </div>
-          
+
           {/* <Link to={'/booking'}
             onClick={handleBookNow}
             className="bg-[#BE9874] w-full py-2 text-white text-xs md:text-sm bookNow "
@@ -187,7 +197,6 @@ const {night, setNight, checkIn, setCheckIn, checkOut, setCheckOut,setGuests,num
           </Link> */}
         </div>
       </div>
-      
     </>
   );
 };
