@@ -125,13 +125,40 @@ const BookingConfirm = () => {
         throw new Error("Failed to save booking");
       }
     } catch (error) {
+      //   console.error("Error sending booking info:", error);
+      //   notification["error"]({
+      //     message: "Booking request not accepted",
+      //     description: "Please check all info.",
+      //     placement: "topRight",
+      //     duration: 3.5,
+      //   });
+      //   navigate("/roomSearch");
+      //   localStorage.removeItem("bookingInfo");
+      // } finally {
+      //   setLoading(false);
+      //   setIsModalVisible(true);
+      // }
       console.error("Error sending booking info:", error);
+
+      // Default error message
+      let errorMessage = "Please check all info.";
+
+      // Check if the error response has the expected structure
+      if (error.response && error.response.data && error.response.data.issues) {
+        // Extract the message from the first issue, if available
+        const issues = error.response.data.issues;
+        if (issues.length > 0 && issues[0].message) {
+          errorMessage = issues[0].message;
+        }
+      }
+
       notification["error"]({
         message: "Booking request not accepted",
-        description: "Please check all info.",
+        description: errorMessage,
         placement: "topRight",
         duration: 3.5,
       });
+
       navigate("/roomSearch");
       localStorage.removeItem("bookingInfo");
     } finally {
