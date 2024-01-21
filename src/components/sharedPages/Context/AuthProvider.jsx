@@ -157,6 +157,7 @@ const AuthProvider = ({ children }) => {
     // setUser(null);
     localStorage.removeItem("userData");
     localStorage.removeItem("token");
+    setUser('')
     // notification logic here
   };
 
