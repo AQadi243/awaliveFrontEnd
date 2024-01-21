@@ -6,7 +6,7 @@ import { addDays } from "date-fns";
 import { FaAngleDown, FaAngleUp } from "react-icons/fa6";
 import { AuthContext } from "../../sharedPages/Context/AuthProvider";
 import { Link } from "react-router-dom";
-import i18next from "i18next";
+
 import { useTranslation } from "react-i18next";
 
 const RoomDate = ({ singleRoomDetails }) => {
@@ -30,9 +30,6 @@ const RoomDate = ({ singleRoomDetails }) => {
   const { roomName, roomPrice, image, id, priceOptions } = singleRoomDetails;
   const [showDatePicker, setShowDatePicker] = useState(false);
   
-  // setRoomImage(image)
-  // setRoomName(roomName)
-  // setRoomPrice(roomPrice)
 
   const [state, setState] = useState([
     {
@@ -94,20 +91,17 @@ const RoomDate = ({ singleRoomDetails }) => {
   };
 
   const handleDone = () => {
-    // Perform any necessary actions with the selected date range
-    // ...
-
-    // Hide the date picker
+    
     setShowDatePicker(false);
   };
 
-  // console.log(dateDetails);
+  
 
   return (
     <>
-      <div className=" md:w-1/3   ">
+      <div className=" lg:w-1/3   ">
         <div
-          className="flex flex-col gap-5  items-center justify-center text-center bg-[#1C1C1D] py-5 px-5 md:py-10 md:px-10 relative z-40"
+          className=" flex flex-col gap-5  items-center justify-center text-center bg-[#1C1C1D] py-5 px-5 md:py-10 md:px-10 relative z-40"
           style={{ fontFamily: "Gilda Display, serif" }}
         >
           <p className="text-white text-xl tracking-widest  bg-black w-full py-4 ">

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Spin } from 'antd';
+import { Spin } from "antd";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import RoomBanner from "./RoomBanner";
@@ -14,34 +14,33 @@ const RoomDetails = () => {
   const currentLanguage = i18next.language;
   const { t } = useTranslation();
   const { id } = useParams();
-  
+
   const [loading, setLoading] = useState(true);
   const [singleRoomDetails, setSingleRoomDetails] = useState(null);
 
   useEffect(() => {
     const fetchRoom = async () => {
       try {
-        const response = await axios.get(`https://type-script-server.vercel.app/api/room/${id}?lang=${currentLanguage}`);
+        const response = await axios.get(
+          `https://type-script-server.vercel.app/api/room/${id}?lang=${currentLanguage}`
+        );
         setSingleRoomDetails(response.data.data);
         setLoading(false);
       } catch (error) {
-        console.error("Error fetching room data:", error);
         setLoading(false);
       }
     };
 
     fetchRoom();
-  }, [id,currentLanguage,t]);  
-  console.log(singleRoomDetails,'single room');
+  }, [id, currentLanguage, t]);
 
   return (
     <>
-    
       {loading ? (
         <div className="h-[20rem] flex  items-center justify-center text-center">
           <div>
-          <Spin />
-        <p>Loading...</p>
+            <Spin />
+            <p>Loading...</p>
           </div>
         </div>
       ) : singleRoomDetails ? (
@@ -68,19 +67,16 @@ const RoomDetails = () => {
                   </ul>
                 </div>
               </div>
-              
-                  {/* slider  */}
-                  <RoomDetailsBody singleRoomDetails={singleRoomDetails} />
-                  
-                
-                <SimilarRoom  currentRoomId={singleRoomDetails.id} /> 
+
+              {/* slider  */}
+              <RoomDetailsBody singleRoomDetails={singleRoomDetails} />
+              <SimilarRoom currentRoomId={singleRoomDetails.id} />
             </div>
           </section>
         </>
       ) : (
-        <p className="h-screen" >Room not found</p>
+        <p className="h-screen">Room not found</p>
       )}
-      
     </>
   );
 };

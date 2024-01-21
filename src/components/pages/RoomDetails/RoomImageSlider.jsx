@@ -22,17 +22,14 @@ console.log(images);
     };
   }, [setLanguageKey]);
  
-    
-    
-    
-    // console.log(slideImage);
+
   return (
     <div className=''>
       <Swiper key={languageKey} dir={!languageKey ? "rtl" : "ltr"} navigation={true} modules={[Navigation, Autoplay]} className="mySwiper   " autoplay={{ delay: 2000 }} loop={true}>
         {images?.map((image, index) => (
           <SwiperSlide key={index} >
             <picture>
-            <img className='w-full aspect-video object-fill' src={image} alt="" />
+            <img className='w-full aspect-video object-fill object-center' src={image} alt="" />
             </picture>
           </SwiperSlide>
         ))}
