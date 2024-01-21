@@ -1,8 +1,10 @@
 import React from 'react'
 import bgImg from "../../../assets/singleRoomCover.jpg";
 import { useTranslation } from 'react-i18next';
+import i18next from 'i18next';
 
 const RoomBanner = ({singleRoomDetails}) => {
+  const currentLanguage = i18next.language
   const { t } = useTranslation('booking');
   const {priceOptions,} = singleRoomDetails;
 
@@ -35,7 +37,8 @@ const RoomBanner = ({singleRoomDetails}) => {
               <div>
                 <p className='uppercase'>
                   <span id="roomPrice" className="text-4xl  italic " style={{ fontFamily: "Gilda Display, serif" }}>
-                    {priceOptions[0].price}
+                    {/* {priceOptions[0].price} */}
+                    {currentLanguage === "en"? priceOptions[0].price.toLocaleString():priceOptions[0].price.toLocaleString('ar-EG')}
                   </span>{" "}
                   {t('averagePerNight')}
                 </p>

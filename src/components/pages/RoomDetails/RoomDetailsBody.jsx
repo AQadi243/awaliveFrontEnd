@@ -6,8 +6,10 @@ import arroundImage3 from "../../../assets/serviceImage3.jpeg";
 import RoomDate from "./RoomDate";
 import { CheckOutlined, UserOutlined,ArrowsAltOutlined , CalendarOutlined    } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
+import i18next from "i18next";
 
 const RoomDetailsBody = ({ singleRoomDetails }) => {
+  const currentLanguage = i18next.language
   const {t} = useTranslation('booking')
   
   const {
@@ -32,7 +34,7 @@ const RoomDetailsBody = ({ singleRoomDetails }) => {
             <div className="flex justify-between py-2 md:py-5 px-2">
               <div className="flex flex-col items-center"><p className="text-2xl"><UserOutlined /> </p> <p>{maxGuests}</p></div>
               <div className="flex flex-col items-center"><p className="text-xl md:text-2xl"><ArrowsAltOutlined /> </p> <p>{size}</p></div>
-              <div className="flex flex-col items-center"><p className="text-xl  md:text-xl">{t('SAR')} </p> <p>{priceOptions[0].price}{" "}{priceOptions[0].currency}</p></div>
+              <div className="flex flex-col items-center"><p className="text-xl  md:text-xl">{t('SAR')} </p> <p>{currentLanguage === "en"? priceOptions[0].price.toLocaleString():priceOptions[0].price.toLocaleString('ar-EG')}{" "}{priceOptions[0].currency}</p></div>
               <div className="flex flex-col items-center"><p className="text-xl  md:text-2xl"><CalendarOutlined /> </p> </div>
             </div>
           </div>

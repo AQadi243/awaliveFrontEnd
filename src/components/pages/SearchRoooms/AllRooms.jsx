@@ -3,15 +3,17 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Button, Pagination, Spin } from "antd";
-import {  UserOutlined,ArrowsAltOutlined  } from "@ant-design/icons";
+import { UserOutlined, ArrowsAltOutlined } from "@ant-design/icons";
 import CoverSlider from "./CoverSlider";
 import { useTranslation } from "react-i18next";
+import i18next from "i18next";
 
 // import { AuthContext } from "../../sharedPages/Context/AuthProvider";
 
 const AllRooms = ({ allRooms, noRoomsMessage, loading, setLoading }) => {
-  const [currentPage, setCurrentPage] = useState(1);
+  const currentLanguage = i18next.language;
   const { t } = useTranslation("booking");
+  const [currentPage, setCurrentPage] = useState(1);
 
   // Calculate the start and end indices of the current page
   const PAGE_SIZE = 4; // Number of rooms per page
@@ -20,8 +22,7 @@ const AllRooms = ({ allRooms, noRoomsMessage, loading, setLoading }) => {
 
   // Slicing the 'data' array inside 'allRooms' object
   const currentRooms = allRooms?.slice(startIndex, endIndex);
- 
-  
+
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
@@ -52,7 +53,6 @@ const AllRooms = ({ allRooms, noRoomsMessage, loading, setLoading }) => {
           <Button onClick={handleReload}>Refresh</Button>
         </div>
       ) : (
-        
         currentRooms?.map((room) => (
           <div
             key={room.id}
@@ -60,7 +60,7 @@ const AllRooms = ({ allRooms, noRoomsMessage, loading, setLoading }) => {
             data-price="56"
             style={{ fontFamily: "Gilda Display, serif" }}
           >
-            <CoverSlider images={room.images}  />
+            <CoverSlider images={room.images} />
             {/* <img
               src={room.images[0]}
               alt=""
@@ -69,11 +69,21 @@ const AllRooms = ({ allRooms, noRoomsMessage, loading, setLoading }) => {
             <div className="px-4 py-2 flex flex-col gap-3">
               <h2 className="text-2xl  text-slate-900  ">{room.title}</h2>
               <div className="flex justify-between ">
-              <div className="flex gap-2 items-center"><p className="text-2xl"><UserOutlined /> </p> <p>{room.maxGuests}</p></div>
-              <div className="flex gap-2 items-center"><p className="text-xl md:text-2xl"><ArrowsAltOutlined /> </p> <p>{room.size}</p></div>
-              {/* <div className="flex flex-col items-center"><p className="text-xl  md:text-xl">SAR </p> <p>{priceOptions[0].price}</p></div> */}
-              {/* <div className="flex flex-col items-center"><p className="text-xl  md:text-2xl"><CalendarOutlined /> </p> </div> */}
-            </div>
+                <div className="flex gap-2 items-center">
+                  <p className="text-2xl">
+                    <UserOutlined />{" "}
+                  </p>{" "}
+                  <p>{room.maxGuests}</p>
+                </div>
+                <div className="flex gap-2 items-center">
+                  <p className="text-xl md:text-2xl">
+                    <ArrowsAltOutlined />{" "}
+                  </p>{" "}
+                  <p>{room.size}</p>
+                </div>
+                {/* <div className="flex flex-col items-center"><p className="text-xl  md:text-xl">SAR </p> <p>{priceOptions[0].price}</p></div> */}
+                {/* <div className="flex flex-col items-center"><p className="text-xl  md:text-2xl"><CalendarOutlined /> </p> </div> */}
+              </div>
               {/* <div className="flex  gap-2 md:gap-3 items-center  text-sm md:text-md">
                 <p className="">
                   <svg
@@ -119,11 +129,13 @@ const AllRooms = ({ allRooms, noRoomsMessage, loading, setLoading }) => {
                   // data-price={room.roomPrice}
                   className="px-4 py-2 md:px-6 md:py-2 border border-[#BE9874] text-[#BE9874] uppercase text-sm tracking-widest font-semibold  "
                 >
-                  {t('bookNowFor')}{" "}
-                  <span className="">
-                    {room.priceOptions[0].price}{" "} {room.priceOptions[0].currency}
-                  </span>
-                  
+                  {t("bookNowFor")}{" "}
+                  <strong>
+                    {currentLanguage === "en"
+                      ? room.priceOptions[0].price.toLocaleString()
+                      : room.priceOptions[0].price.toLocaleString("ar-EG")}
+                  </strong>{" "}
+                  {room.priceOptions[0].currency}
                 </Link>
               </div>
               <hr className="mt-2" />
@@ -147,7 +159,6 @@ const AllRooms = ({ allRooms, noRoomsMessage, loading, setLoading }) => {
           onChange={handlePageChange}
         />
       </div>
-      
     </div>
   );
 };

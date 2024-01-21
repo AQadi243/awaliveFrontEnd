@@ -140,7 +140,7 @@ const RoomDate = ({ singleRoomDetails }) => {
                   moveRangeOnFirstSelection={false}
                   ranges={state}
                 />
-                <div className="pb-3">
+                <div className="pb-3"> 
                   <button
                     onClick={handleDone}
                     className="py-2 px-4 rounded-full bg-[#BE9874] text-white   border-[1px] border-[#BE9874] text-xs "

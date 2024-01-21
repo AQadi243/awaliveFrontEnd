@@ -14,5 +14,9 @@
     "peacefulHotelStay":"Awalive International Hotel is more than just a place to sleep—it's a haven for relaxation. Our hotel offers various areas for you to enjoy some quiet time or engage in relaxing activities at your leisure.",
     "hotelRelaxSubTitle":"Unwind at Awalive International",
     "hotelRelaxTitle":"Where Comfort Meets Splendor",
-    "titleManager": "Hotel Manager"
+    "titleManager": "Hotel Manager",
+
+    "guest":"Guest",
+    "SAR": "SAR",
+    "from":"From"
 }   

@@ -230,12 +230,11 @@ const BookingConfirm = () => {
   const items = [
     {
       key: "2",
-      label: "Payment on Arrive",
+      label: t('paymentOnArrival'),
       children: (
         <div style={{ fontFamily: "Gilda Display, serif" }}>
-          <p>
-            NOTE : You could pay directly in our structure with any kind of
-            credit card or cash.
+          <p className="py-2">
+            {t('payAtHotelMessage')}
           </p>
           {loading ? (
             <Spin />
@@ -250,29 +249,7 @@ const BookingConfirm = () => {
         </div>
       ),
     },
-    {
-      key: "3",
-      label: "Booking Request",
-      children: (
-        <div style={{ fontFamily: "Gilda Display, serif" }}>
-          <p>
-            {" "}
-            NOTE : This request is not a reservation but a simple request, we
-            will get in touch with you.
-          </p>
-          {loading ? (
-            <Spin />
-          ) : (
-            <button
-              className="bg-[#BE9874] py-2 px-8 text-sm text-white"
-              onClick={() => handleBookNow("Booking Request")}
-            >
-              Book Now
-            </button>
-          )}
-        </div>
-      ),
-    },
+    
   ];
 
   return (
@@ -375,11 +352,11 @@ const BookingConfirm = () => {
                           <span className="font-semibold">{address}</span>
                         </div>
                         <div className="flex items-center">
-                          <p className="py-2 px-2 "> City:</p>
+                          <p className="py-2 px-2 "> {t('city')}:</p>
                           <span className="font-semibold">{city}</span>
                         </div>
                         <div className="flex items-center">
-                          <p className="py-2 px-2 "> ArrivalTime:</p>
+                          <p className="py-2 px-2 "> {t('arrival')}:</p>
                           <span className="font-semibold">{arrivalTime}</span>
                         </div>
                         <div className="flex items-center">

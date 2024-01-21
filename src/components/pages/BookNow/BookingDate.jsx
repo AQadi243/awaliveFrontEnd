@@ -2,24 +2,33 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../sharedPages/Context/AuthProvider";
 import { CheckOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
+import i18next from "i18next";
 
 const BookingDate = () => {
+  const currentLanguage = i18next.language
+  const { t } = useTranslation('booking');
   const authInfo = useContext(AuthContext);
   const [bookingInformation, setBookingInformation] = useState("");
   const { loading, setLoading } = authInfo;
-  const { t } = useTranslation('booking');
 
   useEffect(() => {
     // Retrieve data from localStorage on component mount
     const storedBookingInfo = localStorage.getItem("bookingInfo");
+    console.log(storedBookingInfo,'lasdhasdh');
     if (storedBookingInfo) {
       const parsedBookingInfo = JSON.parse(storedBookingInfo);
-      setBookingInformation(parsedBookingInfo);
-
+      // Remove commas and convert price-related strings to numbers
+    parsedBookingInfo.tax = parseFloat(parsedBookingInfo.tax.replace(/,/g, ''));
+    parsedBookingInfo.totalPrice = parseFloat(parsedBookingInfo.totalPrice.replace(/,/g, ''));
+    parsedBookingInfo.totalWithTax = parseFloat(parsedBookingInfo.totalWithTax.replace(/,/g, ''));
+    
+    setBookingInformation(parsedBookingInfo);
+    
       setLoading(false);
     }
-  }, [setLoading]);
-
+  }, [setLoading, setBookingInformation]);
+  
+  console.log(bookingInformation.totalPrice);
   return loading ? (
     <div>
       <p>Loading</p>
@@ -67,11 +76,12 @@ const BookingDate = () => {
               1 {t('room')} X {bookingInformation.night}-{t('nights')}
             </p>
             <p className="text-xs font-semibold ">
-              {bookingInformation.RoomPrice} {t('averagePerNight')}{" "}
+              {currentLanguage === 'en'? bookingInformation?.RoomPrice?.toLocaleString():bookingInformation?.RoomPrice?.toLocaleString("ar-EG")} {t('averagePerNight')}{" "}
             </p>
           </div>
           <div>
-            <p>{bookingInformation.totalPrice}{" "}-{" "} {t('SAR')} </p>
+            {/* <p>{bookingInformation.totalPrice}{" "}-{" "} {t('SAR')} </p> */}
+            <p>{currentLanguage === 'en'? bookingInformation?.totalPrice?.toLocaleString():bookingInformation?.totalPrice?.toLocaleString("ar-EG")}{" "}-{" "} {t('SAR')} </p>
           </div>
         </div>
         <div className="flex items-center justify-between">
@@ -79,7 +89,8 @@ const BookingDate = () => {
             <p>{t('taxes')}</p>
             <p className="text-xs ">{t('governmentTaxes')} </p>
           </div>
-          <p>{bookingInformation.tax}-{t('SAR')} </p>
+          {/* <p>{bookingInformation.tax}-{t('SAR')} </p> */}
+          <p>{currentLanguage === 'en'? bookingInformation?.tax?.toLocaleString(): bookingInformation?.tax?.toLocaleString("ar-EG")} {' '}-{' '} {t('SAR')} </p>
         </div>
 
         <div className="flex items-center justify-between font-semibold  border-t-2 py-4">
@@ -87,7 +98,8 @@ const BookingDate = () => {
             <p className="text-md">{t('totalCostPerRoom')} </p>
             {/* <p className="text-xs ">*Changes in taxes or fees will affect the total price. </p> */}
           </div>
-          <p>{bookingInformation.totalWithTax}-{t('SAR')} </p>
+          {/* <p>{bookingInformation.totalWithTax}-{t('SAR')} </p> */}
+          <p>{currentLanguage === 'en'? bookingInformation?.totalWithTax?.toLocaleString():bookingInformation?.totalWithTax?.toLocaleString("ar-EG")}{' '}-{' '}{t('SAR')} </p>
         </div>
         {/* <p>You have good taste! Book now before someone else grabs it!</p> */}
       </div>

@@ -5,7 +5,7 @@
   "aroundTheHotel":"AROUND THE HOTEL",
   "similarRooms":"SIMILAR ROOMS",
 
-
+  "requiredField": "This field is required",
   "property": "1 Property",
   "from": "Check In",
   "to": "Check Out",
@@ -34,10 +34,15 @@
   "emailN": "Email",
   "phoneN": "Phone",
   "addressN": "Address",
+  "city": "City",
+  "arrival": "Arrival",
   "messageN": "Message",
   "bookNowFor": "Book Now For",
   "roomFeatures": "Room Features",
   "roomService": "Room Services",
+  "paymentOnArrival": "Payment on Arrive",
+  "payAtHotelMessage":"Note: You can make your payment directly at our facility using either credit cards or cash upon check-in at the hotel. ",
+
 
   "selectDates": "Select Dates",
   "guest":"Guest",
@@ -49,6 +54,8 @@
   "child":"Child",
   "age":"Age",
   "findRoom":"Find Room",
-  "reset":"Reset"
+  "reset":"Reset",
+
+  "booking": "Booking"
 
 }

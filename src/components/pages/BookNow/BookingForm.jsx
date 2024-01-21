@@ -30,7 +30,7 @@ const BookingForm = () => {
   };
 
   const handleSubmitButtonClick = () => {
-    console.log("Button clicked");
+    
     const errors = {};
 
     // Basic validation for required fields
@@ -42,17 +42,11 @@ const BookingForm = () => {
         key !== "arrivalTime" &&
         (!formData[key] || formData[key].trim() === "")
       ) {
-        errors[key] = "This field is required";
+        errors[key] = t('requiredField');
       }
     });
 
     setFormErrors(errors);
-
-    console.log("click");
-
-    // Log the form data regardless of validation errors
-    console.log("Errors:", errors);
-    console.log("Form data:", formData);
 
     // If there are no errors, proceed with form submission
     if (Object.keys(errors).length === 0) {
@@ -69,8 +63,6 @@ const BookingForm = () => {
       // Save the updated bookingInfo back to localStorage
       localStorage.setItem("bookingInfo", JSON.stringify(updatedBookingInfo));
 
-      // Add your logic for form submission here
-      console.log("Form no error submitted:", updatedBookingInfo);
 
       navigate("/BookingConfirm");
       setLoading(true);
@@ -172,7 +164,7 @@ const BookingForm = () => {
                 <input
                   type="text"
                   name="city"
-                  placeholder="City "
+                  placeholder={t('city')}
                   value={formData.city}
                   onChange={handleInputChange}
                   className={`py-2 px-2 border bg-slate-50 ${
@@ -203,12 +195,12 @@ const BookingForm = () => {
               </div>
 
               <div className="flex flex-col gap-1">
-                <label htmlFor="time">Arrival</label>
+                <label htmlFor="time">{t('arrival')}</label>
                 <input
                   type="time"
                   id="time"
                   name="arrivalTime"
-                  placeholder="Arrival Time  "
+                  placeholder={t('arrival')}
                   value={formData.arrivalTime}
                   onChange={handleInputChange}
                   className={`py-2 px-2 border bg-slate-50 ${

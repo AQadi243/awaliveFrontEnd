@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import PageAnimation from "../../PageAnimation/PageAnimation";
 import BannerPage from "../../sharedPages/PageBanner/BannerPage";
 import BookingDate from "./BookingDate";
@@ -5,12 +6,13 @@ import BookingForm from "./BookingForm";
 
 
 const BookNow = () => {
+  const {t} = useTranslation('booking')
   
 
   return   (
     <>
     <PageAnimation>
-    <BannerPage text={'Booking'} />
+    <BannerPage text={t('booking')} />
     <section className="bg-slate-50">
       <div className="w-[90%] mx-auto">
 
