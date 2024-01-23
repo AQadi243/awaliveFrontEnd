@@ -105,7 +105,7 @@ const DatesSearch = () => {
               </button>
             </div>
             {showDatePicker && (
-              <div className="absolute left-0 w-[100%]  bg-white">
+              <div className="absolute left-0 w-[100%]  bg-white z-10 ">
                 {/* <DateRange
                   editableDateInputs={true}
                   onChange={(item) => setState([item.selection])}

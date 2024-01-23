@@ -118,7 +118,7 @@ const RoomDate = ({ singleRoomDetails }) => {
               <button className="text-md  text-[#BE9874] ">{checkOut}</button>
             </div>
             {showDatePicker && (
-              <div className="absolute left-0 w-[100%]  bg-white">
+              <div className="absolute left-0 w-[100%]  bg-white z-10">
                 <DateRange
                   editableDateInputs={true}
                   onChange={(item) => setCalender([item.selection])}

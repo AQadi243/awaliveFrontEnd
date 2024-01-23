@@ -25,7 +25,7 @@ const Search = () => {
     const fetchAllRooms = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/category/?lang=${currentLanguage}`
+          `https://type-script-server.vercel.app/api/category/?lang=${currentLanguage}`
           // "https://awalive-server-side-hzpa.vercel.app/rooms"
         );
         console.log(response.data, "chategories");
