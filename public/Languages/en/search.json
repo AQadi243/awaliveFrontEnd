@@ -1,0 +1,23 @@
+{
+    "selectDates": "Select Dates",
+  "guest":"Guest",
+  "night":"Night",
+  "bookNow":"Book Now",
+  "sqm":"sqm",
+  "adult":"Adult",
+  "children":"Children",
+  "child":"Child",
+  "age":"Age",
+  "findRoom":"Find Room",
+  "reset":"Reset",
+  "room": "Room",
+  "allCategories": "All Categories",
+  "sortByPrice": "Sort By price",
+  "highPrice": "High Price",
+  "lowPrice": "Low Price",
+  "search": "Search"
+
+
+
+
+}

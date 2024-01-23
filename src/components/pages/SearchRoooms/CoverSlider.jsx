@@ -12,7 +12,7 @@ import { Pagination } from "swiper/modules";
 // import required modules
 
 const CoverSlider = ({ images }) => {
-  console.log(images);
+ 
   return (
     <>
       <Swiper
@@ -20,7 +20,7 @@ const CoverSlider = ({ images }) => {
           dynamicBullets: true,
         }}
         modules={[Pagination]}
-        className="mySwiper w-full overflow-hidden"
+        className="mySwiper w-full overflow-hidden cursor-grab "
       >
         {images?.map((img, index) => (
           <SwiperSlide key={index} className="">

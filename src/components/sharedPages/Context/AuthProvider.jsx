@@ -7,8 +7,8 @@ import { useTranslation } from "react-i18next";
 export const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState(null);
 
   const [allRooms, setAllRooms] = useState([]);
 
@@ -16,16 +16,19 @@ const AuthProvider = ({ children }) => {
   const [RoomName, setRoomName] = useState("");
   const [RoomPrice, setRoomPrice] = useState(0);
   const [RoomImage, setRoomImage] = useState("");
-  const [sortByPrice, setSortByPrice] = useState("");
+  const [sortByPrice, setSortByPrice] = useState("asc");
   const [error, setError] = useState("");
 
   const [searchLoader, setSearchLoader] = useState(true);
   const [category, setCategory] = useState("");
   const [night, setNight] = useState(0);
-  const [checkIn, setCheckIn] = useState("");
-  const [checkOut, setCheckOut] = useState("");
+  const [checkIn, setCheckIn] = useState("Check-In");
+  const [checkOut, setCheckOut] = useState("Check-Out");
+  const [calender, setCalender] = useState([
+    { startDate: null, endDate: null, key: "selection" },
+  ]);
   // const [guests, setGuests] = useState(1);
-  const [numberOfGuests, setGuests] = useState(1);
+  const [numberOfGuests, setGuests] = useState(null);
   const [child, setChild] = useState(0);
   const [childAges, setChildAges] = useState([]);
 
@@ -173,9 +176,7 @@ const AuthProvider = ({ children }) => {
         }
       }
     };
-
     const intervalId = setInterval(checkTokenExpiration, 60000); // check every minute
-
     return () => clearInterval(intervalId); // clear interval on component unmount
   }, []);
 
@@ -187,7 +188,7 @@ const AuthProvider = ({ children }) => {
       const parsedBookingInfo = JSON.parse(storedBookingInfo);
       setCheckIn(parsedBookingInfo.checkIn);
       setCheckOut(parsedBookingInfo.checkOut);
-      setGuests(parsedBookingInfo.numberOfGuests || 1);
+      setGuests(parsedBookingInfo.numberOfGuests);
       setNight(parsedBookingInfo.night);
       setRoomName(parsedBookingInfo.roomName);
       setRoomPrice(parsedBookingInfo.roomPrice);
@@ -224,7 +225,6 @@ const AuthProvider = ({ children }) => {
     // setSearchLoading(false)
   }, [currentLanguage, t]);
 
-  console.log(user, "userrasdfasdfasd");
 
   const authInfo = {
     loading,
@@ -238,6 +238,7 @@ const AuthProvider = ({ children }) => {
     sortByPrice,
     childAges,
     allRooms,
+    calender,
     checkIn,
     checkOut,
     category,
@@ -247,6 +248,7 @@ const AuthProvider = ({ children }) => {
     setNight,
     setGuests,
     setCheckIn,
+    setCalender,
     setCheckOut,
     setAllRooms,
     setChildAges,

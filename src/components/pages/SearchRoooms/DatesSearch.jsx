@@ -2,16 +2,14 @@ import { useContext, useEffect, useState } from "react";
 import "react-date-range/dist/styles.css"; // main css file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import { DateRange } from "react-date-range";
-import { addDays } from "date-fns";
+// import { addDays } from "date-fns";
 import { FaAngleDown, FaAngleUp } from "react-icons/fa6";
 import { AuthContext } from "../../sharedPages/Context/AuthProvider";
 import { useTranslation } from "react-i18next";
-// import { AuthContext } from "../../sharedPages/Context/AuthProvider";
-// import { Link } from "react-router-dom";
 
 const DatesSearch = () => {
   const authInfo = useContext(AuthContext);
-  const { t } = useTranslation('booking');
+  const { t } = useTranslation("booking");
   const {
     night,
     setNight,
@@ -19,60 +17,40 @@ const DatesSearch = () => {
     setCheckIn,
     checkOut,
     setCheckOut,
+    setCalender,
+    calender,
     setGuests,
     numberOfGuests,
-    handleBookNow,
-    setRoomImage,
-    setRoomPrice,
-    setRoomName,
   } = authInfo;
   const [showDatePicker, setShowDatePicker] = useState(false);
-
-  //   setRoomImage(image)
-  //   setRoomName(roomName)
-  //   setRoomPrice(roomPrice)
-
-  const [state, setState] = useState([
-    {
-      startDate: new Date(),
-      endDate: addDays(new Date(), 1),
-      key: "selection",
-    },
-  ]);
+  
+    // const [checkIn, setCheckIn] = useState("check-in");
+  // const [checkOut, setCheckOut] = useState("check-out");
+  // const [calender, setState] = useState([
+  
+  // const [night, setNight] = useState(0);
 
   useEffect(() => {
-    if (state.length > 0) {
-      // let firstObject = state[0];
-      const { startDate, endDate } = state[0];
-      const onlyStartDate = new Date(startDate);
-      const onlyEndDate = new Date(endDate);
+    if (calender[0].startDate && calender[0].endDate) {
+      const startDateString = calender[0].startDate.toDateString();
+      const endDateString = calender[0].endDate.toDateString();
 
-      const startDateString = onlyStartDate.toDateString();
-      const endDateString = onlyEndDate.toDateString();
-
-      // Calculate the difference in nights
-      const timeDifference = onlyEndDate.getTime() - onlyStartDate.getTime();
+      const timeDifference =
+        calender[0].endDate.getTime() - calender[0].startDate.getTime();
       const differenceInNights = Math.ceil(timeDifference / (1000 * 3600 * 24));
 
-      // setSearchNight(differenceInNights);
-      // setSearchCheckIn(startDateString);
-      // setSearchCheckOut(endDateString);
       setNight(differenceInNights);
       setCheckIn(startDateString);
       setCheckOut(endDateString);
-    } else {
-      console.log("The state array is empty");
     }
-  }, [state, setCheckIn, setCheckOut, setNight]);
+  }, [calender, setCheckOut, setCheckIn, setNight]);
 
   const handleIncrement = () => {
-    setGuests((prevGuests) => prevGuests + 1);
+    setGuests((prevGuests) => (prevGuests === null ? 1 : prevGuests + 1));
   };
 
   const handleDecrement = () => {
-    if (numberOfGuests > 1) {
-      setGuests((prevGuests) => prevGuests - 1);
-    }
+    setGuests((prevGuests) => (prevGuests > 1 ? prevGuests - 1 : prevGuests));
   };
 
   const handleSelectDate = () => {
@@ -97,7 +75,7 @@ const DatesSearch = () => {
           style={{ fontFamily: "Gilda Display, serif" }}
         >
           <p className="text-white text-xl tracking-widest  bg-black w-full py-4 ">
-            {t('selectDates')}
+            {t("selectDates")}
           </p>
           <div className="grid grid-cols-2 gap-5  w-full">
             <div
@@ -105,7 +83,7 @@ const DatesSearch = () => {
               className="bg-black py-2 px-2  flex flex-col items-center justify-center cursor-pointer date-picker"
               onClick={handleSelectDate}
             >
-              <p className="text-white">{t('from')}</p>
+              <p className="text-white">{t("from")}</p>
               <button
                 onClick={handleSelectDate}
                 className="text-md  text-[#BE9874]"
@@ -118,7 +96,7 @@ const DatesSearch = () => {
               onClick={handleSelectDate}
               className="bg-black py-2 px-2 flex flex-col items-center justify-center cursor-pointer date-picker"
             >
-              <p className="text-white">{t('to')}</p>
+              <p className="text-white">{t("to")}</p>
               <button
                 onClick={handleSelectDate}
                 className="text-md  text-[#BE9874]"
@@ -128,13 +106,21 @@ const DatesSearch = () => {
             </div>
             {showDatePicker && (
               <div className="absolute left-0 w-[100%]  bg-white">
-                <DateRange
+                {/* <DateRange
                   editableDateInputs={true}
                   onChange={(item) => setState([item.selection])}
                   minDate={addDays(new Date(), 0)}
                   color="[#BE9874]"
                   moveRangeOnFirstSelection={false}
                   ranges={state}
+                /> */}
+                <DateRange
+                  editableDateInputs={true}
+                  onChange={(item) => setCalender([item.selection])}
+                  minDate={new Date()}
+                  color="[#BE9874]"
+                  moveRangeOnFirstSelection={false}
+                  ranges={calender}
                 />
                 <div className="pb-4">
                   <button
@@ -153,7 +139,7 @@ const DatesSearch = () => {
             >
               <div className="flex flex-col items-center gap-1 ">
                 <div>
-                  <p className="text-md  text-white">{t('guest')}</p>
+                  <p className="text-md  text-white">{t("guest")}</p>
                 </div>
                 <div className="flex flex-row gap-1 items-center text-xl">
                   <button
@@ -176,7 +162,7 @@ const DatesSearch = () => {
               id="days-container"
               className="bg-black py-2 px-2 flex flex-col gap-1 items-center justify-center cursor-pointer date-picker"
             >
-              <label className="text-md  text-white">{t('night')}</label>
+              <label className="text-md  text-white">{t("night")}</label>
               <p
                 id="selectedDays"
                 className="bg-transparent outline-none w-28 text-[#BE9874] text-2xl"
@@ -188,13 +174,6 @@ const DatesSearch = () => {
             <div id="error-message" className="text-red-500 text-xs"></div>
             <div id="perfect-message" className="text-green-500 text-xs"></div>
           </div>
-
-          {/* <Link to={'/booking'}
-            onClick={handleBookNow}
-            className="bg-[#BE9874] w-full py-2 text-white text-xs md:text-sm bookNow "
-          >
-            Book Now
-          </Link> */}
         </div>
       </div>
     </>

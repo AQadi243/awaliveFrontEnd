@@ -2,17 +2,24 @@ import { useContext, useEffect, useRef, useState } from "react";
 import "react-date-range/dist/styles.css"; // main css file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import { DateRange } from "react-date-range";
-import { addDays } from "date-fns";
+// import { addDays } from "date-fns";
 // import { FaAngleDown, FaAngleUp } from "react-icons/fa6";
-import {  Modal } from "antd";
-import { UserOutlined, PlusCircleOutlined, MinusCircleOutlined  } from "@ant-design/icons";
+import { Modal } from "antd";
+import {
+  UserOutlined,
+  PlusCircleOutlined,
+  MinusCircleOutlined,
+} from "@ant-design/icons";
 import axios from "axios";
 import { AuthContext } from "../../sharedPages/Context/AuthProvider";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import i18next from "i18next";
 
-const SearchBar = ({setAllRooms, setNoRoomsMessage, pageContext}) => {
-  const {t}= useTranslation('booking')
+const SearchBar = ({ setAllRooms, setNoRoomsMessage, pageContext }) => {
+  const currentLanguage = i18next.language;
+  const { t } = useTranslation("search");
+  const [loading, setLoading] = useState(true);
   const {
     numberOfGuests,
     childAges,
@@ -27,82 +34,86 @@ const SearchBar = ({setAllRooms, setNoRoomsMessage, pageContext}) => {
     setCheckIn,
     setCategory,
     setCheckOut,
+    setCalender,
+    calender,
     setChildAges,
-    setSearchLoader
-    
-  } = useContext(AuthContext)
+    sortByPrice,
+    // setSearchLoader,
+  } = useContext(AuthContext);
   const [modal2Open, setModal2Open] = useState(false);
-
-  const [searchParams, setSearchParams] = useState({
-    category: '',
-    numberOfGuests: 1,
-    checkIn: '',
-    checkOut: ''
-  });
-  
-
-  
-  
   const [room, setRooms] = useState(1);
-  
   const [showDatePicker, setShowDatePicker] = useState(false);
- 
-  const [state, setState] = useState([
-    {
-      startDate: new Date(),
-      endDate: addDays(new Date(), 1),
-      key: "selection",
-    },
-  ]);
 
   useEffect(() => {
-    if (state.length > 0) {
-      let firstObject = state[0];
-      const { startDate, endDate } = firstObject;
-      const onlyStartDate = new Date(startDate);
-      const onlyEndDate = new Date(endDate);
+    const fetchAllRooms = async () => {
+      setLoading(true); // Set loading to true at the start of the fetch
 
-      const startDateString = onlyStartDate.toDateString();
-      const endDateString = onlyEndDate.toDateString();
+      let queryParameters = [`lang=${currentLanguage}`];
 
-      // Calculate the difference in nights
-      const timeDifference = onlyEndDate.getTime() - onlyStartDate.getTime();
-      const differenceInNights = Math.ceil(timeDifference / (1000 * 3600 * 24));
+      if (category) {
+        queryParameters.push(`categoryId=${category}`);
+      }
 
-      setNight(differenceInNights);
-      setCheckIn(startDateString);
-      setCheckOut(endDateString);
-    } else {
-      console.log("The state array is empty");
-    }
-  }, [state, setNight, setCheckIn,setCheckOut]);
+      if (numberOfGuests !== null) {
+        queryParameters.push(`maxGuests=${numberOfGuests}`);
+      }
 
+      queryParameters.push(`sortOrder=${sortByPrice}`);
+
+      const queryString = queryParameters.join("&");
+      const url = `http://localhost:5000/api/room/search?${queryString}`;
+
+      try {
+        const response = await axios.get(url);
+        console.log(response.data, "search rooms");
+        // Set your state with the fetched data
+      } catch (error) {
+        console.error("Error fetching room rates:", error);
+        // Handle errors more generically if error.response is not available
+        if (error.response) {
+          console.error("Status:", error.response.status);
+          if (error.response.data && error.response.data.issues) {
+            console.error("Message:", error.response.data.issues[0].message);
+          }
+        }
+      } finally {
+        setLoading(false); // Ensure loading is set to false after the fetch is complete
+      }
+    };
+
+    fetchAllRooms();
+  }, [currentLanguage, setLoading, category, numberOfGuests, sortByPrice]); // Dependencies for useEffect
+
+ console.log(checkIn, "chjeckin ");
+ console.log(checkOut, "chjeckin ");
+  
   const handleIncrement = () => {
-    setGuests((prevGuests) => prevGuests + 1);
+    setGuests((prevGuests) => (prevGuests === null ? 1 : prevGuests + 1));
   };
 
   const handleDecrement = () => {
-    if (numberOfGuests > 1) {
-      setGuests((prevGuests) => prevGuests - 1);
-    }
+    setGuests((prevGuests) => (prevGuests > 1 ? prevGuests - 1 : prevGuests));
   };
+
   const handleCancelModal = () => {
     // Reset the guests state to its default value (1 in this case)
-    setGuests(1);
+    setGuests(null);
     setChild(0);
     setChildAges([]);
 
     // Close the modal
     setModal2Open(false);
   };
+
   const handleSearchReset = () => {
     // Reset the guests state to its default value (1 in this case)
-    setCheckIn('')
-    setCheckOut('')
-    setCategory('')
-    setGuests(1);
+    setCheckIn("check-In");
+    setCheckOut("Check-Out");
+    setCategory("");
+    setGuests(null);
     setChild(0);
     setChildAges([]);
+    setNight(0)
 
     // Close the modal
     setModal2Open(false);
@@ -111,6 +122,7 @@ const SearchBar = ({setAllRooms, setNoRoomsMessage, pageContext}) => {
   const handleSelectDate = () => {
     setShowDatePicker(true);
   };
+
   const handleChildIncrement = () => {
     setChild((prevChild) => prevChild + 1);
     setChildAges((prevAges) => [...prevAges, 1]); // Add a default age of 1 for the new child
@@ -150,70 +162,7 @@ const SearchBar = ({setAllRooms, setNoRoomsMessage, pageContext}) => {
     };
   }, []);
 
-  useEffect(() => {
-    setSearchParams({
-      category,
-      numberOfGuests,
-      checkIn,
-      checkOut,
-    });
-  }, [numberOfGuests, checkIn, checkOut,category]);
   
-
-useEffect(()=>{
-
-  const handleSearch = async () => {
-    try {
-      const response = await axios.get('https://awalive-server-side-hzpa.vercel.app/searchRooms', { params: searchParams });
-      
-      if (response.data.message) {
-        // Handle the case where no rooms are available
-        setNoRoomsMessage(response.data.message);
-        setAllRooms([]); // Reset the rooms data
-      } else {
-        setAllRooms(response.data);
-        setNoRoomsMessage(""); // Reset the no rooms message
-      }
-
-      console.log('search rooms bar', response.data);
-      
-    } catch (error) {
-      console.error('Error fetching search results:', error.message);
-    }
-    
-  };
-  
-  handleSearch()
-  
-},[searchParams, setAllRooms, setSearchLoader,setNoRoomsMessage]) 
-
-  const handleDateChange = (item) => {
-    const newRange = item.selection;
-    setState([newRange]);
-
-    if (
-      newRange.startDate &&
-      newRange.endDate &&
-      newRange.startDate.getTime() !== newRange.endDate.getTime()
-    ) {
-      const startDateString = newRange.startDate.toDateString();
-      const endDateString = newRange.endDate.toDateString();
-
-      // Calculate the difference in nights
-      const timeDifference =
-        newRange.endDate.getTime() - newRange.startDate.getTime();
-      const differenceInNights = Math.ceil(timeDifference / (1000 * 3600 * 24));
-
-      setNight(differenceInNights);
-      setCheckIn(startDateString);
-      setCheckOut(endDateString);
-
-      // Hide the date picker automatically after both dates are selected
-      setShowDatePicker(false);
-    }
-  };
-
-  // console.log(dateDetails);
 
   return (
     <>
@@ -227,18 +176,20 @@ useEffect(()=>{
               <div className="flex items-center gap-4">
                 <UserOutlined className="text-2xl" />
                 <div>
-                  <p className="text-xs">{t('guest')}</p>
+                  <p className="text-xs">{t("guest")}</p>
                   <p className="text-sm">
-                    <span>{numberOfGuests}-{t('guest')},</span>
-                    <span> {room}-{t('room')}</span>
-                    {
-                      child ? <span> {child}-children</span> : ''
-                    }
+                    <span>
+                      {numberOfGuests}-{t("guest")},
+                    </span>
+                    <span>
+                      {" "}
+                      {room}-{t("room")}
+                    </span>
+                    {child ? <span> {child}-children</span> : ""}
                   </p>
                 </div>
               </div>
             </div>
-            
           </div>
           <div
             className="flex flex-col relative z-10   px-2 border border-black rounded-md py-1 md:py-2 bg-white cursor-pointer "
@@ -247,18 +198,20 @@ useEffect(()=>{
           >
             <div>
               <p className="tracking-widest text-xs  ">
-                {night} -{t('night')} </p>
+                {night} -{t("night")}{" "}
+              </p>
               <button className="text-sm ">{`${checkIn} - ${checkOut}`}</button>
             </div>
             {showDatePicker && (
               <div className="absolute -left-2  bg-white md:p-10">
                 <DateRange
                   editableDateInputs={true}
-                  onChange={handleDateChange}
-                  minDate={addDays(new Date(), 0)}
+                  // onChange={handleDateChange}
+                  onChange={(item) => setCalender([item.selection])}
+                  minDate={new Date()}
                   color="[#BE9874]"
                   moveRangeOnFirstSelection={false}
-                  ranges={state}
+                  ranges={calender}
                 />
                 {/* <div>
                 <button onClick={handleDone} className="py-2 px-4 rounded-full   border-[1px] border-blue-400 text-xs ">Done</button>
@@ -266,62 +219,89 @@ useEffect(()=>{
               </div>
             )}
           </div>
-          
-          
-          {pageContext === 'home' ? (
-            <Link to={'/roomSearch'} className="bg-[#1C1C1D]  px-5 rounded-md py-2 md:py-4 cursor-pointer text-white text-center uppercase ">
-           {t('findRoom')}
-          </Link>
-        ) : (
-          <p onClick={handleSearchReset} className="bg-[#1C1C1D]  px-5 rounded-md py-2 md:py-4 cursor-pointer text-white text-center uppercase ">
-          {t('reset')}
-          </p>
-        )}
+
+          {pageContext === "home" ? (
+            <Link
+              to={"/roomSearch"}
+              className="bg-[#1C1C1D]  px-5 rounded-md py-2 md:py-4 cursor-pointer text-white text-center uppercase "
+            >
+              {t("findRoom")}
+            </Link>
+          ) : (
+            <p
+              onClick={handleSearchReset}
+              className="bg-[#1C1C1D]  px-5 rounded-md py-2 md:py-4 cursor-pointer text-white text-center uppercase "
+            >
+              {t("reset")}
+            </p>
+          )}
         </div>
       </div>
 
-      
       <Modal
-        title={t('guest')}
+        title={t("guest")}
         centered
         open={modal2Open}
         onOk={() => setModal2Open(false)}
         onCancel={handleCancelModal}
-        okText="Apply" 
-        cancelText="Reset" 
+        okText="Apply"
+        cancelText="Reset"
       >
         <div>
-          
           <div className="flex justify-between py-4">
-            <p className="text-sm md:text-xl">{t('adult')}</p>
+            <p className="text-sm md:text-xl">{t("adult")}</p>
             <div className="flex gap-2 md:gap-5 items-center">
-              <p><MinusCircleOutlined className="text-xl md:text-2xl font-light" onClick={handleDecrement} /></p>
-              <p className="text-xl md:text-2xl  px-3" >{numberOfGuests}</p>
-              <p ><PlusCircleOutlined className="text-xl md:text-2xl" onClick={handleIncrement} /></p>
+              <p>
+                <MinusCircleOutlined
+                  className="text-xl md:text-2xl font-light"
+                  onClick={handleDecrement}
+                />
+              </p>
+              <p className="text-xl md:text-2xl  px-3">{numberOfGuests}</p>
+              <p>
+                <PlusCircleOutlined
+                  className="text-xl md:text-2xl"
+                  onClick={handleIncrement}
+                />
+              </p>
             </div>
           </div>
           <div className="flex justify-between py-4">
-            <p className="text-sm md:text-xl">{t('children')}</p>
+            <p className="text-sm md:text-xl">{t("children")}</p>
             <div className="flex gap-2 md:gap-5 items-center">
-              <p><MinusCircleOutlined className="text-xl md:text-2xl font-light" onClick={handleChildDecrement} /></p>
-              <p className="text-xl md:text-2xl  px-3" >{child}</p>
-              <p ><PlusCircleOutlined className="text-xl md:text-2xl" onClick={handleChildIncrement} /></p>
+              <p>
+                <MinusCircleOutlined
+                  className="text-xl md:text-2xl font-light"
+                  onClick={handleChildDecrement}
+                />
+              </p>
+              <p className="text-xl md:text-2xl  px-3">{child}</p>
+              <p>
+                <PlusCircleOutlined
+                  className="text-xl md:text-2xl"
+                  onClick={handleChildIncrement}
+                />
+              </p>
             </div>
           </div>
           {/* Render child age selectors based on the number of children */}
           {childAges.map((age, index) => (
             <div key={index} className="flex justify-between py-2">
-              <p className="text-sm md:text-md ">{t('child')} {index + 1} {t('age')}</p>
+              <p className="text-sm md:text-md ">
+                {t("child")} {index + 1} {t("age")}
+              </p>
               <div className="flex gap-2 md:gap-5 items-center">
                 {/* Use a Select component or any other input for age selection */}
                 <select
                   value={age}
-                  onChange={(e) => handleChildAgeChange(index, parseInt(e.target.value))}
+                  onChange={(e) =>
+                    handleChildAgeChange(index, parseInt(e.target.value))
+                  }
                   className="px-10"
                 >
                   {Array.from({ length: 14 }, (_, i) => i + 1).map((num) => (
                     <option key={num} value={num} className="">
-                     {t('age')} - {num}  
+                      {t("age")} - {num}
                     </option>
                   ))}
                 </select>
