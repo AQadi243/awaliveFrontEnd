@@ -6,11 +6,13 @@ import { useTranslation } from "react-i18next";
 
 export const AuthContext = createContext(null);
 
+// eslint-disable-next-line react/prop-types
 const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState(null);
 
   const [allRooms, setAllRooms] = useState([]);
+  const [loadingAllRooms, setLoadingAllRooms] = useState(true);
 
   const [roomId, setRoomId] = useState(0);
   const [RoomName, setRoomName] = useState("");
@@ -28,7 +30,7 @@ const AuthProvider = ({ children }) => {
     { startDate: null, endDate: null, key: "selection" },
   ]);
   // const [guests, setGuests] = useState(1);
-  const [numberOfGuests, setGuests] = useState(null);
+  const [numberOfGuests, setGuests] = useState(2);
   const [child, setChild] = useState(0);
   const [childAges, setChildAges] = useState([]);
 
@@ -214,16 +216,16 @@ const AuthProvider = ({ children }) => {
         );
         setAllRooms(response.data.data);
         // setSearchLoading(false);
-        setLoading(false);
+        setLoadingAllRooms(false);
       } catch (error) {
         console.error("Error fetching room rates:", error);
         // setSearchLoading(false);
       }
-      setLoading(false);
+      setLoadingAllRooms(false);
     };
     fetchAllRooms();
     // setSearchLoading(false)
-  }, [currentLanguage, t]);
+  }, [currentLanguage, t, setLoadingAllRooms]);
 
 
   const authInfo = {
@@ -239,6 +241,7 @@ const AuthProvider = ({ children }) => {
     childAges,
     allRooms,
     calender,
+    loadingAllRooms,
     checkIn,
     checkOut,
     category,
@@ -253,6 +256,7 @@ const AuthProvider = ({ children }) => {
     setAllRooms,
     setChildAges,
     setSortByPrice,
+    setLoadingAllRooms,
     setCategory,
     setSearchLoader,
     handleBookNow,

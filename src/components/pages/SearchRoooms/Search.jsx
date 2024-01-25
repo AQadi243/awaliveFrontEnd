@@ -7,19 +7,54 @@ import AllRooms from "./AllRooms";
 import { FaChevronDown } from "react-icons/fa6";
 import { AuthContext } from "../../sharedPages/Context/AuthProvider";
 import SearchBar from "../Home/SearchBar";
-import CoverSlider from "./CoverSlider";
+
 import axios from "axios";
 import i18next from "i18next";
 import { useTranslation } from "react-i18next";
+import { Spin } from "antd";
 
 const Search = () => {
+  const {  category, setSortByPrice, setCategory, allRooms, checkIn, checkOut, sortByPrice, numberOfGuests, loadingAllRooms, setLoadingAllRooms } = useContext(AuthContext);
   const {t} = useTranslation('search')
   const currentLanguage = i18next.language;
   const [categories, setCategories] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const {  category, setSortByPrice, setCategory, allRooms } = useContext(AuthContext);
+  const [loadingCategory, setLoadingCategory] = useState(true);
+  const [availableRooms, setAvailableRooms] = useState([]);
+  const [loadingAvailableRooms, setLoadingAvailableRooms] = useState(true);
+  
+
+  const formatDateString = (dateString) => {
+    return dateString ? new Date(dateString).toLocaleDateString() : null;
+  };
+  const formetDateCheckIn = formatDateString(checkIn)
+  const formetDateCheckOut = formatDateString(checkOut)
 
   // console.log(sortByPrice);
+  useEffect(() => {
+    setLoadingAvailableRooms(true)
+    const fetchAllRooms = async () => {
+      try {
+        const response = await axios.get(
+          `https://type-script-server.vercel.app/api/room/available/?lang=${currentLanguage}&checkInDate=${formetDateCheckIn}&checkOutDate=${formetDateCheckOut}&sortOrder=${sortByPrice}&maxGuests=${numberOfGuests},&categoryId=${category}`
+          // "https://awalive-server-side-hzpa.vercel.app/rooms"
+        );
+        
+        setAvailableRooms(response.data.data,);
+        // setCategories(response.data.data);
+        // setSearchLoading(false);
+        setLoadingAvailableRooms(false);
+      } catch (error) {
+        console.error("Error fetching room rates:", error?.response?.data?.error?.statusCode        );
+        console.error("Error fetching room rates:", error?.response?.data?.issues[0]?.message        );
+        // setSearchLoading(false);
+      }
+      setLoadingAvailableRooms(false);
+    };
+    fetchAllRooms();
+    // setSearchLoading(false)
+  }, [ setLoadingAvailableRooms,formetDateCheckIn, formetDateCheckOut,sortByPrice,numberOfGuests, currentLanguage, category]);
+
+
 
   useEffect(() => {
     const fetchAllRooms = async () => {
@@ -28,19 +63,19 @@ const Search = () => {
           `https://type-script-server.vercel.app/api/category/?lang=${currentLanguage}`
           // "https://awalive-server-side-hzpa.vercel.app/rooms"
         );
-        console.log(response.data, "chategories");
+      
         setCategories(response.data.data);
         // setSearchLoading(false);
-        setLoading(false);
+        setLoadingCategory(false);
       } catch (error) {
         console.error("Error fetching room rates:", error);
         // setSearchLoading(false);
       }
-      setLoading(false);
+      setLoadingCategory(false);
     };
     fetchAllRooms();
     // setSearchLoading(false)
-  }, [currentLanguage, setLoading]);
+  }, [currentLanguage, setLoadingCategory]);
 
   
 
@@ -56,7 +91,7 @@ const Search = () => {
   return (
     <PageAnimation>
       <BannerPage text={t('search')} />
-      <CoverSlider />
+      
       <section
         className="bg-[#1a1919]  py-8  "
         style={{ fontFamily: "Gilda Display, serif" }}
@@ -112,7 +147,8 @@ const Search = () => {
               >
                 {t('allCategories')}
               </option>
-              {categories.map((categoryItem) => (
+              { loadingCategory? <Spin /> :
+              categories.map((categoryItem) => (
                 <option
                   key={categoryItem.id} // Replace 'id' with the actual property name that uniquely identifies a category
                   className="bg-[#1C1C1D] py-2 border-b"
@@ -131,9 +167,12 @@ const Search = () => {
 
           <AllRooms
             allRooms={allRooms}
+            availableRooms={availableRooms}
+            loadingAvailableRooms={loadingAvailableRooms}
+            
             // noRoomsMessage={noRoomsMessage}
-            loading={loading}
-            setLoading={setLoading}
+            loadingAllRooms={loadingAllRooms}
+            setLoadingAllRooms={setLoadingAllRooms}
           />
         </div>
       </section>

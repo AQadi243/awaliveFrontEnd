@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useContext, useEffect, useRef, useState } from "react";
 import "react-date-range/dist/styles.css"; // main css file
 import "react-date-range/dist/theme/default.css"; // theme css file
@@ -10,22 +11,18 @@ import {
   PlusCircleOutlined,
   MinusCircleOutlined,
 } from "@ant-design/icons";
-import axios from "axios";
 import { AuthContext } from "../../sharedPages/Context/AuthProvider";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import i18next from "i18next";
 
-const SearchBar = ({ setAllRooms, setNoRoomsMessage, pageContext }) => {
-  const currentLanguage = i18next.language;
+
+const SearchBar = ({ pageContext }) => {
   const { t } = useTranslation("search");
-  const [loading, setLoading] = useState(true);
   const {
     numberOfGuests,
     childAges,
     checkIn,
     checkOut,
-    category,
     child,
     night,
     setChild,
@@ -37,56 +34,13 @@ const SearchBar = ({ setAllRooms, setNoRoomsMessage, pageContext }) => {
     setCalender,
     calender,
     setChildAges,
-    sortByPrice,
+ 
     // setSearchLoader,
   } = useContext(AuthContext);
   const [modal2Open, setModal2Open] = useState(false);
-  const [room, setRooms] = useState(1);
   const [showDatePicker, setShowDatePicker] = useState(false);
 
-  useEffect(() => {
-    const fetchAllRooms = async () => {
-      setLoading(true); // Set loading to true at the start of the fetch
 
-      let queryParameters = [`lang=${currentLanguage}`];
-
-      if (category) {
-        queryParameters.push(`categoryId=${category}`);
-      }
-
-      if (numberOfGuests !== null) {
-        queryParameters.push(`maxGuests=${numberOfGuests}`);
-      }
-
-      queryParameters.push(`sortOrder=${sortByPrice}`);
-
-      const queryString = queryParameters.join("&");
-      const url = `http://localhost:5000/api/room/search?${queryString}`;
-
-      try {
-        const response = await axios.get(url);
-        console.log(response.data, "search rooms");
-        // Set your state with the fetched data
-      } catch (error) {
-        console.error("Error fetching room rates:", error);
-        // Handle errors more generically if error.response is not available
-        if (error.response) {
-          console.error("Status:", error.response.status);
-          if (error.response.data && error.response.data.issues) {
-            console.error("Message:", error.response.data.issues[0].message);
-          }
-        }
-      } finally {
-        setLoading(false); // Ensure loading is set to false after the fetch is complete
-      }
-    };
-
-    fetchAllRooms();
-  }, [currentLanguage, setLoading, category, numberOfGuests, sortByPrice]); // Dependencies for useEffect
-
- console.log(checkIn, "chjeckin ");
- console.log(checkOut, "chjeckin ");
-  
   const handleIncrement = () => {
     setGuests((prevGuests) => (prevGuests === null ? 1 : prevGuests + 1));
   };
@@ -110,7 +64,7 @@ const SearchBar = ({ setAllRooms, setNoRoomsMessage, pageContext }) => {
     setCheckIn("check-In");
     setCheckOut("Check-Out");
     setCategory("");
-    setGuests(null);
+    setGuests(2);
     setChild(0);
     setChildAges([]);
     setNight(0)
@@ -183,7 +137,7 @@ const SearchBar = ({ setAllRooms, setNoRoomsMessage, pageContext }) => {
                     </span>
                     <span>
                       {" "}
-                      {room}-{t("room")}
+                      1-{t("room")}
                     </span>
                     {child ? <span> {child}-children</span> : ""}
                   </p>

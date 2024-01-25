@@ -2,58 +2,48 @@
 
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Button, Pagination, Spin } from "antd";
+import {  Spin } from "antd";
 import { UserOutlined, ArrowsAltOutlined } from "@ant-design/icons";
 import CoverSlider from "./CoverSlider";
 import { useTranslation } from "react-i18next";
 import i18next from "i18next";
 
+
 // import { AuthContext } from "../../sharedPages/Context/AuthProvider";
 
-const AllRooms = ({ allRooms, noRoomsMessage, loading, setLoading }) => {
+const AllRooms = ({ allRooms, loadingAllRooms, availableRooms, loadingAvailableRooms }) => {
+  // console.log(allRooms,'asdfasfasdfasdfasdfasdfsdasdsacasd');
   const currentLanguage = i18next.language;
   const { t } = useTranslation("booking");
-  const [currentPage, setCurrentPage] = useState(1);
+  // const [currentPage, setCurrentPage] = useState(1);
+  const [displayRooms, setDisplayRooms] = useState(allRooms);
 
-  // Calculate the start and end indices of the current page
-  const PAGE_SIZE = 4; // Number of rooms per page
-  const startIndex = (currentPage - 1) * PAGE_SIZE;
-  const endIndex = startIndex + PAGE_SIZE;
-
-  // Slicing the 'data' array inside 'allRooms' object
-  const currentRooms = allRooms?.slice(startIndex, endIndex);
-
-  const handlePageChange = (page) => {
-    setCurrentPage(page);
-  };
 
   useEffect(() => {
-    // Reset to the first page whenever the allRooms data changes
-    setCurrentPage(1);
-    setLoading(false);
-  }, [allRooms, setLoading]); // Depend on allRooms.data
+    setDisplayRooms(allRooms);
+   
+   
+  }, [allRooms]); // Depend on allRooms.data
 
-  const handleReload = () => {
-    window.location.reload();
-  };
+  // Update displayRooms when availableRooms are fetched
+  useEffect(() => {
+    if (!loadingAvailableRooms) {
+      setDisplayRooms(availableRooms);
+    }
+  }, [availableRooms, loadingAvailableRooms]);
+
 
   return (
     <div className="md:w-2/3 grid grid-cols-1 md:grid-cols-2  gap-5 roomCards">
-      {loading ? (
+      {loadingAllRooms || loadingAvailableRooms  ? (
         <div className="h-[10rem] flex items-center justify-center">
           <p>
             <Spin />
           </p>
           <p>Loading...</p>
         </div>
-      ) : noRoomsMessage ? (
-        // Display the no rooms message if it's set
-        <div className="text-center">
-          <p className="py-10 text-xs">{noRoomsMessage}</p>
-          <Button onClick={handleReload}>Refresh</Button>
-        </div>
       ) : (
-        currentRooms?.map((room) => (
+        displayRooms?.map((room) => (
           <div
             key={room.id}
             className="col-span-1 border border-gray-200 flex flex-col gap-3 card"
@@ -75,6 +65,14 @@ const AllRooms = ({ allRooms, noRoomsMessage, loading, setLoading }) => {
                   </p>{" "}
                   <p>{room.maxGuests}</p>
                 </div>
+                {room.availableQty &&
+                <div className="flex gap-2 items-center">
+                <p className="text-xl md:text-sm">
+                {t('availableRooms')}{" "}
+                </p>{" "}
+                <p>{room?.availableQty}</p>
+              </div>
+                }
                 <div className="flex gap-2 items-center">
                   <p className="text-xl md:text-2xl">
                     <ArrowsAltOutlined />{" "}
@@ -151,14 +149,14 @@ const AllRooms = ({ allRooms, noRoomsMessage, loading, setLoading }) => {
           </div>
         ))
       )}
-      <div className="flex justify-center mt-4">
+      {/* <div className="flex justify-center mt-4">
         <Pagination
           defaultCurrent={1}
           total={allRooms?.length}
           pageSize={PAGE_SIZE}
           onChange={handlePageChange}
         />
-      </div>
+      </div> */}
     </div>
   );
 };
