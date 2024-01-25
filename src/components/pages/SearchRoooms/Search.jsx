@@ -36,7 +36,6 @@ const Search = () => {
       try {
         const response = await axios.get(
           `https://type-script-server.vercel.app/api/room/available/?lang=${currentLanguage}&checkInDate=${formetDateCheckIn}&checkOutDate=${formetDateCheckOut}&sortOrder=${sortByPrice}&maxGuests=${numberOfGuests},&categoryId=${category}`
-          // "https://awalive-server-side-hzpa.vercel.app/rooms"
         );
         
         setAvailableRooms(response.data.data,);

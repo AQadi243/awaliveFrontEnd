@@ -177,9 +177,10 @@ const SearchBar = ({ pageContext }) => {
           {pageContext === "home" ? (
             <Link
               to={"/roomSearch"}
-              className="bg-[#1C1C1D]  px-5 rounded-md py-2 md:py-4 cursor-pointer text-white text-center uppercase "
+              className="bg-[#1C1C1D]  px-5 rounded-md py-2 md:py-4 cursor-pointer text-white text-center uppercase tracking-widest "
+              style={{ fontFamily: "Gilda Display, serif" }}
             >
-              {t("findRoom")}
+              {t("availability")}
             </Link>
           ) : (
             <p
