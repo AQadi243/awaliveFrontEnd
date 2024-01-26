@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Spin } from "antd";
+import { Skeleton, Spin } from "antd";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import RoomBanner from "./RoomBanner";
@@ -17,6 +17,7 @@ const RoomDetails = () => {
 
   const [loading, setLoading] = useState(true);
   const [singleRoomDetails, setSingleRoomDetails] = useState(null);
+  console.log(singleRoomDetails,'single rooms');
 
   useEffect(() => {
     const fetchRoom = async () => {
@@ -32,16 +33,14 @@ const RoomDetails = () => {
     };
 
     fetchRoom();
-  }, [id, currentLanguage, t]);
+  }, [id, currentLanguage, t, setSingleRoomDetails]);
 
   return (
     <>
       {loading ? (
         <div className="h-[20rem] flex  items-center justify-center text-center">
-          <div>
-            <Spin />
-            <p>Loading...</p>
-          </div>
+          <Skeleton active />
+          
         </div>
       ) : singleRoomDetails ? (
         <>
@@ -56,6 +55,12 @@ const RoomDetails = () => {
                 >
                   {singleRoomDetails.title}
                 </h1>
+                <div>
+                  <p className="" style={{ fontFamily: "Gilda Display, serif" }}> <strong>Bed Room</strong> {" "}:{" "}{singleRoomDetails?.subTitle?.roomOne}</p>
+                  {
+                    singleRoomDetails.subTitle?.roomTwo && <p className="" style={{ fontFamily: "Gilda Display, serif" }}> <strong>Bed Room 2</strong> {" "}:{" "}{singleRoomDetails?.subTitle?.roomTwo}</p>
+                  }
+                </div>
                 <div className="flex gap-1 items-center text-xs">
                   <p>HOTEL ROME</p>
                   <ul className="text-white text-xs">

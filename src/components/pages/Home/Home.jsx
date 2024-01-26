@@ -15,19 +15,20 @@ import { AuthContext } from "../../sharedPages/Context/AuthProvider"
 
 
 const Home = () => {
-  const {allRooms, } = useContext(AuthContext)
+  const {allRooms, loadingAllRooms,setLoadingAllRooms } = useContext(AuthContext)
   const [roomRates, setRoomRates] = useState([]);
-  const [loading, setLoading] = useState(true)
+  // const [loading, setLoading] = useState(true)
   const [showButton, setShowButton] = useState(false)
 
   
 
   useEffect(() => {
+    setLoadingAllRooms(true)
     if (allRooms && allRooms.length > 0) {
       setRoomRates(allRooms.slice(0, 6)); // Take the first 6 rooms
-      setLoading(false)
+      setLoadingAllRooms(false)
     }
-  }, [allRooms]);
+  }, [allRooms, setLoadingAllRooms]);
 
   useEffect(()=>{
     const handleHomeScrollButton = ()=>{
@@ -52,7 +53,7 @@ const Home = () => {
     <PageAnimation>
     <Banner />
     <Relax />
-    <RoomCards roomRates={roomRates} loading={loading} />
+    <RoomCards roomRates={roomRates} loadingAllRooms={loadingAllRooms} />
     <CheckPromotion />
     <RoomPrice />
     <HotelStucture />

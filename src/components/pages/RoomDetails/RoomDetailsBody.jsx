@@ -30,7 +30,6 @@ const RoomDetailsBody = ({ singleRoomDetails }) => {
     size,
   } = singleRoomDetails;
 
-
   // Toggle the showAll state
   const toggleShowAll = () => {
     setShowAll(!showAll);
@@ -52,7 +51,6 @@ const RoomDetailsBody = ({ singleRoomDetails }) => {
                 <div style={{ display: "flex", flexWrap: "wrap", gap: "10px" }}>
                   {images.map((url, index) => (
                     <Image
-                    
                       key={index}
                       width={150}
                       height={100}
@@ -130,23 +128,23 @@ const RoomDetailsBody = ({ singleRoomDetails }) => {
               ))}
             </div> */}
             <div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {displayedServices.map((service, index) => (
-          <div key={index} className="flex gap-2 items-center text-xs">
-            <CheckOutlined className="text-green-400" />
-            <p className="text-sm">{service}</p>
-          </div>
-        ))}
-      </div>
-      {services.length > 4 && (
-        <button 
-          className="mt-2 text-[#5c5c5c] hover:text-[#817070]"
-          onClick={toggleShowAll}
-        >
-          {showAll ? 'See Less' : 'Show More'}
-        </button>
-      )}
-    </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {displayedServices.map((service, index) => (
+                  <div key={index} className="flex gap-2 items-center text-xs">
+                    <CheckOutlined className="text-green-400" />
+                    <p className="text-sm">{service}</p>
+                  </div>
+                ))}
+              </div>
+              {services.length > 4 && (
+                <button
+                  className="mt-2 text-[#5c5c5c] hover:text-[#817070]"
+                  onClick={toggleShowAll}
+                >
+                  {showAll ? "See Less" : "Show More"}
+                </button>
+              )}
+            </div>
           </div>
 
           {/* Around hotels start */}

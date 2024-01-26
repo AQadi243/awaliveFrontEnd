@@ -27,6 +27,7 @@ import MyBookings from "./components/pages/My Bookings/MyBookings";
 import ErrorPage from "./components/Error Page/ErrorPage";
 import Promotions from "./components/pages/Promotion/Promotions";
 import SinglePromoRoom from "./components/pages/Promotion/SinglePromoPage/SinglePromoRoom";
+import 'react-lazy-load-image-component/src/effects/blur.css';
 // import ScrollToTop from './components/sharedPages/ScrollToTop';
 
 // import 'flag-icon-css/css/flag-icon.min.css'

@@ -1,21 +1,21 @@
 /* eslint-disable react/prop-types */
 
-import { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import {  Spin } from "antd";
+// import {  Spin } from "antd";
 import { UserOutlined, ArrowsAltOutlined } from "@ant-design/icons";
 import CoverSlider from "./CoverSlider";
 import { useTranslation } from "react-i18next";
 import i18next from "i18next";
+import { Skeleton } from "antd";
+const skeletonCount = 6;
 
 
 // import { AuthContext } from "../../sharedPages/Context/AuthProvider";
 
 const AllRooms = ({ allRooms, loadingAllRooms, availableRooms, loadingAvailableRooms }) => {
-  // console.log(allRooms,'asdfasfasdfasdfasdfasdfsdasdsacasd');
   const currentLanguage = i18next.language;
   const { t } = useTranslation("booking");
-  // const [currentPage, setCurrentPage] = useState(1);
   const [displayRooms, setDisplayRooms] = useState(allRooms);
 
 
@@ -36,12 +36,12 @@ const AllRooms = ({ allRooms, loadingAllRooms, availableRooms, loadingAvailableR
   return (
     <div className="md:w-2/3 grid grid-cols-1 md:grid-cols-2  gap-5 roomCards">
       {loadingAllRooms || loadingAvailableRooms  ? (
-        <div className="h-[10rem] flex items-center justify-center">
-          <p>
-            <Spin />
-          </p>
-          <p>Loading...</p>
-        </div>
+          (
+            Array.from({ length: skeletonCount }, (_, index) => (
+              <Skeleton key={index} active />
+            ))
+          ) 
+        
       ) : (
         displayRooms?.map((room) => (
           <div
@@ -51,11 +51,6 @@ const AllRooms = ({ allRooms, loadingAllRooms, availableRooms, loadingAvailableR
             style={{ fontFamily: "Gilda Display, serif" }}
           >
             <CoverSlider images={room.images} />
-            {/* <img
-              src={room.images[0]}
-              alt=""
-              className="w-full aspect-video object-fill "
-            /> */}
             <div className="px-4 py-2 flex flex-col gap-3">
               <h2 className="text-2xl  text-slate-900  ">{room.title}</h2>
               <div className="flex justify-between ">
