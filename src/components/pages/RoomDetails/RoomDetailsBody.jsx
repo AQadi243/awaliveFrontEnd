@@ -96,12 +96,12 @@ const RoomDetailsBody = ({ singleRoomDetails }) => {
           <hr />
           <div className="">
             <h2
-              className="text-2xl md:text-3xl py-5 md:py-5 "
+              className="text-2xl  py-5 md:py-4 "
               style={{ fontFamily: "Gilda Display, serif" }}
             >
               {t("roomFeatures")}
             </h2>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
               {features?.map((feature, index) => (
                 <div key={index} className="flex gap-2 items-center text-xs ">
                   {/* <img className="w-6 md:w-8 " src={service.Icon} alt="serviceImage" /> */}
@@ -114,21 +114,14 @@ const RoomDetailsBody = ({ singleRoomDetails }) => {
           <hr />
           <div className="">
             <h2
-              className="text-2xl md:text-3xl py-5 md:py-5 "
+              className="text-2xl  py-4 md:py-4 "
               style={{ fontFamily: "Gilda Display, serif" }}
             >
               {t("roomService")}
             </h2>
-            {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {services?.map((service, index) => (
-                <div key={index} className="flex gap-2 items-center text-xs ">
-                  <CheckOutlined className="text-green-400" />
-                  <p className="text-sm">{service}</p>
-                </div>
-              ))}
-            </div> */}
+            
             <div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 {displayedServices.map((service, index) => (
                   <div key={index} className="flex gap-2 items-center text-xs">
                     <CheckOutlined className="text-green-400" />
@@ -138,7 +131,7 @@ const RoomDetailsBody = ({ singleRoomDetails }) => {
               </div>
               {services.length > 4 && (
                 <button
-                  className="mt-2 text-[#5c5c5c] hover:text-[#817070]"
+                  className="mt-2 text-sm text-[#5c5c5c] hover:text-[#817070]"
                   onClick={toggleShowAll}
                 >
                   {showAll ? "See Less" : "Show More"}
@@ -148,43 +141,7 @@ const RoomDetailsBody = ({ singleRoomDetails }) => {
           </div>
 
           {/* Around hotels start */}
-          <div className="py-5">
-            <h2
-              className="text-2xl md:text-3xl py-3 md:py-5"
-              style={{ fontFamily: "Gilda Display, serif" }}
-            >
-              Around The Hotel
-            </h2>
-            {/* <div className="flex flex-col md:flex-row gap-2 md:gap-3">
-              <div className="relative">
-                <img src={arroundImage} alt="" className="w-full h-full" />
-                <p
-                  className="absolute bottom-4 left-3 text-white"
-                  style={{ fontFamily: "Gilda Display, serif" }}
-                >
-                  Coffee Bar
-                </p>
-              </div>
-              <div className="relative">
-                <img src={arroundImage2} alt="" className="w-full h-full" />
-                <p
-                  className="absolute bottom-4 left-3 text-white"
-                  style={{ fontFamily: "Gilda Display, serif" }}
-                >
-                  Restaurant
-                </p>
-              </div>
-              <div className="relative">
-                <img src={arroundImage3} alt="" className="w-full h-full" />
-                <p
-                  className="absolute bottom-4 left-3 text-white"
-                  style={{ fontFamily: "Gilda Display, serif" }}
-                >
-                  Wellness
-                </p>
-              </div>
-            </div> */}
-          </div>
+          
           {/* Around hotels end */}
         </div>
         <RoomDate singleRoomDetails={singleRoomDetails} />

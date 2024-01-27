@@ -10,6 +10,7 @@
   /* English-specific styles */
   .hero-text.english {
     font-size: 1.5rem; /* Example base size for English */
+    /* font-weight: 600; */
   }
   
   /* Arabic-specific styles */

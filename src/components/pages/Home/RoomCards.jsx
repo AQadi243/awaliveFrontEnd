@@ -1,13 +1,10 @@
+/* eslint-disable react/prop-types */
 import { Link } from "react-router-dom";
-// import LazyImage from '../../sharedPages/LazyImage';
-import ImagePlaceholder from "../../sharedPages/ImagePlaceholder";
 import { useTranslation } from "react-i18next";
 import i18next from "i18next";
-
-// const LazyImage = React.lazy(() => import('../../sharedPages/LazyImage'));
-import { Skeleton } from "antd";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import placeholderImage from "../../../assets/hotel-service.png";
+import { Skeleton } from "antd";
 
 const RoomCards = ({ roomRates, loadingAllRooms }) => {
   const { t } = useTranslation("home");

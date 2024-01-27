@@ -86,6 +86,7 @@ const AuthProvider = ({ children }) => {
     try {
       const response = await axios.post(
         // "https://awalive-server-side-hzpa.vercel.app/login",
+        // "https://type-script-server.vercel.app/api/auth/login",
         "https://type-script-server.vercel.app/api/auth/login",
         {
           email,
@@ -93,7 +94,6 @@ const AuthProvider = ({ children }) => {
         }
       );
       const data = response.data;
-      console.log(data.data, "users data ");
       setUser(data.data.user);
       localStorage.setItem("userData", JSON.stringify(data.data.user));
       localStorage.setItem("token", data.data.accessToken);

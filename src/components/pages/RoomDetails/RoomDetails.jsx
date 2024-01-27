@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Skeleton, Spin } from "antd";
+import { Skeleton } from "antd";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import RoomBanner from "./RoomBanner";
@@ -8,6 +8,9 @@ import RoomDetailsBody from "./RoomDetailsBody";
 import SimilarRoom from "./SimilarRoom";
 import { useTranslation } from "react-i18next";
 import i18next from "i18next";
+import RoomReviewForm from "../../sharedPages/ReviewForm/RoomReviewForm";
+import ReviewCard from "../../sharedPages/ReviewForm/ReviewCard";
+import AverageReviewStar from "../../sharedPages/ReviewForm/AverageReviewStar";
 // import PageAnimation from "../../PageAnimation/PageAnimation";
 
 const RoomDetails = () => {
@@ -17,7 +20,8 @@ const RoomDetails = () => {
 
   const [loading, setLoading] = useState(true);
   const [singleRoomDetails, setSingleRoomDetails] = useState(null);
-  console.log(singleRoomDetails,'single rooms');
+  const [reviews, setReviews] = useState([]);
+  const [reviewLoading, setReviewLoading] = useState(true);
 
   useEffect(() => {
     const fetchRoom = async () => {
@@ -34,6 +38,8 @@ const RoomDetails = () => {
 
     fetchRoom();
   }, [id, currentLanguage, t, setSingleRoomDetails]);
+
+  console.log(reviews.averageRating,'aasdcasdasasd');
 
   return (
     <>
@@ -61,20 +67,20 @@ const RoomDetails = () => {
                     singleRoomDetails.subTitle?.roomTwo && <p className="" style={{ fontFamily: "Gilda Display, serif" }}> <strong>Bed Room 2</strong> {" "}:{" "}{singleRoomDetails?.subTitle?.roomTwo}</p>
                   }
                 </div>
-                <div className="flex gap-1 items-center text-xs">
+                {/* <div className="flex gap-1 items-center text-xs">
                   <p>HOTEL ROME</p>
-                  <ul className="text-white text-xs">
-                    <i className="fas fa-star"></i>
-                    <i className="fas fa-star"></i>
-                    <i className="fas fa-star"></i>
-                    <i className="fas fa-star"></i>
-                    <i className="fas fa-star"></i>
-                  </ul>
-                </div>
+                  <div className="text-[#BE9874] text-2xl mr-2">
+              {'★'.repeat(reviews.averageRating)}{'☆'.repeat(5 - reviews.averageRating)}
+            </div>
+                </div> */}
+                <AverageReviewStar averageRating={reviews.averageRating} /> 
               </div>
 
               {/* slider  */}
               <RoomDetailsBody singleRoomDetails={singleRoomDetails} />
+              <h1 className="text-2xl" style={{ fontFamily: "Gilda Display, serif" }}>Reviews</h1>
+              <ReviewCard roomId={id} reviews={reviews} setReviews={setReviews} reviewLoading={reviewLoading} setReviewLoading={setReviewLoading} />
+              <RoomReviewForm roomId={id} />
               <SimilarRoom currentRoomId={singleRoomDetails.id} />
             </div>
           </section>
