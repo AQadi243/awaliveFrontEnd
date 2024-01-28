@@ -4,6 +4,7 @@
   "roomServices":"ROOM SERVICES",
   "aroundTheHotel":"AROUND THE HOTEL",
   "similarRooms":"SIMILAR ROOMS",
+  "bedRoom": "Bed Room",
 
   "requiredField": "This field is required",
   "property": "1 Property",
@@ -57,6 +58,13 @@
   "findRoom":"Find Room",
   "reset":"Reset",
 
-  "booking": "Booking"
+  "booking": "Booking",
 
+  "notFound": "No reviews found.",
+  "reviews": "Reviews",
+  "emailReview": "Email", 
+  "messageReview": "Message ",
+  "ratingReview": "Rating ",
+  "submitReview":  "Submit Review",
+  "reviewWarning":  "PLease Login to submit Review"
 }

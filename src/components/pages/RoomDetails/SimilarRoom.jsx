@@ -56,7 +56,7 @@ const SimilarRoom = ({ currentRoomId }) => {
     fetchRoomRates();
   }, [currentRoomId, allRooms, setSimilarRooms, setLoadingAllRooms]);
 
-  console.log(similarRooms, "chcking similer rooms");
+ 
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
       {loadingAllRooms ? (

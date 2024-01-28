@@ -10,12 +10,10 @@ import { useTranslation } from "react-i18next";
 import i18next from "i18next";
 import RoomReviewForm from "../../sharedPages/ReviewForm/RoomReviewForm";
 import ReviewCard from "../../sharedPages/ReviewForm/ReviewCard";
-import AverageReviewStar from "../../sharedPages/ReviewForm/AverageReviewStar";
-// import PageAnimation from "../../PageAnimation/PageAnimation";
 
 const RoomDetails = () => {
   const currentLanguage = i18next.language;
-  const { t } = useTranslation();
+  const { t } = useTranslation("booking");
   const { id } = useParams();
 
   const [loading, setLoading] = useState(true);
@@ -23,6 +21,7 @@ const RoomDetails = () => {
   const [reviews, setReviews] = useState([]);
   const [reviewLoading, setReviewLoading] = useState(true);
 
+  // getting all review along with this room id 
   useEffect(() => {
     const fetchRoom = async () => {
       try {
@@ -39,21 +38,19 @@ const RoomDetails = () => {
     fetchRoom();
   }, [id, currentLanguage, t, setSingleRoomDetails]);
 
-  console.log(reviews.averageRating,'aasdcasdasasd');
-
+  console.log(reviews);
   return (
     <>
       {loading ? (
         <div className="h-[20rem] flex  items-center justify-center text-center">
           <Skeleton active />
-          
         </div>
       ) : singleRoomDetails ? (
         <>
           <RoomBanner singleRoomDetails={singleRoomDetails} />
 
           <section className="w-[90%] mx-auto">
-            <div className="py-8">
+            <div className="py-4">
               <div>
                 <h1
                   className="text-2xl md:text-5xl py-2"
@@ -62,25 +59,56 @@ const RoomDetails = () => {
                   {singleRoomDetails.title}
                 </h1>
                 <div>
-                  <p className="" style={{ fontFamily: "Gilda Display, serif" }}> <strong>Bed Room</strong> {" "}:{" "}{singleRoomDetails?.subTitle?.roomOne}</p>
-                  {
-                    singleRoomDetails.subTitle?.roomTwo && <p className="" style={{ fontFamily: "Gilda Display, serif" }}> <strong>Bed Room 2</strong> {" "}:{" "}{singleRoomDetails?.subTitle?.roomTwo}</p>
-                  }
+                  <p
+                    className=""
+                    style={{ fontFamily: "Gilda Display, serif" }}
+                  >
+                    {" "}
+                    <strong>{t("bedRoom")}</strong> :{" "}
+                    {singleRoomDetails?.subTitle?.roomOne}
+                  </p>
+                  {singleRoomDetails.subTitle?.roomTwo && (
+                    <p
+                      className=""
+                      style={{ fontFamily: "Gilda Display, serif" }}
+                    >
+                      {" "}
+                      <strong>Bed Room 2</strong> :{" "}
+                      {singleRoomDetails?.subTitle?.roomTwo}
+                    </p>
+                  )}
                 </div>
-                {/* <div className="flex gap-1 items-center text-xs">
-                  <p>HOTEL ROME</p>
-                  <div className="text-[#BE9874] text-2xl mr-2">
-              {'★'.repeat(reviews.averageRating)}{'☆'.repeat(5 - reviews.averageRating)}
-            </div>
-                </div> */}
-                <AverageReviewStar averageRating={reviews.averageRating} /> 
+                <div className="flex gap-1 items-center">
+                  <div>
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <span key={star} className={"text-2xl text-[#BE9874]"}>
+                        {star <= Math.ceil(reviews.averageRating) ? "★" : "☆"}
+                      </span>
+                    ))}
+                  </div>
+
+                  <span className="text-sm">
+                    {reviews.averageRating}/5 {t("ratingReview")}
+                  </span>
+                </div>
               </div>
 
               {/* slider  */}
               <RoomDetailsBody singleRoomDetails={singleRoomDetails} />
-              <h1 className="text-2xl" style={{ fontFamily: "Gilda Display, serif" }}>Reviews</h1>
-              <ReviewCard roomId={id} reviews={reviews} setReviews={setReviews} reviewLoading={reviewLoading} setReviewLoading={setReviewLoading} />
-              <RoomReviewForm roomId={id} />
+              <h1
+                className="text-2xl"
+                style={{ fontFamily: "Gilda Display, serif" }}
+              >
+                {t("reviews")}
+              </h1>
+              <ReviewCard
+                roomId={id}
+                reviews={reviews}
+                setReviews={setReviews}
+                reviewLoading={reviewLoading}
+                setReviewLoading={setReviewLoading}
+              />
+              <RoomReviewForm roomId={id} setReviews={setReviews} />
               <SimilarRoom currentRoomId={singleRoomDetails.id} />
             </div>
           </section>

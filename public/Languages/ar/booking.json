@@ -4,6 +4,8 @@
   "roomServices":"خدمات الغرف",
   "aroundTheHotel":"حول الفندق",
   "similarRooms":"غرف مماثلة",
+  "bedRoom": "غرفة النوم.",
+  
 
   "requiredField": "هذا الحقل مطلوب",
   "property": "1 ممتلكة",
@@ -56,10 +58,15 @@
   "findRoom":"لبحث عن غرفة",
   "reset":"إعادة تعيين",
 
-  "booking": "الحجز"
-  
+  "booking": "الحجز",
 
-
+  "notFound": "لم يتم العثور على مراجع. قم بترجمتها إلى العربية.",
+  "reviews": "تقييمات" ,
+  "emailReview": "البريد الإلكتروني ", 
+  "messageReview": "رسالة ",
+  "ratingReview": "تقييم ",
+  "submitReview":  "تقديم التقييم.",
+  "reviewWarning":  "الرجاء تسجيل الدخول لتقديم التقييم"
 
 
 

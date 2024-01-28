@@ -2,6 +2,7 @@ import { Spin, notification } from "antd";
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../Context/AuthProvider";
+import { useTranslation } from "react-i18next";
 
 // eslint-disable-next-line react/prop-types
 const RoomReviewForm = ({ roomId }) => {
@@ -11,7 +12,7 @@ const RoomReviewForm = ({ roomId }) => {
   const [message, setMessage] = useState("");
   const [errors, setErrors] = useState({});
   const [reviewPostingLoading, setReviewPostingLoading] = useState(false);
-
+  const { t } = useTranslation("booking");
 
   useEffect(() => {
     if (user && user?.email) {
@@ -41,6 +42,8 @@ const RoomReviewForm = ({ roomId }) => {
     return Object.keys(newErrors).length === 0;
   };
 
+
+  // posting room review along with room id and user email id 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setReviewPostingLoading(true);
@@ -72,9 +75,11 @@ const RoomReviewForm = ({ roomId }) => {
         placement: "topRight",
         duration: 3.5,
       });
+      
+
       setReviewPostingLoading(false);
-      setMessage('')
-      setRating('')
+      setMessage("");
+      setRating("");
     } catch (err) {
       notification["error"]({
         message: `${err.response.data.issues[0].path} ${err.response.data.message}`,
@@ -97,7 +102,7 @@ const RoomReviewForm = ({ roomId }) => {
           htmlFor="email"
           className="block text-sm font-medium text-gray-700"
         >
-          Email
+          {t("emailReview")}
         </label>
         <input
           type="email"
@@ -117,7 +122,7 @@ const RoomReviewForm = ({ roomId }) => {
 
       <div className="mb-4">
         <label className="block text-sm font-medium text-gray-700">
-          Rating
+          {t("ratingReview")}
         </label>
         <div>
           {[1, 2, 3, 4, 5].map((star) => (
@@ -144,7 +149,7 @@ const RoomReviewForm = ({ roomId }) => {
           htmlFor="message"
           className="block text-sm font-medium text-gray-700"
         >
-          Message
+          {t("messageReview")}
         </label>
         <textarea
           id="message"
@@ -160,7 +165,7 @@ const RoomReviewForm = ({ roomId }) => {
         )}
       </div>
 
-      {reviewPostingLoading ? (
+      {user ? reviewPostingLoading ? (
         <Spin />
       ) : (
         <button
@@ -170,9 +175,13 @@ const RoomReviewForm = ({ roomId }) => {
           }
           className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium  text-white bg-[#BE9874] hover:bg-[#b98e65] focus:outline-none  disabled:opacity-50"
         >
-          Submit Review
+          {t('submitReview')}
         </button>
-      )}
+      ):(
+        <span className="text-red-500 text-xs italic">
+          {t('reviewWarning')}
+        </span>
+      ) }
     </form>
   );
 };

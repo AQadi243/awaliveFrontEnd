@@ -12,7 +12,7 @@ import placeholerImage from "../../../assets/hotel-service.png";
 
 const RoomImageSlider = ({images}) => {
   const [languageKey, setLanguageKey] = useState(i18next.language);
-console.log(images);
+
   useEffect(() => {
     const handleLanguageChange = (lng) => {
       setLanguageKey(lng);
