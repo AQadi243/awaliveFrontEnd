@@ -1,10 +1,14 @@
 import { Spin, notification } from "antd";
 import axios from "axios";
+import i18next from "i18next";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
 
 const SignUpPage = () => {
+  const currentLanguage = i18next.language
+  const { t } = useTranslation("loginAndSignUp");
   const navigate = useNavigate()
   const [showPassword, setShowPassword] = useState(false);
     const [loading, setLoading] = useState(false);
@@ -27,11 +31,11 @@ const SignUpPage = () => {
 
       const validateFields = () => {
         const newErrors = {  
-          firstName: firstName ? "" : "First Name is required",
-          lastName: lastName ? "" : "Last Name is required",
-          email: email && emailRegex.test(email) ? "" : "Please enter a valid email",
-          phone: email ? "" : "Email is required",
-          password: password ? "" : "Phone is required",
+          firstName: firstName ? "" : t('firstNameRequired'),
+          lastName: lastName ? "" : t('lastNameRequired'),
+          email: email && emailRegex.test(email) ? "" : t('validEmail'),
+          phone: email ? "" : t('phoneRequired'),
+          password: password ? "" : t('passwordRequired'),
         };
         setErrors(newErrors);
         return Object.values(newErrors).every((error) => error === "");
@@ -101,32 +105,32 @@ const SignUpPage = () => {
     
   return (
    
-      <section className="w-[90%] md:w-[60%] mx-auto">
-        <div className="shadow-lg py-10" style={{ fontFamily: "Gilda Display, serif" }}>
-            <h1 className="text-3xl nd:text-4xl">Become a Member</h1>
-            <h1 className="text-2xl"> Its free to join!</h1>
-        <div className="py-20 px-4 md:px-10">
-          <div className="w-full flex flex-col gap-5 " id="guest-info-form">
+      <section className="max-w-2xl mx-auto">
+        <div className="shadow-lg py-10 " style={{ fontFamily: "Gilda Display, serif" }}>
+            <h1 className="text-3xl nd:text-4xl px-4">{t('becomeMember')}</h1>
+            <h1 className="text-2xl px-4">{t('itsFree')} </h1>
+        <div className="py-10 px-4 ">
+          <div className="w-full flex flex-col gap-4 " id="guest-info-form">
             <input
               type="name"
               name="firstName"
               id="firstName"
-              placeholder="firstName"
+              placeholder={t('firstNamePlaceholder')}
               value={firstName}
               onChange={(e) => setFirstName(e.target.value)}
               className={`py-2 px-2 border bg-slate-50 ${
-                errors.firstName && "border-red-500"
+                errors.firstName && "border-red-500 "
               }`}
               required
             />
             {errors.firstName && (
-              <p className="text-red-500 text-xs">{errors.firstName}</p>
+              <p className="text-red-500 text-xs italic">{errors.firstName}</p>
             )}
             <input
               type="name"
               name="lastName"
               id="lastName"
-              placeholder="lastName"
+              placeholder={t('firstNamePlaceholder')}
               value={lastName}
               onChange={(e) => setLastName(e.target.value)}
               className={`py-2 px-2 border bg-slate-50 ${
@@ -135,13 +139,13 @@ const SignUpPage = () => {
               required
             />
             {errors.firstName && (
-              <p className="text-red-500 text-xs">{errors.lastName}</p>
+              <p className="text-red-500 text-xs italic">{errors.lastName}</p>
             )}
             <input
               type="email"
               name="email"
               id="email"
-              placeholder="Email"
+              placeholder={t('emailPlaceholder')}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className={`py-2 px-2 border bg-slate-50 ${
@@ -150,13 +154,13 @@ const SignUpPage = () => {
               required
             />
             {errors.email && (
-              <p className="text-red-500 text-xs">{errors.email}</p>
+              <p className="text-red-500 text-xs italic">{errors.email}</p>
             )}
             <input
               type="tel"
               name="phone"
               id="phone"
-              placeholder="phone"
+              placeholder={t('phonePlaceholder')}
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
               className={`py-2 px-2 border bg-slate-50 ${
@@ -165,7 +169,7 @@ const SignUpPage = () => {
               required
             />
             {errors.phone && (
-              <p className="text-red-500 text-xs">{errors.phone}</p>
+              <p className="text-red-500 text-xs italic">{errors.phone}</p>
             )}
 
             {/* <input
@@ -188,7 +192,7 @@ const SignUpPage = () => {
                     type={showPassword ? "text" : "password"}
                     name="password"
                     id="password"
-                    placeholder="Password"
+                    placeholder={t('passwordPlaceholder')}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     className={`py-2 px-2 border bg-slate-50 w-full ${errors.password && 'border-red-500'}`}
@@ -197,11 +201,11 @@ const SignUpPage = () => {
                 <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5"
+                    className={`absolute inset-y-0 ${currentLanguage === 'ar' ? 'left-0 pl-3' : 'right-0 pr-3'} flex items-center text-sm leading-5`}
                 >
-                    {showPassword ? 'Hide' : 'Show'}
+                    {showPassword ? t('hidePassword') : t('showPassword')}
                 </button>
-                {errors.password && <p className="text-red-500 text-xs">{errors.password}</p>}
+                {errors.password && <p className="text-red-500 text-xs italic">{errors.password}</p>}
               </div>
             {errorMessageReg && (
               <p className="text-red-500 text-xs">{errorMessageReg}</p>
@@ -214,7 +218,7 @@ const SignUpPage = () => {
               className="uppercase bg-[#BE9874] text-xs text-white py-3"
               onClick={handleRegister}
             >
-              Join
+              {t('joinButton')}
             </button>
               ) 
             }

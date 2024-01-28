@@ -1,0 +1,27 @@
+{
+    "welcome": "مرحبًا في أوالايف الدولية",
+    "loginMessage": "تسجيل الدخول إلى حسابك",
+    "emailPlaceholder": "البريد الإلكتروني",
+    "passwordPlaceholder": "كلمة المرور",
+    "showPassword": "عرض",
+    "hidePassword": "إخفاء",
+    "forgetPassword": "نسيت كلمة المرور",
+    "joinMessage": "انضم إلى أوالايف الدولية",
+    "enjoyRates": "استمتع بأقل الأسعار طوال الوقت",
+    "freeWiFi": "واي فاي مجاني في الغرفة",
+    "joinNow": "انضم الآن",
+
+    "becomeMember": "كن عضوًا",
+    "itsFree": "مجاني للانضمام!",
+    "firstNamePlaceholder": "الاسم الأول",
+    "lastNamePlaceholder": "اسم العائلة",
+    "phonePlaceholder": "الهاتف",
+    "joinButton": "انضم",
+
+    "firstNameRequired": "اسم الأول مطلوب",
+    "lastNameRequired": "اسم العائلة مطلوب",
+    "validEmail": "الرجاء إدخال بريد إلكتروني صحيح",
+    "emailRequired": "البريد الإلكتروني مطلوب",
+    "phoneRequired": "الهاتف مطلوب",
+    "passwordRequired": "كلمة المرور مطلوبة"
+}
