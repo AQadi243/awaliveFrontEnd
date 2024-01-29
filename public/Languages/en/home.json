@@ -70,11 +70,14 @@
 
   "exploreCity": "EXPLORE THE HEART OF THE CITY",
   "primeLocationTitle": "Prime Location & Convenience",
-  "primeLocationDescription": "Discover the charm of the city from our prime location. Nestled just steps away from major bus stations, [Hotel Name] offers easy access to vibrant shopping, dining, and cultural landmarks. Immerse yourself in the local scene while enjoying our world-class amenities.",
+  "primeLocationDescription": "Discover the charm of the city from our prime location. Nestled just steps away from major bus stations, awalive International hotel offers easy access to vibrant shopping, dining, and cultural landmarks. Immerse yourself in the local scene while enjoying our world-class amenities.",
   "paymentOptions": "DIVERSE PAYMENT OPTIONS:",
   "exclusiveOffer": {
     "label": "Exclusive Offer",
     "discount": "50% OFF",
     "description": "on Selected Luxury Rooms"
-  }
+  },
+  "visualJourney": "A Visual Journey Through Our Hotel",
+  "discoverSpaces": "Discover Our Spaces",
+  "galleryDescription": "Explore the elegance and luxury of our hotel through this curated gallery. Each image captures the essence of our unique spaces, designed for comfort and sophistication. Experience the beauty and tranquility that await you at every turn."
 }

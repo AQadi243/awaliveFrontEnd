@@ -1,66 +1,109 @@
-import family from '../../../assets/familyCard.jpg'
-import roomv from '../../../assets/roomViewCard.jpg'
+import { Image } from "antd";
+import { useTranslation } from "react-i18next";
 
-
+const images = [
+  {
+    src: "https://ik.imagekit.io/appgas2t34/Awalive%20main%20picture/superior-room/2.jpg?updatedAt=1706223679306",
+    colSpan: "col-span-2",
+  },
+  {
+    src: "https://ik.imagekit.io/appgas2t34/Awalive%20main%20picture/superior-room/1.jpg?updatedAt=1706223679195",
+    colSpan: "col-span-2",
+  },
+  {
+    src: "https://ik.imagekit.io/appgas2t34/Awalive%20main%20picture/superior-room/2.jpg?updatedAt=1706223679306",
+    colSpan: "col-span-2",
+  },
+  {
+    src: "https://ik.imagekit.io/appgas2t34/Awalive%20main%20picture/clubRoom/4.jpg?updatedAt=1706223990992",
+    colSpan: "col-span-1",
+  },
+  {
+    src: "https://ik.imagekit.io/appgas2t34/Awalive%20main%20picture/clubRoom/2.jpg?updatedAt=1706223990971",
+    colSpan: "col-span-1",
+  },
+  {
+    src: "https://ik.imagekit.io/appgas2t34/Awalive%20main%20picture/clubRoom/3.jpg?updatedAt=1706223990785",
+    colSpan: "col-span-1",
+  },
+  {
+    src: "https://ik.imagekit.io/appgas2t34/Awalive%20main%20picture/juniorSuits/1.jpg?updatedAt=1706224273214",
+    colSpan: "col-span-1",
+  },
+  {
+    src: "https://ik.imagekit.io/appgas2t34/Awalive%20main%20picture/juniorSuits/5.jpg?updatedAt=1706224273229",
+    colSpan: "col-span-1",
+  },
+  {
+    src: "https://ik.imagekit.io/appgas2t34/Awalive%20main%20picture/juniorSuits/4.jpg?updatedAt=1706224273250",
+    colSpan: "col-span-1",
+  },
+  {
+    src: "https://ik.imagekit.io/appgas2t34/Awalive%20main%20picture/juniorSuits/2.jpg?updatedAt=1706224273152",
+    colSpan: "col-span-1",
+  },
+  {
+    src: "https://ik.imagekit.io/appgas2t34/Awalive%20main%20picture/juniorSuits/3.jpg?updatedAt=1706224273092",
+    colSpan: "col-span-1",
+  },
+  {
+    src: "https://ik.imagekit.io/appgas2t34/Awalive%20main%20picture/ExecutiveSuite%20withSpaBath/2.jpg?updatedAt=1706224407176",
+    colSpan: "col-span-1",
+  },
+  {
+    src: "https://ik.imagekit.io/appgas2t34/Awalive%20main%20picture/ExecutiveSuite%20withSpaBath/1.jpg?updatedAt=1706224407252",
+    colSpan: "col-span-1",
+  },
+  {
+    src: "https://ik.imagekit.io/appgas2t34/Awalive%20main%20picture/RoyleSuit/1.jpg?updatedAt=1706276882735",
+    colSpan: "col-span-1",
+  },
+  {
+    src: "https://ik.imagekit.io/appgas2t34/Awalive%20main%20picture/RoyleSuit/4.jpg?updatedAt=1706276883006",
+    colSpan: "col-span-1",
+  },
+  // Add more images as needed
+];
 
 const StayTune = () => {
+  const {t} = useTranslation('home')
+
+
   return (
-    <section className="bg-[#F9F9F9]" >
-      <div className="w-[90%] mx-auto py-10 md:py-24 ">
-        <div className="text-center">
-          <p className="text-sm tracking-widest" style={{ fontFamily: "Gilda Display, serif" }}>HOTEL NEWS & EVENT</p>
-          <h2 className="text-4xl md:text-6xl py-5" style={{ fontFamily: "Gilda Display, serif" }}>Stay Tuned</h2>
-          <p className="text-sm w-[50%] mx-auto">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc orci nisl, tempus ut sem a, scelerisque sollicitudin arcu</p>
-        </div>
-        <div className="py-5">
-          <div className="grid grid-cols-1 md:grid-cols-3 grid-rows-4 gap-4">
-            <div className="bg-white row-span-3 ">
-              <img className='' src={family} alt="" />
-              <div className="py-8 px-8 flex flex-col gap-2">
-                <p className="text-xs tracking-widest">MARCH 14, 2022</p>
-                <h2 className="text-2xl" style={{ fontFamily: "Gilda Display, serif" }}>New Website</h2>
-                <p className="text-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit quae cupiditate delectus incidunt omnis, voluptate quod sit, molestias natus mollitia sunt sequi aut voluptatum nostrum tempora harum ex. Nostrum, adipisci.</p>
-                <div>
-                  <a href="#" className="text-sm bg-[#BE9874] text-white py-1 px-2 uppercase">Read more</a>
-                </div>
-              </div>
-            </div>
-            <div className="bg-[#BE9874]  py-8 px-8 text-center ">
-              <p className="text-xl text-white" style={{ fontFamily: "Gilda Display, serif" }}> Follow Our Luxury hotels and Resorts</p>
-            </div>
-            <div className="bg-zinc-700 row-span-2 relative" >
-              <img src={roomv} alt="img" className="h-full" />
-              <div className="absolute bottom-5 left-5 text-white flex flex-col gap-2" >
-                <p className="text-xs tracking-widest">MERCH 12, 2023</p>
-                <p className="text-2xl  " style={{ fontFamily: "Gilda Display, serif" }}>Daily Walk</p>
-              </div>
-            </div>
-            <div className="bg-white row-span-3 ">
-              <img src={family} alt="" />
-              <div className="py-8 px-8 flex flex-col gap-2">
-                <p className="text-xs tracking-widest ">MARCH 14, 2022</p>
-                <h2 className="text-2xl" style={{ fontFamily: "Gilda Display, serif" }}>Aroun Us</h2>
-                <p className="text-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit quae cupiditate delectus incidunt omnis, voluptate quod sit, molestias natus mollitia sunt sequi aut voluptatum nostrum tempora harum ex. Nostrum, adipisci.</p>
-                <div>
-                  <a href="#" className="text-sm bg-[#BE9874] text-white py-1 px-2 uppercase">Read more</a>
-                </div>
-              </div>
-            </div>
-            <div className="bg-zinc-700 row-span-2 relative">
-              <img src={roomv} alt="img" className="h-full" />
-              <div className="absolute bottom-5 left-5 text-white flex flex-col gap-2" >
-                <p className="text-xs tracking-widest ">MERCH 12, 2023 </p>
-                <p className="text-2xl " style={{ fontFamily: "Gilda Display, serif" }}>Relax Zone</p>
-              </div>
-            </div>
-            <div className="bg-black  row-span-1 py-8 px-8 text-center ">
-              <p className="text-xl text-white" style={{ fontFamily: "Gilda Display, serif" }}> Follow Our Luxury hotels and Resorts</p>
-            </div>
+    <section className="bg-[#F9F9F9] py-10 md:py-16">
+      <div className="w-[90%] mx-auto text-center">
+        <p className="text-xs">{t('visualJourney')}</p>
+        <h2
+          className="text-2xl md:text-4xl mt-2"
+          style={{ fontFamily: "Gilda Display, serif" }}
+        >
+          {t('discoverSpaces')}
+        </h2>
+        <p className="mt-2 md:mt-4 text-xs text-gray-600 px-4 md:px-20">
+        {t('galleryDescription')}
+        </p>
+      </div>
+
+      <div className="w-[90%] mx-auto grid grid-cols-6 gap-1  mt-10 md:mt-16">
+        {images.map((image, index) => (
+          <div key={index} className={`${image.colSpan} row-span-1 relative`}>
+            <Image
+              src={image.src}
+              alt={`Gallery item ${index}`}
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                overflow:'hidden'
+              }}
+              preview={true} // Set to true if you want an image preview on click
+            />
           </div>
-        </div>
+        ))}
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default StayTune
+export default StayTune;
+
