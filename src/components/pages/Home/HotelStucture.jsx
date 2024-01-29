@@ -1,88 +1,201 @@
-import structure from '../../../assets/Structure.webp'
-import structure2 from '../../../assets/structure-2.webp'
-import key16 from '../../../assets/icon-16.png'
-import Lag15 from '../../../assets/icon-15.png'
-import Ser17 from '../../../assets/icon-17.png'
-import Wait18 from '../../../assets/icon-18.png'
+import structure from "../../../assets/Structure.webp";
+import structure2 from "../../../assets/structure-2.webp";
+import key16 from "../../../assets/icon-16.png";
+import Lag15 from "../../../assets/icon-15.png";
+import Ser17 from "../../../assets/icon-17.png";
+import Wait18 from "../../../assets/icon-18.png";
+import { useTranslation } from "react-i18next";
+import i18next from "i18next";
 
 const HotelStucture = () => {
+  const currentLanguage = i18next.language
+  const {t} = useTranslation('home')
+
+  const localizeNumber = (number) => {
+    return number.toLocaleString(currentLanguage === 'ar' ? 'ar-EG' : 'en-US');
+  };
+
+
   return (
-    <section className="w-[90%] mx-auto py-10 md:py-24">
-      <div className="flex flex-col md:flex-row gap-20">
-        <div className="md:w-[50%] flex flex-col md:flex-row gap-10 items-center relative" >
-          <img src={structure} alt="" className="md:w-[50%]" />
-          <div className="w-24 bg-white py-8 px-5 flex flex-col justify-between md:absolute   right-[38%] top-10 h-96 text-center">
+    <section className="w-[90%] mx-auto py-10 md:py-16">
+      <div className="flex flex-col lg:flex-row gap-10">
+        <div className="lg:w-[50%]  flex flex-row gap-4 items-center relative overflow-hidden">
+          <img src={structure} alt="" className="w-[50%]" />
+          <div className="w-20 md:w-28 bg-white py-4  md:py-8  flex flex-col justify-between text-center absolute left-1/2 transform -translate-x-1/2">
             <div>
-              <p className="text-2xl font-semibold" style={{ fontFamily: "Gilda Display, serif" }}>23</p>
-              <p className='text-xs tracking-widest uppercase'>Rooms</p>
+              <p
+                className="text-2xl font-semibold"
+                style={{ fontFamily: "Gilda Display, serif" }}
+              >
+                {localizeNumber(23)}
+              </p>
+              <p className="text-xs tracking-widest uppercase">{t('rooms.label')}</p>
             </div>
             <div>
-              <p className="text-2xl font-semibold" style={{ fontFamily: "Gilda Display, serif" }}>12</p>
-              <p className='text-xs tracking-widest uppercase'>SUITES</p>
+              <p
+                className="text-2xl font-semibold"
+                style={{ fontFamily: "Gilda Display, serif" }}
+              >
+                {localizeNumber(12)}
+              </p>
+              <p className="text-xs tracking-widest uppercase">{t('suites.label')}</p>
             </div>
             <div>
-              <p className="text-2xl font-semibold" style={{ fontFamily: "Gilda Display, serif" }}>24</p>
-              <p className='text-xs tracking-widest uppercase'>H/24</p>
+              <p
+                className="text-2xl font-semibold"
+                style={{ fontFamily: "Gilda Display, serif" }}
+              >
+                {localizeNumber(23)}
+              </p>
+              <p className="text-xs tracking-widest uppercase">{t('h24.label')}</p>
             </div>
             <div>
-              <p className="text-2xl font-semibold" style={{ fontFamily: "Gilda Display, serif" }}>16</p>
-              <p className='text-xs tracking-widest uppercase'>Lorem</p>
+              <p
+                className="text-2xl font-semibold"
+                style={{ fontFamily: "Gilda Display, serif" }}
+              >
+                {localizeNumber(2)}
+              </p>
+              <p className="text-[10px] md:text-xs  uppercase">{t('restaurant.label')}</p>
             </div>
           </div>
-          <img src={structure2} alt="" className="md:w-[50%]" />
+          <img src={structure2} alt="" className="w-[50%]" />
         </div>
-        <div className="md:w-[50%] flex flex-col gap-3 justify-center">
-          <p className="text-xs md:text-sm tracking-widest" style={{ fontFamily: "Gilda Display, serif" }}>HOTEL FACILITIES</p>
-          <h2 className="text-4xl md:text-6xl" style={{ fontFamily: "Gilda Display, serif" }}>The Structure</h2>
-          <p className='text-sm'>Quisque sollicitudin, nunc sit amet ullamcorper lobortis, lorem ante vehicula felis, non elementum dui magna nec leo. Quisque et sapien metus. Fusce sodales mauris a ligula aliquet tincidunt. Sed congue enim at tellus ullamcorper commodo quis eget dui.</p>
-          <div className="flex justify-between bg-[#BE9874] py-2 px-2 text-white text-sm" style={{ fontFamily: "Gilda Display, serif" }}>
-            <p>Room Service</p>
-            <p>82%</p>
+        <div className="lg:w-[50%] flex flex-col gap-3 justify-center ">
+          <p className=" text-xs tracking-widest uppercase text-center">
+            {t('discover')}
+          </p>
+          <h2
+            className="text-2xl md:text-5xl text-center"
+            style={{ fontFamily: "Gilda Display, serif" }}
+          >
+           {t('discoverTitle')}
+          </h2>
+          <p className="text-xs md:text-sm ">
+            {t('discoverSubtitle')}
+          </p>
+          <div
+            className=" md:py-2  text-[#2E2E2E] text-sm"
+            style={{ fontFamily: "Gilda Display, serif" }}
+          >
+            <div className="flex justify-between mb-1">
+              <p>{t('roomService.label')}</p>
+              <p>{localizeNumber(98)}%</p>
+            </div>
+            <div className="w-full bg-white rounded-full h-2">
+              <div
+                className="bg-[#2E2E2E] h-2 md:h-3 rounded-full"
+                style={{ width: "98%" }}
+              ></div>
+            </div>
           </div>
-          <div className="flex justify-between bg-[#2E2E2E] py-2 px-2 text-white text-sm" style={{ fontFamily: "Gilda Display, serif" }}>
-            <p>Breakfast Included</p>
-            <p>82%</p>
+
+          <div
+            className=" md:py-2  text-[#2E2E2E] text-xs md:text-sm "
+            style={{ fontFamily: "Gilda Display, serif" }}
+          >
+            <div className="flex justify-between mb-1">
+              <p>{t('breakfastIncluded.label')}</p>
+              <p>{localizeNumber(85)}%</p>
+            </div>
+            <div className="w-full bg-white rounded-full h-3">
+              <div
+                className="bg-[#BE9874] h-2 md:h-3 rounded-full"
+                style={{ width: "85%" }}
+              ></div>
+            </div>
           </div>
-          <div className="flex justify-between bg-[#2E2E2E] py-2 px-2 text-white text-sm" style={{ fontFamily: "Gilda Display, serif" }}>
-            <p>Laundry & Ironing</p>
-            <p>82%</p>
+
+          <div
+            className=" md:py-2  text-[#2E2E2E] text-sm "
+            style={{ fontFamily: "Gilda Display, serif" }}
+          >
+            <div className="flex justify-between mb-1">
+              <p>{t('laundryIroning.label')}</p>
+              <p>{localizeNumber(95)}%</p>
+            </div>
+            <div className="w-full bg-white rounded-full h-3">
+              <div
+                className="bg-[#BE9874] h-2 md:h-3 rounded-full "
+                style={{ width: "95%" }}
+              ></div>
+            </div>
           </div>
         </div>
       </div>
       <div className="pt-10">
         <div className="grid gap-3 md:gap-0 grid-cols-2 md:grid-cols-4">
-          <div className="flex gap-2 md:gap-5 items-center ">
-            <img src={key16} alt="icon" className="w-10 md:w-20" />
+          <div className="flex flex-col md:flex-row gap-2 md:gap-5 items-center">
+            <img src={key16} alt="Smart Key Icon" className="w-12 md:w-20" />
             <div>
-              <p className="text-sm md:text-md  font-semibold" style={{ fontFamily: "Gilda Display, serif" }}>Smart Key</p>
-              <p className="text-xs">Lorem ipsum dolor</p>
+              <p
+                className="text-sm md:text-md font-semibold"
+                style={{ fontFamily: "Gilda Display, serif" }}
+              >
+                {t('keyFeatures.smartKey.title')}
+              </p>
+              <p className="text-xs">
+              {t('keyFeatures.smartKey.description')}
+              </p>
             </div>
           </div>
-          <div className="flex gap-2 md:gap-5 items-center ">
-            <img src={Lag15} alt="icon" className="w-10 md:w-20" />
+
+          <div className="flex flex-col md:flex-row gap-2 md:gap-5 items-center  ">
+            <img
+              src={Lag15}
+              alt="Luggage Storage Icon"
+              className="w-12 md:w-20"
+            />
             <div>
-              <p className="text-sm md:text-md font-semibold" style={{ fontFamily: "Gilda Display, serif" }}>Store Luggage</p>
-              <p className="text-xs">Lorem ipsum dolor</p>
+              <p
+                className="text-sm md:text-md font-semibold "
+                style={{ fontFamily: "Gilda Display, serif" }}
+              >
+                {t('keyFeatures.luggageStorage.title')}
+              </p>
+              <p className="text-xs">
+              {t('keyFeatures.luggageStorage.description')}
+              </p>
             </div>
           </div>
-          <div className="flex gap-2 md:gap-5 items-center " >
-            <img src={Ser17} alt="icon" className="w-10 md:w-20" />
+
+          <div className="flex flex-col md:flex-row gap-2 md:gap-5 items-center ">
+            <img src={Ser17} alt="Room Service Icon" className="w-12 md:w-20" />
             <div>
-              <p className="text-sm md:text-md  font-semibold" style={{ fontFamily: "Gilda Display, serif" }}>Room Service </p>
-              <p className="text-xs">Lorem ipsum dolor</p>
+              <p
+                className="text-sm md:text-md font-semibold"
+                style={{ fontFamily: "Gilda Display, serif" }}
+              >
+                {t('keyFeatures.roomService.title')}
+              </p>
+              <p className="text-xs">
+              {t('keyFeatures.roomService.description')}
+              </p>
             </div>
           </div>
-          <div className="flex gap-2 md:gap-5 items-center ">
-            <img src={Wait18} alt="icon" className="w-10 md:w-20" />
+
+          <div className="flex flex-col md:flex-row gap-2 md:gap-5 items-center ">
+            <img
+              src={Wait18}
+              alt="Disinfection Icon"
+              className="w-12 md:w-20"
+            />
             <div>
-              <p className="text-sm md:text-md  font-semibold" style={{ fontFamily: "Gilda Display, serif" }}>Disinfection </p>
-              <p className="text-xs">Lorem ipsum dolor</p>
+              <p
+                className="text-sm md:text-md font-semibold"
+                style={{ fontFamily: "Gilda Display, serif" }}
+              >
+               {t('keyFeatures.disinfection.title')}
+              </p>
+              <p className="text-xs">
+              {t('keyFeatures.disinfection.description')}
+              </p>
             </div>
           </div>
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default HotelStucture
+export default HotelStucture;

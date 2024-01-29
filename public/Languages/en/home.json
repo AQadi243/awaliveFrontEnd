@@ -1,22 +1,80 @@
 {
-    "headerSemiTitle":"Indulge in Elegance",
-    "titleHero": "Experience Luxurious at",
-    "subTitleHero": "Awalive International Hotel",
-    
-    "headerSemiTitleTwo":"Sky-High Dining",
-    "titleSecondImage": "Panoramic Views at",
-    "subTitleHeroSecond":"Revolving Sky Restaurant",
-    "heroButton": "Discover Rooms & Suites",
+  "headerSemiTitle": "Indulge in Elegance",
+  "titleHero": "Experience Luxurious at",
+  "subTitleHero": "Awalive International Hotel",
 
-    "hotelinTaif":"Welcome to Awalive International Hotel in Taif, where comfort seamlessly blends with tranquility. Surrounded by the stunning natural beauty of mountains and the dynamic city skyline, our hotel is your perfect retreat offering mesmerizing views from the sky to the city to the mountain peaks.",
-    "restaurantWithAView":"Enjoy a casual yet elegant dining experience at our Sky View Restaurant. Each meal is complemented by sweeping panoramic views, adding a touch of glamour to your dining experience under the stars.",
-    "poolAndGym":"Revitalize both mind and body in our modern gym, then cool off in our peaceful swimming pool. For the ultimate relaxation, step into our soothing sauna and let the stress of the day melt away.",
-    "peacefulHotelStay":"Awalive International Hotel is more than just a place to sleep—it's a haven for relaxation. Our hotel offers various areas for you to enjoy some quiet time or engage in relaxing activities at your leisure.",
-    "hotelRelaxSubTitle":"Unwind at Awalive International",
-    "hotelRelaxTitle":"Where Comfort Meets Splendor",
-    "titleManager": "Hotel Manager",
+  "headerSemiTitleTwo": "Sky-High Dining",
+  "titleSecondImage": "Panoramic Views at",
+  "subTitleHeroSecond": "Revolving Sky Restaurant",
+  "heroButton": "Discover Rooms & Suites",
 
-    "guest":"Guest",
-    "SAR": "SAR",
-    "from":"From"
-}   
+  "hotelinTaif": "Welcome to Awalive International Hotel in Taif, where comfort seamlessly blends with tranquility. Surrounded by the stunning natural beauty of mountains and the dynamic city skyline, our hotel is your perfect retreat offering mesmerizing views from the sky to the city to the mountain peaks.",
+  "restaurantWithAView": "Enjoy a casual yet elegant dining experience at our Sky View Restaurant. Each meal is complemented by sweeping panoramic views, adding a touch of glamour to your dining experience under the stars.",
+  "poolAndGym": "Revitalize both mind and body in our modern gym, then cool off in our peaceful swimming pool. For the ultimate relaxation, step into our soothing sauna and let the stress of the day melt away.",
+  "peacefulHotelStay": "Awalive International Hotel is more than just a place to sleep—it's a haven for relaxation. Our hotel offers various areas for you to enjoy some quiet time or engage in relaxing activities at your leisure.",
+  "hotelRelaxSubTitle": "Unwind at Awalive International",
+  "hotelRelaxTitle": "Where Comfort Meets Splendor",
+  "titleManager": "Hotel Manager",
+
+  "guest": "Guest",
+  "SAR": "SAR",
+  "from": "From",
+
+  "summerOffers": "BEST SUMMER OFFERS",
+  "summerGetaway": "Exclusive Summer Getaway",
+  "getawayDescription": "Exclusive Summer Getaway at Awaliv International Hotel - Indulge in Luxury, Comfort, and Scenic Views of Taif",
+
+  "discover": "HOTEL FACILITIES",
+  "discoverTitle": "Discover Luxury & Comfort",
+  "discoverSubtitle": "Immerse yourself in unparalleled comfort and elegance at Awalive International Hotel. Our hotel boasts a range of state-of-the-art facilities designed to cater to your every need. From exquisite 24/7 room service to renowned on-site dining options, including complimentary breakfast and world-class laundry services, we ensure a stay that is both luxurious and convenient. Experience the pinnacle of hospitality at Awalive, nestled in the heart of Taif.",
+  "rooms": {
+    "label": "Rooms"
+  },
+  "suites": {
+    "label": "Suites"
+  },
+  "h24": {
+    "label": "H/24"
+  },
+  "restaurant": {
+    "label": "Restaurant"
+  },
+
+  "roomService": {
+    "label": "Room Service"
+  },
+  "breakfastIncluded": {
+    "label": "Breakfast Included"
+  },
+  "laundryIroning": {
+    "label": "Laundry & Ironing"
+  },
+  "keyFeatures": {
+    "smartKey": {
+      "title": "Smart Key",
+      "description": "Experience seamless access with our state-of-the-art smart key system, ensuring security and convenience."
+    },
+    "luggageStorage": {
+      "title": "Store Luggage",
+      "description": "Safely store your belongings with our secure luggage service, giving you the freedom to explore."
+    },
+    "roomService": {
+      "title": "Room Service",
+      "description": "Indulge in the comfort of your room with our 24/7 room service, offering a variety of gourmet options."
+    },
+    "disinfection": {
+      "title": "Disinfection",
+      "description": "Your safety is our priority. Enjoy peace of mind with our enhanced disinfection protocols."
+    }
+  },
+
+  "exploreCity": "EXPLORE THE HEART OF THE CITY",
+  "primeLocationTitle": "Prime Location & Convenience",
+  "primeLocationDescription": "Discover the charm of the city from our prime location. Nestled just steps away from major bus stations, [Hotel Name] offers easy access to vibrant shopping, dining, and cultural landmarks. Immerse yourself in the local scene while enjoying our world-class amenities.",
+  "paymentOptions": "DIVERSE PAYMENT OPTIONS:",
+  "exclusiveOffer": {
+    "label": "Exclusive Offer",
+    "discount": "50% OFF",
+    "description": "on Selected Luxury Rooms"
+  }
+}

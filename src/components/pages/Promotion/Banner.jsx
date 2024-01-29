@@ -1,7 +1,7 @@
 // import React from 'react'
 
 import { Link } from "react-router-dom";
-import bannerImage from "../../../assets/HerrooSlid.webp"; // Update with the actual path
+import bannerImage from "../../../assets/5.jpg"; // Update with the actual path
 import { useEffect, useState } from "react";
 // import LazyImage from "../../sharedPages/LazyImage";
 
