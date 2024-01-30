@@ -8,7 +8,7 @@ const Relax = () => {
   return (
     <section
       data-aos="fade-up"
-      className="w-[90%] mx-auto py-10 md:py-20 text-[#2E2E2E] "
+      className="container mx-auto py-10 md:py-16 text-[#2E2E2E] px-4 "
       data-speed="2"
     >
       <div className="md:h-full flex flex-col xl:flex-row gap-10 md:gap-14 xl:gap-28 items-center justify-center ">

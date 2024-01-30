@@ -17,7 +17,7 @@ const HotelStucture = () => {
 
 
   return (
-    <section className="w-[90%] mx-auto py-10 md:py-16">
+    <section className="container mx-auto py-10 md:py-16 px-4">
       <div className="flex flex-col lg:flex-row gap-10">
         <div className="lg:w-[50%]  flex flex-row gap-4 items-center relative overflow-hidden">
           <img src={structure} alt="" className="w-[50%]" />

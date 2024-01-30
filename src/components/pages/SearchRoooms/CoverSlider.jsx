@@ -16,13 +16,13 @@ const CoverSlider = ({ images }) => {
           dynamicBullets: true,
         }}
         modules={[Pagination]}
-        className="mySwiper w-full overflow-hidden cursor-grab "
+        className="mySwiper w-full overflow-hidden cursor-grab  "
       >
         {images?.map((img, index) => (
           <SwiperSlide key={index} className="">
            
             <LazyLoadImage
-              className="w-full h-full aspect-video object-fill"
+              className="w-full h-full aspect-video object-fill z-0"
               src={img}
               alt={`Slide ${index}`}
               effect="blur" // Optional: choose an effect like 'blur' or leave it out

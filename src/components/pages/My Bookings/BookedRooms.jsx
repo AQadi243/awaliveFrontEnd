@@ -24,10 +24,10 @@ const BookedRooms = ({ loading, bookedData }) => {
   console.log(bookedData, "akjdshfg");
 
   return (
-    <div className="w-[90%] md:w-[60%] mx-auto py-10"  style={{ fontFamily: "Gilda Display, serif" }}>
+    <div className="max-w-2xl px-2 mx-auto py-10"  style={{ fontFamily: "Gilda Display, serif" }}>
       { bookedData.length === 0? <div>No data</div>
       : bookedData.map((booking, index) => (
-        <div key={index} className="grid grid-cols-1 md:grid-cols-4 gap-3 mb-4">
+        <div key={index} className="grid grid-cols-1 md:grid-cols-4  md:gap-3 mb-4">
           {booking.roomId.images && booking.roomId.images.length > 0 && (
             <img
               className="aspect-video w-full h-full bg-black col-span-1"
@@ -35,7 +35,7 @@ const BookedRooms = ({ loading, bookedData }) => {
               alt={`Image of ${booking.roomId.title}`}
             />
           )}
-          <div className="col-span-3">
+          <div className="col-span-3 py-2">
             <h2 className="text-lg font-semibold text-gray-70 capitalize">
               {t("room")}{" "} :{" "}  {booking.roomId.title}
             </h2>

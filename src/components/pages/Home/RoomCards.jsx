@@ -13,7 +13,7 @@ const RoomCards = ({ roomRates, loadingAllRooms }) => {
   const skeletonCount = 6;
 
   return (
-    <section className="w-[90%] mx-auto">
+    <section className="container mx-auto px-4">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-6">
         {loadingAllRooms ? (
           // <ImagePlaceholder />

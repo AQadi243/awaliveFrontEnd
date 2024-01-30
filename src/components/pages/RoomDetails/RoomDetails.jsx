@@ -49,7 +49,7 @@ const RoomDetails = () => {
         <>
           <RoomBanner singleRoomDetails={singleRoomDetails} />
 
-          <section className="w-[90%] mx-auto">
+          <section className="container mx-auto px-2">
             <div className="py-4">
               <div>
                 <h1

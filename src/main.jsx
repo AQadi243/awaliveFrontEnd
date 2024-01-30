@@ -45,12 +45,12 @@ i18next
       order: ["path", "cookie", "htmlTag"],
       caches: ["cookie"],
     },
-    ns: ["about", "home", "contact","booking","loginAndSignUp"], // Define your namespaces
+    ns: ["about", "home", "contact","booking","loginAndSignUp", "footer"], // Define your namespaces
     defaultNS: "home",
     backend: {
       loadPath: "/Languages/{{lng}}/{{ns}}.json",
     },
-    preload: ['about', 'home', 'contact', 'booking', 'loginAndSignUp'],
+    preload: ['about', 'home', 'contact', 'booking', 'loginAndSignUp','footer' ],
   });
 
 const loadingMarkup = (

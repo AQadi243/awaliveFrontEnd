@@ -120,7 +120,7 @@ const SearchBar = ({ pageContext }) => {
 
   return (
     <>
-      <div className="md:w-[80%] mx-auto relative  py-4 px-4 bg-white  ">
+      <div className="container mx-auto relative  py-4 px-4 bg-white  ">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3 items-center  ">
           <div
             className="flex justify-between items-center px-5 border border-black rounded-md md:py-2 bg-white cursor-pointer "
@@ -146,7 +146,7 @@ const SearchBar = ({ pageContext }) => {
             </div>
           </div>
           <div
-            className="flex flex-col relative z-10   px-2 border border-black rounded-md py-1 md:py-2 bg-white cursor-pointer "
+            className="flex flex-col relative    px-2 border border-black rounded-md py-1 md:py-2 bg-white cursor-pointer "
             onClick={handleSelectDate}
             ref={datePickerRef}
           >
@@ -157,7 +157,7 @@ const SearchBar = ({ pageContext }) => {
               <button className="text-sm ">{`${checkIn} - ${checkOut}`}</button>
             </div>
             {showDatePicker && (
-              <div className="absolute -left-2  bg-white md:p-10">
+              <div className="absolute -left-2  bg-white md:p-10 z-10">
                 <DateRange
                   editableDateInputs={true}
                   // onChange={handleDateChange}

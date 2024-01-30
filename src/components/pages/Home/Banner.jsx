@@ -40,7 +40,7 @@ const Banner = () => {
 
   return (
     <>
-      <div className="md:relative md:z-10" >
+      <div className="md:relative" >
         <div data-aos="zoom-in" >
         <Swiper
           navigation={true}

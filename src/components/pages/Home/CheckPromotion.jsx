@@ -14,7 +14,7 @@ const CheckPromotion = () => {
   const {t} = useTranslation('home')
   return (
     <>
-    <section  className="w-[90%] mx-auto pt-10 md:py-16 text-[#2E2E2E]">
+    <section  className="container mx-auto pt-10 md:py-16 text-[#2E2E2E] px-4">
       <div data-aos="fade-up" className=" flex flex-col md:flex-row items-center justify-center gap-10">
         <div  className="md:w-[30%] text-center md:text-start">
           <p className=" pb-4 md:pb-6 text-xs tracking-widest">{t('summerOffers')}</p>

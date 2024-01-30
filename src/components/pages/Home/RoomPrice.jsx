@@ -11,7 +11,7 @@ const RoomPrice = () => {
         backgroundSize: "cover",
       }}
     >
-      <div className="w-[90%] mx-auto py-8 ">
+      <div className="container mx-auto py-8 px-4 ">
         <div data-aos="fade-up" className="text-center pb-6 text-white">
           <p className="text-xs  tracking-widest uppercase">OUR ROOM PRICES</p>
           <h2

@@ -1,5 +1,5 @@
 // import Link from "next/link";
-import {  useContext, useState } from "react";
+import {  useContext, useEffect, useState } from "react";
 // import AnimatedLink from "./AnimatedLink";
 import { AnimatePresence, motion } from "framer-motion";
 import { Link, NavLink } from "react-router-dom";
@@ -10,6 +10,8 @@ import ButtonLoginSignUp from "./Buttons/ButtonLoginSignUp";
 // import { UserOutlined } from '@ant-design/icons';
 import ButtonAfterLogin from "./Buttons/BuutonAfterLogin";
 import { AuthContext } from "../Context/AuthProvider";
+import Headroom from 'react-headroom';
+
 
 const navLinks = [
   { title: "Home", href: "/" },
@@ -22,9 +24,16 @@ const navLinks = [
 
 const Navbar = () => {
   const {  user,  handleLogout } = useContext(AuthContext);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const toggleDropdown = () => setIsDropdownOpen(!isDropdownOpen);
+  const closeDropdown = () => setIsDropdownOpen(false);
+  
+  const [open, setOpen] = useState(false);
+
+  
+
 
   // const navigate = useNavigate();
-  const [open, setOpen] = useState(false);
   // const [isDropdownOpen, setDropdownOpen] = useState(false);
   const toggleMenu = () => {
     setOpen((prevOpen) => !prevOpen);
@@ -81,9 +90,16 @@ const Navbar = () => {
   // };
 
   return (
-    <header>
+    <Headroom 
+    pinStart={50}
+  disableInlineStyles={false}
+  upTolerance={10}
+  downTolerance={10}
+  style={{ transition: 'all .5s ease-in-out', backgroundColor:'white', zIndex:1000 }}
+    >
       <nav
-        className="w-[95%] md:w-[90%] mx-auto"
+        className="container mx-auto"
+        
         style={{ fontFamily: "Gilda Display, serif" }}
       >
         <div className=" flex items-center justify-between py-8 lg:py-4 px-2">
@@ -98,35 +114,17 @@ const Navbar = () => {
               <p>Home</p>
               {/* <AnimatedLink title={"Home"} /> */}
             </NavLink>
-            <li className="relative group list-none">
-              <p
-              // className={({ isActive }) =>
-              //   isActive ? "text-black font-medium" : "font-medium"
-              // }
-              >
-                Search
-              </p>
-
-              {/* Dropdown Content */}
-              <ul className="absolute w-36 left-0 hidden pt-2 bg-white drop-shadow-md text-md text-zinc-400 group-hover:block z-20 rounded-sm">
-                <li>
-                  <NavLink
-                    to={"/roomSearch"}
-                    className="p-2 block hover:bg-slate-50 transition duration-300 ease-in-out "
-                  >
-                    Room Search
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to={"/roomRate"}
-                    className="p-2 block hover:bg-slate-50 transition duration-300 ease-in-out "
-                  >
-                    Room Rates
-                  </NavLink>
-                </li>
-              </ul>
-            </li>
+            <li className="relative group list-none cursor-pointer">
+        <p onClick={toggleDropdown}>Search</p>
+        <ul className={`absolute w-36 left-0 ${isDropdownOpen ? 'block' : 'hidden'} pt-2 bg-white`}>
+          <li className="p-2 hover:bg-slate-50 transition duration-300 ease-in-out">
+            <NavLink to={"/roomSearch"} onClick={closeDropdown}>Room Search</NavLink>
+          </li>
+          <li className="p-2 hover:bg-slate-50 transition duration-300 ease-in-out">
+            <NavLink to={"/roomRate"} onClick={closeDropdown}>Room Rates</NavLink>
+          </li>
+        </ul>
+      </li>
             <NavLink to={"/about"}>
               <p>About</p>
               {/* <AnimatedLink title={"Home"} /> */}
@@ -252,7 +250,7 @@ const Navbar = () => {
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+    </Headroom>
   );
 };
 

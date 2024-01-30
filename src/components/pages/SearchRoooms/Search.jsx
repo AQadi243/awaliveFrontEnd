@@ -100,8 +100,8 @@ const Search = () => {
           // setNoRoomsMessage={setNoRoomsMessage}
           pageContext="search"
         />
-        <div className="flex gap-5 py-3 justify-center items-center">
-          <div>
+        <div className="max-w-2xl mx-auto px-2 md:px-0 grid grid-cols-2 gap-2 py-3  ">
+          <div className="w-full ">
             <li className="relative group list-none">
               <div className="flex gap-2 items-center">
                 <p className="text-white">{t('sortByPrice')}</p>
@@ -133,10 +133,10 @@ const Search = () => {
             </li>
           </div>
 
-          <div>
+          <div className="w-full ">
             <select
               id=""
-              className="text-white bg-transparent outline-none"
+              className="text-white bg-transparent outline-none w-full"
               onChange={handleCategoryChange}
               value={category} // This is important to make the selected value controlled
             >
@@ -160,7 +160,7 @@ const Search = () => {
           </div>
         </div>
       </section>
-      <section className="w-[90%] mx-auto py-10">
+      <section className="container mx-auto py-10 px-2 md:px-0">
         <div className="flex flex-col md:flex-row gap-5">
           <DatesSearch />
 

@@ -71,7 +71,7 @@ const StayTune = () => {
 
   return (
     <section className="bg-[#F9F9F9] py-10 md:py-16">
-      <div className="w-[90%] mx-auto text-center">
+      <div className="container mx-auto text-center ">
         <p className="text-xs">{t('visualJourney')}</p>
         <h2
           className="text-2xl md:text-4xl mt-2"
@@ -84,7 +84,7 @@ const StayTune = () => {
         </p>
       </div>
 
-      <div className="w-[90%] mx-auto grid grid-cols-6 gap-1  mt-10 md:mt-16">
+      <div className="container mx-auto grid grid-cols-6 gap-1  mt-10 md:mt-16 px-2" >
         {images.map((image, index) => (
           <div key={index} className={`${image.colSpan} row-span-1 relative`}>
             <Image
