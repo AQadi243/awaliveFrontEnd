@@ -1,5 +1,5 @@
 // import Link from "next/link";
-import {  useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 // import AnimatedLink from "./AnimatedLink";
 import { AnimatePresence, motion } from "framer-motion";
 import { Link, NavLink } from "react-router-dom";
@@ -10,8 +10,7 @@ import ButtonLoginSignUp from "./Buttons/ButtonLoginSignUp";
 // import { UserOutlined } from '@ant-design/icons';
 import ButtonAfterLogin from "./Buttons/BuutonAfterLogin";
 import { AuthContext } from "../Context/AuthProvider";
-import Headroom from 'react-headroom';
-
+import Headroom from "react-headroom";
 
 const navLinks = [
   { title: "Home", href: "/" },
@@ -23,15 +22,12 @@ const navLinks = [
 ];
 
 const Navbar = () => {
-  const {  user,  handleLogout } = useContext(AuthContext);
+  const { user, handleLogout } = useContext(AuthContext);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const toggleDropdown = () => setIsDropdownOpen(!isDropdownOpen);
   const closeDropdown = () => setIsDropdownOpen(false);
-  
+
   const [open, setOpen] = useState(false);
-
-  
-
 
   // const navigate = useNavigate();
   // const [isDropdownOpen, setDropdownOpen] = useState(false);
@@ -74,8 +70,6 @@ const Navbar = () => {
     },
   };
 
- 
-
   // const toggleDropdown = () => {
   //   setDropdownOpen(!isDropdownOpen);
   // };
@@ -90,18 +84,14 @@ const Navbar = () => {
   // };
 
   return (
-    <Headroom 
-    pinStart={50}
-  disableInlineStyles={false}
-  upTolerance={10}
-  downTolerance={10}
-  style={{ transition: 'all .5s ease-in-out', backgroundColor:'white', zIndex:1000 }}
+    <Headroom
+      pinStart={50}
+      disableInlineStyles={false}
+      upTolerance={10}
+      downTolerance={10}
+      style={{ transition: "all .5s ease-in-out", backgroundColor: "white", zIndex: 1000 }}
     >
-      <nav
-        className="container mx-auto"
-        
-        style={{ fontFamily: "Gilda Display, serif" }}
-      >
+      <nav className="container mx-auto" style={{ fontFamily: "Gilda Display, serif" }}>
         <div className=" flex items-center justify-between py-8 lg:py-4 px-2">
           <div className=" flex items-center gap-[1ch]">
             <div className="w-3 h-3 md:w-5 md:h-5 bg-[#BE9874] rounded-full" />
@@ -115,16 +105,20 @@ const Navbar = () => {
               {/* <AnimatedLink title={"Home"} /> */}
             </NavLink>
             <li className="relative group list-none cursor-pointer">
-        <p onClick={toggleDropdown}>Search</p>
-        <ul className={`absolute w-36 left-0 ${isDropdownOpen ? 'block' : 'hidden'} pt-2 bg-white`}>
-          <li className="p-2 hover:bg-slate-50 transition duration-300 ease-in-out">
-            <NavLink to={"/roomSearch"} onClick={closeDropdown}>Room Search</NavLink>
-          </li>
-          <li className="p-2 hover:bg-slate-50 transition duration-300 ease-in-out">
-            <NavLink to={"/roomRate"} onClick={closeDropdown}>Room Rates</NavLink>
-          </li>
-        </ul>
-      </li>
+              <p onClick={toggleDropdown}>Search</p>
+              <ul className={`absolute w-36 left-0 ${isDropdownOpen ? "block" : "hidden"} pt-2 bg-white`}>
+                <li className="p-2 hover:bg-slate-50 transition duration-300 ease-in-out">
+                  <NavLink to={"/roomSearch"} onClick={closeDropdown}>
+                    Room Search
+                  </NavLink>
+                </li>
+                <li className="p-2 hover:bg-slate-50 transition duration-300 ease-in-out">
+                  <NavLink to={"/roomRate"} onClick={closeDropdown}>
+                    Room Rates
+                  </NavLink>
+                </li>
+              </ul>
+            </li>
             <NavLink to={"/about"}>
               <p>About</p>
               {/* <AnimatedLink title={"Home"} /> */}
@@ -179,28 +173,22 @@ const Navbar = () => {
             {/* login button end  */}
             {/* <AnimatedLink title={"Contact"} /> */}
           </div>
+
+          {/* for mobile version  */}
           <div className="lg:hidden flex gap-2 items-center">
             <div className="lg:hidden">
               <LanguageDopdown />
             </div>
-              {/* mobile login button todo to solve  */}
+            {/* mobile login button todo to solve  */}
             <div className="lg:hidden">
-              {
-                user?.Name ? ( 
-
-                  <ButtonAfterLogin userName={user?.fullName} handleLogout={handleLogout} />
-
-                ) : (
-
-                  <ButtonLoginSignUp />
-                )
-              }
-              {/* mobile login button todo to solve  */}             
+              {user?.fullName ? (
+                <ButtonAfterLogin userName={user?.fullName} handleLogout={handleLogout} />
+              ) : (
+                <ButtonLoginSignUp />
+              )}
+              {/* mobile login button todo to solve  */}
             </div>
-            <div
-              className="cursor-pointer lg:hidden text-md text-black"
-              onClick={toggleMenu}
-            >
+            <div className="cursor-pointer lg:hidden text-md text-black" onClick={toggleMenu}>
               Menu
             </div>
           </div>
@@ -218,10 +206,7 @@ const Navbar = () => {
             <div className="flex h-full flex-col">
               <div className="flex justify-between">
                 <h1 className="text-lg text-black">Awalive Hotel</h1>
-                <p
-                  className="cursor-pointer text-md text-black"
-                  onClick={toggleMenu}
-                >
+                <p className="cursor-pointer text-md text-black" onClick={toggleMenu}>
                   Close
                 </p>
               </div>
@@ -279,10 +264,7 @@ const MobileNavLink = ({ title, href, onClick, nestedLinks }) => {
   };
 
   return (
-    <motion.div
-      variants={mobileLinkVars}
-      className="text-2xl uppercase text-black"
-    >
+    <motion.div variants={mobileLinkVars} className="text-2xl uppercase text-black">
       <div onClick={handleToggleNested}>
         <Link to={href} onClick={onClick}>
           {title}

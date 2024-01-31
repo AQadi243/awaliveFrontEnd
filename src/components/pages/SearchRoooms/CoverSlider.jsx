@@ -1,8 +1,6 @@
 /* eslint-disable react/prop-types */
-
 import { Swiper, SwiperSlide } from "swiper/react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-
 import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
@@ -20,7 +18,6 @@ const CoverSlider = ({ images }) => {
       >
         {images?.map((img, index) => (
           <SwiperSlide key={index} className="">
-           
             <LazyLoadImage
               className="w-full h-full aspect-video object-fill z-0"
               src={img}

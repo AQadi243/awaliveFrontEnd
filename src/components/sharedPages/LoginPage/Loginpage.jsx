@@ -8,7 +8,7 @@ import i18next from "i18next";
 // import { Link } from 'react-router-dom';
 
 const Loginpage = () => {
-  const currentLanguage = i18next.language
+  const currentLanguage = i18next.language;
   const { t } = useTranslation("loginAndSignUp");
   const navigate = useNavigate();
   const { handleLogin, error, user, loading, setLoading } = useContext(AuthContext);
@@ -25,8 +25,8 @@ const Loginpage = () => {
 
   const validateFields = () => {
     const newErrors = {
-      email: email ? "" :t('emailRequired'),
-      password: password ? "" :t('passwordRequired'),
+      email: email ? "" : t("emailRequired"),
+      password: password ? "" : t("passwordRequired"),
     };
     setErrors(newErrors);
     return Object.values(newErrors).every((error) => error === "");
@@ -54,59 +54,42 @@ const Loginpage = () => {
         style={{ fontFamily: "Gilda Display, serif" }}
       >
         <div className="md:w-[80%]">
-          <h1 className="text-3xl">{t('welcome')}</h1>
-          <p className="text-xl py-5">{t('loginMessage')}</p>
+          <h1 className="text-3xl">{t("welcome")}</h1>
+          <p className="text-xl py-5">{t("loginMessage")}</p>
           <div className="w-full flex flex-col gap-5 " id="guest-info-form">
             <input
               type="email"
               name="email"
               id="email"
-              placeholder={t('emailPlaceholder')}
+              placeholder={t("emailPlaceholder")}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className={`py-2 px-2 border bg-slate-50 ${
-                errors.email && "border-red-500"
-              }`}
+              className={`py-2 px-2 border bg-slate-50 ${errors.email && "border-red-500"}`}
               required
             />
-            {errors.email && (
-              <p className="text-red-500 text-xs italic">{errors.email}</p>
-            )}
+            {errors.email && <p className="text-red-500 text-xs italic">{errors.email}</p>}
 
-            {/* <input
-                      type="password"
-                      name="password"
-                      id="password"
-                      placeholder="password"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      className={`py-2 px-2 border bg-slate-50 ${errors.password && 'border-red-500'}`}
-                      required
-                    />
-                    {errors.password && <p className="text-red-500 text-xs">{errors.password}</p>} */}
             <div className="relative">
               <input
                 type={showPassword ? "text" : "password"}
                 name="password"
                 id="password"
-                placeholder={t('passwordPlaceholder')}
+                placeholder={t("passwordPlaceholder")}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className={`py-2 px-2 border bg-slate-50 w-full ${
-                  errors.password && "border-red-500"
-                }`}
+                className={`py-2 px-2 border bg-slate-50 w-full ${errors.password && "border-red-500"}`}
                 required
               />
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className={`absolute inset-y-0 ${currentLanguage === 'ar' ? 'left-0 pl-3' : 'right-0 pr-3'} flex items-center text-sm leading-5`}
+                className={`absolute inset-y-0 ${
+                  currentLanguage === "ar" ? "left-0 pl-3" : "right-0 pr-3"
+                } flex items-center text-sm leading-5`}
               >
-                {showPassword ? t('hidePassword') : t('showPassword')}
+                {showPassword ? t("hidePassword") : t("showPassword")}
               </button>
-              {errors.password && (
-                <p className="text-red-500 text-xs ">{errors.password}</p>
-              )}
+              {errors.password && <p className="text-red-500 text-xs ">{errors.password}</p>}
             </div>
             {error && <p className="text-red-500 text-xs italic">{error}</p>}
 
@@ -123,21 +106,17 @@ const Loginpage = () => {
               </button>
             )}
           </div>
-          <p className="text-red-500 text-xs italic ">{t('forgetPassword')}</p>
+          <p className="text-red-500 text-xs italic ">{t("forgetPassword")}</p>
         </div>
         <div className="md:w-[80%] flex flex-col gap-4">
-          {/* <p className='text-xl py-5'>Log In to your account</p> */}
-          <h2 className="text-xl ">{t('joinMessage')}</h2>
+          <h2 className="text-xl ">{t("joinMessage")}</h2>
           <img className="" src={img} alt="" />
 
-          <li className="text-xs ">{t('enjoyRates')}</li>
-          <li className="text-xs ">{t('freeWiFi')}</li>
+          <li className="text-xs ">{t("enjoyRates")}</li>
+          <li className="text-xs ">{t("freeWiFi")}</li>
 
-          <Link
-            to={"/signup"}
-            className="w-full py-4  px-2 text-center  bg-[#BE9874] text-white  "
-          >
-            {t('joinNow')}
+          <Link to={"/signup"} className="w-full py-4  px-2 text-center  bg-[#BE9874] text-white  ">
+            {t("joinNow")}
           </Link>
         </div>
       </div>

@@ -1,18 +1,13 @@
-import { DownOutlined } from "@ant-design/icons";
-import {  Dropdown, Space } from "antd";
+import { Dropdown, Space } from "antd";
 import { Link } from "react-router-dom";
-import { UserOutlined } from '@ant-design/icons';
+import { UserOutlined } from "@ant-design/icons";
 
 const ButtonLoginSignUp = () => {
   const items = [
     {
       key: "1",
       label: (
-        <Link
-          to={'login'}
-          rel="noopener noreferrer"
-          
-        >
+        <Link to={"login"} rel="noopener noreferrer">
           Log In
         </Link>
       ),
@@ -20,18 +15,12 @@ const ButtonLoginSignUp = () => {
     {
       key: "2",
       label: (
-        <Link
-          to={'/signup'}
-          rel="noopener noreferrer"
-          
-        >
+        <Link to={"/signup"} rel="noopener noreferrer">
           Join
         </Link>
       ),
     },
   ];
-
-  
 
   return (
     <div className="">
@@ -42,14 +31,10 @@ const ButtonLoginSignUp = () => {
               items,
             }}
             placement="bottom"
-            
           >
             <div className="flex  items-center justify-center   cursor-pointer">
-            <UserOutlined className="text-xl cursor-pointer px-4 py-1 md:py-0" />
-            {/* <p className="cursor-pointer text-md flex items-center"></p> */}
-            {/* <DownOutlined className="text-xs" /> */}
+              <UserOutlined className="text-xl cursor-pointer px-4 py-1 md:py-0" />
             </div>
-            
           </Dropdown>
         </Space>
       </Space>

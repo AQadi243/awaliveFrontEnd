@@ -6,15 +6,10 @@ import { DateRange } from "react-date-range";
 // import { addDays } from "date-fns";
 // import { FaAngleDown, FaAngleUp } from "react-icons/fa6";
 import { Modal } from "antd";
-import {
-  UserOutlined,
-  PlusCircleOutlined,
-  MinusCircleOutlined,
-} from "@ant-design/icons";
+import { UserOutlined, PlusCircleOutlined, MinusCircleOutlined } from "@ant-design/icons";
 import { AuthContext } from "../../sharedPages/Context/AuthProvider";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-
 
 const SearchBar = ({ pageContext }) => {
   const { t } = useTranslation("search");
@@ -34,12 +29,11 @@ const SearchBar = ({ pageContext }) => {
     setCalender,
     calender,
     setChildAges,
- 
+
     // setSearchLoader,
   } = useContext(AuthContext);
   const [modal2Open, setModal2Open] = useState(false);
   const [showDatePicker, setShowDatePicker] = useState(false);
-
 
   const handleIncrement = () => {
     setGuests((prevGuests) => (prevGuests === null ? 1 : prevGuests + 1));
@@ -67,7 +61,7 @@ const SearchBar = ({ pageContext }) => {
     setGuests(2);
     setChild(0);
     setChildAges([]);
-    setNight(0)
+    setNight(0);
 
     // Close the modal
     setModal2Open(false);
@@ -99,10 +93,7 @@ const SearchBar = ({ pageContext }) => {
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (
-        datePickerRef.current &&
-        !datePickerRef.current.contains(event.target)
-      ) {
+      if (datePickerRef.current && !datePickerRef.current.contains(event.target)) {
         setShowDatePicker(false);
       }
     };
@@ -115,8 +106,6 @@ const SearchBar = ({ pageContext }) => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
-
-  
 
   return (
     <>
@@ -135,10 +124,7 @@ const SearchBar = ({ pageContext }) => {
                     <span>
                       {numberOfGuests}-{t("guest")},
                     </span>
-                    <span>
-                      {" "}
-                      1-{t("room")}
-                    </span>
+                    <span> 1-{t("room")}</span>
                     {child ? <span> {child}-children</span> : ""}
                   </p>
                 </div>
@@ -167,9 +153,6 @@ const SearchBar = ({ pageContext }) => {
                   moveRangeOnFirstSelection={false}
                   ranges={calender}
                 />
-                {/* <div>
-                <button onClick={handleDone} className="py-2 px-4 rounded-full   border-[1px] border-blue-400 text-xs ">Done</button>
-              </div> */}
               </div>
             )}
           </div>
@@ -207,17 +190,11 @@ const SearchBar = ({ pageContext }) => {
             <p className="text-sm md:text-xl">{t("adult")}</p>
             <div className="flex gap-2 md:gap-5 items-center">
               <p>
-                <MinusCircleOutlined
-                  className="text-xl md:text-2xl font-light"
-                  onClick={handleDecrement}
-                />
+                <MinusCircleOutlined className="text-xl md:text-2xl font-light" onClick={handleDecrement} />
               </p>
               <p className="text-xl md:text-2xl  px-3">{numberOfGuests}</p>
               <p>
-                <PlusCircleOutlined
-                  className="text-xl md:text-2xl"
-                  onClick={handleIncrement}
-                />
+                <PlusCircleOutlined className="text-xl md:text-2xl" onClick={handleIncrement} />
               </p>
             </div>
           </div>
@@ -225,17 +202,11 @@ const SearchBar = ({ pageContext }) => {
             <p className="text-sm md:text-xl">{t("children")}</p>
             <div className="flex gap-2 md:gap-5 items-center">
               <p>
-                <MinusCircleOutlined
-                  className="text-xl md:text-2xl font-light"
-                  onClick={handleChildDecrement}
-                />
+                <MinusCircleOutlined className="text-xl md:text-2xl font-light" onClick={handleChildDecrement} />
               </p>
               <p className="text-xl md:text-2xl  px-3">{child}</p>
               <p>
-                <PlusCircleOutlined
-                  className="text-xl md:text-2xl"
-                  onClick={handleChildIncrement}
-                />
+                <PlusCircleOutlined className="text-xl md:text-2xl" onClick={handleChildIncrement} />
               </p>
             </div>
           </div>
@@ -247,13 +218,7 @@ const SearchBar = ({ pageContext }) => {
               </p>
               <div className="flex gap-2 md:gap-5 items-center">
                 {/* Use a Select component or any other input for age selection */}
-                <select
-                  value={age}
-                  onChange={(e) =>
-                    handleChildAgeChange(index, parseInt(e.target.value))
-                  }
-                  className="px-10"
-                >
+                <select value={age} onChange={(e) => handleChildAgeChange(index, parseInt(e.target.value))} className="px-10">
                   {Array.from({ length: 14 }, (_, i) => i + 1).map((num) => (
                     <option key={num} value={num} className="">
                       {t("age")} - {num}

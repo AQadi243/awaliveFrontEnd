@@ -66,25 +66,19 @@ const images = [
 ];
 
 const StayTune = () => {
-  const {t} = useTranslation('home')
-
+  const { t } = useTranslation("home");
 
   return (
     <section className="bg-[#F9F9F9] py-10 md:py-16">
       <div className="container mx-auto text-center ">
-        <p className="text-xs">{t('visualJourney')}</p>
-        <h2
-          className="text-2xl md:text-4xl mt-2"
-          style={{ fontFamily: "Gilda Display, serif" }}
-        >
-          {t('discoverSpaces')}
+        <p className="text-xs">{t("visualJourney")}</p>
+        <h2 className="text-2xl md:text-4xl mt-2" style={{ fontFamily: "Gilda Display, serif" }}>
+          {t("discoverSpaces")}
         </h2>
-        <p className="mt-2 md:mt-4 text-xs text-gray-600 px-4 md:px-20">
-        {t('galleryDescription')}
-        </p>
+        <p className="mt-2 md:mt-4 text-xs text-gray-600 px-4 md:px-20">{t("galleryDescription")}</p>
       </div>
 
-      <div className="container mx-auto grid grid-cols-6 gap-1  mt-10 md:mt-16 px-2" >
+      <div className="container mx-auto grid grid-cols-6 gap-1  mt-10 md:mt-16 px-2">
         {images.map((image, index) => (
           <div key={index} className={`${image.colSpan} row-span-1 relative`}>
             <Image
@@ -94,7 +88,7 @@ const StayTune = () => {
                 width: "100%",
                 height: "100%",
                 objectFit: "cover",
-                overflow:'hidden'
+                overflow: "hidden",
               }}
               preview={true} // Set to true if you want an image preview on click
             />
@@ -106,4 +100,3 @@ const StayTune = () => {
 };
 
 export default StayTune;
-

@@ -26,9 +26,7 @@ const AuthProvider = ({ children }) => {
   const [night, setNight] = useState(0);
   const [checkIn, setCheckIn] = useState("Check-In");
   const [checkOut, setCheckOut] = useState("Check-Out");
-  const [calender, setCalender] = useState([
-    { startDate: null, endDate: null, key: "selection" },
-  ]);
+  const [calender, setCalender] = useState([{ startDate: null, endDate: null, key: "selection" }]);
   // const [guests, setGuests] = useState(1);
   const [numberOfGuests, setGuests] = useState(2);
   const [child, setChild] = useState(0);
@@ -74,13 +72,10 @@ const AuthProvider = ({ children }) => {
 
     // Save booking information to localStorage
     localStorage.setItem("bookingInfo", JSON.stringify(bookingInfo));
-
-    console.log("Booking information saved:", bookingInfo);
   };
 
   // login the user
   const handleLogin = async (email, password) => {
-    // console.log(handleLogin,'alksjhlkashlil');
     setLoading(true);
 
     try {
@@ -128,50 +123,21 @@ const AuthProvider = ({ children }) => {
     }
   };
 
-  // const handleLogout = () => {
-  //   // Clear user data and token from state and localStorage
-  //   // setUser(null);
-  //   // localStorage.removeItem("userData");
-  //   // localStorage.removeItem("token");
-  //   // notification["info"]({
-  //   //   message: "Log out success",
-  //   //   description: "See you. Come back soon",
-  //   //   placement: "topRight",
-  //   //   duration: 3.5,
-  //   // });
-  //    useEffect(() => {
-  //   const checkTokenExpiration = () => {
-  //     const token = localStorage.getItem("token");
-  //     if (token) {
-  //       const tokenExpiration = JSON.parse(atob(token.split('.')[1])).exp;
-  //       const currentTime = Date.now() / 1000; // current time in seconds
-  //       if (tokenExpiration < currentTime) {
-  //         handleLogout();
-  //       }
-  //     }
-  //   };
-
-  //   const intervalId = setInterval(checkTokenExpiration, 60000); // check every minute
-
-  //   return () => clearInterval(intervalId); // clear interval on component unmount
-  // }, []);
-  // };
-
   const handleLogout = () => {
     // Clear user data and token from state and localStorage
     // setUser(null);
     localStorage.removeItem("userData");
     localStorage.removeItem("token");
-    setUser('')
+    setUser("");
     // notification logic here
   };
 
-  // checking if user token is expire or not 
+  // checking if user token is expire or not
   useEffect(() => {
     const checkTokenExpiration = () => {
       const token = localStorage.getItem("token");
       if (token) {
-        const tokenExpiration = JSON.parse(atob(token.split('.')[1])).exp;
+        const tokenExpiration = JSON.parse(atob(token.split(".")[1])).exp;
         const currentTime = Date.now() / 1000; // current time in seconds
         if (tokenExpiration < currentTime) {
           handleLogout();
@@ -181,7 +147,6 @@ const AuthProvider = ({ children }) => {
     const intervalId = setInterval(checkTokenExpiration, 60000); // check every minute
     return () => clearInterval(intervalId); // clear interval on component unmount
   }, []);
-
 
   useEffect(() => {
     // Retrieve booking information from localStorage on component mount
@@ -227,7 +192,6 @@ const AuthProvider = ({ children }) => {
     // setSearchLoading(false)
   }, [currentLanguage, t, setLoadingAllRooms]);
 
-
   const authInfo = {
     loading,
     setLoading,
@@ -272,9 +236,7 @@ const AuthProvider = ({ children }) => {
     user,
   };
 
-  return (
-    <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
-  );
+  return <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>;
 };
 
 export default AuthProvider;

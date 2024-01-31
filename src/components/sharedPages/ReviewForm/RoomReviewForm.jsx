@@ -42,8 +42,7 @@ const RoomReviewForm = ({ roomId }) => {
     return Object.keys(newErrors).length === 0;
   };
 
-
-  // posting room review along with room id and user email id 
+  // posting room review along with room id and user email id
   const handleSubmit = async (e) => {
     e.preventDefault();
     setReviewPostingLoading(true);
@@ -60,22 +59,17 @@ const RoomReviewForm = ({ roomId }) => {
       message,
     };
     try {
-      const response = await axios.post(
-        "https://type-script-server.vercel.app/api/review/create",
-        reviewData,
-        {
-          headers: {
-            Authorization: token,
-          },
-        }
-      );
+      const response = await axios.post("https://type-script-server.vercel.app/api/review/create", reviewData, {
+        headers: {
+          Authorization: token,
+        },
+      });
       notification["success"]({
         message: "Successful",
         description: `${response.data.message}`,
         placement: "topRight",
         duration: 3.5,
       });
-      
 
       setReviewPostingLoading(false);
       setMessage("");
@@ -92,16 +86,9 @@ const RoomReviewForm = ({ roomId }) => {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="max-w-lg  py-4"
-      style={{ fontFamily: "Gilda Display, serif" }}
-    >
+    <form onSubmit={handleSubmit} className="max-w-lg  py-4" style={{ fontFamily: "Gilda Display, serif" }}>
       <div className="mb-4">
-        <label
-          htmlFor="email"
-          className="block text-sm font-medium text-gray-700"
-        >
+        <label htmlFor="email" className="block text-sm font-medium text-gray-700">
           {t("emailReview")}
         </label>
         <input
@@ -115,40 +102,27 @@ const RoomReviewForm = ({ roomId }) => {
             errors.email ? "border-red-500" : "border-gray-300"
           }  shadow-sm focus:outline-none focus:ring-[#BE9874] focus:border-[#BE9874]`}
         />
-        {errors.email && (
-          <p className="text-red-500 text-xs italic">{errors.email}</p>
-        )}
+        {errors.email && <p className="text-red-500 text-xs italic">{errors.email}</p>}
       </div>
 
       <div className="mb-4">
-        <label className="block text-sm font-medium text-gray-700">
-          {t("ratingReview")}
-        </label>
+        <label className="block text-sm font-medium text-gray-700">{t("ratingReview")}</label>
         <div>
           {[1, 2, 3, 4, 5].map((star) => (
             <span
               key={star}
               onClick={() => setRating(star)}
-              className={`cursor-pointer ${
-                errors.rating
-                  ? "text-red-500 text-md"
-                  : "text-2xl text-[#BE9874]"
-              }`}
+              className={`cursor-pointer ${errors.rating ? "text-red-500 text-md" : "text-2xl text-[#BE9874]"}`}
             >
               {star <= rating ? "★" : "☆"}
             </span>
           ))}
         </div>
-        {errors.rating && (
-          <p className="text-red-500 text-xs italic">{errors.rating}</p>
-        )}
+        {errors.rating && <p className="text-red-500 text-xs italic">{errors.rating}</p>}
       </div>
 
       <div className="mb-4">
-        <label
-          htmlFor="message"
-          className="block text-sm font-medium text-gray-700"
-        >
+        <label htmlFor="message" className="block text-sm font-medium text-gray-700">
           {t("messageReview")}
         </label>
         <textarea
@@ -160,28 +134,24 @@ const RoomReviewForm = ({ roomId }) => {
             errors.message ? "border-red-500" : "border-gray-300"
           } rounded-md shadow-sm focus:outline-none focus:ring-[#BE9874] focus:border-[#BE9874]`}
         />
-        {errors.message && (
-          <p className="text-red-500 text-xs italic">{errors.message}</p>
-        )}
+        {errors.message && <p className="text-red-500 text-xs italic">{errors.message}</p>}
       </div>
 
-      {user ? reviewPostingLoading ? (
-        <Spin />
+      {user ? (
+        reviewPostingLoading ? (
+          <Spin />
+        ) : (
+          <button
+            type="submit"
+            disabled={Object.keys(errors).length > 0 || !email || !message || rating === 0}
+            className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium  text-white bg-[#BE9874] hover:bg-[#b98e65] focus:outline-none  disabled:opacity-50"
+          >
+            {t("submitReview")}
+          </button>
+        )
       ) : (
-        <button
-          type="submit"
-          disabled={
-            Object.keys(errors).length > 0 || !email || !message || rating === 0
-          }
-          className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium  text-white bg-[#BE9874] hover:bg-[#b98e65] focus:outline-none  disabled:opacity-50"
-        >
-          {t('submitReview')}
-        </button>
-      ):(
-        <span className="text-red-500 text-xs italic">
-          {t('reviewWarning')}
-        </span>
-      ) }
+        <span className="text-red-500 text-xs italic">{t("reviewWarning")}</span>
+      )}
     </form>
   );
 };

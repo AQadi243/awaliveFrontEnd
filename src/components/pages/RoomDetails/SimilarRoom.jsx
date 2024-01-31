@@ -1,8 +1,4 @@
 import { useContext, useEffect, useState } from "react";
-// import axios from "axios";
-// import { Link } from "react-router-dom";
-// import { useTranslation } from "react-i18next";
-// import i18next from "i18next";
 import { AuthContext } from "../../sharedPages/Context/AuthProvider";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -10,33 +6,10 @@ import { Skeleton } from "antd";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import placeholerImage from "../../../assets/hotel-service.png";
 
-// const shuffleArray = (array) => {
-//   let currentIndex = array.length,
-//     randomIndex;
-
-//   // While there remain elements to shuffle.
-//   while (currentIndex !== 0) {
-//     // Pick a remaining element.
-//     randomIndex = Math.floor(Math.random() * currentIndex);
-//     currentIndex--;
-
-//     // And swap it with the current element.
-//     [array[currentIndex], array[randomIndex]] = [
-//       array[randomIndex],
-//       array[currentIndex],
-//     ];
-//   }
-
-//   return array;
-// };
-
 const SimilarRoom = ({ currentRoomId }) => {
-  // const [loading, setLoading] = useState(true);
-  const { allRooms, setLoadingAllRooms, loadingAllRooms } =
-    useContext(AuthContext);
+  const { allRooms, setLoadingAllRooms, loadingAllRooms } = useContext(AuthContext);
   const [similarRooms, setSimilarRooms] = useState(allRooms);
   const { t } = useTranslation("booking");
-  // const currentLanguage = i18next.language;
 
   useEffect(() => {
     const fetchRoomRates = async () => {
@@ -56,7 +29,6 @@ const SimilarRoom = ({ currentRoomId }) => {
     fetchRoomRates();
   }, [currentRoomId, allRooms, setSimilarRooms, setLoadingAllRooms]);
 
- 
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
       {loadingAllRooms ? (
@@ -116,9 +88,7 @@ const SimilarRoom = ({ currentRoomId }) => {
                 <p>{room.size}</p>
               </div>
               <p className="text-sm ">
-                {room.description.length > 100
-                  ? `${room.description.slice(0, 100)}...`
-                  : room.description}
+                {room.description.length > 100 ? `${room.description.slice(0, 100)}...` : room.description}
               </p>
               <div>
                 <Link
@@ -136,7 +106,6 @@ const SimilarRoom = ({ currentRoomId }) => {
               <div className="grid grid-cols-3 justify-between">
                 {room?.features?.map((feature, index) => (
                   <div key={index} className="">
-                    {/* <img className="w-full" src={service.Icon} alt="" /> */}
                     <p className="text-xs">{feature}</p>
                   </div>
                 ))}

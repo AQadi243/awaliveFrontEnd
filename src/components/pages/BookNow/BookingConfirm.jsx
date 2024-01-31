@@ -2,7 +2,6 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../sharedPages/Context/AuthProvider";
 import BookingDate from "./BookingDate";
 import { Tabs, Modal, notification, Spin } from "antd";
-// import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js';
 import { useNavigate } from "react-router-dom";
 import PageAnimation from "../../PageAnimation/PageAnimation";
 import axios from "axios";
@@ -22,34 +21,20 @@ const BookingConfirm = () => {
   const [userToken, setUserToken] = useState("");
   const navigate = useNavigate();
   const { formData } = bookingInfo;
-  const {
-    firstName,
-    lastName,
-    email,
-    address,
-    message,
-    phone,
-    arrivalTime,
-    city,
-  } = formData || {};
+  const { firstName, lastName, email, address, message, phone, arrivalTime, city } = formData || {};
   const { t } = useTranslation("booking");
 
   useEffect(() => {
     const token = localStorage.getItem("token");
     // Retrieve booking information from localStorage
-    const storedBookingInfo =
-      JSON.parse(localStorage.getItem("bookingInfo")) || {};
+    const storedBookingInfo = JSON.parse(localStorage.getItem("bookingInfo")) || {};
 
     // Convert checkIn and checkOut to ISO format if they exist
     if (storedBookingInfo.checkIn) {
-      storedBookingInfo.checkIn = new Date(
-        storedBookingInfo.checkIn
-      ).toLocaleDateString();
+      storedBookingInfo.checkIn = new Date(storedBookingInfo.checkIn).toLocaleDateString();
     }
     if (storedBookingInfo.checkOut) {
-      storedBookingInfo.checkOut = new Date(
-        storedBookingInfo.checkOut
-      ).toLocaleDateString();
+      storedBookingInfo.checkOut = new Date(storedBookingInfo.checkOut).toLocaleDateString();
     }
 
     // Update the state with the retrieved booking information
@@ -78,37 +63,12 @@ const BookingConfirm = () => {
       paymentMethod,
     };
 
-    console.log(bookingData, "all booking data I am passing");
-
-    // try {
-
-    //   console.log(response);
-    // } catch (error) {
-    //   if (error.response) {
-    //     // The request was made and the server responded with a status code
-    //     // that falls out of the range of 2xx
-    //     console.error(error.response.data);
-    //     console.error(error.response.status);
-    //     console.error(error.response.headers);
-    //   } else if (error.request) {
-    //     // The request was made but no response was received
-    //     console.error(error.request);
-    //   } else {
-    //     // Something happened in setting up the request that triggered an Error
-    //     console.error('Error', error.message);
-    //   }
-    //   console.error(error.config);
-    // }
     try {
-      const response = await axios.post(
-        "https://type-script-server.vercel.app/api/booking",
-        bookingData,
-        {
-          headers: {
-            Authorization: `${userToken}`,
-          },
-        }
-      );
+      const response = await axios.post("https://type-script-server.vercel.app/api/booking", bookingData, {
+        headers: {
+          Authorization: `${userToken}`,
+        },
+      });
       if (response.status === 200) {
         // Checking for HTTP status code 200 (OK)
         const result = response.data;
@@ -125,7 +85,6 @@ const BookingConfirm = () => {
         throw new Error("Failed to save booking");
       }
     } catch (error) {
-      
       // Default error message
       let errorMessage = "Please check all info.";
 
@@ -230,26 +189,20 @@ const BookingConfirm = () => {
   const items = [
     {
       key: "2",
-      label: t('paymentOnArrival'),
+      label: t("paymentOnArrival"),
       children: (
         <div style={{ fontFamily: "Gilda Display, serif" }}>
-          <p className="py-2">
-            {t('payAtHotelMessage')}
-          </p>
+          <p className="py-2">{t("payAtHotelMessage")}</p>
           {loading ? (
             <Spin />
           ) : (
-            <button
-              className="bg-[#BE9874] py-2 px-8 text-sm text-white"
-              onClick={() => handleBookNow("Payment on Arrival")}
-            >
+            <button className="bg-[#BE9874] py-2 px-8 text-sm text-white" onClick={() => handleBookNow("Payment on Arrival")}>
               Book Now
             </button>
           )}
         </div>
       ),
     },
-    
   ];
 
   return (
@@ -259,14 +212,9 @@ const BookingConfirm = () => {
           <div className="container mx-auto px-2">
             <div className="flex flex-col md:flex-row gap-3 md:gap-5 py-10 md:py-20">
               <BookingDate />
-              <div
-                className="md:w-2/3"
-                style={{ fontFamily: "Gilda Display, serif" }}
-              >
+              <div className="md:w-2/3" style={{ fontFamily: "Gilda Display, serif" }}>
                 <div>
-                  <h2 className="text-2xl md:text-4xl pb-3">
-                    {t("yourOrderDetails")} :
-                  </h2>
+                  <h2 className="text-2xl md:text-4xl pb-3">{t("yourOrderDetails")} :</h2>
                   <p className="text-yellow-300">{t("emailPhoneError")} </p>
                   <div>
                     <form className="flex flex-col gap-3 md:gap-5">
@@ -279,27 +227,13 @@ const BookingConfirm = () => {
                           <p className="py-2 px-2 "> {t("lastN")}:</p>
                           <span className="">{lastName}</span>
                         </div>
-                        {/* <div className='flex items-center'>
-                    <p className="py-2 px-2 "> Email:</p>
-                    <span className='font-semibold'>{email}</span>
-                  </div>
-                  <div className='flex items-center'>
-                    <p className="py-2 px-2 "> Phone:</p>
-                    <span className='font-semibold'>{phone}</span>
-                  </div> */}
+
                         <div className="flex items-center">
                           <p className="py-2 px-2 "> {t("emailN")}:</p>
                           {isEditingEmail ? (
                             <>
-                              <input
-                                type="email"
-                                value={editedEmail}
-                                onChange={handleEmailChange}
-                              />
-                              <button
-                                onClick={saveEmail}
-                                className="bg-[#BE9874] px-2 rounded-sm text-white"
-                              >
+                              <input type="email" value={editedEmail} onChange={handleEmailChange} />
+                              <button onClick={saveEmail} className="bg-[#BE9874] px-2 rounded-sm text-white">
                                 Save
                               </button>
                             </>
@@ -308,29 +242,17 @@ const BookingConfirm = () => {
                               <span className="" onClick={handleEmailEdit}>
                                 {editedEmail}
                               </span>
-                              <p className=" px-2 rounded-sm bg-black text-white ml-3 text-xs">
-                                Edit
-                              </p>
+                              <p className=" px-2 rounded-sm bg-black text-white ml-3 text-xs">Edit</p>
                             </>
                           )}
-                          {emailError && (
-                            <p className="error-message">{emailError}</p>
-                          )}
+                          {emailError && <p className="error-message">{emailError}</p>}
                         </div>
                         <div className="flex items-center">
                           <p className="py-2 px-2 "> {t("phoneN")}:</p>
                           {isEditingPhone ? (
                             <>
-                              <input
-                                type="tel"
-                                required
-                                value={editedPhone}
-                                onChange={handlePhoneChange}
-                              />
-                              <button
-                                onClick={savePhone}
-                                className="bg-[#BE9874] px-2 rounded-sm text-white"
-                              >
+                              <input type="tel" required value={editedPhone} onChange={handlePhoneChange} />
+                              <button onClick={savePhone} className="bg-[#BE9874] px-2 rounded-sm text-white">
                                 Save
                               </button>
                             </>
@@ -339,9 +261,7 @@ const BookingConfirm = () => {
                               <span className="" onClick={handlePhoneEdit}>
                                 {editedPhone}
                               </span>
-                              <p className=" px-2 rounded-sm bg-black text-white ml-3 text-xs">
-                                Edit
-                              </p>
+                              <p className=" px-2 rounded-sm bg-black text-white ml-3 text-xs">Edit</p>
                             </>
                           )}
                           {/* {phoneError && <p className="error-message">{phoneError}</p>} */}
@@ -352,11 +272,11 @@ const BookingConfirm = () => {
                           <span className="font-semibold">{address}</span>
                         </div>
                         <div className="flex items-center">
-                          <p className="py-2 px-2 "> {t('city')}:</p>
+                          <p className="py-2 px-2 "> {t("city")}:</p>
                           <span className="font-semibold">{city}</span>
                         </div>
                         <div className="flex items-center">
-                          <p className="py-2 px-2 "> {t('arrival')}:</p>
+                          <p className="py-2 px-2 "> {t("arrival")}:</p>
                           <span className="font-semibold">{arrivalTime}</span>
                         </div>
                         <div className="flex items-center">

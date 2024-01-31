@@ -32,38 +32,20 @@ const RoomDate = ({ singleRoomDetails }) => {
   const { roomName, roomPrice, image, id, priceOptions } = singleRoomDetails;
   const [showDatePicker, setShowDatePicker] = useState(false);
 
-  // const [state, setState] = useState([
-  //   {
-  //     startDate: checkIn ? new Date(checkIn) : new Date(),
-  //     endDate: checkOut ? new Date(checkOut) : addDays(new Date(), 1),
-  //     key: "selection",
-  //   },
-  // ]);
-
   // Update room details
   useEffect(() => {
     setRoomId(id);
     // setRoomImage(image);
     setRoomName(roomName);
     setRoomPrice(priceOptions[0].price);
-  }, [
-    id,
-    setRoomId,
-    roomName,
-    priceOptions,
-    setRoomImage,
-    setRoomName,
-    setRoomPrice,
-  ]);
-
+  }, [id, setRoomId, roomName, priceOptions, setRoomImage, setRoomName, setRoomPrice]);
 
   useEffect(() => {
     if (calender[0].startDate && calender[0].endDate) {
       const startDateString = calender[0].startDate.toDateString();
       const endDateString = calender[0].endDate.toDateString();
 
-      const timeDifference =
-        calender[0].endDate.getTime() - calender[0].startDate.getTime();
+      const timeDifference = calender[0].endDate.getTime() - calender[0].startDate.getTime();
       const differenceInNights = Math.ceil(timeDifference / (1000 * 3600 * 24));
 
       setNight(differenceInNights);
@@ -97,9 +79,7 @@ const RoomDate = ({ singleRoomDetails }) => {
           className=" flex flex-col gap-5  items-center justify-center text-center bg-[#1C1C1D] py-5 px-5 md:py-10 md:px-10 relative z-40"
           style={{ fontFamily: "Gilda Display, serif" }}
         >
-          <p className="text-white text-xl tracking-widest  bg-black w-full py-4 ">
-            {t("selectDates")}
-          </p>
+          <p className="text-white text-xl tracking-widest  bg-black w-full py-4 ">{t("selectDates")}</p>
           <div className="grid grid-cols-2 gap-5  w-full">
             <div
               id="start-container"
@@ -147,17 +127,11 @@ const RoomDate = ({ singleRoomDetails }) => {
                   <p className="text-md  text-white">{t("guest")}</p>
                 </div>
                 <div className="flex flex-row gap-2 items-center text-xl">
-                  <button
-                    className="text-[#BE9874] p-2"
-                    onClick={handleDecrement}
-                  >
+                  <button className="text-[#BE9874] p-2" onClick={handleDecrement}>
                     <FaAngleDown />
                   </button>
                   <p className="text-[#BE9874]">{numberOfGuests}</p>
-                  <button
-                    className="text-[#BE9874] p-2 "
-                    onClick={handleIncrement}
-                  >
+                  <button className="text-[#BE9874] p-2 " onClick={handleIncrement}>
                     <FaAngleUp />
                   </button>
                 </div>
@@ -168,10 +142,7 @@ const RoomDate = ({ singleRoomDetails }) => {
               className="bg-black py-2 px-2 flex flex-col gap-1 items-center justify-center cursor-pointer date-picker"
             >
               <label className="text-md text-white">{t("night")}</label>
-              <p
-                id="selectedDays"
-                className="bg-transparent outline-none w-28 text-[#BE9874] text-2xl"
-              >
+              <p id="selectedDays" className="bg-transparent outline-none w-28 text-[#BE9874] text-2xl">
                 {night}
               </p>
             </div>
@@ -184,17 +155,10 @@ const RoomDate = ({ singleRoomDetails }) => {
             <div id="perfect-message" className="text-green-500 text-xs"></div>
           </div>
 
-          {/* <Link
-            to={"/booking"}
-            onClick={handleBookNow}
-            className="bg-[#BE9874] w-full py-2 text-white text-xs md:text-sm bookNow "
-          >
-            {t("bookNow")}
-          </Link> */}
           <Link
             to={night > 0 ? "/booking" : "#"}
             onClick={night > 0 ? handleBookNow : (e) => e.preventDefault()}
-            className={`bg-[#BE9874] w-full py-2 text-white text-xs md:text-sm bookNow ${
+            className={`bg-[#BE9874] w-full py-2 text-white text-sm bookNow ${
               night === 0 ? "opacity-50 cursor-not-allowed" : ""
             }`}
           >

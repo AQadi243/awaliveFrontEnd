@@ -21,13 +21,11 @@ const RoomDetails = () => {
   const [reviews, setReviews] = useState([]);
   const [reviewLoading, setReviewLoading] = useState(true);
 
-  // getting all review along with this room id 
+  // getting all review along with this room id
   useEffect(() => {
     const fetchRoom = async () => {
       try {
-        const response = await axios.get(
-          `https://type-script-server.vercel.app/api/room/${id}?lang=${currentLanguage}`
-        );
+        const response = await axios.get(`https://type-script-server.vercel.app/api/room/${id}?lang=${currentLanguage}`);
         setSingleRoomDetails(response.data.data);
         setLoading(false);
       } catch (error) {
@@ -38,7 +36,6 @@ const RoomDetails = () => {
     fetchRoom();
   }, [id, currentLanguage, t, setSingleRoomDetails]);
 
-  console.log(reviews);
   return (
     <>
       {loading ? (
@@ -52,29 +49,18 @@ const RoomDetails = () => {
           <section className="container mx-auto px-2">
             <div className="py-4">
               <div>
-                <h1
-                  className="text-2xl md:text-5xl py-2"
-                  style={{ fontFamily: "Gilda Display, serif" }}
-                >
+                <h1 className="text-2xl md:text-5xl py-2" style={{ fontFamily: "Gilda Display, serif" }}>
                   {singleRoomDetails.title}
                 </h1>
                 <div>
-                  <p
-                    className=""
-                    style={{ fontFamily: "Gilda Display, serif" }}
-                  >
+                  <p className="" style={{ fontFamily: "Gilda Display, serif" }}>
                     {" "}
-                    <strong>{t("bedRoom")}</strong> :{" "}
-                    {singleRoomDetails?.subTitle?.roomOne}
+                    <strong>{t("bedRoom")}</strong> : {singleRoomDetails?.subTitle?.roomOne}
                   </p>
                   {singleRoomDetails.subTitle?.roomTwo && (
-                    <p
-                      className=""
-                      style={{ fontFamily: "Gilda Display, serif" }}
-                    >
+                    <p className="" style={{ fontFamily: "Gilda Display, serif" }}>
                       {" "}
-                      <strong>Bed Room 2</strong> :{" "}
-                      {singleRoomDetails?.subTitle?.roomTwo}
+                      <strong>Bed Room 2</strong> : {singleRoomDetails?.subTitle?.roomTwo}
                     </p>
                   )}
                 </div>
@@ -95,10 +81,7 @@ const RoomDetails = () => {
 
               {/* slider  */}
               <RoomDetailsBody singleRoomDetails={singleRoomDetails} />
-              <h1
-                className="text-2xl"
-                style={{ fontFamily: "Gilda Display, serif" }}
-              >
+              <h1 className="text-2xl" style={{ fontFamily: "Gilda Display, serif" }}>
                 {t("reviews")}
               </h1>
               <ReviewCard

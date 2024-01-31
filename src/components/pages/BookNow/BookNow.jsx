@@ -4,26 +4,22 @@ import BannerPage from "../../sharedPages/PageBanner/BannerPage";
 import BookingDate from "./BookingDate";
 import BookingForm from "./BookingForm";
 
-
 const BookNow = () => {
-  const {t} = useTranslation('booking')
-  
+  const { t } = useTranslation("booking");
 
-  return   (
+  return (
     <>
-    <PageAnimation>
-    <BannerPage text={t('booking')} />
-    <section className="bg-slate-50">
-      <div className="container mx-auto px-2">
-
-      <div className="flex flex-col md:flex-row gap-5 py-10 md:py-20">
-        <BookingDate />
-        <BookingForm />
-
-      </div>
-      </div>
-    </section>
-    </PageAnimation>
+      <PageAnimation>
+        <BannerPage text={t("booking")} />
+        <section className="bg-slate-50">
+          <div className="container mx-auto px-2">
+            <div className="flex flex-col md:flex-row gap-5 py-10 md:py-20">
+              <BookingDate />
+              <BookingForm />
+            </div>
+          </div>
+        </section>
+      </PageAnimation>
     </>
   );
 };
