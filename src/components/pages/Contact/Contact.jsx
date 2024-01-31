@@ -5,7 +5,7 @@ import keyImage from "/src/assets/icon-16.png";
 import serImage from "/src/assets/icon-17.png";
 import lagImage from "/src/assets/icon-15.png";
 import waiImage from "/src/assets/icon-18.png";
-import rvImage from "/src/assets/aboutRV.jpg";
+// import rvImage from "/src/assets/ ";
 import lnImage from "/src/assets/structure-2.jpg";
 import spImage from "/src/assets/Structure.jpg";
 import bgImage from "/src/assets/relazArea2.jpg";

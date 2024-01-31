@@ -35,7 +35,7 @@ const LanguageDropdown = () => {
 
   useEffect(() => {
     document.body.dir = currentLanguage.dir || 'ltr';
-    document.title = t('app_title');
+    // document.title = t('app_title');
   }, [currentLanguage, t]);
 
   const items = languages.map(({ code, name, flag }) => ({

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import img from "../../../assets/aboutRV.jpg";
-import imgAVT from "../../../assets/avetar.png";
+import img from "../../../assets/5.jpg";
+import imgAVT from "../../../assets/check.jpg";
 import bgim from "../../../assets/peralxCom.jpg";
 import roomImg from "../../../assets/luxryCard.jpg";
 import roomImg2 from "../../../assets/DoubleRoomCard.jpg";
@@ -9,80 +9,110 @@ import lagg from "../../../assets/icon-15.png";
 import ser from "../../../assets/icon-17.png";
 import wait from "../../../assets/icon-18.png";
 import { useTranslation } from "react-i18next";
+import i18next from "i18next";
+
 const BestPrice = () => {
-  const { t } = useTranslation("");
+  const currentLanguage = i18next.language;
+  const { t } = useTranslation("about");
+
+  const localizeNumber = (number) => {
+    return number.toLocaleString(currentLanguage === "ar" ? "ar-EG" : "en-US");
+  };
 
   return (
     <>
-    <section className={` h-[calc(100vh-20%)]   w-[90%] mx-auto py-20`} style={{ fontFamily: "Gilda Display, serif" }}>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-10 items-center">
-        <div className="h-full flex flex-col justify-between gap-2 ">
-          <p className="text-xs tracking-widest">{t('best_price.hotel_facilities')}</p>
-          <h2 className="text-4xl md:text-6xl">{t('best_price.the_structure')}</h2>
-          <p className="text-xs">
-            {t('best_price.structure_description')}
-          </p>
-          <div className="flex justify-between  bg-[#BE9874] py-2 px-2 text-white text-sm">
-            <p className="text-xs">{t('best_price.room_service') } </p>
-            <p>82%</p>
+      <section className="bg-[#F9F9F9] py-10" style={{ fontFamily: "Gilda Display, serif" }}>
+        <div className="container mx-auto px-2 md:px-6 grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+          {/* Left Column */}
+          <div className="space-y-4">
+            <p className="text-sm tracking-widest text-center md:text-start">{t("hotelFacilities.subtitle")}</p>
+            <h2 className="text-2xl md:text-4xl font-semibold text-center md:text-start">{t("hotelFacilities.title")}</h2>
+            <p className="text-xs md:text-lg">{t("hotelFacilities.description")}</p>
+            <div className="space-y-2">
+              <div className="   text-[#2E2E2E] text-sm" style={{ fontFamily: "Gilda Display, serif" }}>
+                <div className="flex justify-between mb-1">
+                  <p>{t("roomService.label")}</p>
+                  <p>{localizeNumber(98)}%</p>
+                </div>
+                <div className="w-full bg-white rounded-full h-2">
+                  <div className="bg-[#2E2E2E] h-2 md:h-3 rounded-full" style={{ width: "98%" }}></div>
+                </div>
+              </div>
+
+              <div className="   text-[#2E2E2E] text-xs md:text-sm " style={{ fontFamily: "Gilda Display, serif" }}>
+                <div className="flex justify-between mb-1">
+                  <p>{t("breakfastIncluded.label")}</p>
+                  <p>{localizeNumber(85)}%</p>
+                </div>
+                <div className="w-full bg-white rounded-full h-3">
+                  <div className="bg-[#BE9874] h-2 md:h-3 rounded-full" style={{ width: "85%" }}></div>
+                </div>
+              </div>
+
+              <div className="   text-[#2E2E2E] text-sm " style={{ fontFamily: "Gilda Display, serif" }}>
+                <div className="flex justify-between mb-1">
+                  <p>{t("laundryIroning.label")}</p>
+                  <p>{localizeNumber(95)}%</p>
+                </div>
+                <div className="w-full bg-white rounded-full h-3">
+                  <div className="bg-[#BE9874] h-2 md:h-3 rounded-full " style={{ width: "95%" }}></div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div className="flex justify-between bg-[#2E2E2E] py-2 px-2 text-white text-sm">
-            <p className="text-xs">{t('best_price.breakfast_included')}</p>
-            <p>82%</p>
-          </div>
-          <div className="flex justify-between bg-[#2E2E2E] py-2 px-2 text-white text-sm">
-            <p className="text-xs">{t('best_price.laundry_ironing')}</p>
-            <p>82%</p>
+
+          {/* Right Column */}
+          <div className="relative">
+            <img src={img} alt="Luxury Room" className="w-full h-[350px] object-cover " />
+            <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center text-white p-4">
+              <div className="md:w-[80%] mx-auto flex flex-col justify-center items-center text-center">
+                <img src={imgAVT} alt="Customer Avatar" className="rounded-full w-16 h-16" />
+                {/* <p className="text-sm pt-4">{t("testimonialQuote")}</p> */}
+                <ul className="flex text-lg py-4">
+                  <li>★</li>
+                  <li>★</li>
+                  <li>★</li>
+                  <li>★</li>
+                  <li>★</li>
+                </ul>
+                <h3 className="text-md md:text-xl">{t("guestExperience.testimonial")}</h3>
+                <p className="text-xs"> {t("guestExperience.guestInfo")}</p>
+              </div>
+            </div>
           </div>
         </div>
-        <div className="md:h-[25rem] relative">
-          <img
-            src={img}
-            alt=""
-            className="w-full h-full object-cover"
-           
-          />
-          <div className=" absolute w-full px-2 md:px-4 top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 text-center text-white flex flex-col items-center">
-            <img
-              src={imgAVT}
-              alt="avatar"
-              className="rounded-full   w-16"
-            />
-            <p className="text-xs pt-4">
-              Cras consectetur placerat nisl, ullamcorper feugiat est aliquet
-              eu. Quisque in dolor euismod, interdum felis mattis, dignissim
-              velit. Vestibulum ultricies euismod arcu tincidunt pellentesque.
+      </section>
+
+      <section>
+        <div
+          className={`h-[calc(100vh-40vh)] flex items-center relative `}
+          style={{
+            backgroundImage: `url(${bgim})`,
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center center",
+            backgroundSize: "cover",
+            fontFamily: "Gilda Display, serif",
+          }}
+        >
+          <div className="absolute top-0 left-0 w-full h-full bg-black opacity-70"></div>
+          <div className=" max-w-2xl w-full px-1  text-center text-white flex flex-col gap-1 md:gap-4 absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 ">
+            <h1 className="text-2xl md:text-5xl">Elevating Your Experience</h1>
+            <h2 className="text-2xl md:text-5xl">with Our Care and Security</h2>
+            <p className="text-xs md:text-lg ">
+              At Awalive Hotel, we are dedicated to providing an unparalleled level of service and protection for our guests. Our
+              commitment to your safety and satisfaction is our top priority, ensuring a stay that is not only luxurious but also
+              secure and peaceful. From our attentive staff to our advanced security measures, every detail is designed with your
+              well-being in mind.
             </p>
-            <ul className="text-white text-sm py-4">
-              <i className="fas fa-star"></i>
-              <i className="fas fa-star"></i>
-              <i className="fas fa-star"></i>
-              <i className="fas fa-star"></i>
-              <i className="fas fa-star"></i>
-            </ul>
-            
-            <h2 className="text-xl">{t('best_price.customer_name')}</h2>
-            <p className="text-sm">{t('best_price.customer_position')}</p>
+            <div className="py-4">
+              <Link to={"/contact"} className="uppercase text-white bg-[#BE9874] py-3 px-6 text-sm ">
+                {t("best_price.contact_us")}
+              </Link>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
-    <section>
-      <div className=" h-screen flex items-center relative " style={{backgroundImage: `url(${bgim})`, backgroundRepeat: "no-repeat", backgroundPosition:'center center',  backgroundSize: 'cover',fontFamily: "Gilda Display, serif" }}>
-      <div className='absolute top-0 left-0 w-full h-full bg-black opacity-50'></div>
-        <div className="w-[70%]  text-center text-white flex flex-col gap-1 md:gap-4 absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 ">
-          <h1 className="text-2xl md:text-6xl">{t('best_price.goal_statement1')}</h1>
-          <h2 className="text-2xl md:text-6xl">{t('best_price.goal_statement2')}</h2>
-          <p className="text-xs md:text-sm md:w-[60%] mx-auto">
-            {t('best_price.safety_description')}
-          </p>
-          <div className="py-4">
-            <Link to={'/contact'} className="uppercase text-white bg-[#BE9874] py-3 px-6 text-sm ">{t('best_price.contact_us')}</Link>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section className="w-[90%] mx-auto py-10 md:py-20" style={{ fontFamily: "Gilda Display, serif" }}>
+      </section>
+      {/* <section className="w-[90%] mx-auto py-10 md:py-20" style={{ fontFamily: "Gilda Display, serif" }}>
     <div className="flex flex-col md:flex-row gap-6 justify-between  items-center">
         <div className="md:w-[40%] flex flex-col text-center md:items-end text-2xl  md:text-5xl ">
           <p>{t('best_price.make_the_best')}</p>
@@ -145,9 +175,8 @@ const BestPrice = () => {
           <Link to={'/roomSearch'} className="font-semibold text-xs tracking-widest text-white bg-[#BE9874] py-3 px-6">{t('best_price.book_now')}</Link>
         </div>
       </div>
-    </section>
+    </section> */}
     </>
-    
   );
 };
 

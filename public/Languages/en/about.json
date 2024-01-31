@@ -1,4 +1,32 @@
 {
+  
+    "gymTitle": "State-of-the-Art Fitness",
+    "gymDescription": " Stay fit and rejuvenated during your stay at our fully-equipped gym. Featuring the latest fitness equipment and a welcoming environment, our gym is designed to cater to all your workout needs. Whether youre looking for a rigorous exercise session or a light workout to start your day, our gym facilities provide the perfect setting to keep up with your fitness routine.",
+    "restaurantTitle": "Exquisite Dining Experiences at Taif",
+    "restaurantDescription": " Delight in gourmet culinary adventures at Awaliv International Hotel's esteemed restaurant. Our chefs masterfully prepare a variety of exquisite dishes, offering a perfect blend of local flavors and international cuisine. With a charming ambiance and exceptional service, each meal becomes a memorable dining experience.",
+    "serviceTitle": "Unparalleled Hospitality at Taif",
+    "serviceDescription": "Experience the pinnacle of personalized service at Awaliv International Hotel. Our dedicated staff is committed to ensuring your stay is nothing short of exceptional, with attentive and bespoke services that cater to your every need. From the moment you arrive, embrace a world where your comfort and satisfaction are our highest priority.",
+  
+    "hotelFacilities": {
+      "subtitle": "HOTEL FACILITIES",
+      "title": "Best Comfort & Service",
+      "description": "Indulge in our state-of-the-art gym, pamper yourself in our luxurious spa, and savor culinary delights in our gourmet restaurant. At Awalive Hotel, every detail is crafted for your utmost comfort."
+    },
+    "roomService": {
+      "label": "Room Service"
+    },
+    "breakfastIncluded": {
+      "label": "Breakfast Included"
+    },
+    "laundryIroning": {
+      "label": "Laundry & Ironing"
+    },
+
+    "guestExperience": {
+      "testimonial": "An experience of luxury and comfort beyond words - John Doe, Esteemed Guest",
+      "guestInfo": "John Doe, Esteemed Gues"
+    },
+
     "About_katrin_img": "https://i.ibb.co/6B9yCwG/katrin-Slider.jpg",
     "About_katrin_name": "Ketrin Wilson",
     "About_katrin_position": "Hotel Manager",

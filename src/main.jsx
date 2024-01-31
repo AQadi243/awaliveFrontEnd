@@ -45,12 +45,12 @@ i18next
       order: ["path", "cookie", "htmlTag"],
       caches: ["cookie"],
     },
-    ns: ["about", "home", "contact","booking","loginAndSignUp", "footer"], // Define your namespaces
+    ns: ["about", "home", "contact","booking","loginAndSignUp", "footer","about"], // Define your namespaces
     defaultNS: "home",
     backend: {
       loadPath: "/Languages/{{lng}}/{{ns}}.json",
     },
-    preload: ['about', 'home', 'contact', 'booking', 'loginAndSignUp','footer' ],
+    preload: ['about', 'home', 'contact', 'booking', 'loginAndSignUp','footer','about' ],
   });
 
 const loadingMarkup = (
@@ -76,14 +76,14 @@ const router = createBrowserRouter([
         path: "/check",
         element: <Check />,
       },
-      // {
-      //   path: "/about",
-      //   element: <About />,
-      // },
-      // {
-      //   path: "/contact",
-      //   element: <Contact />,
-      // },
+      {
+        path: "/about",
+        element: <About />,
+      },
+      {
+        path: "/contact",
+        element: <Contact />,
+      },
       {
         path: "/roomSearch",
         element: <Search />,

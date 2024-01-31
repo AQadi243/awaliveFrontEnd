@@ -9,6 +9,7 @@ import Relax from "./Relax";
 import RoomCards from "./RoomCards";
 import RoomPrice from "./RoomPrice";
 import StayTune from "./StayTune";
+import { Helmet } from 'react-helmet';
 
 import { FaArrowUp } from "react-icons/fa";
 import { AuthContext } from "../../sharedPages/Context/AuthProvider";
@@ -46,6 +47,23 @@ const Home = () => {
 
   return (
     <>
+     <Helmet>
+        {/* <title>Awalive | Home</title> */}
+     
+        <title>Awalive Hotel - Luxury Accommodation in Taif</title>
+        <meta name="description" content="Experience luxury and comfort at Awalive Hotel, located in taif. Enjoy top-class amenities, exquisite dining, and exceptional service. Book your stay now!" />
+        <meta name="keywords" content="luxury hotel, accommodation, Awalive Hotel, taif hotels, exclusive suites, hotel booking" />
+        <meta property="og:title" content="Awalive Hotel - Luxury Accommodation in taif" />
+        <meta property="og:description" content="Discover the epitome of luxury at Awalive Hotel with top amenities and bespoke services. Perfect for leisure and business in taif." />
+        <meta property="og:image" content="[Link to an image showcasing your hotel]" />
+        <meta property="og:url" content="awalivehotel.com" />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Awalive Hotel - Luxury Accommodation in taif" />
+        <meta name="twitter:description" content="Indulge in unparalleled luxury at Awalive Hotel, offering exquisite rooms and suites in the heart of taif." />
+        <meta name="twitter:image" content="[Link to an image showcasing your hotel]" />
+        {/* Other head elements like canonical link, viewport, language tag */}
+      </Helmet>      
       <PageAnimation>
         <Banner />
         <Relax />

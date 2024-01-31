@@ -10,6 +10,7 @@ import { useTranslation } from "react-i18next";
 import i18next from "i18next";
 import RoomReviewForm from "../../sharedPages/ReviewForm/RoomReviewForm";
 import ReviewCard from "../../sharedPages/ReviewForm/ReviewCard";
+import { Helmet } from "react-helmet";
 
 const RoomDetails = () => {
   const currentLanguage = i18next.language;
@@ -17,7 +18,7 @@ const RoomDetails = () => {
   const { id } = useParams();
 
   const [loading, setLoading] = useState(true);
-  const [singleRoomDetails, setSingleRoomDetails] = useState(null);
+  const [singleRoomDetails, setSingleRoomDetails] = useState([]);
   const [reviews, setReviews] = useState([]);
   const [reviewLoading, setReviewLoading] = useState(true);
 
@@ -36,8 +37,13 @@ const RoomDetails = () => {
     fetchRoom();
   }, [id, currentLanguage, t, setSingleRoomDetails]);
 
+
   return (
     <>
+      <Helmet>
+        {loading ? <title> Awalive Hotel Taif</title> : <title>{`${singleRoomDetails.title} - Awalive Hotel Taif`}</title>}
+      </Helmet>
+
       {loading ? (
         <div className="h-[20rem] flex  items-center justify-center text-center">
           <Skeleton active />
