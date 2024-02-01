@@ -14,19 +14,27 @@ const RoomCards = ({ roomRates, loadingAllRooms }) => {
 
   return (
     <section className="container mx-auto px-4">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-4">
         {loadingAllRooms
           ? Array.from({ length: skeletonCount }, (_, index) => <Skeleton key={index} active />)
           : roomRates?.map((room) => (
-              <Link data-aos="fade-up" key={room.id} to={`/room/${room.id}`} className="grid-cols-1 cursor-pointer relative ">
+            // <div className="transition duration-300 transform hover:scale-75">
+              <Link data-aos="fade-up" key={room.id} to={`/room/${room.id}`} className="grid-cols-1 cursor-pointer relative "
+              style={{
+                transition: 'transform 0.3s ease',
+                transform: 'scale(1)',
+              }}
+              onMouseEnter={e => e.currentTarget.style.transform = 'scale(0.95)'}
+              onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
+              >
                 <LazyLoadImage
-                  className="w-full h-full aspect-video object-fill"
+                  className="w-full h-full aspect-video object-fill relative"
                   src={room.images[0]}
                   alt={`awalive ${room.images[0]}`}
                   effect="blur"
                   placeholderSrc={placeholderImage}
                 />
-
+                {/* <div className="absolute top-0 left-0 w-full h-full hover:bg-black transition duration-500 opacity-40"></div> */}
                 <p
                   className={`bg-[#2E2E2E] py-2 px-6 absolute top-5  ${
                     currentLanguage === "ar" ? "left-0" : "right-0"
@@ -80,6 +88,7 @@ const RoomCards = ({ roomRates, loadingAllRooms }) => {
                   </div>
                 </div>
               </Link>
+              // </div>
             ))}
       </div>
     </section>

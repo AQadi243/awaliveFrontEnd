@@ -28,6 +28,7 @@ import ErrorPage from "./components/Error Page/ErrorPage";
 // import Promotions from "./components/pages/Promotion/Promotions";
 import SinglePromoRoom from "./components/pages/Promotion/SinglePromoPage/SinglePromoRoom";
 import 'react-lazy-load-image-component/src/effects/blur.css';
+import BookTable from "./components/pages/Restaurent/BookTable/BookTable";
 // import ScrollToTop from './components/sharedPages/ScrollToTop';
 
 // import 'flag-icon-css/css/flag-icon.min.css'
@@ -127,10 +128,10 @@ const router = createBrowserRouter([
         path: "/singlePromotionRoom/:id",
         element: <SinglePromoRoom />,
       },
-      // {
-      //   path: "/bookTable",
-      //   element: <BookTable />,
-      // },
+      {
+        path: "/bookTable",
+        element: <BookTable />,
+      },
       {
         path: "/login",
         element: <Loginpage />,

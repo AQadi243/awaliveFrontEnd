@@ -1,0 +1,14 @@
+{
+    "rooms": {
+        "label": "غرف"
+      },
+      "suites": {
+        "label": "أجنحة"
+      },
+      "h24": {
+        "label": "س/24"
+      },
+      "restaurant": {
+        "label": "مطعم"
+      }
+}

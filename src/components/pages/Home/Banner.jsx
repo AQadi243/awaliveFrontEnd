@@ -1,5 +1,5 @@
-import bannerImagTwo from "../../../assets/appartment Slider.jpg";
-import bannerImagOne from "../../../assets/familySlider .jpg";
+import bannerImagTwo from "../../../assets/5.jpg";
+import bannerImagOne from "../../../assets/restuarent.jpg";
 import "./home.css";
 
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -16,7 +16,6 @@ const Banner = () => {
   const currentLanguage = i18next.language;
   const { t } = useTranslation("home");
 
-
   return (
     <>
       <div className="md:relative">
@@ -30,8 +29,8 @@ const Banner = () => {
             dir={!currentLanguage ? "rtl" : "ltr"}
             key={currentLanguage}
           >
-            <SwiperSlide className="bg-cover bg-center relative" style={{ fontFamily: "Gilda Display, serif" }}>
-              <div className="absolute top-0 left-0 w-full h-full bg-black opacity-60"></div>
+            <SwiperSlide className="bg-cover bg-center relative cursor-pointer" style={{ fontFamily: "Gilda Display, serif" }}>
+              <div className="absolute top-0 left-0 w-full h-full bg-black opacity-70"></div>
               <img className="w-full h-full  object-cover block  " src={bannerImagTwo} alt="" />
               {/* <div className='absolute top-0 left-0 w-full h-full bg-black opacity-50'></div> */}
               <div
@@ -45,7 +44,7 @@ const Banner = () => {
                   <div className="py-3">
                     <Link
                       to={"/roomSearch"}
-                      className=" py-2 md:py-3  text-xs md:text-sm  px-4 border  md:px-8 md:border tracking-widest heroText"
+                      className=" py-2 md:py-3  text-xs md:text-sm  px-4 border  md:px-8 md:border tracking-widest heroText hover:border-[#BE9874] hover:text-[#BE9874]"
                     >
                       {t("heroButton")}
                     </Link>
@@ -53,10 +52,9 @@ const Banner = () => {
                 </div>
               </div>
             </SwiperSlide>
-            <SwiperSlide className="bg-cover bg-center relative" style={{ fontFamily: "Gilda Display, serif" }}>
-              <div className="absolute top-0 left-0 w-full h-full bg-black opacity-60"></div>
+            <SwiperSlide className="bg-cover bg-center relative cursor-pointer" style={{ fontFamily: "Gilda Display, serif" }}>
+              <div className="absolute top-0 left-0 w-full h-full bg-black opacity-70"></div>
               <img className="w-full h-full  object-cover block  " src={bannerImagOne} alt="" />
-
               <div
                 className={`text-content w-full px-2 md:w-[60%] absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 text-white `}
               >
@@ -68,7 +66,7 @@ const Banner = () => {
                   <div className="py-3">
                     <Link
                       to={"/roomSearch"}
-                      className=" py-2 md:py-3  text-xs md:text-sm  px-4 border  md:px-8 md:border tracking-widest heroText"
+                      className=" py-2 md:py-3  text-xs md:text-sm  px-4 border  md:px-8 md:border tracking-widest heroText hover:border-[#BE9874] hover:text-[#BE9874]"
                     >
                       {t("heroButton")}
                     </Link>

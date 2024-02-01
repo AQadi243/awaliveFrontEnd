@@ -3,7 +3,7 @@ import heroSlide from "../../../assets/5.jpg";
 const RoomPrice = () => {
   return (
     <section
-      className="text-[#2E2E2E]"
+      className="text-[#2E2E2E] relative"
       style={{
         backgroundImage: `url(${heroSlide})`,
         backgroundRepeat: "no-repeat",
@@ -11,6 +11,7 @@ const RoomPrice = () => {
         backgroundSize: "cover",
       }}
     >
+      <div className="absolute top-0 left-0 w-full h-full bg-black opacity-70"></div>
       <div className="container mx-auto py-8 px-4 ">
         <div data-aos="fade-up" className="text-center pb-6 text-white">
           <p className="text-xs  tracking-widest uppercase">OUR ROOM PRICES</p>
@@ -38,7 +39,7 @@ const RoomPrice = () => {
               <li>24-hour room service</li>
             </ul>
             <div className="py-10">
-              <a href="#" className="uppercase py-3 px-4 bg-[#BE9874] hover:bg-[#2E2E2E] text-white text-sm md:text-md">
+              <a href="#" className="uppercase py-3 px-4 bg-[#BE9874] hover:bg-[#2E2E2E] text-white text-sm md:text-md transition duration-300">
                 Discover More
               </a>
             </div>
@@ -64,7 +65,7 @@ const RoomPrice = () => {
               <li>consectetur adipiscing elit</li>
             </ul>
             <div className="py-10">
-              <a href="#" className="uppercase py-3 px-4 bg-[#2E2E2E] text-white text-sm md:text-md">
+              <a href="#" className="uppercase py-3 px-4  hover:bg-[#BE9874] bg-[#2E2E2E] text-white text-sm md:text-md transition duration-300">
                 more info
               </a>
             </div>
@@ -87,7 +88,7 @@ const RoomPrice = () => {
               <li>consectetur adipiscing elit</li>
             </ul>
             <div className="py-10">
-              <a href="#" className="uppercase py-3 px-4 bg-[#BE9874] hover:bg-[#2E2E2E] text-white text-sm md:text-md">
+              <a href="#" className="uppercase py-3 px-4 bg-[#BE9874] hover:bg-[#2E2E2E] text-white text-sm md:text-md transition duration-300">
                 more info
               </a>
             </div>

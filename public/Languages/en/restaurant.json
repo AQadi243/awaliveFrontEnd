@@ -1,0 +1,14 @@
+{
+    "rooms": {
+        "label": "Rooms"
+      },
+      "suites": {
+        "label": "Suites"
+      },
+      "h24": {
+        "label": "H/24"
+      },
+      "restaurant": {
+        "label": "Restaurant"
+      }
+}
