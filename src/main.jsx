@@ -18,14 +18,14 @@ import Search from "./components/pages/SearchRoooms/Search";
 import { AnimatePresence } from "framer-motion";
 import Contact from "./components/pages/Contact/Contact";
 import About from "./components/pages/About/About";
-import BookTable from "./components/pages/Restaurent/BookTable/BookTable";
+// import BookTable from "./components/pages/Restaurent/BookTable/BookTable";
 import Loginpage from "./components/sharedPages/LoginPage/Loginpage";
 import SignUpPage from "./components/sharedPages/SignInPage/SignUpPage";
 import PrivateRoute from "./components/PrivetAuth/PrivetRoute";
 import { Spin } from "antd";
 import MyBookings from "./components/pages/My Bookings/MyBookings";
 import ErrorPage from "./components/Error Page/ErrorPage";
-import Promotions from "./components/pages/Promotion/Promotions";
+// import Promotions from "./components/pages/Promotion/Promotions";
 import SinglePromoRoom from "./components/pages/Promotion/SinglePromoPage/SinglePromoRoom";
 import 'react-lazy-load-image-component/src/effects/blur.css';
 // import ScrollToTop from './components/sharedPages/ScrollToTop';
@@ -45,12 +45,12 @@ i18next
       order: ["path", "cookie", "htmlTag"],
       caches: ["cookie"],
     },
-    ns: ["about", "home", "contact","booking","loginAndSignUp", "footer","about"], // Define your namespaces
+    ns: [ "home", "contact","booking","loginAndSignUp", "footer","about", "contact"], // Define your namespaces
     defaultNS: "home",
     backend: {
       loadPath: "/Languages/{{lng}}/{{ns}}.json",
     },
-    preload: ['about', 'home', 'contact', 'booking', 'loginAndSignUp','footer','about' ],
+    preload: [ 'home', 'contact', 'booking', 'loginAndSignUp','footer','about','contact' ],
   });
 
 const loadingMarkup = (

@@ -1,9 +1,9 @@
 import React from "react";
-import bgImg from "../../../assets/relaxArea.jpg";
 
-const BannerPage = ({ text }) => {
+
+const BannerPage = ({ text, contactImg }) => {
   const containerStyle = {
-    backgroundImage: `url(${bgImg})`,
+    backgroundImage: `url(${contactImg})`,
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center center",
     backgroundSize: "cover",
@@ -11,7 +11,7 @@ const BannerPage = ({ text }) => {
 
   return (
     <section className="relative h-[50vh] " style={containerStyle}>
-      <div className="absolute top-0 left-0 w-full h-full bg-black opacity-30"></div>
+      <div className="absolute top-0 left-0 w-full h-full bg-black opacity-70"></div>
       <div
         className="absolute  top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
         style={{ fontFamily: "Gilda Display, serif" }}

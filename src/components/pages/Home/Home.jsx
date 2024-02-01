@@ -48,8 +48,6 @@ const Home = () => {
   return (
     <>
      <Helmet>
-        {/* <title>Awalive | Home</title> */}
-     
         <title>Awalive Hotel - Luxury Accommodation in Taif</title>
         <meta name="description" content="Experience luxury and comfort at Awalive Hotel, located in taif. Enjoy top-class amenities, exquisite dining, and exceptional service. Book your stay now!" />
         <meta name="keywords" content="luxury hotel, accommodation, Awalive Hotel, taif hotels, exclusive suites, hotel booking" />
