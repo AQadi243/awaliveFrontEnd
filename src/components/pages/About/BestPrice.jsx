@@ -2,7 +2,8 @@ import { Link } from "react-router-dom";
 import img from "../../../assets/5.jpg";
 import imgAVT from "../../../assets/check.jpg";
 import bgim from "../../../assets/peralxCom.jpg";
-import roomImg from "../../../assets/luxryCard.jpg";
+// import roomImg from "../../../assets/awaliveRoom.jpg ";
+import roomImg from "../../../assets/awaliveRoom.jpg"
 import roomImg2 from "../../../assets/DoubleRoomCard.jpg";
 import keyImg from "../../../assets/icon-16.png";
 import lagg from "../../../assets/icon-15.png";
@@ -96,43 +97,43 @@ const BestPrice = () => {
         >
           <div className="absolute top-0 left-0 w-full h-full bg-black opacity-70"></div>
           <div className=" max-w-2xl w-full px-1  text-center text-white flex flex-col gap-1 md:gap-4 absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 ">
-            <h1 className="text-2xl md:text-5xl">Elevating Your Experience</h1>
-            <h2 className="text-2xl md:text-5xl">with Our Care and Security</h2>
+            <h1 className="text-2xl md:text-5xl capitalize">{t('careText')}</h1>
+            <h2 className="text-2xl md:text-5xl capitalize">{t('subCareText')}</h2>
             <p className="text-xs md:text-lg ">
-              At Awalive Hotel, we are dedicated to providing an unparalleled level of service and protection for our guests. Our
-              commitment to your safety and satisfaction is our top priority, ensuring a stay that is not only luxurious but also
-              secure and peaceful. From our attentive staff to our advanced security measures, every detail is designed with your
-              well-being in mind.
+             {t('careTextDetails')}
             </p>
             <div className="py-4">
               <Link to={"/contact"} className="uppercase text-white bg-[#BE9874] py-3 px-6 text-sm ">
-                {t("best_price.contact_us")}
+                {t("contact_us")}
               </Link>
             </div>
           </div>
         </div>
       </section>
-      {/* <section className="w-[90%] mx-auto py-10 md:py-20" style={{ fontFamily: "Gilda Display, serif" }}>
+
+      <section className="container mx-auto px-2 md:px-0 py-10 md:py-16" style={{ fontFamily: "Gilda Display, serif" }}>
     <div className="flex flex-col md:flex-row gap-6 justify-between  items-center">
-        <div className="md:w-[40%] flex flex-col text-center md:items-end text-2xl  md:text-5xl ">
-          <p>{t('best_price.make_the_best')}</p>
-          <p>{t('best_price.for_our_guests')}</p>
-          <p>{t('best_price.come_visit_our')}</p>
-          <p>{t('best_price.sea_hotel')}</p>
+        <div className="md:w-[40%] flex flex-col text-center md:items-end text-2xl  md:text-4xl ">
+          <p>{t('make_the_best')}</p>
+          <p>{t('for_our_guests')}</p>
+          <p>{t('come_visit_our')}</p>
+          <p>{t('sea_hotel')}</p>
           
         </div>
         <div className="md:w-[60%] grid grid-col-1 md:grid-cols-2 gap-6 h-full">
           <div className=" h-full relative" >
+          <div className="absolute top-0 left-0 w-full h-full bg-black opacity-50"></div>
             <img src={roomImg} alt="" className="h-full w-full" />
             <div className="absolute bottom-5 left-3 text-white">
-              <p>Room Service </p>
+              <p>{t('roomService.label')} </p>
               <p className="text-xs">Included</p>
             </div>
           </div>
           <div className=" h-full relative" >
+          <div className="absolute top-0 left-0 w-full h-full bg-black opacity-50"></div>
             <img src={roomImg2} alt="" className="h-full w-full" />
             <div className="absolute bottom-5 left-3 text-white">
-              <p>Laundry</p>
+              <p>{t('laundryIroning.label')}</p>
               <p className="text-xs">Additional</p>
             </div>
           </div>
@@ -140,42 +141,38 @@ const BestPrice = () => {
     </div>
       <div className="w-[80%] mx-auto">
         <div className="pt-10">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="flex flex-col md:flex-row  gap-5 items-center ">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="flex flex-col md:flex-row  gap-4 items-center ">
               <img src={keyImg} alt="icon" className="w-14 md:w-20" />
               <div className="text-center md:text-start">
-                <p className="text-sm">Proin at varius arcu. Sed posuere orci bibendum pharetra dapibus. Ut velit augue, imperdiet vel leo id, cursus vehicula urna.</p>
-                <p className="text-xs font-semibold tracking-widest pt-2 ">{t('best_price.learn_more')}</p>
+                <p className="text-sm">{t('features.keyDescription')}</p>
               </div>
             </div>
-            <div className="flex flex-col md:flex-row  gap-5 items-center ">
+            <div className="flex flex-col md:flex-row  gap-4 items-center ">
               <img src={lagg} alt="icon" className="w-14 md:w-20" />
               <div className="text-center md:text-start">
-                <p className="text-sm  ">Proin at varius arcu. Sed posuere orci bibendum pharetra dapibus. Ut velit augue, imperdiet vel leo id, cursus vehicula urna.</p>
-                <p className="text-xs font-semibold tracking-widest pt-2 ">{t('best_price.learn_more')}</p>
+                <p className="text-sm  ">{t('features.luggageDescription')}</p>
               </div>
             </div>
-            <div className="flex flex-col md:flex-row  gap-5 items-center ">
+            <div className="flex flex-col md:flex-row  gap-4 items-center ">
               <img src={ser} alt="icon" className="w-14 md:w-20" />
               <div className="text-center md:text-start">
-                <p className="text-sm ">Proin at varius arcu. Sed posuere orci bibendum pharetra dapibus. Ut velit augue, imperdiet vel leo id, cursus vehicula urna.</p>
-                <p className="text-xs font-semibold tracking-widest pt-2 ">{t('best_price.learn_more')}</p>
+                <p className="text-sm ">{t('features.serviceDescription')}</p>
               </div>
             </div>
-            <div className="flex flex-col md:flex-row  gap-5 items-center ">
+            <div className="flex flex-col md:flex-row  gap-4 items-center ">
               <img src={wait} alt="icon" className="w-14 md:w-20"/>
               <div className="text-center md:text-start">
-                <p className="text-sm ">Proin at varius arcu. Sed posuere orci bibendum pharetra dapibus. Ut velit augue, imperdiet vel leo id, cursus vehicula urna.</p>
-                <p className="text-xs font-semibold tracking-widest pt-2 ">{t('best_price.learn_more')}</p>
+                <p className="text-sm ">{t('features.waitersDescription')}</p>
               </div>
             </div>
           </div>
         </div>
         <div className="py-10 text-center">
-          <Link to={'/roomSearch'} className="font-semibold text-xs tracking-widest text-white bg-[#BE9874] py-3 px-6">{t('best_price.book_now')}</Link>
+          <Link to={'/roomSearch'} className="font-semibold text-xs tracking-widest text-white bg-[#BE9874] py-3 px-6">{t('book_now')}</Link>
         </div>
       </div>
-    </section> */}
+    </section>
     </>
   );
 };

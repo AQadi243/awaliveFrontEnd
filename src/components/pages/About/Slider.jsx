@@ -30,8 +30,8 @@ const Slider = () => {
           <div className="absolute top-0 left-0 w-full h-full bg-black opacity-50"></div>
           <img className="w-full h-full  object-cover block" src={sldierOne} alt="" />
           <div className="absolute top-0 left-0 w-full h-full bg-black opacity-50"></div>
-          <div className="w-[80%] md:w-[50%] mx-auto  absolute  top-1/2 left-1/2  -translate-y-1/2 -translate-x-1/2 text-white ">
-            <h2 className="text-2xl md:text-4xl">{t("gymTitle")}</h2>
+          <div className="w-[80%] md:w-[50%] mx-auto text-center  absolute  top-1/2 left-1/2  -translate-y-1/2 -translate-x-1/2 text-white ">
+            <h2 className="text-2xl md:text-6xl ">{t("gymTitle")}</h2>
             <p className="text-xs py-2 md:py-3">{t("gymDescription")}</p>
           </div>
         </SwiperSlide>
@@ -40,8 +40,8 @@ const Slider = () => {
           <img className="w-full h-full  object-cover block" src={sldierTwo} alt="" />
           {/* <img className='w-full h-full  object-cover block  ' src={person.image} alt="" /> */}
           <div className="absolute top-0 left-0 w-full h-full bg-black opacity-50"></div>
-          <div className="w-[80%] md:w-[50%] mx-auto  absolute  top-1/2 left-1/2  -translate-y-1/2 -translate-x-1/2 text-white ">
-            <h2 className="text-2xl md:text-4xl">{t("restaurantTitle")}</h2>
+          <div className="w-[80%] md:w-[50%] mx-auto  text-center absolute  top-1/2 left-1/2  -translate-y-1/2 -translate-x-1/2 text-white ">
+            <h2 className="text-2xl md:text-6xl">{t("restaurantTitle")}</h2>
             <p className="text-xs py-2 md:py-3">{t("restaurantDescription")}</p>
           </div>
         </SwiperSlide>
@@ -49,8 +49,8 @@ const Slider = () => {
           <div className="absolute top-0 left-0 w-full h-full bg-black opacity-50"></div>
           <img className="w-full h-full  object-cover block" src={sldierThree} alt="" />
           <div className="absolute top-0 left-0 w-full h-full bg-black opacity-50"></div>
-          <div className="w-[80%] md:w-[50%] mx-auto absolute  top-1/2 left-1/2  -translate-y-1/2 -translate-x-1/2 text-white ">
-            <h2 className="text-2xl md:text-4xl">{t("serviceTitle")}</h2>
+          <div className="w-[80%] md:w-[50%] mx-auto text-center absolute  top-1/2 left-1/2  -translate-y-1/2 -translate-x-1/2 text-white ">
+            <h2 className="text-2xl md:text-6xl">{t("serviceTitle")}</h2>
             <p className="text-xs py-2 md:py-3">{t("serviceDescription")}</p>
           </div>
         </SwiperSlide>
