@@ -8,9 +8,9 @@ import waiImage from "/src/assets/icon-18.png";
 import rvImage from "../../../assets/5.jpg";
 import lnImage from "/src/assets/structure-2.jpg";
 import spImage from "/src/assets/Structure.jpg";
-import bgImage from "/src/assets/relazArea2.jpg";
 import contactImage from "../../../assets/recaption.jpg";
 import { useState } from "react";
+import { Helmet } from "react-helmet";
 
 const initialFormData = {
   email: "",
@@ -58,13 +58,40 @@ const Contact = () => {
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center center",
     backgroundSize: "cover",
-    
   };
 
   return (
     <>
+      <Helmet>
+        <title>Contact Awalive Hotel - Reach Out for Exceptional Service in Taif</title>
+        <meta
+          name="description"
+          content="Contact Awalive Hotel for inquiries, reservations, or any assistance you need. Our dedicated team is here to provide you with exceptional service in Taif."
+        />
+        <meta
+          name="keywords"
+          content="Contact Awalive Hotel, Taif hotel contact, hotel reservations, customer service, hotel inquiries"
+        />
+        <meta property="og:title" content="Contact Awalive Hotel - Reach Out for Exceptional Service in Taif" />
+        <meta
+          property="og:description"
+          content="Need assistance with your booking or have a question about our services? Contact Awalive Hotel in Taif for prompt and friendly service."
+        />
+        <meta property="og:image" content="[Link to an image related to customer service or the hotel]" />
+        <meta property="og:url" content="awalivehotel.com/contact" />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Contact Awalive Hotel - Reach Out for Exceptional Service in Taif" />
+        <meta
+          name="twitter:description"
+          content="Looking for top-tier hospitality? Contact Awalive Hotel in Taif for all your reservation needs and queries."
+        />
+        <meta name="twitter:image" content="[Link to a Twitter-appropriate image related to customer service or the hotel]" />
+        {/* Other head elements like canonical link, viewport, language tag */}
+      </Helmet>
+
       <PageAnimation>
-        <BannerPage text={t("contact_title")} contactImg={contactImage} />
+        <BannerPage text={t("contact_title")}  />
         <section className="container mx-auto py-10 md:py-16 px-2">
           <div className="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
             <div className="flex flex-col justify-center items-center gap-5">
@@ -150,9 +177,9 @@ const Contact = () => {
           </div>
         </section>
 
-        <section className="relative"  style={backgroundImageStyle}>
-        <div className="absolute top-0 left-0 w-full h-full bg-black opacity-70"></div>
-        <div className="container mx-auto px-2 relative  ">
+        <section className="relative" style={backgroundImageStyle}>
+          <div className="absolute top-0 left-0 w-full h-full bg-black opacity-70"></div>
+          <div className="container mx-auto px-2 relative  ">
             <div className=" w-full flex flex-col md:flex-row items-center justify-center gap-5  py-10 md:py-16">
               <div className="md:w-[50%] text-center md:text-start text-white">
                 <h1 className="text-3xl md:text-5xl tracking-widest py-5">

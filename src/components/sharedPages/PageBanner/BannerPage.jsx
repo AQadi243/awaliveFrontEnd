@@ -1,7 +1,7 @@
 import React from "react";
+import contactImg from '../../../assets/recaption.jpg'
 
-
-const BannerPage = ({ text, contactImg }) => {
+const BannerPage = ({ text }) => {
   const containerStyle = {
     backgroundImage: `url(${contactImg})`,
     backgroundRepeat: "no-repeat",
