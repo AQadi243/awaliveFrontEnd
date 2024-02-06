@@ -48,15 +48,15 @@ const Loginpage = () => {
   }, [user, navigate, from]);
 
   return (
-    <section className="w-[90%] mx-auto">
+    <section className="container mx-auto">
       <div
         className="  md:w-[90%] mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 justify-between px-4 md:px-10 py-10"
         style={{ fontFamily: "Gilda Display, serif" }}
       >
         <div className="md:w-[80%]">
-          <h1 className="text-3xl">{t("welcome")}</h1>
-          <p className="text-xl py-5">{t("loginMessage")}</p>
-          <div className="w-full flex flex-col gap-5 " id="guest-info-form">
+          <h1 className="text-3xl" style={{ fontFamily: "Gilda Display, serif" }}>{t("welcome")}</h1>
+          <p className="text-xl py-5" style={{ fontFamily: "Gilda Display, serif" }}>{t("loginMessage")}</p>
+          <div className="w-full flex flex-col gap-5 " id="guest-info-form" >
             <input
               type="email"
               name="email"
@@ -112,8 +112,8 @@ const Loginpage = () => {
           <h2 className="text-xl ">{t("joinMessage")}</h2>
           <img className="" src={img} alt="" />
 
-          <li className="text-xs ">{t("enjoyRates")}</li>
-          <li className="text-xs ">{t("freeWiFi")}</li>
+          <li className="text-xs text-gray-400 ">{t("enjoyRates")}</li>
+          <li className="text-xs text-gray-400">{t("freeWiFi")}</li>
 
           <Link to={"/signup"} className="w-full py-4  px-2 text-center  bg-[#BE9874] text-white  ">
             {t("joinNow")}

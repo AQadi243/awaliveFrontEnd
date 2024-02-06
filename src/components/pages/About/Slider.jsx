@@ -32,7 +32,7 @@ const Slider = () => {
           <div className="absolute top-0 left-0 w-full h-full bg-black opacity-50"></div>
           <div className="w-[80%] md:w-[50%] mx-auto text-center  absolute  top-1/2 left-1/2  -translate-y-1/2 -translate-x-1/2 text-white ">
             <h2 className="text-2xl md:text-6xl ">{t("gymTitle")}</h2>
-            <p className="text-xs py-2 md:py-3">{t("gymDescription")}</p>
+            <p className="text-xs py-2 md:py-3 text-gray-400">{t("gymDescription")}</p>
           </div>
         </SwiperSlide>
         <SwiperSlide className="bg-cover bg-center relative">
@@ -42,7 +42,7 @@ const Slider = () => {
           <div className="absolute top-0 left-0 w-full h-full bg-black opacity-50"></div>
           <div className="w-[80%] md:w-[50%] mx-auto  text-center absolute  top-1/2 left-1/2  -translate-y-1/2 -translate-x-1/2 text-white ">
             <h2 className="text-2xl md:text-6xl">{t("restaurantTitle")}</h2>
-            <p className="text-xs py-2 md:py-3">{t("restaurantDescription")}</p>
+            <p className="text-xs py-2 md:py-3 text-gray-400">{t("restaurantDescription")}</p>
           </div>
         </SwiperSlide>
         <SwiperSlide className="bg-cover bg-center relative">

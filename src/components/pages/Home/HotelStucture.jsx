@@ -44,7 +44,7 @@ const HotelStucture = () => {
                 {localizeNumber(2)}
               </p>
               <p className="text-[10px] md:text-xs  uppercase">{t("restaurant.label")}</p>
-            </div>
+            </div> 
           </div>
           <img src={structure2} alt="" className="w-[50%]" />
         </div>
@@ -53,7 +53,7 @@ const HotelStucture = () => {
           <h2 className="text-2xl md:text-5xl text-center" style={{ fontFamily: "Gilda Display, serif" }}>
             {t("discoverTitle")}
           </h2>
-          <p className="text-xs md:text-sm ">{t("discoverSubtitle")}</p>
+          <p className="text-xs md:text-sm text-gray-400 ">{t("discoverSubtitle")}</p>
           <div className=" md:py-2  text-[#2E2E2E] text-sm" style={{ fontFamily: "Gilda Display, serif" }}>
             <div className="flex justify-between mb-1">
               <p>{t("roomService.label")}</p>
@@ -93,7 +93,7 @@ const HotelStucture = () => {
               <p className="text-sm md:text-md font-semibold" style={{ fontFamily: "Gilda Display, serif" }}>
                 {t("keyFeatures.smartKey.title")}
               </p>
-              <p className="text-xs">{t("keyFeatures.smartKey.description")}</p>
+              <p className="text-xs text-gray-400">{t("keyFeatures.smartKey.description")}</p>
             </div>
           </div>
 
@@ -103,7 +103,7 @@ const HotelStucture = () => {
               <p className="text-sm md:text-md font-semibold " style={{ fontFamily: "Gilda Display, serif" }}>
                 {t("keyFeatures.luggageStorage.title")}
               </p>
-              <p className="text-xs">{t("keyFeatures.luggageStorage.description")}</p>
+              <p className="text-xs text-gray-400">{t("keyFeatures.luggageStorage.description")}</p>
             </div>
           </div>
 
@@ -113,7 +113,7 @@ const HotelStucture = () => {
               <p className="text-sm md:text-md font-semibold" style={{ fontFamily: "Gilda Display, serif" }}>
                 {t("keyFeatures.roomService.title")}
               </p>
-              <p className="text-xs">{t("keyFeatures.roomService.description")}</p>
+              <p className="text-xs text-gray-400">{t("keyFeatures.roomService.description")}</p>
             </div>
           </div>
 
@@ -123,7 +123,7 @@ const HotelStucture = () => {
               <p className="text-sm md:text-md font-semibold" style={{ fontFamily: "Gilda Display, serif" }}>
                 {t("keyFeatures.disinfection.title")}
               </p>
-              <p className="text-xs">{t("keyFeatures.disinfection.description")}</p>
+              <p className="text-xs text-gray-400">{t("keyFeatures.disinfection.description")}</p>
             </div>
           </div>
         </div>

@@ -26,9 +26,9 @@ const BestPrice = () => {
         <div className="container mx-auto px-2 md:px-6 grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
           {/* Left Column */}
           <div className="space-y-4">
-            <p className="text-sm tracking-widest text-center md:text-start">{t("hotelFacilities.subtitle")}</p>
-            <h2 className="text-2xl md:text-4xl font-semibold text-center md:text-start">{t("hotelFacilities.title")}</h2>
-            <p className="text-xs md:text-lg">{t("hotelFacilities.description")}</p>
+            <p className="text-sm tracking-widest text-center md:text-start" >{t("hotelFacilities.subtitle")}</p>
+            <h2 className="text-2xl md:text-4xl font-semibold text-center md:text-start" >{t("hotelFacilities.title")}</h2>
+            <p className="text-xs md:text-lg text-gray-400">{t("hotelFacilities.description")}</p>
             <div className="space-y-2">
               <div className="   text-[#2E2E2E] text-sm" style={{ fontFamily: "Gilda Display, serif" }}>
                 <div className="flex justify-between mb-1">
@@ -99,7 +99,7 @@ const BestPrice = () => {
           <div className=" max-w-2xl w-full px-1  text-center text-white flex flex-col gap-1 md:gap-4 absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 ">
             <h1 className="text-2xl md:text-5xl capitalize">{t('careText')}</h1>
             <h2 className="text-2xl md:text-5xl capitalize">{t('subCareText')}</h2>
-            <p className="text-xs md:text-lg ">
+            <p className="text-xs md:text-lg text-gray-400">
              {t('careTextDetails')}
             </p>
             <div className="py-4">
@@ -126,7 +126,7 @@ const BestPrice = () => {
             <img src={roomImg} alt="" className="h-full w-full" />
             <div className="absolute bottom-5 left-3 text-white">
               <p>{t('roomService.label')} </p>
-              <p className="text-xs">Included</p>
+              <p className="text-xs text-gray-400">Included</p>
             </div>
           </div>
           <div className=" h-full relative" >
@@ -134,7 +134,7 @@ const BestPrice = () => {
             <img src={roomImg2} alt="" className="h-full w-full" />
             <div className="absolute bottom-5 left-3 text-white">
               <p>{t('laundryIroning.label')}</p>
-              <p className="text-xs">Additional</p>
+              <p className="text-xs text-gray-400">Additional</p>
             </div>
           </div>
         </div>
@@ -145,25 +145,25 @@ const BestPrice = () => {
             <div className="flex flex-col md:flex-row  gap-4 items-center ">
               <img src={keyImg} alt="icon" className="w-14 md:w-20" />
               <div className="text-center md:text-start">
-                <p className="text-sm">{t('features.keyDescription')}</p>
+                <p className="text-sm text-gray-400">{t('features.keyDescription')}</p>
               </div>
             </div>
             <div className="flex flex-col md:flex-row  gap-4 items-center ">
               <img src={lagg} alt="icon" className="w-14 md:w-20" />
               <div className="text-center md:text-start">
-                <p className="text-sm  ">{t('features.luggageDescription')}</p>
+                <p className="text-sm  text-gray-400">{t('features.luggageDescription')}</p>
               </div>
             </div>
             <div className="flex flex-col md:flex-row  gap-4 items-center ">
               <img src={ser} alt="icon" className="w-14 md:w-20" />
               <div className="text-center md:text-start">
-                <p className="text-sm ">{t('features.serviceDescription')}</p>
+                <p className="text-sm text-gray-400">{t('features.serviceDescription')}</p>
               </div>
             </div>
             <div className="flex flex-col md:flex-row  gap-4 items-center ">
               <img src={wait} alt="icon" className="w-14 md:w-20"/>
               <div className="text-center md:text-start">
-                <p className="text-sm ">{t('features.waitersDescription')}</p>
+                <p className="text-sm text-gray-400">{t('features.waitersDescription')}</p>
               </div>
             </div>
           </div>

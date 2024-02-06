@@ -58,7 +58,18 @@
   "findRoom":"لبحث عن غرفة",
   "reset":"إعادة تعيين",
 
+  "New Booking": "حجز جديد",
+  "Booking History": "سجل الحجز",
+  "myBooking": "حجوزاتي",
+  "Booking Details": "تفاصيل الحجز",
   "booking": "الحجز",
+  "Complete payment in": "الدفع الكامل",
+  "completed": "منجز",
+  "total": "المجموع",
+  "Including 15% vat": "شامل 15% ضريبة القيمة المضافة",
+  "Confirmation Status": "حالة التأكيد",
+  "Amenities": "المرافق",
+  "Special Instructions": "تعليمات خاصة",
 
   "notFound": "لم يتم العثور على مراجع. قم بترجمتها إلى العربية.",
   "reviews": "تقييمات" ,

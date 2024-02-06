@@ -68,7 +68,7 @@ const BookingForm = () => {
   return (
     <div className="md:w-2/3" style={{ fontFamily: "Gilda Display, serif" }}>
       <div>
-        <p className="text-xl md:text-2xl pb-3">{t("addYourInformationsKey")} :</p>
+        <p className="text-xl font-semibold md:text-2xl pb-3">{t("addYourInformationsKey")} :</p>
         <div>
           <form className="flex flex-col gap-5">
             <div className="grid md:grid-cols-2 gap-5">

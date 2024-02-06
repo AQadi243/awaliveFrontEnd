@@ -24,10 +24,10 @@ const Relax = () => {
             <h2>{t("hotelRelaxTitle")}</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs md:text-sm">
-            <p>{t("hotelinTaif")}</p>
-            <p>{t("restaurantWithAView")}</p>
-            <p>{t("poolAndGym")}</p>
-            <p>{t("peacefulHotelStay")}</p>
+            <p className="text-gray-400">{t("hotelinTaif")}</p>
+            <p className="text-gray-400">{t("restaurantWithAView")}</p>
+            <p className="text-gray-400">{t("poolAndGym")}</p>
+            <p className="text-gray-400">{t("peacefulHotelStay")}</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6  ">
             <div className="flex flex-col md:flex-row gap-3 md:gap-6  justify-evenly items-center ">
@@ -36,7 +36,7 @@ const Relax = () => {
                 <h2 className="text-xl font-semibold" style={{ fontFamily: "Gilda Display, serif" }}>
                   Andrew Stuart
                 </h2>
-                <p className="text-sm">{t("titleManager")}</p>
+                <p className="text-sm text-gray-400">{t("titleManager")}</p>
               </div>
             </div>
             <div className="text-2xl flex justify-center">

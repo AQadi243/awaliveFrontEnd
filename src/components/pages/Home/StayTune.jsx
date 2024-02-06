@@ -75,7 +75,7 @@ const StayTune = () => {
         <h2 className="text-2xl md:text-4xl mt-2" style={{ fontFamily: "Gilda Display, serif" }}>
           {t("discoverSpaces")}
         </h2>
-        <p className="mt-2 md:mt-4 text-xs text-gray-600 px-4 md:px-20">{t("galleryDescription")}</p>
+        <p className="mt-2 md:mt-4 text-xs text-gray-400 px-4 md:px-20">{t("galleryDescription")}</p>
       </div>
 
       <div className="container mx-auto grid grid-cols-6 gap-1  mt-10 md:mt-16 px-2">

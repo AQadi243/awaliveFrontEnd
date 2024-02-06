@@ -1,26 +1,21 @@
 import { AnimatePresence, motion } from "framer-motion";
 
+
 const PageAnimation = ({ children }) => {
+ 
   return (
     <>
-    <AnimatePresence >
-
-      {children}
+    <AnimatePresence mode="wait">
       <motion.div
-        className='slideIn'
-        initial={{ scaleY: 0 }}
-        animate={{ scaleY: 0 }}
-        exit={{ screenY: 1 }}
-        transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-        />
-      <motion.div
-        className='slideOut'
-        initial={{ scaleY: 1 }}
-        animate={{ scaleY: 0 }}
-        exit={{ screenY: 0 }}
-        transition={{ duration: 1, ease: [ 0.22, 1, 0.36, 1] }}
-        />
-        </AnimatePresence>
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -30 }}
+        transition={{ duration: 1 }}
+      >
+        {children}
+      </motion.div>
+    </AnimatePresence>
+    
     </>
   );
 };

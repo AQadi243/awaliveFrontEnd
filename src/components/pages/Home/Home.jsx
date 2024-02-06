@@ -1,5 +1,5 @@
-import { useContext, useEffect, useState } from "react";
-import PageAnimation from "../../PageAnimation/PageAnimation";
+import React, { useContext, useEffect, useState } from "react";
+// import PageAnimation from "../../PageAnimation/PageAnimation";
 import Banner from "./Banner";
 import BestPosition from "./BestPosition";
 import CheckPromotion from "./CheckPromotion";
@@ -9,10 +9,11 @@ import Relax from "./Relax";
 import RoomCards from "./RoomCards";
 import RoomPrice from "./RoomPrice";
 import StayTune from "./StayTune";
-import { Helmet } from 'react-helmet';
+import { Helmet, } from 'react-helmet';
 
 import { FaArrowUp } from "react-icons/fa";
 import { AuthContext } from "../../sharedPages/Context/AuthProvider";
+import PageAnimation from "../../PageAnimation/PageAnimation";
 
 const Home = () => {
   const { allRooms, loadingAllRooms, setLoadingAllRooms } = useContext(AuthContext);
@@ -47,6 +48,9 @@ const Home = () => {
 
   return (
     <>
+    
+      <div>
+
      <Helmet>
         <title>Awalive Hotel - Luxury Accommodation in Taif</title>
         <meta name="description" content="Experience luxury and comfort at Awalive Hotel, located in taif. Enjoy top-class amenities, exquisite dining, and exceptional service. Book your stay now!" />
@@ -61,7 +65,9 @@ const Home = () => {
         <meta name="twitter:description" content="Indulge in unparalleled luxury at Awalive Hotel, offering exquisite rooms and suites in the heart of taif." />
         <meta name="twitter:image" content="[Link to an image showcasing your hotel]" />
         {/* Other head elements like canonical link, viewport, language tag */}
-      </Helmet>      
+      </Helmet>     
+      </div>
+      
       <PageAnimation>
         <Banner />
         <Relax />
@@ -74,6 +80,7 @@ const Home = () => {
         <MapContact />
       </PageAnimation>
 
+
       {showButton && (
         <button
           className="  fixed bg-slate-400 bg-opacity-20 z-40 p-5 rounded-full bottom-10 right-5 md:bottom-10 md:right-10"
@@ -82,7 +89,9 @@ const Home = () => {
           <FaArrowUp />{" "}
         </button>
       )}
+      
     </>
+      
   );
 };
 

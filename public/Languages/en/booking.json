@@ -58,7 +58,18 @@
   "findRoom":"Find Room",
   "reset":"Reset",
 
+  "New Booking": "New Booking",
+  "Booking History": "Booking History",
+  "myBooking": "My Bookings",
+  "Booking Details": "Booking Details",
   "booking": "Booking",
+  "Complete payment in": "Complete payment in",
+  "completed": "completed",
+  "total": "Total",
+  "Including 15% vat": "Including 15% vat",
+  "Confirmation Status": "Confirmation Status",
+  "Amenities": "Amenities",
+  "Special Instructions": "Special Instructions",
 
   "notFound": "No reviews found.",
   "reviews": "Reviews",

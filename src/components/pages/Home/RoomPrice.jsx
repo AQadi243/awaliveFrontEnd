@@ -32,7 +32,7 @@ const RoomPrice = () => {
               </span>{" "}
               / night
             </p>
-            <ul className="flex flex-col gap-2 text-sm">
+            <ul className="flex flex-col gap-2 text-sm text-gray-400">
               <li>Elegant decor with modern amenities</li>
               <li>Stunning city views</li>
               <li>Complimentary high-speed Wi-Fi</li>
@@ -58,7 +58,7 @@ const RoomPrice = () => {
               </span>{" "}
               / night
             </p>
-            <ul className="flex flex-col gap-2 text-sm">
+            <ul className="flex flex-col gap-2 text-sm ">
               <li>Proin lacinia vehicula amet</li>
               <li>Lorem ipsum dolor sit amet</li>
               <li>Morbi lacinia sagittis acum</li>
@@ -81,7 +81,7 @@ const RoomPrice = () => {
               </span>{" "}
               / night
             </p>
-            <ul className="flex flex-col gap-2 text-sm">
+            <ul className="flex flex-col gap-2 text-sm text-gray-400">
               <li>Proin lacinia vehicula amet</li>
               <li>Lorem ipsum dolor sit amet</li>
               <li>Morbi lacinia sagittis acum</li>

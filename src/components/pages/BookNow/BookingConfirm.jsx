@@ -191,7 +191,7 @@ const BookingConfirm = () => {
       key: "2",
       label: t("paymentOnArrival"),
       children: (
-        <div style={{ fontFamily: "Gilda Display, serif" }}>
+        <div className="text-gray-600 font-semibold">
           <p className="py-2">{t("payAtHotelMessage")}</p>
           {loading ? (
             <Spin />
@@ -207,25 +207,25 @@ const BookingConfirm = () => {
 
   return (
     <>
-      <PageAnimation>
+      
         <section className="bg-slate-50">
           <div className="container mx-auto px-2">
             <div className="flex flex-col md:flex-row gap-3 md:gap-5 py-10 md:py-20">
               <BookingDate />
-              <div className="md:w-2/3" style={{ fontFamily: "Gilda Display, serif" }}>
+              <div className="md:w-2/3" >
                 <div>
-                  <h2 className="text-2xl md:text-4xl pb-3">{t("yourOrderDetails")} :</h2>
-                  <p className="text-yellow-300">{t("emailPhoneError")} </p>
+                  <h2 className="text-2xl font-semibold md:text-4xl pb-3" style={{ fontFamily: "Gilda Display, serif" }}>{t("yourOrderDetails")} :</h2>
+                  <p className="text-gray-400">{t("emailPhoneError")} </p>
                   <div>
                     <form className="flex flex-col gap-3 md:gap-5">
                       <div className="grid md:grid-cols-2 gap-3 md:gap-5  ">
                         <div className="flex items-center">
                           <p className="py-2 px-2 "> {t("firstN")}: </p>
-                          <span className=""> {firstName} </span>
+                          <span className="font-semibold"> {firstName} </span>
                         </div>
                         <div className="flex items-center">
                           <p className="py-2 px-2 "> {t("lastN")}:</p>
-                          <span className="">{lastName}</span>
+                          <span className="font-semibold">{lastName}</span>
                         </div>
 
                         <div className="flex items-center">
@@ -309,7 +309,7 @@ const BookingConfirm = () => {
             {/* <pre>{JSON.stringify(bookingInfo, null, 2)}</pre> */}
           </Modal>
         )}
-      </PageAnimation>
+      
     </>
   );
 };

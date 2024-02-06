@@ -7,7 +7,8 @@
     "payment":"payment",
     "cancelBy": "Cancel by",
     "SAR": "SAR",
-    "myBooking": "My Bookings"
+    "myBooking": "My Bookings",
+    "cancelMessage":"Cancellation deadline has passed."
 
    
 }

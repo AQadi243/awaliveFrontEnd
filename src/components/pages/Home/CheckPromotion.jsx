@@ -21,7 +21,7 @@ const CheckPromotion = () => {
             <h2 className="text-2xl md:text-4xl  " style={{ fontFamily: "Gilda Display, serif" }}>
               {t("summerGetaway")}
             </h2>
-            <p className="py-4 md:py-6 text-sm">{t("getawayDescription")}</p>
+            <p className="py-4 md:py-6 text-sm text-gray-400">{t("getawayDescription")}</p>
             <div className="flex items-center gap-10">
               <img src={checkImg} alt="" className="rounded-full w-20" />
               <img src={singnature} alt="signature" className="w-[50%]" />

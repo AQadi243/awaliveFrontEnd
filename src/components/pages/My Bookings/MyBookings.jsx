@@ -6,6 +6,7 @@ import axios from "axios";
 import BookedRooms from "./BookedRooms";
 import i18next from "i18next";
 import { useTranslation } from "react-i18next";
+import PageAnimation from "../../PageAnimation/PageAnimation";
 // import { Modal, Spin, Table, notification  } from 'antd'
 // import { Link } from 'react-router-dom'
 // import BookingInformation from './BookingInformation/BookingInformation'
@@ -17,7 +18,7 @@ const MyBookings = () => {
   const { user } = useContext(AuthContext);
   const [loading, setLoading] = useState(true);
   const [userOrders, setUserOrders] = useState([]);
-  const { t } = useTranslation("myBooking");
+  const { t } = useTranslation("booking");
 
   useEffect(() => {
     if (!user) {
@@ -38,6 +39,7 @@ const MyBookings = () => {
         const userToken = localStorage.getItem("token");
 
         const response = await axios.get(
+          // `https://type-script-server.vercel.app/api/booking/${userEmail}?lang=${currentLanguage}`,
           `https://type-script-server.vercel.app/api/booking/${userEmail}?lang=${currentLanguage}`,
           {
             headers: {
@@ -103,9 +105,10 @@ const MyBookings = () => {
 
   return (
     <>
+    <PageAnimation>
       <BannerPage text={t("myBooking")} />
-
       <BookedRooms loading={loading} bookedData={userOrders} />
+    </PageAnimation>
     </>
   );
 };

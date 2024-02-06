@@ -15,7 +15,8 @@ const BookTable = () => {
   };
 
   return (
-    <PageAnimation>
+    // <PageAnimation>
+      <>
       <BannerPage text={"Book A Table"} />
       <TableDateAndTime />
       <section
@@ -64,7 +65,8 @@ const BookTable = () => {
       </section>
 
       <PromotionRooms />
-    </PageAnimation> 
+    {/* </PageAnimation>  */}
+      </>
   );
 };
 

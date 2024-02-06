@@ -59,12 +59,12 @@ const RoomDetails = () => {
                   {singleRoomDetails.title}
                 </h1>
                 <div>
-                  <p className="" style={{ fontFamily: "Gilda Display, serif" }}>
+                  <p className="" >
                     {" "}
                     <strong>{t("bedRoom")}</strong> : {singleRoomDetails?.subTitle?.roomOne}
                   </p>
                   {singleRoomDetails.subTitle?.roomTwo && (
-                    <p className="" style={{ fontFamily: "Gilda Display, serif" }}>
+                    <p className="" >
                       {" "}
                       <strong>Bed Room 2</strong> : {singleRoomDetails?.subTitle?.roomTwo}
                     </p>

@@ -96,19 +96,19 @@ const Contact = () => {
           <div className="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
             <div className="flex flex-col justify-center items-center gap-5">
               <img src={keyImage} alt="Key Service Icon" className="w-14 md:w-20" />
-              <p className="text-xs text-center">{t("features.keyDescription")}</p>
+              <p className="text-xs text-center text-gray-400">{t("features.keyDescription")}</p>
             </div>
             <div className="flex flex-col justify-center items-center gap-5">
               <img src={serImage} alt="Service Icon" className="w-14 md:w-20" />
-              <p className="text-xs text-center">{t("features.serviceDescription")}</p>
+              <p className="text-xs text-center text-gray-400">{t("features.serviceDescription")}</p>
             </div>
             <div className="flex flex-col justify-center items-center gap-5">
               <img src={lagImage} alt="Luggage Icon" className="w-14 md:w-20" />
-              <p className="text-xs text-center">{t("features.luggageDescription")}</p>
+              <p className="text-xs text-center text-gray-400">{t("features.luggageDescription")}</p>
             </div>
             <div className="flex flex-col justify-center items-center gap-5">
               <img src={waiImage} alt="Waiting Service Icon" className="w-14 md:w-20" />
-              <p className="text-xs text-center">{t("features.waitersDescription")}</p>
+              <p className="text-xs text-center text-gray-400">{t("features.waitersDescription")}</p>
             </div>
           </div>
         </section>
@@ -182,7 +182,7 @@ const Contact = () => {
           <div className="container mx-auto px-2 relative  ">
             <div className=" w-full flex flex-col md:flex-row items-center justify-center gap-5  py-10 md:py-16">
               <div className="md:w-[50%] text-center md:text-start text-white">
-                <h1 className="text-3xl md:text-5xl tracking-widest py-5">
+                <h1 className="text-3xl md:text-5xl tracking-widest py-5" style={{ fontFamily: "Gilda Display, serif" }}>
                   Meet Our <br /> Dedicated Team
                 </h1>
                 <p className="text-sm  tracking-widest">{t("team_description")}</p>
@@ -202,8 +202,8 @@ const Contact = () => {
               </div>
 
               <div className="md:w-[50%] text-center bg-white  py-10 ">
-                <h2 className="text-2xl p-2 tracking-widest capitalize">{t("contact_title")}</h2>
-                <p className="px-2">{t("contact_description")}</p>
+                <h2 className="text-2xl p-2 tracking-widest capitalize font-semibold" style={{ fontFamily: "Gilda Display, serif" }}>{t("contact_title")}</h2>
+                <p className="px-2 text-gray-400">{t("contact_description")}</p>
 
                 <form className=" w-[95%] mx-auto flex flex-col gap-5 py-10" onSubmit={handleSubmit}>
                   <input

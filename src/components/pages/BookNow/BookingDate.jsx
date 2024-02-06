@@ -32,7 +32,7 @@ const BookingDate = () => {
       <p>Loading</p>
     </div>
   ) : (
-    <div className="md:w-1/3 relative text-sm" style={{ fontFamily: "Gilda Display, serif" }}>
+    <div className="md:w-1/3 relative text-sm" >
       <img className="" src={bookingInformation.RoomImage} alt="" />
       <p className="absolute top-3 right-3 text-white">{bookingInformation.RoomName}</p>
 
@@ -64,7 +64,7 @@ const BookingDate = () => {
         <p>{t("goodTasteMessage")}</p>
       </div>
       <div className=" p-3  flex flex-col gap-2 px-3 bg-white shadow  text-sm">
-        <p className="text-xl">{t("priceSummary")}</p>
+        <p className="text-xl font-bold">{t("priceSummary")}</p>
         <div className="flex items-center justify-between">
           <div>
             <p className="text-sm">
@@ -79,7 +79,7 @@ const BookingDate = () => {
           </div>
           <div>
             {/* <p>{bookingInformation.totalPrice}{" "}-{" "} {t('SAR')} </p> */}
-            <p>
+            <p className="text-xs font-semibold">
               {currentLanguage === "en"
                 ? bookingInformation?.totalPrice?.toLocaleString()
                 : bookingInformation?.totalPrice?.toLocaleString("ar-EG")}{" "}
@@ -93,7 +93,7 @@ const BookingDate = () => {
             <p className="text-xs ">{t("governmentTaxes")} </p>
           </div>
           {/* <p>{bookingInformation.tax}-{t('SAR')} </p> */}
-          <p>
+          <p className="text-xs font-semibold">
             {currentLanguage === "en"
               ? bookingInformation?.tax?.toLocaleString()
               : bookingInformation?.tax?.toLocaleString("ar-EG")}{" "}

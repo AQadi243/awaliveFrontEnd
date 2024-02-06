@@ -15,7 +15,7 @@ import AuthProvider from "./components/sharedPages/Context/AuthProvider";
 import BookNow from "./components/pages/BookNow/BookNow";
 import BookingConfirm from "./components/pages/BookNow/BookingConfirm";
 import Search from "./components/pages/SearchRoooms/Search";
-import { AnimatePresence } from "framer-motion";
+
 import Contact from "./components/pages/Contact/Contact";
 import About from "./components/pages/About/About";
 // import BookTable from "./components/pages/Restaurent/BookTable/BookTable";
@@ -115,8 +115,10 @@ const router = createBrowserRouter([
         path: "/mybookings",
         element: (
           <PrivateRoute>
+            
             {" "}
             <MyBookings />{" "}
+            
           </PrivateRoute>
         ),
       },
@@ -148,9 +150,11 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <Suspense fallback={loadingMarkup}>
     <React.StrictMode>
         <AuthProvider>
-          <AnimatePresence mode="wait">
+         
+
             <RouterProvider router={router} />
-          </AnimatePresence>
+         
+          
         </AuthProvider>
     </React.StrictMode>
   </Suspense>
