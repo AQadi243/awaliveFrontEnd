@@ -67,7 +67,7 @@ const LanguageDropdown = () => {
             onClick: handleMenuClick, 
             items 
           }}
-          trigger={['click']}
+          trigger={['hover']}
         >
           <a className="cursor-pointer">
             <Space>

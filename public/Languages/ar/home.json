@@ -1,4 +1,17 @@
 {
+  "Awalive Hotel":"فندق اوالايف",
+    "home": "الرئيسية",
+    "about": "حول",
+    "search": "بحث",
+    "roomSearch": "بحث عن غرفة",
+    "roomRates": "سعر الغرفة",
+    "promotions": "العروض",
+    "restaurants": "المطعم",
+    "bookTable": "حجز طاولة",
+    "menu": "القائمة",
+    "contact": "اتصل",
+    "myBookings": "حجوزاتي",
+
   "headerSemiTitle": "استمتع بالأناقة",
   "titleHero": "تجربة الراحة الفاخرة في ",
   "subTitleHero": "فندق أواليف الدولي , بالطائف",
@@ -48,7 +61,7 @@
   "laundryIroning": {
     "label": "خدمة الغسيل والكي"
   },
-  
+
   "keyFeatures": {
     "smartKey": {
       "title": "المفتاح الذكي",

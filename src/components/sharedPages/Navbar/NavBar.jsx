@@ -11,6 +11,8 @@ import ButtonLoginSignUp from "./Buttons/ButtonLoginSignUp";
 import ButtonAfterLogin from "./Buttons/BuutonAfterLogin";
 import { AuthContext } from "../Context/AuthProvider";
 import Headroom from "react-headroom";
+import { DownOutlined } from "@ant-design/icons";
+import { useTranslation } from "react-i18next";
 
 const navLinks = [
   { title: "Home", href: "/" },
@@ -23,9 +25,7 @@ const navLinks = [
 
 const Navbar = () => {
   const { user, handleLogout } = useContext(AuthContext);
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const toggleDropdown = () => setIsDropdownOpen(!isDropdownOpen);
-  const closeDropdown = () => setIsDropdownOpen(false);
+  const {t} = useTranslation('home')
 
   const [open, setOpen] = useState(false);
 
@@ -95,66 +95,80 @@ const Navbar = () => {
         <div className=" flex items-center justify-between py-8 lg:py-4 px-2">
           <div className=" flex items-center gap-[1ch]">
             <div className="w-3 h-3 md:w-5 md:h-5 bg-[#BE9874] rounded-full" />
-            <Link to={"/"} className=" text-xs md:text-sm font-semibold tracking-widest">
-              Awalive Hotel
+            <Link to={"/"} className=" text-xs md:text-lg font-semibold tracking-widest">
+              {t("Awalive Hotel")}
             </Link>
           </div>
           <div className="lg:flex hidden   gap-5 text-md text-zinc-400">
-            <NavLink to={"/"}>
-              <p>Home</p>
-              {/* <AnimatedLink title={"Home"} /> */}
+            <NavLink to={"/"} className={({ isActive }) => (isActive ? "font-semibold text-[#BE9874]" : "font-medium")}>
+              {t("home")}
             </NavLink>
             <li className="relative group list-none cursor-pointer">
-              <p onClick={toggleDropdown}>Search</p>
-              <ul className={`absolute w-36 left-0 ${isDropdownOpen ? "block" : "hidden"} pt-2 bg-white`}>
+              <p className="flex gap-1 items-center">
+                <p> {t("search")}</p>
+                <DownOutlined className="text-xs" />
+              </p>
+              <ul
+                className={
+                  "absolute w-36 left-0 hidden pt-2 bg-white drop-shadow-md text-md text-zinc-400 group-hover:block z-20 rounded-sm"
+                }
+              >
                 <li className="p-2 hover:bg-slate-50 transition duration-300 ease-in-out">
-                  <NavLink to={"/roomSearch"} onClick={closeDropdown}>
-                    Room Search
+                  <NavLink
+                    to={"/roomSearch"}
+                    
+                    className={({ isActive }) => (isActive ? "font-semibold text-[#BE9874]" : "font-medium")}
+                  >
+                    {t("roomSearch")}
                   </NavLink>
                 </li>
                 <li className="p-2 hover:bg-slate-50 transition duration-300 ease-in-out">
-                  <NavLink to={"/roomRate"} onClick={closeDropdown}>
-                    Room Rates
+                  <NavLink
+                    to={"/roomRate"}
+                    
+                    className={({ isActive }) => (isActive ? "font-semibold text-[#BE9874]" : "font-medium")}
+                  >
+                    {t("roomRates")}
                   </NavLink>
                 </li>
               </ul>
             </li>
-            <NavLink to={"/about"}>
-              <p>About</p>
-              {/* <AnimatedLink title={"Home"} /> */}
-            </NavLink>
-            <NavLink to={"/promotions"}>
-              <p>Promotions</p>
-              {/* <AnimatedLink title={"Home"} /> */}
+
+            <NavLink to={"/promotions"} className={({ isActive }) => (isActive ? "font-semibold text-[#BE9874]" : "font-medium")}>
+              {t("promotions")}
             </NavLink>
             <li className="relative group list-none">
-              <p>Restaurant</p>
+              <p className="flex gap-1 items-center">
+                <p> {t("restaurants")}</p>
+                <DownOutlined className="text-xs" />
+              </p>
 
-              {/* Dropdown Content */}
               <ul className="absolute w-36 left-0 hidden pt-2 bg-white drop-shadow-md text-md text-zinc-400 group-hover:block z-20 rounded-sm">
-                <li>
+                <li className="p-2 block hover:bg-slate-50 transition duration-300 ease-in-out ">
                   <NavLink
                     to={"/bookTable"}
-                    className="p-2 block hover:bg-slate-50 transition duration-300 ease-in-out "
+                    className={({ isActive }) => (isActive ? "font-semibold text-[#BE9874]" : "font-medium")}
                   >
-                    Book Table
+                    {t("bookTable")}
                   </NavLink>
                 </li>
-                <li>
-                  <NavLink className="p-2 block hover:bg-slate-50 transition duration-300 ease-in-out ">
-                    Menu
+                <li className="p-2 block hover:bg-slate-50 transition duration-300 ease-in-out ">
+                  <NavLink to={"/menu"} className={({ isActive }) => (isActive ? "font-semibold text-[#BE9874]" : "font-medium")}>
+                    {t("menu")}
                   </NavLink>
                 </li>
               </ul>
             </li>
-            <NavLink to={"/contact"}>
-              Contact
+            <NavLink to={"/about"} className={({ isActive }) => (isActive ? "font-semibold text-[#BE9874]" : "font-medium")}>
+              {t("about")}
+            </NavLink>
+            <NavLink to={"/contact"} className={({ isActive }) => (isActive ? "font-semibold text-[#BE9874]" : "font-medium")}>
+              {t("contact")}
               {/* <AnimatedLink title={"Home"} /> */}
             </NavLink>
             {user?.fullName ? (
-              <NavLink to={"/mybookings"}>
-                <p>My Bookings</p>
-                {/* <AnimatedLink title={"Home"} /> */}
+              <NavLink to={"/mybookings"}className={({ isActive }) => (isActive ? "font-semibold text-[#BE9874]" : "font-medium")}>
+              {t("myBookings")} 
               </NavLink>
             ) : (
               ""
@@ -171,7 +185,6 @@ const Navbar = () => {
             )}
 
             {/* login button end  */}
-            {/* <AnimatedLink title={"Contact"} /> */}
           </div>
 
           {/* for mobile version  */}
@@ -220,12 +233,7 @@ const Navbar = () => {
                 {navLinks.map((link, index) => {
                   return (
                     <div className="overflow-hidden" key={index}>
-                      <MobileNavLink
-                        title={link.title}
-                        href={link.href}
-                        nestedLinks={link.nestedLinks}
-                        onClick={toggleMenu}
-                      />
+                      <MobileNavLink title={link.title} href={link.href} nestedLinks={link.nestedLinks} onClick={toggleMenu} />
                     </div>
                   );
                 })}
@@ -274,9 +282,9 @@ const MobileNavLink = ({ title, href, onClick, nestedLinks }) => {
         <ul className="ml-4">
           {nestedLinks.map((nestedLink, index) => (
             <li key={index}>
-              <Link to={nestedLink.href} onClick={onClick}>
+              <NavLink to={nestedLink.href} onClick={onClick} className={({ isActive }) => (isActive ? "font-semibold text-[#BE9874]" : "font-medium")}>
                 {nestedLink.title}
-              </Link>
+              </NavLink>
             </li>
           ))}
         </ul>

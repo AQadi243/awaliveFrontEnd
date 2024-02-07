@@ -1,4 +1,19 @@
 {
+  "Awalive Hotel":"Awalive Hotel",
+    "home":"Home",
+    "about":"About",
+    "search":"Search",
+    "roomSearch":"Room Search",
+    "roomRates":"Room Rate",
+    "promotions":"Promotions",
+    "restaurants":"Restaurant",
+    "bookTable":"Book Table",
+    "menu":"Menu",
+    "contact":"Contact",
+    "myBookings":"My Bookings",
+
+
+
   "headerSemiTitle": "Indulge in Elegance",
   "titleHero": "Experience Luxurious at",
   "subTitleHero": "Awalive International Hotel",
