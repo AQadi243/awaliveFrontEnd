@@ -105,10 +105,10 @@ const router = createBrowserRouter([
       {
         path: "/BookingConfirm",
         element: (
-          <PrivateRoute>
-            {" "}
-            <BookingConfirm />{" "}
-          </PrivateRoute>
+          
+            
+            <BookingConfirm />
+          
         ),
       },
       {
