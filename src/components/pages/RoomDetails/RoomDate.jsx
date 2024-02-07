@@ -149,7 +149,7 @@ const RoomDate = ({ singleRoomDetails }) => {
 
             {night === 0 && (
               <div id="error-message" className="text-red-500 text-xs">
-                Please select check-In & Check-Out date
+                {t("Please select check-In & Check-Out date")}
               </div>
             )}
             <div id="perfect-message" className="text-green-500 text-xs"></div>

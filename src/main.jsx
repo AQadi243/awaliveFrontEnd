@@ -27,7 +27,7 @@ import MyBookings from "./components/pages/My Bookings/MyBookings";
 import ErrorPage from "./components/Error Page/ErrorPage";
 // import Promotions from "./components/pages/Promotion/Promotions";
 import SinglePromoRoom from "./components/pages/Promotion/SinglePromoPage/SinglePromoRoom";
-import 'react-lazy-load-image-component/src/effects/blur.css';
+import "react-lazy-load-image-component/src/effects/blur.css";
 import BookTable from "./components/pages/Restaurent/BookTable/BookTable";
 // import ScrollToTop from './components/sharedPages/ScrollToTop';
 
@@ -46,12 +46,12 @@ i18next
       order: ["path", "cookie", "htmlTag"],
       caches: ["cookie"],
     },
-    ns: [ "home", "contact","booking","loginAndSignUp", "footer","about", "contact"], // Define your namespaces
+    ns: ["home", "contact", "booking", "loginAndSignUp", "footer", "about", "contact"], // Define your namespaces
     defaultNS: "home",
     backend: {
       loadPath: "/Languages/{{lng}}/{{ns}}.json",
     },
-    preload: [ 'home', 'contact', 'booking', 'loginAndSignUp','footer','about','contact' ],
+    preload: ["home", "contact", "booking", "loginAndSignUp", "footer", "about", "contact"],
   });
 
 const loadingMarkup = (
@@ -104,21 +104,14 @@ const router = createBrowserRouter([
       },
       {
         path: "/BookingConfirm",
-        element: (
-          
-            
-            <BookingConfirm />
-          
-        ),
+        element: <BookingConfirm />,
       },
       {
         path: "/mybookings",
         element: (
           <PrivateRoute>
-            
             {" "}
             <MyBookings />{" "}
-            
           </PrivateRoute>
         ),
       },
@@ -149,13 +142,9 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")).render(
   <Suspense fallback={loadingMarkup}>
     <React.StrictMode>
-        <AuthProvider>
-         
-
-            <RouterProvider router={router} />
-         
-          
-        </AuthProvider>
+      <AuthProvider>
+        <RouterProvider router={router} />
+      </AuthProvider>
     </React.StrictMode>
   </Suspense>
 );

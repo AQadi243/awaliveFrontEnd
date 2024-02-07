@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import PageAnimation from "../../PageAnimation/PageAnimation";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
+import { FaCircleInfo } from "react-icons/fa6";
 
 const BookingConfirm = () => {
   const { user } = useContext(AuthContext);
@@ -207,109 +208,133 @@ const BookingConfirm = () => {
 
   return (
     <>
-      
-        <section className="bg-slate-50">
-          <div className="container mx-auto px-2">
-            <div className="flex flex-col md:flex-row gap-3 md:gap-5 py-10 md:py-20">
-              <BookingDate />
-              <div className="md:w-2/3" >
+      <section className="bg-slate-50">
+        <div className="container mx-auto px-2">
+          <div className="flex flex-col md:flex-row gap-3 md:gap-5 py-10 md:py-20">
+            <BookingDate />
+            <div className="md:w-2/3">
+              <div>
+                <h2 className="text-2xl font-semibold md:text-4xl pb-3" style={{ fontFamily: "Gilda Display, serif" }}>
+                  {t("yourOrderDetails")} :
+                </h2>
+                <p className="text-gray-400">{t("emailPhoneError")} </p>
                 <div>
-                  <h2 className="text-2xl font-semibold md:text-4xl pb-3" style={{ fontFamily: "Gilda Display, serif" }}>{t("yourOrderDetails")} :</h2>
-                  <p className="text-gray-400">{t("emailPhoneError")} </p>
-                  <div>
-                    <form className="flex flex-col gap-3 md:gap-5">
-                      <div className="grid md:grid-cols-2 gap-3 md:gap-5  ">
-                        <div className="flex items-center">
-                          <p className="py-2 px-2 "> {t("firstN")}: </p>
-                          <span className="font-semibold"> {firstName} </span>
-                        </div>
-                        <div className="flex items-center">
-                          <p className="py-2 px-2 "> {t("lastN")}:</p>
-                          <span className="font-semibold">{lastName}</span>
-                        </div>
-
-                        <div className="flex items-center">
-                          <p className="py-2 px-2 "> {t("emailN")}:</p>
-                          {isEditingEmail ? (
-                            <>
-                              <input type="email" value={editedEmail} onChange={handleEmailChange} />
-                              <button onClick={saveEmail} className="bg-[#BE9874] px-2 rounded-sm text-white">
-                                Save
-                              </button>
-                            </>
-                          ) : (
-                            <>
-                              <span className="" onClick={handleEmailEdit}>
-                                {editedEmail}
-                              </span>
-                              <p className=" px-2 rounded-sm bg-black text-white ml-3 text-xs">Edit</p>
-                            </>
-                          )}
-                          {emailError && <p className="error-message">{emailError}</p>}
-                        </div>
-                        <div className="flex items-center">
-                          <p className="py-2 px-2 "> {t("phoneN")}:</p>
-                          {isEditingPhone ? (
-                            <>
-                              <input type="tel" required value={editedPhone} onChange={handlePhoneChange} />
-                              <button onClick={savePhone} className="bg-[#BE9874] px-2 rounded-sm text-white">
-                                Save
-                              </button>
-                            </>
-                          ) : (
-                            <>
-                              <span className="" onClick={handlePhoneEdit}>
-                                {editedPhone}
-                              </span>
-                              <p className=" px-2 rounded-sm bg-black text-white ml-3 text-xs">Edit</p>
-                            </>
-                          )}
-                          {/* {phoneError && <p className="error-message">{phoneError}</p>} */}
-                        </div>
-
-                        <div className="flex items-center">
-                          <p className="py-2 px-2 "> {t("addressN")}:</p>
-                          <span className="font-semibold">{address}</span>
-                        </div>
-                        <div className="flex items-center">
-                          <p className="py-2 px-2 "> {t("city")}:</p>
-                          <span className="font-semibold">{city}</span>
-                        </div>
-                        <div className="flex items-center">
-                          <p className="py-2 px-2 "> {t("arrival")}:</p>
-                          <span className="font-semibold">{arrivalTime}</span>
-                        </div>
-                        <div className="flex items-center">
-                          <p className="py-2 px-2 "> {t("messageN")}:</p>
-                          <span className="font-semibold">{message}</span>
-                        </div>
+                  <form className="flex flex-col gap-3 md:gap-5">
+                    <div className="grid md:grid-cols-2 gap-2 md:gap-3  ">
+                      <div className="flex items-center">
+                        <p className="py-2 px-2 "> {t("firstN")}: </p>
+                        <span className="font-semibold"> {firstName} </span>
                       </div>
-                    </form>
-                  </div>
+                      <div className="flex items-center">
+                        <p className="py-2 px-2 "> {t("lastN")}:</p>
+                        <span className="font-semibold">{lastName}</span>
+                      </div>
+
+                      <div className="flex items-center">
+                        <p className="py-2 px-2 "> {t("emailN")}:</p>
+                        {isEditingEmail ? (
+                          <>
+                            <input type="email" value={editedEmail} onChange={handleEmailChange} className="overflow-hidden max-w-[200px] truncate" />
+                            <button onClick={saveEmail} className="bg-[#BE9874] px-2 rounded-sm text-white">
+                              Save
+                            </button>
+                          </>
+                        ) : (
+                          <>
+                            <span className="overflow-hidden max-w-[200px] truncate" onClick={handleEmailEdit}  >
+                              {editedEmail}
+                            </span>
+                            <p className=" px-2 rounded-sm bg-[#151516] text-white ml-3 text-xs ">Edit</p>
+                            <ul className="relative group list-none cursor-pointer px-1">
+                              <p className="flex gap-1 items-center">
+                                <FaCircleInfo className="text-[#767677]" />
+                              </p>
+                              <ul
+                                className={
+                                  "absolute w-48 left-0 hidden pt-2 bg-white drop-shadow-md text-md text-zinc-400 group-hover:block z-20 rounded-sm"
+                                }
+                              >
+                                <li className="p-2 hover:bg-slate-50 transition duration-300 ease-in-out"> {t('info')}</li>
+                              </ul>
+                            </ul>
+                          </>
+                        )}
+                        {emailError && <p className="error-message">{emailError}</p>}
+                      </div>
+                      <div className="flex items-center">
+                        <p className="py-2 px-2 "> {t("phoneN")}:</p>
+                        {isEditingPhone ? (
+                          <>
+                            <input type="tel" required value={editedPhone} onChange={handlePhoneChange} className="overflow-hidden" />
+                            <button onClick={savePhone} className="bg-[#BE9874] px-2 rounded-sm text-white">
+                              Save
+                            </button>
+                          </>
+                        ) : (
+                          <>
+                            <span className="" onClick={handlePhoneEdit}>
+                              {editedPhone}
+                            </span>
+                            <p className=" px-2 rounded-sm bg-black text-white ml-3 text-xs">Edit</p>
+                            <ul className="relative group list-none cursor-pointer px-1">
+                              <p className="flex gap-1 items-center">
+                                <FaCircleInfo className="text-[#767677]" />
+                              </p>
+                              <ul
+                                className={
+                                  "absolute w-48 left-0 hidden pt-2 bg-white drop-shadow-md text-md text-zinc-400 group-hover:block z-20 rounded-sm"
+                                }
+                              >
+                                <li className="p-2 hover:bg-slate-50 transition duration-300 ease-in-out"> {t('info')}</li>
+                              </ul>
+                            </ul>
+                          </>
+                        )}
+                        {/* {phoneError && <p className="error-message">{phoneError}</p>} */}
+                      </div>
+
+                      <div className="flex items-center">
+                        <p className="py-2 px-2 "> {t("addressN")}:</p>
+                        <span className="font-semibold">{address}</span>
+                      </div>
+                      <div className="flex items-center">
+                        <p className="py-2 px-2 "> {t("city")}:</p>
+                        <span className="font-semibold">{city}</span>
+                      </div>
+                      <div className="flex items-center">
+                        <p className="py-2 px-2 "> {t("arrival")}:</p>
+                        <span className="font-semibold">{arrivalTime}</span>
+                      </div>
+                      <div className="flex items-center">
+                        <p className="py-2 px-2 "> {t("messageN")}:</p>
+                        <span className="font-semibold">{message}</span>
+                      </div>
+                    </div>
+                  </form>
                 </div>
-                <Tabs defaultActiveKey="1" items={items} onChange={onChange} />
               </div>
+              <Tabs defaultActiveKey="1" items={items} onChange={onChange} />
             </div>
           </div>
-        </section>
-        {loading ? (
-          <p>Loading...</p>
-        ) : (
-          <Modal
-            title="Booking Information"
-            open={isModalVisible}
-            onCancel={handleModalCancel}
-            footer={[
-              <button key="cancel" onClick={handleModalCancel}>
-                Close
-              </button>,
-            ]}
-          >
-            <p>{order}</p>
-            {/* <pre>{JSON.stringify(bookingInfo, null, 2)}</pre> */}
-          </Modal>
-        )}
-      
+        </div>
+      </section>
+      {loading ? (
+        <p>Loading...</p>
+      ) : (
+        <Modal
+          title="Booking Information"
+          open={isModalVisible}
+          onCancel={handleModalCancel}
+          footer={[
+            <button key="cancel" onClick={handleModalCancel}>
+              Close
+            </button>,
+          ]}
+        >
+          <p>{order}</p>
+          {/* <pre>{JSON.stringify(bookingInfo, null, 2)}</pre> */}
+        </Modal>
+      )}
     </>
   );
 };

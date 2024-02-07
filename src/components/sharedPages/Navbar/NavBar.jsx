@@ -25,7 +25,7 @@ const navLinks = [
 
 const Navbar = () => {
   const { user, handleLogout } = useContext(AuthContext);
-  const {t} = useTranslation('home')
+  const { t } = useTranslation("home");
 
   const [open, setOpen] = useState(false);
 
@@ -105,7 +105,7 @@ const Navbar = () => {
             </NavLink>
             <li className="relative group list-none cursor-pointer">
               <p className="flex gap-1 items-center">
-                <p> {t("search")}</p>
+                <span> {t("search")}</span>
                 <DownOutlined className="text-xs" />
               </p>
               <ul
@@ -116,7 +116,6 @@ const Navbar = () => {
                 <li className="p-2 hover:bg-slate-50 transition duration-300 ease-in-out">
                   <NavLink
                     to={"/roomSearch"}
-                    
                     className={({ isActive }) => (isActive ? "font-semibold text-[#BE9874]" : "font-medium")}
                   >
                     {t("roomSearch")}
@@ -125,7 +124,6 @@ const Navbar = () => {
                 <li className="p-2 hover:bg-slate-50 transition duration-300 ease-in-out">
                   <NavLink
                     to={"/roomRate"}
-                    
                     className={({ isActive }) => (isActive ? "font-semibold text-[#BE9874]" : "font-medium")}
                   >
                     {t("roomRates")}
@@ -139,7 +137,7 @@ const Navbar = () => {
             </NavLink>
             <li className="relative group list-none">
               <p className="flex gap-1 items-center">
-                <p> {t("restaurants")}</p>
+                <span> {t("restaurants")}</span>
                 <DownOutlined className="text-xs" />
               </p>
 
@@ -167,8 +165,11 @@ const Navbar = () => {
               {/* <AnimatedLink title={"Home"} /> */}
             </NavLink>
             {user?.fullName ? (
-              <NavLink to={"/mybookings"}className={({ isActive }) => (isActive ? "font-semibold text-[#BE9874]" : "font-medium")}>
-              {t("myBookings")} 
+              <NavLink
+                to={"/mybookings"}
+                className={({ isActive }) => (isActive ? "font-semibold text-[#BE9874]" : "font-medium")}
+              >
+                {t("myBookings")}
               </NavLink>
             ) : (
               ""
@@ -282,7 +283,11 @@ const MobileNavLink = ({ title, href, onClick, nestedLinks }) => {
         <ul className="ml-4">
           {nestedLinks.map((nestedLink, index) => (
             <li key={index}>
-              <NavLink to={nestedLink.href} onClick={onClick} className={({ isActive }) => (isActive ? "font-semibold text-[#BE9874]" : "font-medium")}>
+              <NavLink
+                to={nestedLink.href}
+                onClick={onClick}
+                className={({ isActive }) => (isActive ? "font-semibold text-[#BE9874]" : "font-medium")}
+              >
                 {nestedLink.title}
               </NavLink>
             </li>

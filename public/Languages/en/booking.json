@@ -44,6 +44,7 @@
   "paymentOnArrival": "Payment on Arrive",
   "payAtHotelMessage":"Note: You can make your payment directly at our facility using either credit cards or cash upon check-in at the hotel. ",
   "availableRooms":"Available Rooms",
+  "info": "If you are booking a room for someone else, please provide that person with your email and phone number",
 
 
   "selectDates": "Select Dates",
@@ -77,5 +78,7 @@
   "messageReview": "Message ",
   "ratingReview": "Rating ",
   "submitReview":  "Submit Review",
-  "reviewWarning":  "PLease Login to submit Review"
+  "reviewWarning":  "PLease Login to submit Review",
+  "Please select check-In & Check-Out date":"Please select check-In & Check-Out date"
+
 }
