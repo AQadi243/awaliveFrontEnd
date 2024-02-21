@@ -50,7 +50,7 @@ const Loginpage = () => {
   return (
     <section className="container mx-auto">
       <div
-        className="  md:w-[90%] mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 justify-between px-4 md:px-10 py-10"
+        className=  {`md:w-[90%]  md:h-[calc(100vh-78px)] mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 justify-between items-center px-4 md:px-10 py-10` }
         style={{ fontFamily: "Gilda Display, serif" }}
       >
         <div className="md:w-[80%]">

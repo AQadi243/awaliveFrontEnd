@@ -40,7 +40,7 @@ const MyBookings = () => {
 
         const response = await axios.get(
           // `https://type-script-server.vercel.app/api/booking/${userEmail}?lang=${currentLanguage}`,
-          `https://type-script-server.vercel.app/api/booking/${userEmail}?lang=${currentLanguage}`,
+          `http://localhost:5000/api/booking/${userEmail}?lang=${currentLanguage}`,
           {
             headers: {
               Authorization: `${userToken}`,
@@ -90,7 +90,7 @@ const MyBookings = () => {
         }
 
         notification["error"]({
-          message: "Booking request not accepted",
+          message: errorMessage,
           description: errorMessage,
           placement: "topRight",
           duration: 3.5,

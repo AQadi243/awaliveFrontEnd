@@ -66,7 +66,7 @@ const ReviewCard = ({ roomId, reviews, setReviews, reviewLoading, setReviewLoadi
               <img className="w-10 h-10 rounded-full" src={userPlaceHolderImg} alt="User profile" />
             </div>
             <div className="flex-1">
-              <div className="font-bold text-lg">{review.userId.fullName}</div> {/* Replace with dynamic user name */}
+              <div className="font-bold text-lg">{review?.userId?.fullName}</div> {/* Replace with dynamic user name */}
               <p className="text-gray-600">{new Date(review?.createdAt).toLocaleDateString()}</p>{" "}
               {/* Replace with dynamic date */}
             </div>

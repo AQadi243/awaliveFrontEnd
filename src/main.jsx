@@ -29,6 +29,8 @@ import ErrorPage from "./components/Error Page/ErrorPage";
 import SinglePromoRoom from "./components/pages/Promotion/SinglePromoPage/SinglePromoRoom";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import BookTable from "./components/pages/Restaurent/BookTable/BookTable";
+import router from "./router";
+import { QueryClient, QueryClientProvider } from "react-query";
 // import ScrollToTop from './components/sharedPages/ScrollToTop';
 
 // import 'flag-icon-css/css/flag-icon.min.css'
@@ -62,89 +64,93 @@ const loadingMarkup = (
   </div>
 );
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <App />,
-    errorElement: <ErrorPage />,
+// const router = createBrowserRouter([
+//   {
+//     path: "/",
+//     element: <App />,
+//     errorElement: <ErrorPage />,
 
-    children: [
-      {
-        path: "/",
-        element: <Home />,
-      },
-      {
-        path: "/check",
-        element: <Check />,
-      },
-      {
-        path: "/about",
-        element: <About />,
-      },
-      {
-        path: "/contact",
-        element: <Contact />,
-      },
-      {
-        path: "/roomSearch",
-        element: <Search />,
-      },
-      {
-        path: "/room/:id",
-        element: <RoomDetails />,
-      },
-      {
-        path: "/booking",
-        element: (
-          <PrivateRoute>
-            {" "}
-            <BookNow />{" "}
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "/BookingConfirm",
-        element: <BookingConfirm />,
-      },
-      {
-        path: "/mybookings",
-        element: (
-          <PrivateRoute>
-            {" "}
-            <MyBookings />{" "}
-          </PrivateRoute>
-        ),
-      },
-      // {
-      //   path: "/promotions",
-      //   element: <Promotions />,
-      // },
-      {
-        path: "/singlePromotionRoom/:id",
-        element: <SinglePromoRoom />,
-      },
-      {
-        path: "/bookTable",
-        element: <BookTable />,
-      },
-      {
-        path: "/login",
-        element: <Loginpage />,
-      },
-      {
-        path: "/signup",
-        element: <SignUpPage />,
-      },
-    ],
-  },
-]);
+//     children: [
+//       {
+//         path: "/",
+//         element: <Home />,
+//       },
+//       {
+//         path: "/check",
+//         element: <Check />,
+//       },
+//       {
+//         path: "/about",
+//         element: <About />,
+//       },
+//       {
+//         path: "/contact",
+//         element: <Contact />,
+//       },
+//       {
+//         path: "/roomSearch",
+//         element: <Search />,
+//       },
+//       {
+//         path: "/room/:id",
+//         element: <RoomDetails />,
+//       },
+//       {
+//         path: "/booking",
+//         element: (
+//           <PrivateRoute>
+//             {" "}
+//             <BookNow />{" "}
+//           </PrivateRoute>
+//         ),
+//       },
+//       {
+//         path: "/BookingConfirm",
+//         element: <BookingConfirm />,
+//       },
+//       {
+//         path: "/mybookings",
+//         element: (
+//           <PrivateRoute>
+//             {" "}
+//             <MyBookings />{" "}
+//           </PrivateRoute>
+//         ),
+//       },
+//       // {
+//       //   path: "/promotions",
+//       //   element: <Promotions />,
+//       // },
+//       {
+//         path: "/singlePromotionRoom/:id",
+//         element: <SinglePromoRoom />,
+//       },
+//       {
+//         path: "/bookTable",
+//         element: <BookTable />,
+//       },
+//       {
+//         path: "/login",
+//         element: <Loginpage />,
+//       },
+//       {
+//         path: "/signup",
+//         element: <SignUpPage />,
+//       },
+//     ],
+//   },
+// ]);
+
+const queryClient = new QueryClient()
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <Suspense fallback={loadingMarkup}>
     <React.StrictMode>
+    <QueryClientProvider client={queryClient} >
       <AuthProvider>
         <RouterProvider router={router} />
       </AuthProvider>
+    </QueryClientProvider>
     </React.StrictMode>
   </Suspense>
 );

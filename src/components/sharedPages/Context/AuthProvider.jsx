@@ -10,6 +10,8 @@ export const AuthContext = createContext(null);
 const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState(null);
+  // const [userRole, setUserRole] = useState(null);
+  
 
   const [allRooms, setAllRooms] = useState([]);
   const [loadingAllRooms, setLoadingAllRooms] = useState(true);
@@ -76,22 +78,24 @@ const AuthProvider = ({ children }) => {
 
   // login the user
   const handleLogin = async (email, password) => {
-    setLoading(true);
-
+    
     try {
+      setLoading(true);
       const response = await axios.post(
         // "https://awalive-server-side-hzpa.vercel.app/login",
         // "https://type-script-server.vercel.app/api/auth/login",
-        "https://type-script-server.vercel.app/api/auth/login",
+        "http://localhost:5000/api/auth/login",
         {
           email,
           password,
         }
       );
-      const data = response.data;
-      setUser(data.data.user);
-      localStorage.setItem("userData", JSON.stringify(data.data.user));
-      localStorage.setItem("token", data.data.accessToken);
+      const { data } = response.data;
+      // setUser(data.user);
+      // setUserRole(data.user.role);
+      localStorage.setItem("userData", JSON.stringify(data.user));
+      localStorage.setItem("token", data.accessToken);
+      setUser(JSON.parse(localStorage.getItem("userData")))
       notification["success"]({
         message: "Welcome Nice to see you",
         placement: "topRight",
@@ -126,26 +130,44 @@ const AuthProvider = ({ children }) => {
   const handleLogout = () => {
     // Clear user data and token from state and localStorage
     // setUser(null);
+    setUser("");
     localStorage.removeItem("userData");
     localStorage.removeItem("token");
-    setUser("");
+    // setUserRole(null);
+    notification.info({
+      message: "Logged Out",
+      description: "You have been logged out successfully.",
+      placement: "topRight",
+      duration: 3.5,
+    });
     // notification logic here
   };
 
   // checking if user token is expire or not
+  // useEffect(() => {
+  //   const checkTokenExpiration = () => {
+  //     const token = localStorage.getItem("token");
+  //     if (token) {
+  //       const tokenExpiration = JSON.parse(atob(token.split(".")[1])).exp;
+  //       const currentTime = Date.now() / 1000; // current time in seconds
+  //       if (tokenExpiration < currentTime) {
+  //         handleLogout();
+  //       }
+  //     }
+  //   };
+  //   const intervalId = setInterval(checkTokenExpiration, 60000); // check every minute
+  //   return () => clearInterval(intervalId); // clear interval on component unmount
+  // }, []);
   useEffect(() => {
-    const checkTokenExpiration = () => {
-      const token = localStorage.getItem("token");
-      if (token) {
-        const tokenExpiration = JSON.parse(atob(token.split(".")[1])).exp;
-        const currentTime = Date.now() / 1000; // current time in seconds
-        if (tokenExpiration < currentTime) {
-          handleLogout();
-        }
+    const token = localStorage.getItem("token");
+    if (token) {
+      const { exp } = JSON.parse(atob(token.split('.')[1]));
+      if (Date.now() >= exp * 1000) {
+        handleLogout();
+      } else {
+        setUser(JSON.parse(localStorage.getItem("userData")));
       }
-    };
-    const intervalId = setInterval(checkTokenExpiration, 60000); // check every minute
-    return () => clearInterval(intervalId); // clear interval on component unmount
+    }
   }, []);
 
   useEffect(() => {
@@ -209,6 +231,7 @@ const AuthProvider = ({ children }) => {
     checkIn,
     checkOut,
     category,
+    // userRole,
     child,
     night,
     setChild,

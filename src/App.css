@@ -65,3 +65,22 @@ z-index: 1 ;
 :root {
   --swiper-theme-color: #BE9874 !important; 
 }
+
+.dark .ant-select-selector {
+  background-color: #24303F !important;
+  /* background-color: #1a1616 !important; */
+  border: 1px solid #2E3A47 !important;
+  transition: all 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+
+}
+.ant-select-selector:hover {
+  border: 1px solid #2E3A47 !important;
+  
+}
+.ant-checkbox-checked .ant-checkbox-inner {
+  background-color: #BE9874;
+  border-color: #E2E8F0;
+}
+
+
+

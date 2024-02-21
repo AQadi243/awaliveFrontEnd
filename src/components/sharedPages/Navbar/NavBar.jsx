@@ -24,10 +24,12 @@ const navLinks = [
 ];
 
 const Navbar = () => {
-  const { user, handleLogout } = useContext(AuthContext);
+  const { user,userRole, handleLogout } = useContext(AuthContext);
   const { t } = useTranslation("home");
-
   const [open, setOpen] = useState(false);
+
+  console.log(user,'user');
+  console.log(user?.role,'userRole');
 
   // const navigate = useNavigate();
   // const [isDropdownOpen, setDropdownOpen] = useState(false);
@@ -174,6 +176,11 @@ const Navbar = () => {
             ) : (
               ""
             )}
+            {user?.role === 'admin' &&
+            <NavLink to={'/dashboard'}>
+                Dashboard
+            </NavLink>
+            }
 
             <LanguageDopdown />
             {/* login button  */}
