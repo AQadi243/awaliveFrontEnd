@@ -83,8 +83,8 @@ const AuthProvider = ({ children }) => {
       setLoading(true);
       const response = await axios.post(
         // "https://awalive-server-side-hzpa.vercel.app/login",
-        // "https://type-script-server.vercel.app/api/auth/login",
-        "http://localhost:5000/api/auth/login",
+        "https://type-script-server.vercel.app/api/auth/login",
+        // "http://localhost:5000/api/auth/login",
         {
           email,
           password,
