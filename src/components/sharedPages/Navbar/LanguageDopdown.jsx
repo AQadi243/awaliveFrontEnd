@@ -60,7 +60,7 @@ const LanguageDropdown = () => {
   };
 
   return (
-    <div className="language-select">
+    <div className="language-select py-8 lg:py-6">
       <div className="flex justify-end items-center">
         <Dropdown
           menu={{ 

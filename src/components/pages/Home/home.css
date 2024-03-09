@@ -36,3 +36,19 @@
   /* max-width: 60%; Or whatever max-width suits your design */
   margin: 0 auto; /* This centers the div if it's a block element */
 }
+
+.carousel {
+  position: relative; /* This ensures that absolutely positioned children are positioned relative to this container */
+  width: 100%; /* Full width */
+  height: 100vh; /* Adjust the height as needed, here it's set to full viewport height */
+  overflow: hidden; /* Prevent any overflow from absolutely positioned images */
+}
+
+.image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Cover the area without losing aspect ratio */
+}

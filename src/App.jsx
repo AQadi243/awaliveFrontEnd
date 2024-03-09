@@ -7,6 +7,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { useEffect } from "react";
 import ScrollToTop from "./components/sharedPages/ScrollToTop";
+import NotificationBar from "./components/sharedPages/Navbar/NotificationBar";
 // import ScrollToTop from "./components/sharedPages/ScrollToTop";
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
     <ScrollToTop />
 
     <div className="App  ">
+          <NotificationBar />
           <Navbar />
           <Outlet />
           <Footer />

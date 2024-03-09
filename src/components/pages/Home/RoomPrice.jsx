@@ -1,9 +1,19 @@
+import { useEffect } from "react";
 import heroSlide from "../../../assets/5.jpg";
+// import AOS from 'aos';
+// import 'aos/dist/aos.css';
 
 const RoomPrice = () => {
+  // useEffect(() => {
+  //   AOS.init({
+  //     // Global settings:
+  //     once: true, // whether animation should happen only once - while scrolling down
+  //     mirror: false, // whether elements should animate out while scrolling past them
+  //   });
+  // }, [])
   return (
     <section
-      className="text-[#2E2E2E] relative"
+      className="text-[#2E2E2E] relative h-screen"
       style={{
         backgroundImage: `url(${heroSlide})`,
         backgroundRepeat: "no-repeat",
@@ -12,7 +22,7 @@ const RoomPrice = () => {
       }}
     >
       <div className="absolute top-0 left-0 w-full h-full bg-black opacity-70"></div>
-      <div className="container mx-auto py-8 px-4 ">
+      <div className="container mx-auto py-8 px-4 absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 ">
         <div data-aos="fade-up" className="text-center pb-6 text-white">
           <p className="text-xs  tracking-widest uppercase">OUR ROOM PRICES</p>
           <h2 className="text-2xl py-4 md:text-5xl md:py-3" style={{ fontFamily: "Gilda Display, serif" }}>
@@ -21,7 +31,7 @@ const RoomPrice = () => {
         </div>
         {/* pricing cards */}
         <div className=" max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-5">
-          <div data-aos="fade-up" className="grid-cols-1 bg-white text-center items-center py-10 flex flex-col justify-center">
+          <div data-aos="zoom-in-up" className="grid-cols-1 bg-white text-center items-center py-10 flex flex-col justify-center">
             <h2 className="text-xl md:text-2xl" style={{ fontFamily: "Gilda Display, serif" }}>
               Deluxe Single Room
             </h2>

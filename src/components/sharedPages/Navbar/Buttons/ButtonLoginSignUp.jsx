@@ -23,7 +23,7 @@ const ButtonLoginSignUp = () => {
   ];
 
   return (
-    <div className="">
+    <div className="py-8 lg:py-6">
       <Space direction="vertical">
         <Space wrap>
           <Dropdown

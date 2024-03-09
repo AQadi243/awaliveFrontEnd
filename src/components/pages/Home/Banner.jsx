@@ -12,6 +12,7 @@ import i18next from "i18next";
 import SearchBar from "./SearchBar";
 import { useTranslation } from "react-i18next";
 import {motion } from 'framer-motion';
+import Availability from "./Availability";
 
 const Banner = () => {
   const currentLanguage = i18next.language;
@@ -48,7 +49,8 @@ const Banner = () => {
           <Swiper
             navigation={true}
             modules={[Navigation, Autoplay]}
-            className={` h-[calc(100vh-74px)] `}
+            className={` h-[calc(100vh-120px)] `}
+            // className={` h-screen `}
             autoplay={{ delay: 4000 }}
             loop={true}
             dir={!currentLanguage ? "rtl" : "ltr"}
@@ -101,8 +103,9 @@ const Banner = () => {
             </SwiperSlide>
           </Swiper>
         </div>
-        <div className="md:absolute   md:left-1/2 md:transform md:-translate-x-1/2 md:bottom-0 md:z-50 w-full">
-          <SearchBar pageContext="home" />
+        <div className="md:absolute   md:left-1/2 md:transform md:-translate-x-1/2 md:bottom-25 md:z-50 w-full">
+          {/* <SearchBar pageContext="home" /> */}
+          <Availability />
         </div>
       </div>
     </>

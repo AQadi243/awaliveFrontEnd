@@ -11,7 +11,6 @@ import ButtonLoginSignUp from "./Buttons/ButtonLoginSignUp";
 import ButtonAfterLogin from "./Buttons/BuutonAfterLogin";
 import { AuthContext } from "../Context/AuthProvider";
 import Headroom from "react-headroom";
-import { DownOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 
 const navLinks = [
@@ -87,38 +86,39 @@ const Navbar = () => {
 
   return (
     <Headroom
+    className=""
       pinStart={50}
       disableInlineStyles={false}
       upTolerance={10}
       downTolerance={10}
-      style={{ transition: "all .5s ease-in-out", backgroundColor: "white", zIndex: 1000 }}
+      style={{ transition: "all .5s ease-in-out", backgroundColor: "#1C1C1D",    zIndex: 1000 }}
     >
-      <nav className="container mx-auto" style={{ fontFamily: "Gilda Display, serif" }}>
-        <div className=" flex items-center justify-between py-8 lg:py-4 px-2">
+      <nav className="container mx-auto" >
+        <div className=" flex items-center justify-between  px-2">
           <div className=" flex items-center gap-[1ch]">
-            <div className="w-3 h-3 md:w-5 md:h-5 bg-[#BE9874] rounded-full" />
-            <Link to={"/"} className=" text-xs md:text-lg font-semibold tracking-widest">
+            
+            <Link to={"/"} className=" text-xs md:text-lg font-semibold tracking-widest text-white">
               {t("Awalive Hotel")}
             </Link>
           </div>
-          <div className="lg:flex hidden   gap-5 text-md text-zinc-400">
-            <NavLink to={"/"} className={({ isActive }) => (isActive ? "font-semibold text-[#BE9874]" : "font-medium")}>
+          <div className="lg:flex hidden   gap-8 text-md text-zinc-400">
+            <NavLink to={"/"} className={({ isActive }) => (isActive ? " text-white py-8 lg:py-6" : "py-8 lg:py-6")}>
               {t("home")}
             </NavLink>
-            <li className="relative group list-none cursor-pointer">
-              <p className="flex gap-1 items-center">
-                <span> {t("search")}</span>
-                <DownOutlined className="text-xs" />
+            <li className="relative group list-none cursor-pointer py-8 lg:py-6">
+              <p className="flex gap-1 items-center ">
+                <span className=" hover:text-white transition duration-200 ease-in-out"> {t("search")}</span>
+                
               </p>
               <ul
                 className={
-                  "absolute w-36 left-0 hidden pt-2 bg-white drop-shadow-md text-md text-zinc-400 group-hover:block z-20 rounded-sm"
+                  "absolute w-36 left-0 top-17   hidden pt-2 bg-white drop-shadow-md text-md text-zinc-600 group-hover:block z-20 "
                 }
               >
                 <li className="p-2 hover:bg-slate-50 transition duration-300 ease-in-out">
                   <NavLink
                     to={"/roomSearch"}
-                    className={({ isActive }) => (isActive ? "font-semibold text-[#BE9874]" : "font-medium")}
+                    // className={({ isActive }) => (isActive ? "" : "font-medium")}
                   >
                     {t("roomSearch")}
                   </NavLink>
@@ -126,7 +126,7 @@ const Navbar = () => {
                 <li className="p-2 hover:bg-slate-50 transition duration-300 ease-in-out">
                   <NavLink
                     to={"/roomRate"}
-                    className={({ isActive }) => (isActive ? "font-semibold text-[#BE9874]" : "font-medium")}
+                    // className={({ isActive }) => (isActive ? "font-semibold text-white" : "font-medium")}
                   >
                     {t("roomRates")}
                   </NavLink>
@@ -134,65 +134,46 @@ const Navbar = () => {
               </ul>
             </li>
 
-            <NavLink to={"/promotions"} className={({ isActive }) => (isActive ? "font-semibold text-[#BE9874]" : "font-medium")}>
+            <NavLink to={"/promotions"} className={({ isActive }) => (isActive ? " text-white py-8 lg:py-6" : " hover:text-white transition duration-200 ease-in-out py-8 lg:py-6")}>
               {t("promotions")}
             </NavLink>
-            <li className="relative group list-none">
-              <p className="flex gap-1 items-center">
-                <span> {t("restaurants")}</span>
-                <DownOutlined className="text-xs" />
+            <li className="relative group list-none py-8 lg:py-6">
+              <p className="flex gap-1 items-center cursor-pointer">
+                <span className=" hover:text-white transition duration-200 ease-in-out"> {t("restaurants")}</span>
               </p>
 
-              <ul className="absolute w-36 left-0 hidden pt-2 bg-white drop-shadow-md text-md text-zinc-400 group-hover:block z-20 rounded-sm">
+              <ul className="absolute w-36 left-0 top-17 hidden pt-2 bg-white drop-shadow-md text-md text-zinc-600 group-hover:block z-20 ">
                 <li className="p-2 block hover:bg-slate-50 transition duration-300 ease-in-out ">
                   <NavLink
                     to={"/bookTable"}
-                    className={({ isActive }) => (isActive ? "font-semibold text-[#BE9874]" : "font-medium")}
+                    className={({ isActive }) => (isActive ? " " : "")}
                   >
                     {t("bookTable")}
                   </NavLink>
                 </li>
                 <li className="p-2 block hover:bg-slate-50 transition duration-300 ease-in-out ">
-                  <NavLink to={"/menu"} className={({ isActive }) => (isActive ? "font-semibold text-[#BE9874]" : "font-medium")}>
+                  <NavLink to={"/menu"} className={({ isActive }) => (isActive ? "" : "")}>
                     {t("menu")}
                   </NavLink>
                 </li>
               </ul>
             </li>
-            <NavLink to={"/about"} className={({ isActive }) => (isActive ? "font-semibold text-[#BE9874]" : "font-medium")}>
+            <NavLink to={"/about"} className={({ isActive }) => (isActive ? " text-white py-8 lg:py-6" : "hover:text-white transition duration-200 ease-in-out py-8 lg:py-6")}>
               {t("about")}
             </NavLink>
-            <NavLink to={"/contact"} className={({ isActive }) => (isActive ? "font-semibold text-[#BE9874]" : "font-medium")}>
+            <NavLink to={"/contact"} className={({ isActive }) => (isActive ? " text-white py-8 lg:py-6" : " hover:text-white transition duration-200 ease-in-out py-8 lg:py-6")}>
               {t("contact")}
               {/* <AnimatedLink title={"Home"} /> */}
             </NavLink>
-            {user?.fullName ? (
-              <NavLink
-                to={"/mybookings"}
-                className={({ isActive }) => (isActive ? "font-semibold text-[#BE9874]" : "font-medium")}
-              >
-                {t("myBookings")}
-              </NavLink>
-            ) : (
-              ""
-            )}
             {user?.role === 'admin' &&
-            <NavLink to={'/dashboard'}>
+            <Link to={'/dashboard'} className={"py-8 lg:py-6"} >
                 Dashboard
-            </NavLink>
+            </Link>
             }
+            <div className="py-8 lg:py-6">
 
-            <LanguageDopdown />
-            {/* login button  */}
-            {user?.fullName ? (
-              <ButtonAfterLogin userName={user?.fullName} handleLogout={handleLogout} />
-            ) : (
-              <>
-                <ButtonLoginSignUp />
-              </>
-            )}
-
-            {/* login button end  */}
+            <Link to={"/roomSearch"} className="bg-white px-3 py-1 text-black  text-[12px] font-semibold tracking-[0.2rem] cursor-pointer hover:bg-[#BE9874] hover:text-white ">BOOK NOW</Link>
+            </div>
           </div>
 
           {/* for mobile version  */}

@@ -181,7 +181,7 @@ const SearchBar = ({ pageContext }) => {
         title={t("guest")}
         centered
         open={modal2Open}
-        onOk={() => setModal2Open(false)}
+        onOk={() => setModal2Open(false)} 
         onCancel={handleCancelModal}
         okText="Apply"
         cancelText="Reset"
