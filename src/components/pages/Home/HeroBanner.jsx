@@ -44,8 +44,8 @@ const HeroBanner = () => {
   };
 
   return (
-      <AnimatePresence mode="wait">
           <motion.div className={` bg-[#1C1C1D] flex justify-center items-center relative `}>
+      <AnimatePresence mode="wait">
         <motion.div
           key={activeImageIndex}
           className={ `carousel overflow-hidden bg-gray-600 flex justify-center items-center w-full h-[calc(100vh-120px)]`} 
@@ -90,8 +90,8 @@ const HeroBanner = () => {
           {/* <SearchBar pageContext="home" /> */}
           <Availability />
         </div>
-    </motion.div>
       </AnimatePresence>
+    </motion.div>
       
   );
 };
