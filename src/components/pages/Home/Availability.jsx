@@ -1,58 +1,80 @@
-import React, { useRef, useState } from "react";
+import  {  useState } from "react";
 import { FaAngleDown, FaAngleUp } from "react-icons/fa";
-import Flatpickr from "react-flatpickr";
-import "flatpickr/dist/themes/material_green.css";
+// import Flatpickr from "react-flatpickr";
+// import "flatpickr/dist/themes/material_green.css";
+// import DatePicker from 'react-datepicker';
+// import "react-datepicker/dist/react-datepicker.css";
+import { DateRange } from 'react-date-range';
+import 'react-date-range/dist/styles.css'; // Main style file
+import 'react-date-range/dist/theme/default.css'; // Theme css file
 
 const Availability = () => {
-    // const [date, setDate] = useState(new Date()); // State to manage the selected date
+  const [selectionRange, setSelectionRange] = useState({
+    startDate: new Date(),
+    endDate: new Date(),
+    key: 'selection',
+  });
+  const [guests, setGuests] = useState(1);
+  const [showDatePicker, setShowDatePicker] = useState(false);
 
-    // // Function to format the selected date
-    // const formatDate = (date) => ({
-    //   day: date.getDate(),
-    //   month: date.toLocaleString('default', { month: 'short' }),
-    // });
+  const handleSelect = (ranges) => {
+    setSelectionRange(ranges.selection);
+    if (ranges.selection.endDate && 
+      ranges.selection.startDate.getTime() !== ranges.selection.endDate.getTime()) {
+    setShowDatePicker(false);
+  }
+    console.log(ranges.selection);
+  };
+
+  // const formatDateDisplay = (date) => {
+  //   return `${date.getDate()} ${date.toLocaleString('default', { month: 'short' })}`;
+  // };
+
+   // Function to format and return day and month separately
+   const formatDate = (date) => {
+    const day = date.getDate();
+    const month = date.toLocaleString('default', { month: 'short' });
+    return { day, month };
+  };
   
-    // const handleDateChange = ([selectedDate]) => {
-    //   setDate(selectedDate); // Update the selected date
-    // };
   
-    // const { day, month } = formatDate(date);
-    // const fp = useRef(null);
     
   return (
     <div className="w-full h-full md:w-[70%] lg:w-[50%] mx-auto grid grid-cols-1 md:grid-cols-4  " style={{ fontFamily: "Gilda Display, serif" }}>
       <div className="bg-white flex items-center justify-center py-6">
-        <div className="text-black flex flex-col gap-2 items-center justify-center ">
+        <div  onClick={() => setShowDatePicker(!showDatePicker)} className="text-black flex flex-col gap-2 items-center justify-center  focus:outline-none">
           <p className="tracking-widest text-sm uppercase">check in</p>
+                  
+          
           <div className="flex gap-2  items-center">
-            <p className="text-5xl ">15</p>
+          <p className="text-5xl ">{formatDate(selectionRange.startDate).day}</p>
+            
+            {/* <p >15</p> */}
             <div className="">
-              <p>Mar</p>
-              <FaAngleDown className="text-[10px]" />
+              <p>{formatDate(selectionRange.startDate).month} ↓</p>
             </div>
           </div>
+          
         </div>
+        {showDatePicker && (
+          <DateRange
+          color="#1C1C1D"
+            ranges={[selectionRange]}
+            onChange={handleSelect}
+            className="absolute top-full z-10"
+          />
+        )}
       </div>
-      {/* <div>
-        <Flatpickr ref={fp} />
-        <button
-          type="button"
-          onClick={() => {
-            if (!fp?.current?.flatpickr) return;
-            fp.current.flatpickr.clear();
-          }}
-        >
-          Clear
-        </button>
-      </div> */}
+      
       <div className="bg-white flex items-center justify-center py-6">
-        <div className="text-black flex flex-col gap-2 items-center justify-center ">
+        <div onClick={() => setShowDatePicker(!showDatePicker)} className="text-black flex flex-col gap-2 items-center justify-center focus:outline-none">
           <p className="tracking-widest text-sm uppercase">check in</p>
           <div className="flex gap-2  items-center">
-            <p className="text-5xl ">15</p>
+            {/* <p className="text-5xl ">15</p> */}
+            <p className="text-5xl ">{formatDate(selectionRange.endDate).day}</p>
             <div className="">
-              <p>Mar</p>
-              <FaAngleDown className="text-[10px]" />
+              <p>{formatDate(selectionRange.endDate).month} ↓</p>
+              {/* <FaAngleDown className="text-[10px]" /> */}
             </div>
           </div>
           
@@ -62,11 +84,11 @@ const Availability = () => {
         <div className="text-black flex flex-col gap-2 items-center justify-center ">
           <p className="tracking-widest text-sm">GUESTS</p>
           <div className="flex gap-3  items-center">
-            <p className="text-5xl ">1</p>
+            <p className="text-5xl ">{guests}</p>
             <div className=" flex flex-col gap-2">
               
-              <FaAngleUp className="text-xl "/>
-              <FaAngleDown className="text-xl " />
+              <FaAngleUp onClick={() => setGuests(guests + 1)} className="text-xl "/>
+              <FaAngleDown onClick={() => setGuests(Math.max(1, guests - 1))} className="text-xl " />
 
             </div>
           </div>
