@@ -69,13 +69,13 @@ const StayTune = () => {
   const { t } = useTranslation("home");
 
   return (
-    <section className="bg-[#F9F9F9] py-10 md:py-16">
-      <div className="container mx-auto text-center ">
-        <p className="text-xs">{t("visualJourney")}</p>
-        <h2 className="text-2xl md:text-4xl mt-2" style={{ fontFamily: "Gilda Display, serif" }}>
+    <section className="bg-[#F9F9F9] py-10 md:py-20">
+      <div className="container mx-auto text-center text-black ">
+        <p className="text-xs uppercase tracking-widest">{t("visualJourney")}</p>
+        <h2 className="text-3xl md:text-6xl mt-2" style={{ fontFamily: "Gilda Display, serif" }}>
           {t("discoverSpaces")}
         </h2>
-        <p className="mt-2 md:mt-4 text-xs text-gray-400 px-4 md:px-20">{t("galleryDescription")}</p>
+        <p className="mt-2 md:mt-4 text-xs text-gray-400 px-4 md:px-20 md:w-[50%] md:mx-auto">{t("galleryDescription")}</p>
       </div>
 
       <div className="container mx-auto grid grid-cols-6 gap-1  mt-10 md:mt-16 px-2">

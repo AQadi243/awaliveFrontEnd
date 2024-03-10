@@ -6,6 +6,8 @@ import Ser17 from "../../../assets/icon-17.png";
 import Wait18 from "../../../assets/icon-18.png";
 import { useTranslation } from "react-i18next";
 import i18next from "i18next";
+import CountUp from "react-countup";
+import { useInView } from "react-intersection-observer";
 
 const HotelStucture = () => {
   const currentLanguage = i18next.language;
@@ -15,72 +17,97 @@ const HotelStucture = () => {
     return number.toLocaleString(currentLanguage === "ar" ? "ar-EG" : "en-US");
   };
 
+  // Create a ref for the section using Intersection Observer
+  const { ref, inView } = useInView({
+    /* Optional settings: 
+      threshold: 0, // Trigger the animation when the first pixel appears
+      triggerOnce: true // Ensures animation only occurs once
+    */
+    threshold: 0.5,
+    triggerOnce: true,
+  });
+
   return (
-    <section className="container mx-auto py-10 md:py-16 px-4">
+    <section className="max-w-6xl  mx-auto py-10 md:py-20 px-4">
       <div className="flex flex-col lg:flex-row gap-10">
-        <div className="lg:w-[50%]  flex flex-row gap-4 items-center relative overflow-hidden">
+        <div className="lg:w-[50%]  flex flex-row gap-4 items-center  relative overflow-hidden">
           <img src={structure} alt="" className="w-[50%]" />
-          <div className="w-20 md:w-28 bg-white py-4  md:py-8  flex flex-col justify-between text-center absolute left-1/2 transform -translate-x-1/2">
-            <div>
-              <p className="text-2xl font-semibold" style={{ fontFamily: "Gilda Display, serif" }}>
-                {localizeNumber(23)}
+          <div
+            ref={ref}
+            className="w-20 md:w-28 bg-white text-black py-4  md:py-10  flex flex-col gap-3 justify-between text-center absolute left-1/2 transform -translate-x-1/2"
+          >
+            <div className="">
+              <p className="text-3xl font-semibold" style={{ fontFamily: "Gilda Display, serif" }}>
+                <CountUp start={0} end={inView ? localizeNumber(23) : 0} duration={2.75} preserveValue />
               </p>
               <p className="text-xs tracking-widest uppercase">{t("rooms.label")}</p>
             </div>
             <div>
-              <p className="text-2xl font-semibold" style={{ fontFamily: "Gilda Display, serif" }}>
-                {localizeNumber(12)}
+              <p className="text-3xl font-semibold" style={{ fontFamily: "Gilda Display, serif" }}>
+                <CountUp start={0} end={inView ? localizeNumber(12) : 0} duration={2.75} preserveValue />
               </p>
               <p className="text-xs tracking-widest uppercase">{t("suites.label")}</p>
             </div>
             <div>
-              <p className="text-2xl font-semibold" style={{ fontFamily: "Gilda Display, serif" }}>
-                {localizeNumber(23)}
+              <p className="text-3xl font-semibold" style={{ fontFamily: "Gilda Display, serif" }}>
+                <CountUp start={0} end={inView ? localizeNumber(23) : 0} duration={2.75} preserveValue />
               </p>
               <p className="text-xs tracking-widest uppercase">{t("h24.label")}</p>
             </div>
             <div>
-              <p className="text-2xl font-semibold" style={{ fontFamily: "Gilda Display, serif" }}>
-                {localizeNumber(2)}
+              <p className="text-3xl font-semibold" style={{ fontFamily: "Gilda Display, serif" }}>
+                <CountUp start={0} end={inView ? localizeNumber(2) : 0} duration={2.75} preserveValue />
               </p>
               <p className="text-[10px] md:text-xs  uppercase">{t("restaurant.label")}</p>
-            </div> 
+            </div>
           </div>
           <img src={structure2} alt="" className="w-[50%]" />
         </div>
-        <div className="lg:w-[50%] flex flex-col gap-3 justify-center ">
-          <p className=" text-xs tracking-widest uppercase text-center">{t("discover")}</p>
-          <h2 className="text-2xl md:text-5xl text-center" style={{ fontFamily: "Gilda Display, serif" }}>
+        <div ref={ref} className="lg:w-[50%] flex flex-col gap-3 justify-center  ">
+          <p className=" text-sm tracking-[0.2rem] uppercase text-center md:text-start">{t("discover")}</p>
+          <h2 className="text-3xl md:text-5xl text-black text-center md:text-start" style={{ fontFamily: "Gilda Display, serif" }}>
             {t("discoverTitle")}
           </h2>
-          <p className="text-xs md:text-sm text-gray-400 ">{t("discoverSubtitle")}</p>
-          <div className=" md:py-2  text-[#2E2E2E] text-sm" style={{ fontFamily: "Gilda Display, serif" }}>
-            <div className="flex justify-between mb-1">
-              <p>{t("roomService.label")}</p>
-              <p>{localizeNumber(98)}%</p>
-            </div>
-            <div className="w-full bg-white rounded-full h-2">
-              <div className="bg-[#2E2E2E] h-2 md:h-3 rounded-full" style={{ width: "98%" }}></div>
+          <p className="text-xs md:text-sm text-gray-600 text-center md:text-start">{t("discoverSubtitle")}</p>
+          
+
+          
+
+          <div ref={ref} className="w-full bg-gray-200  h-6 dark:bg-gray-700" style={{ fontFamily: "Gilda Display, serif" }}>
+            <div className={`bg-[#2E2E2E] h-6  transition-all duration-1000 ease-in-out ${inView ? `w-[${95}%]` : "w-0"}`}>
+              <div className="flex justify-between items-center h-full text-white px-2 text-xs ">
+                <p>{t("roomService.label")}</p>
+                {inView && (
+                  <CountUp start={0} end={95} delay={0} duration={2.5}>
+                    {({ countUpRef }) => <div className="text-sm font-medium" ref={countUpRef} />}
+                  </CountUp>
+                )}
+              </div>
             </div>
           </div>
 
-          <div className=" md:py-2  text-[#2E2E2E] text-xs md:text-sm " style={{ fontFamily: "Gilda Display, serif" }}>
-            <div className="flex justify-between mb-1">
+          <div ref={ref} className="w-full bg-gray-200  h-6 dark:bg-gray-700 my-2" style={{ fontFamily: "Gilda Display, serif" }}>
+            <div className={`bg-[#BE9874] h-6  transition-all duration-1000 ease-in-out ${inView ? `w-[${90}%]` : "w-0"}`}>
+              <div className="flex justify-between items-center h-full text-white px-2 text-xs ">
               <p>{t("breakfastIncluded.label")}</p>
-              <p>{localizeNumber(85)}%</p>
-            </div>
-            <div className="w-full bg-white rounded-full h-3">
-              <div className="bg-[#BE9874] h-2 md:h-3 rounded-full" style={{ width: "85%" }}></div>
+                {inView && (
+                  <CountUp start={0} end={localizeNumber(90)} delay={0} duration={2.5}>
+                    {({ countUpRef }) => <div className="text-sm font-medium" ref={countUpRef} />}
+                  </CountUp>
+                )}
+              </div>
             </div>
           </div>
-
-          <div className=" md:py-2  text-[#2E2E2E] text-sm " style={{ fontFamily: "Gilda Display, serif" }}>
-            <div className="flex justify-between mb-1">
+          <div ref={ref} className="w-full bg-gray-200  h-6 dark:bg-gray-700" style={{ fontFamily: "Gilda Display, serif" }}>
+            <div className={`bg-[#2E2E2E] h-6  transition-all duration-1000 ease-in-out ${inView ? `w-[${95}%]` : "w-0"}`}>
+              <div className="flex justify-between items-center h-full text-white px-2 text-xs ">
               <p>{t("laundryIroning.label")}</p>
-              <p>{localizeNumber(95)}%</p>
-            </div>
-            <div className="w-full bg-white rounded-full h-3">
-              <div className="bg-[#BE9874] h-2 md:h-3 rounded-full " style={{ width: "95%" }}></div>
+                {inView && (
+                  <CountUp start={0} end={localizeNumber(95)} delay={0} duration={2.5}>
+                    {({ countUpRef }) => <div className="text-sm font-medium" ref={countUpRef} />}
+                  </CountUp>
+                )}
+              </div>
             </div>
           </div>
         </div>

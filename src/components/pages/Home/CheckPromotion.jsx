@@ -18,7 +18,7 @@ const CheckPromotion = () => {
         <div data-aos="fade-up" className=" flex flex-col md:flex-row items-center justify-center gap-10">
           <div className="md:w-[30%] text-center md:text-start">
             <p className=" pb-4 md:pb-6 text-sm tracking-[0.2rem]">{t("summerOffers")}</p>
-            <div className="flex flex-row md:flex-col text-center md:text-left">
+            <div className="flex flex-row md:flex-col text-center items-center justify-center md:text-left md:items-start">
             <h2 className="text-2xl md:text-4xl  lg:text-6xl  " style={{ fontFamily: "Gilda Display, serif" }}>
               {t("summerGetaway")}
               

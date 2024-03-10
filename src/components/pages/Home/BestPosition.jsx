@@ -18,18 +18,18 @@ const BestPosition = () => {
         backgroundSize: "cover",
       }}
     >
-      <div className="bg-black bg-opacity-60 py-10 md:py-16">
-        <div className="max-w-4xl mx-auto  text-white">
+      <div className="bg-black bg-opacity-60 py-10 md:py-20">
+        <div className="max-w-6xl mx-auto  text-white">
           <div className="flex flex-col md:flex-row items-center">
             <div className="md:w-[50%] flex flex-col gap-3 px-5 text-center md:text-start ">
               <p className="text-xs  tracking-widest" style={{ fontFamily: "Gilda Display, serif" }}>
                 {t("exploreCity")}
               </p>
-              <h2 className="text-2xl md:text-5xl" style={{ fontFamily: "Gilda Display, serif" }}>
+              <h2 className="text-4xl md:text-6xl" style={{ fontFamily: "Gilda Display, serif" }}>
                 {t("primeLocationTitle")}
               </h2>
-              <p className="text-xs text-gray-400">{t("primeLocationDescription")}</p>
-              <p className="tracking-widest " style={{ fontFamily: "Gilda Display, serif" }}>
+              <p className="text-xs text-white py-6">{t("primeLocationDescription")}</p>
+              <p className="tracking-widest text-xs font-bold " style={{ fontFamily: "Gilda Display, serif" }}>
                 {t("paymentOptions")}
               </p>
               <div className="flex gap-5">
