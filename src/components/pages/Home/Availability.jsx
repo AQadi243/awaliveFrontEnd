@@ -7,6 +7,7 @@ import { FaAngleDown, FaAngleUp } from "react-icons/fa";
 import { DateRange } from 'react-date-range';
 import 'react-date-range/dist/styles.css'; // Main style file
 import 'react-date-range/dist/theme/default.css'; // Theme css file
+import { Link } from "react-router-dom";
 
 const Availability = () => {
   const [selectionRange, setSelectionRange] = useState({
@@ -68,7 +69,7 @@ const Availability = () => {
       
       <div className="bg-white flex items-center justify-center py-6">
         <div onClick={() => setShowDatePicker(!showDatePicker)} className="text-black flex flex-col gap-2 items-center justify-center focus:outline-none">
-          <p className="tracking-widest text-sm uppercase">check in</p>
+          <p className="tracking-widest text-sm uppercase">check Out</p>
           <div className="flex gap-2  items-center">
             {/* <p className="text-5xl ">15</p> */}
             <p className="text-5xl ">{formatDate(selectionRange.endDate).day}</p>
@@ -95,10 +96,10 @@ const Availability = () => {
         </div>
         
       </div>
-      <div className="bg-[#1C1C1D] text-white flex flex-col items-center justify-center cursor-pointer py-6">
+      <Link to={'/roomSearch'} className="bg-[#1C1C1D] text-white flex flex-col items-center justify-center cursor-pointer py-6">
         <p className="tracking-[0.2rem]">Check</p>
         <p className="tracking-[0.2rem]">Availability</p>
-      </div>
+      </Link>
     </div>
   );
 };
