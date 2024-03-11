@@ -58,6 +58,10 @@
   "age":"العمر",
   "findRoom":"لبحث عن غرفة",
   "reset":"إعادة تعيين",
+  "SEARCH": "البحث",
+  "BOOKING": "الحجز",
+  "CHECKOUT": "الدفع",
+  "THANK YOU": "شكرًا لك",
 
   "New Booking": "حجز جديد",
   "Booking History": "سجل الحجز",

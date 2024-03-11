@@ -6,7 +6,7 @@ import DatesSearch from "./DatesSearch";
 import AllRooms from "./AllRooms";
 import { FaChevronDown } from "react-icons/fa6";
 import { AuthContext } from "../../sharedPages/Context/AuthProvider";
-import SearchBar from "../Home/SearchBar";
+// import SearchBar from "../Home/SearchBar";
 
 import axios from "axios";
 import i18next from "i18next";
@@ -126,12 +126,12 @@ const Search = () => {
         <BannerPage text={t("search")} />
 
         <section className="bg-[#1a1919]  py-4  " style={{ fontFamily: "Gilda Display, serif" }}>
-          <SearchBar
+          {/* <SearchBar
             // setAllRooms={setAllRooms}
             // setNoRoomsMessage={setNoRoomsMessage}
             pageContext="search"
-          />
-          <div className="max-w-2xl mx-auto px-2 md:px-0 grid grid-cols-2 gap-2 py-3   ">
+          /> */}
+          <div className="max-w-lg mx-auto px-2 md:px-0 grid grid-cols-2 gap-2 py-3   ">
             <div className="w-full ">
               <li className="relative group list-none">
                 <div className="flex gap-2 items-center">
@@ -190,7 +190,7 @@ const Search = () => {
             </div>
           </div>
         </section>
-        <section className="container mx-auto py-10 px-2 md:px-0">
+        <section className="max-w-7xl mx-auto py-20 px-2 md:px-0">
           <div className="flex flex-col md:flex-row gap-5">
             <DatesSearch />
             <AllRooms

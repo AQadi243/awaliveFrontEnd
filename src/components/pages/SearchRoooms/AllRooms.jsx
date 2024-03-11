@@ -8,6 +8,7 @@ import CoverSlider from "./CoverSlider";
 import { useTranslation } from "react-i18next";
 import i18next from "i18next";
 import { Skeleton } from "antd";
+import { LuUserCircle } from "react-icons/lu";
 const skeletonCount = 6;
 
 const AllRooms = ({ allRooms, loadingAllRooms, availableRooms, loadingAvailableRooms }) => {
@@ -40,12 +41,13 @@ const AllRooms = ({ allRooms, loadingAllRooms, availableRooms, loadingAvailableR
               <CoverSlider images={room.images} />
               <div className="px-4 py-2 flex flex-col gap-3">
                 <h2 className="text-2xl  text-slate-900  ">{room.title}</h2>
-                <div className="flex justify-between ">
-                  <div className="flex gap-2 items-center">
-                    <p className="text-2xl">
-                      <UserOutlined />{" "}
-                    </p>{" "}
+                <div className="flex justify-between text-gray-900 ">
+                  <div className="flex gap-2 items-center justify-center">
+                    
+                    <LuUserCircle className="text-2xl  " />
+                    
                     <p>{room.maxGuests}</p>
+                    <p className="uppercase text-xs">{t("guest")}</p>
                   </div>
                   {room.availableQty && (
                     <div className="flex gap-2 items-center">
@@ -60,7 +62,7 @@ const AllRooms = ({ allRooms, loadingAllRooms, availableRooms, loadingAvailableR
                   </div>
                 </div>
 
-                <p className="text-sm ">
+                <p className="text-sm py-3 ">
                   {room.description.length > 100 ? `${room.description.slice(0, 100)}...` : room.description}
                 </p>
                 <div>

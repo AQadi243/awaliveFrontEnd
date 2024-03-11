@@ -58,6 +58,10 @@
   "age":"Age",
   "findRoom":"Find Room",
   "reset":"Reset",
+  "SEARCH": "SEARCH",
+  "BOOKING": "BOOKING",
+  "CHECKOUT": "CHECKOUT",
+  "THANK YOU": "THANK YOU",
 
   "New Booking": "New Booking",
   "Booking History": "Booking History",
