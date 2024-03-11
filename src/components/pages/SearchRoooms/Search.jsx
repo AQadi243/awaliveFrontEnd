@@ -191,7 +191,7 @@ const Search = () => {
           </div>
         </section>
         <section className="max-w-7xl mx-auto py-20 px-2 md:px-0">
-          <div className="flex flex-col md:flex-row gap-5">
+          <div dir="ltr" className="flex flex-col md:flex-row gap-5">
             <DatesSearch />
             <AllRooms
               allRooms={allRooms}
