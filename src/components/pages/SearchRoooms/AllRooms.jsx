@@ -9,6 +9,10 @@ import { useTranslation } from "react-i18next";
 import i18next from "i18next";
 import { Skeleton } from "antd";
 import { LuUserCircle } from "react-icons/lu";
+import pool from '/img/swmming-pool.png'
+import drinks from '/img/welcome-drink.png'
+import smoking from '/img/no-smoking.png'
+import bath from '/img/private-bathroom.png'
 const skeletonCount = 6;
 
 const AllRooms = ({ allRooms, loadingAllRooms, availableRooms, loadingAvailableRooms }) => {
@@ -80,6 +84,18 @@ const AllRooms = ({ allRooms, loadingAllRooms, availableRooms, loadingAvailableR
                   </Link>
                 </div>
                 <hr className="mt-2" />
+              </div>
+              <div className="px-6 flex justify-between items-center ">
+              <div className="flex gap-2 pb-2">
+                <img className="w-5 h-5" src={pool} alt="" />
+                <img className="w-5 h-5" src={drinks} alt="" />
+                <img className="w-5 h-5" src={smoking} alt="" />
+                <img className="w-5 h-5" src={bath} alt="" />
+                
+              </div>
+              <div>
+                <Link to={`/room/${room.id}`} className="text-xs tracking-widest">{t("FULL INFO")}</Link>
+              </div>
               </div>
             </div>
           ))}
