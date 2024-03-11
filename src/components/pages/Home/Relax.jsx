@@ -2,9 +2,14 @@
 import relaxB from "../../../assets/relaxCom.jpg";
 import aveter from "../../../assets/check.jpg";
 import signature from "../../../assets/signature.png";
-import { t } from "i18next";
+import i18next, { t } from "i18next";
 
 const Relax = () => {
+  const currentLanguage = i18next.language;
+  const textAlignmentClass = currentLanguage === 'ar'
+    ? 'lg:text-right text-center' // For Arabic, text is right-aligned on large screens, centered on smaller screens
+    : 'lg:text-left text-center'; // For other languages, text is left-aligned on large screens, centered on smaller screens
+
   return (
     <section data-aos="fade-up" className="lg:max-w-[70%] mx-auto py-10 md:py-20 text-[#2E2E2E] px-4 " data-speed="2">
       <div className=" grid grid-cols-1 md:grid-cols-2 items-center justify-center ">
@@ -23,11 +28,11 @@ const Relax = () => {
         </div>
         <div className="w-full   flex flex-col gap-5 md:gap-10  ">
           <div>
-            <p className="uppercase text-xs tracking-widest  text-center lg:text-left ">{t("hotelRelaxSubTitle")}</p>
+            <p className={`uppercase text-xs tracking-widest  ${textAlignmentClass}` }>{t("hotelRelaxSubTitle")}</p>
           </div>
           <div
-            className="text-3xl  md:text-4xl xl:text-5xl   tracking-wider flex flex-wrap md:w-full  justify-center text-center lg:text-left mx-auto md:mx-0 w-[80%]   "
-            style={{ fontFamily: "Gilda Display, serif" }}
+            className={`text-3xl  md:text-4xl xl:text-5xl   tracking-wider flex flex-wrap md:w-full ${textAlignmentClass}  mx-auto md:mx-0 w-[80%]    `}
+            style={{ fontFamily: "Gilda Display, serif" }} 
           >
             <h2>{t("hotelRelaxTitle")}</h2>
             {/* <h2>{t("hotelRelaxTitle")}</h2> */}

@@ -38,25 +38,25 @@ const HotelStucture = () => {
           >
             <div className="">
               <p className="text-3xl font-semibold" style={{ fontFamily: "Gilda Display, serif" }}>
-                <CountUp start={0} end={inView ? localizeNumber(23) : 0} duration={2.75} preserveValue />
+                <CountUp start={0} end={inView ? 23 : 0} duration={2.75} preserveValue />
               </p>
               <p className="text-xs tracking-widest uppercase">{t("rooms.label")}</p>
             </div>
             <div>
               <p className="text-3xl font-semibold" style={{ fontFamily: "Gilda Display, serif" }}>
-                <CountUp start={0} end={inView ? localizeNumber(12) : 0} duration={2.75} preserveValue />
+                <CountUp start={0} end={inView ? 12 : 0} duration={2.75} preserveValue />
               </p>
               <p className="text-xs tracking-widest uppercase">{t("suites.label")}</p>
             </div>
             <div>
               <p className="text-3xl font-semibold" style={{ fontFamily: "Gilda Display, serif" }}>
-                <CountUp start={0} end={inView ? localizeNumber(23) : 0} duration={2.75} preserveValue />
+                <CountUp start={0} end={inView ? 23 : 0} duration={2.75} preserveValue />
               </p>
               <p className="text-xs tracking-widest uppercase">{t("h24.label")}</p>
             </div>
             <div>
               <p className="text-3xl font-semibold" style={{ fontFamily: "Gilda Display, serif" }}>
-                <CountUp start={0} end={inView ? localizeNumber(2) : 0} duration={2.75} preserveValue />
+                <CountUp start={0} end={inView ? 2 : 0} duration={2.75} preserveValue />
               </p>
               <p className="text-[10px] md:text-xs  uppercase">{t("restaurant.label")}</p>
             </div>
@@ -91,7 +91,7 @@ const HotelStucture = () => {
               <div className="flex justify-between items-center h-full text-white px-2 text-xs ">
               <p>{t("breakfastIncluded.label")}</p>
                 {inView && (
-                  <CountUp start={0} end={localizeNumber(90)} delay={0} duration={2.5}>
+                  <CountUp start={0} end={90} delay={0} duration={2.5}>
                     {({ countUpRef }) => <div className="text-sm font-medium" ref={countUpRef} />}
                   </CountUp>
                 )}
@@ -103,7 +103,7 @@ const HotelStucture = () => {
               <div className="flex justify-between items-center h-full text-white px-2 text-xs ">
               <p>{t("laundryIroning.label")}</p>
                 {inView && (
-                  <CountUp start={0} end={localizeNumber(95)} delay={0} duration={2.5}>
+                  <CountUp start={0} end={95} delay={0} duration={2.5}>
                     {({ countUpRef }) => <div className="text-sm font-medium" ref={countUpRef} />}
                   </CountUp>
                 )}

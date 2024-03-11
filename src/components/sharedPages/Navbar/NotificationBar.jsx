@@ -4,11 +4,13 @@ import { notification } from "antd";
 import { useContext } from "react";
 import { AuthContext } from "../Context/AuthProvider";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const NotificationBar = () => {
   const currentLanguage = i18next.language;
   const { user, userRole, handleLogout } = useContext(AuthContext);
   console.log(user,'asdaseawefwefwe');
+  const { t } = useTranslation("home");
 
   const changeLanguage = (languageCode) => {
     i18next.changeLanguage(languageCode);
@@ -26,11 +28,11 @@ const NotificationBar = () => {
       <div className="hidden lg:flex justify-between font-black ">
         <div className="flex gap-6 text-[12px] tracking-widest py-3 items-center">
           <div>
-            <p>Payment options</p>
+            <p>{t("Payment options")}</p>
           </div>
 
           <div>
-            <p>Terms Conditions</p>
+            <p>{t("Terms Conditions")}</p>
           </div>
           <div className="flex gap-3">
             <p
@@ -57,7 +59,7 @@ const NotificationBar = () => {
             </div>
 
             <div>
-              <p>Add your Review </p>
+              <p className="capitalize">{t("Add your Review")} </p>
             </div>
           </div>
           {user?.fullName ? (
@@ -74,8 +76,8 @@ const NotificationBar = () => {
             <Link to={'/login'} className="flex gap-2 bg-[#BE9874] py-3 px-4 cursor-pointer ">
             <img src={avatar} alt="" className="w-8 " />
             <div className="text-white ">
-              <p className="text-[10px] tracking-[0.2rem] font-thin">My Account</p>
-              <p className="text-[12px]  font-thin">LOG IN</p>
+              <p className="text-[10px] tracking-[0.2rem] font-thin">{t("My Account")}</p>
+              <p className="text-[12px]  font-thin">{t("LOG IN")}</p>
             </div>
           </Link>
           ) }

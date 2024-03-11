@@ -8,8 +8,12 @@ import { DateRange } from 'react-date-range';
 import 'react-date-range/dist/styles.css'; // Main style file
 import 'react-date-range/dist/theme/default.css'; // Theme css file
 import { Link } from "react-router-dom";
+import i18next from "i18next";
+import { useTranslation } from "react-i18next";
 
 const Availability = () => {
+  // const currentLanguage = i18next.language;
+    const { t } = useTranslation("search");
   const [selectionRange, setSelectionRange] = useState({
     startDate: new Date(),
     endDate: new Date(),
@@ -41,10 +45,10 @@ const Availability = () => {
   
     
   return (
-    <div className="w-full h-full md:w-[70%] lg:w-[50%] mx-auto grid grid-cols-1 md:grid-cols-4  " style={{ fontFamily: "Gilda Display, serif" }}>
+    <div dir="ltr" className="w-full h-full md:w-[70%] lg:w-[50%] mx-auto grid grid-cols-1 md:grid-cols-4  " style={{ fontFamily: "Gilda Display, serif" }}>
       <div className="bg-white flex items-center justify-center py-6">
         <div  onClick={() => setShowDatePicker(!showDatePicker)} className="text-black flex flex-col gap-2 items-center justify-center  focus:outline-none">
-          <p className="tracking-widest text-sm uppercase">check in</p>
+          <p className="tracking-widest text-sm uppercase" style={{ fontFamily: "poppins, serif" }}>{t("CHECK IN")}</p>
                   
           
           <div className="flex gap-2  items-center">
@@ -69,7 +73,7 @@ const Availability = () => {
       
       <div className="bg-white flex items-center justify-center py-6">
         <div onClick={() => setShowDatePicker(!showDatePicker)} className="text-black flex flex-col gap-2 items-center justify-center focus:outline-none">
-          <p className="tracking-widest text-sm uppercase">check Out</p>
+          <p className="tracking-widest text-sm uppercase" style={{ fontFamily: "poppins, serif" }} >{t("CHECK OUT")}</p>
           <div className="flex gap-2  items-center">
             {/* <p className="text-5xl ">15</p> */}
             <p className="text-5xl ">{formatDate(selectionRange.endDate).day}</p>
@@ -83,7 +87,7 @@ const Availability = () => {
       </div>
       <div className="bg-white flex items-center justify-center py-6 ">
         <div className="text-black flex flex-col gap-2 items-center justify-center ">
-          <p className="tracking-widest text-sm">GUESTS</p>
+          <p className="tracking-widest text-sm" style={{ fontFamily: "poppins, serif" }}>{t("GUESTS")}</p>
           <div className="flex gap-3  items-center">
             <p className="text-5xl ">{guests}</p>
             <div className=" flex flex-col gap-2">
@@ -96,9 +100,9 @@ const Availability = () => {
         </div>
         
       </div>
-      <Link to={'/roomSearch'} className="bg-[#1C1C1D] text-white flex flex-col items-center justify-center cursor-pointer py-6">
-        <p className="tracking-[0.2rem]">Check</p>
-        <p className="tracking-[0.2rem]">Availability</p>
+      <Link to={'/roomSearch'} className="bg-[#1C1C1D] text-white flex flex-col items-center justify-center cursor-pointer py-6" style={{ fontFamily: "poppins, serif" }}>
+        <p className="tracking-[0.2rem]">{t("Check")}</p>
+        <p className="tracking-[0.2rem]">{t("Availability")}</p>
       </Link>
     </div>
   );
