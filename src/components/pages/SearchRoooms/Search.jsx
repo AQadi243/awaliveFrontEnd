@@ -148,21 +148,22 @@ const Search = () => {
                 {/* Dropdown Content */}
                 <ul className="absolute w-36 left-0 hidden pt-2  bg-[#1a1919] drop-shadow-md text-md text-white group-hover:block z-10 rounded-sm">
                   <li>
-                    <option
-                      value={"asc"}
-                      className="p-2 mb-2 block hover:bg-slate-50 hover:text-black transition duration-300 ease-in-out cursor-pointer text-xs uppercase tracking-widest  "
-                      onClick={() => handleValue("asc")}
-                    >
-                      {t("lowPrice")}
-                    </option>
-                  </li>
-                  <li>
-                    <option
+                  <option
                       value={"desc"}
-                      className="p-2 block hover:bg-slate-50 hover:text-black transition duration-300 ease-in-out  cursor-pointer text-xs uppercase tracking-widest "
+                      className="p-2 mb-2 block hover:bg-slate-50 hover:text-black transition duration-300 ease-in-out  cursor-pointer text-xs uppercase tracking-widest "
                       onClick={() => handleValue("desc")}
                     >
                       {t("highPrice")}
+                    </option>
+                  </li>
+                  <li>
+                    
+                    <option
+                      value={"asc"}
+                      className="p-2  block hover:bg-slate-50 hover:text-black transition duration-300 ease-in-out cursor-pointer text-xs uppercase tracking-widest  "
+                      onClick={() => handleValue("asc")}
+                    >
+                      {t("lowPrice")}
                     </option>
                   </li>
                 </ul>
