@@ -6,6 +6,7 @@ import { DateRange } from "react-date-range";
 import { FaAngleDown, FaAngleUp } from "react-icons/fa6";
 import { AuthContext } from "../../sharedPages/Context/AuthProvider";
 import { Link } from "react-router-dom";
+// import { addDays } from 'date-fns';
 
 import { useTranslation } from "react-i18next";
 
@@ -30,7 +31,7 @@ const RoomDate = ({ singleRoomDetails }) => {
     setRoomName,
   } = authInfo;
   const { roomName, roomPrice, image, id, priceOptions } = singleRoomDetails;
-  const [showDatePicker, setShowDatePicker] = useState(false);
+  // const [showDatePicker, setShowDatePicker] = useState(false);
 
   // Update room details
   useEffect(() => {
@@ -40,41 +41,93 @@ const RoomDate = ({ singleRoomDetails }) => {
     setRoomPrice(priceOptions[0].price);
   }, [id, setRoomId, roomName, priceOptions, setRoomImage, setRoomName, setRoomPrice]);
 
-  useEffect(() => {
-    if (calender[0].startDate && calender[0].endDate) {
-      const startDateString = calender[0].startDate.toDateString();
-      const endDateString = calender[0].endDate.toDateString();
+  // useEffect(() => {
+  //   if (calender[0].startDate && calender[0].endDate) {
+  //     const startDateString = calender[0].startDate.toDateString();
+  //     const endDateString = calender[0].endDate.toDateString();
 
-      const timeDifference = calender[0].endDate.getTime() - calender[0].startDate.getTime();
-      const differenceInNights = Math.ceil(timeDifference / (1000 * 3600 * 24));
+  //     const timeDifference = calender[0].endDate.getTime() - calender[0].startDate.getTime();
+  //     const differenceInNights = Math.ceil(timeDifference / (1000 * 3600 * 24));
 
-      setNight(differenceInNights);
-      setCheckIn(startDateString);
-      setCheckOut(endDateString);
+  //     setNight(differenceInNights);
+  //     setCheckIn(startDateString);
+  //     setCheckOut(endDateString);
+  //   }
+  // }, [calender, setCheckOut, setCheckIn, setNight]);
+
+  // const handleIncrement = () => {
+  //   setGuests((prevGuests) => prevGuests + 1);
+  // };
+
+  // const handleDecrement = () => {
+  //   if (numberOfGuests > 1) {
+  //     setGuests((prevGuests) => prevGuests - 1);
+  //   }
+  // };
+
+  // const handleSelectDate = () => {
+  //   setShowDatePicker(true);
+  // };
+
+  // const handleDone = () => {
+  //   setShowDatePicker(false);
+  // };
+
+  // const tomorrow = addDays(new Date(), 1);
+
+   // Define initial states for selection range
+   const [selectionRange, setSelectionRange] = useState({
+    startDate: checkIn ? new Date(checkIn) : new Date(), // Use existing checkIn date or today
+    endDate: checkOut ? new Date(checkOut) : tomorrow, // Use existing checkOut date or tomorrow
+    key: "selection",
+  });
+
+  // const [guests, setGuests] = useState(1);
+  const [showDatePicker, setShowDatePicker] = useState(false);
+
+  const handleSelect = (ranges) => {
+    setSelectionRange(ranges.selection);
+    if (ranges.selection.endDate && ranges.selection.startDate.getTime() !== ranges.selection.endDate.getTime()) {
+      setShowDatePicker(false);
     }
-  }, [calender, setCheckOut, setCheckIn, setNight]);
 
-  const handleIncrement = () => {
-    setGuests((prevGuests) => prevGuests + 1);
-  };
+    // Format start and end dates
+    const startDate = new Date(ranges.selection.startDate);
+    startDate.setHours(0, 0, 0, 0); // Set time to 00:00:00.000
+    const formattedStartDate = startDate.toDateString(); // Converts to format "Mon Mar 18 2024"
 
-  const handleDecrement = () => {
-    if (numberOfGuests > 1) {
-      setGuests((prevGuests) => prevGuests - 1);
+    const endDate = new Date(ranges.selection.endDate);
+    endDate.setHours(0, 0, 0, 0); // Set time to 00:00:00.000
+    const formattedEndDate = endDate.toDateString(); // Converts to format "Mon Mar 18 2024"
+
+    setCheckIn(formattedStartDate);
+    setCheckOut(formattedEndDate);
+    console.log(formattedStartDate);
+
+    console.log(ranges.selection.startDate);
+    if (ranges.selection.endDate && ranges.selection.startDate.getTime() !== ranges.selection.endDate.getTime()) {
+      setShowDatePicker(false);
+
+      // Calculate the number of nights between checkIn and checkOut
+      const oneDay = 1000 * 60 * 60 * 24; // milliseconds in one day
+      const differenceInTime = ranges.selection.endDate.getTime() - ranges.selection.startDate.getTime();
+      const numberOfNights = Math.round(differenceInTime / oneDay);
+      setNight(numberOfNights);
+      console.log(`Number of nights: ${numberOfNights}`);
+      // You can set the number of nights to state or do something else with it
     }
   };
 
-  const handleSelectDate = () => {
-    setShowDatePicker(true);
-  };
-
-  const handleDone = () => {
-    setShowDatePicker(false);
+  // Function to format and return day and month separately
+  const formatDate = (date) => {
+    const day = date.getDate();
+    const month = date.toLocaleString("default", { month: "short" });
+    return { day, month };
   };
 
   return (
     <>
-      <div className=" lg:w-1/3   ">
+      {/* <div className=" lg:w-1/3   ">
         <div
           className=" flex flex-col gap-5  items-center justify-center text-center bg-[#1C1C1D] py-5 px-5 md:py-10 md:px-10 relative z-40"
           style={{ fontFamily: "Gilda Display, serif" }}
@@ -87,7 +140,7 @@ const RoomDate = ({ singleRoomDetails }) => {
               onClick={handleSelectDate}
             >
               <p className="text-white">{t("from")}</p>
-              <button className="text-md  text-[#BE9874]">{checkIn}</button>
+              <button className="text-md  text-[#BE9874]">{checkIn} sds</button>
             </div>
             <div
               id="end-container"
@@ -164,6 +217,84 @@ const RoomDate = ({ singleRoomDetails }) => {
           >
             {t("bookNow")}
           </Link>
+        </div>
+      </div> */}
+      <div className="w-full md:w-1/3   ">
+        <div
+          className="flex flex-col gap-5  items-center justify-center text-center bg-[#1C1C1C]  py-5 px-5 md:py-16 md:px-10 relative "
+          style={{ fontFamily: "Gilda Display, serif" }}
+        >
+          <p className="text-white text-xl tracking-widest  bg-[#151515]  w-full py-4 ">{t("selectDates")}</p>
+          <div className="grid grid-cols-2 gap-5  w-full">
+            <div className="bg-[#151515] flex items-center justify-center py-6">
+              <div
+                onClick={() => setShowDatePicker(!showDatePicker)}
+                className="text-black flex flex-col gap-2 items-center justify-center focus:outline-none"
+              >
+                <p className="tracking-widest text-sm uppercase text-white" style={{ fontFamily: "poppins, serif" }}>
+                  {t("CHECK IN")}
+                </p>
+                <div className="flex gap-2  items-center">
+                  <p className="text-5xl text-[#BE9874]">{formatDate(selectionRange.startDate).day}</p>
+                  <div className="">
+                    <p className="text-[#BE9874]">{formatDate(selectionRange.startDate).month} ↓</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="bg-[#151515] flex items-center justify-center py-6">
+              <div
+                onClick={() => setShowDatePicker(!showDatePicker)}
+                className="text-black flex flex-col gap-2 items-center justify-center focus:outline-none"
+              >
+                <p className="tracking-widest text-sm uppercase text-white" style={{ fontFamily: "poppins, serif" }}>
+                  {t("CHECK OUT")}
+                </p>
+                <div className="flex gap-2  items-center">
+                  <p className="text-5xl text-[#BE9874]">{formatDate(selectionRange.endDate).day}</p>
+                  <div className="">
+                    <p className="text-[#BE9874]">{formatDate(selectionRange.endDate).month} ↓</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {showDatePicker && (
+              <DateRange
+                minDate={new Date()}
+                ranges={[selectionRange]}
+                onChange={handleSelect}
+                className="absolute top-1/2 z-10"
+              />
+            )}
+
+            <div className="bg-[#151515] flex items-center justify-center py-6 ">
+              <div className="text-black flex flex-col gap-2 items-center justify-center ">
+                <p className="tracking-widest text-sm text-white" style={{ fontFamily: "poppins, serif" }}>
+                  {t("GUESTS")}
+                </p>
+                <div className="flex gap-3  items-center">
+                  <p className="text-5xl text-[#BE9874]">{numberOfGuests}</p>
+                  <div className=" flex flex-col gap-2">
+                    <FaAngleUp onClick={() => setGuests(numberOfGuests + 1)} className="text-lg text-[#BE9874] " />
+                    <FaAngleDown className="text-lg text-[#BE9874] " onClick={() => setGuests(Math.max(1, numberOfGuests - 1))} />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="text-black flex flex-col gap-2 items-center justify-center bg-[#151515] ">
+              <p className="tracking-widest text-sm text-white uppercase" style={{ fontFamily: "poppins, serif" }}>
+                {t("night")}
+              </p>
+              <div className="flex gap-3  items-center">
+                {/* <p className="text-5xl ">{guests}</p> */}
+                <p className="text-5xl text-[#BE9874]">{night}</p>
+              </div>
+            </div>
+
+            <div id="error-message" className="text-red-500 text-xs"></div>
+            <div id="perfect-message" className="text-green-500 text-xs"></div>
+          </div>
         </div>
       </div>
     </>

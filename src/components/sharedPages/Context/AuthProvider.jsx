@@ -30,7 +30,7 @@ const AuthProvider = ({ children }) => {
   const [checkOut, setCheckOut] = useState("Check-Out");
   const [calender, setCalender] = useState([{ startDate: null, endDate: null, key: "selection" }]);
   // const [guests, setGuests] = useState(1);
-  const [numberOfGuests, setGuests] = useState(2);
+  const [numberOfGuests, setGuests] = useState(1);
   const [child, setChild] = useState(0);
   const [childAges, setChildAges] = useState([]);
 

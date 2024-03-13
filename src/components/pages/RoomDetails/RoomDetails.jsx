@@ -52,7 +52,7 @@ const RoomDetails = () => {
         <>
           <RoomBanner singleRoomDetails={singleRoomDetails} />
 
-          <section className="container mx-auto px-2">
+          <section className="max-w-7xl mx-auto px-2">
             <div className="py-4">
               <div>
                 <h1 className="text-2xl md:text-5xl py-2" style={{ fontFamily: "Gilda Display, serif" }}>

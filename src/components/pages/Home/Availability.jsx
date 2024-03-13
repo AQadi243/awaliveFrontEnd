@@ -63,7 +63,7 @@ const Availability = () => {
         </div>
         {showDatePicker && (
           <DateRange
-          color="#1C1C1D"
+          
             ranges={[selectionRange]}
             onChange={handleSelect}
             className="absolute top-full z-10"

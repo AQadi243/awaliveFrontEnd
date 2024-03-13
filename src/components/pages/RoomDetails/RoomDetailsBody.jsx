@@ -25,7 +25,7 @@ const RoomDetailsBody = ({ singleRoomDetails }) => {
 
   return (
     <>
-      <div className="flex flex-col-reverse lg:flex-row gap-5 py-5">
+      <div className=" flex flex-col-reverse lg:flex-row gap-5 py-5">
         <div className="lg:w-2/3 ">
           <RoomImageSlider images={images} />
 

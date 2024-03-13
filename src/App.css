@@ -83,5 +83,25 @@ z-index: 1 ;
 }
 
 
+.rdrCalendarWrapper{
+  background-color: #0f0f0f !important;
+  /* color: aliceblue !important; */
+}
+.rdrDayNumber span{
+  color: white !important;
+}
 
+.rdrDateDisplayItemActive  {
+  color: #BE9874 !important;
+}
+.rdrDayDisabled span {
+  color: #BE9874 !important;
+  background-color: #0f0f0f !important;
+}
+.rdrDayDisabled  {
+  background-color: #0f0f0f !important;
+}
+.rdrDateDisplayWrapper{
+  background: #000 !important;
+}
 

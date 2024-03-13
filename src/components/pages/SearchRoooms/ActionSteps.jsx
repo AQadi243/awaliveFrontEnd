@@ -4,8 +4,8 @@ import { useTranslation } from 'react-i18next';
 const ActionSteps = () => {
     const { t } = useTranslation("booking");
   return (
-    <div className='flex flex-row gap-7 justify-center items-center text-white'>
-        <div className='flex gap-3 items-center'>
+    <div className='grid grid-cols-2 md:grid-cols-4 w-80 md:w-[36rem] lg:w-[40rem] gap-5 lg:gap-6 justify-center items-center text-white '>
+        <div className='flex gap-3 items-center col-span-1'>
             <p className='bg-black  h-7 w-7 flex items-center justify-center text-xs  rounded-full '>1</p>
             <p className='uppercase tracking-[0.2rem] text-xs '>{t("SEARCH")}</p>
         </div>

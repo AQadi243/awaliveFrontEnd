@@ -29,10 +29,13 @@ const Search = () => {
   } = useContext(AuthContext);
   const { t } = useTranslation("search");
   const currentLanguage = i18next.language;
-  const [categories, setCategories] = useState([]);
-  const [loadingCategory, setLoadingCategory] = useState(true);
+  // const [categories, setCategories] = useState([]);
+  const [roomSize, setRoomSize] = useState([]);
+  // const [loadingCategory, setLoadingCategory] = useState(true);
   const [availableRooms, setAvailableRooms] = useState([]);
   const [loadingAvailableRooms, setLoadingAvailableRooms] = useState(true);
+  // const [notFoundRoom, setNotFoundRoom] = useState('');
+
 
   const formatDateString = (dateString) => {
     return dateString ? new Date(dateString).toLocaleDateString() : null;
@@ -46,7 +49,8 @@ const Search = () => {
     const fetchAllRooms = async () => {
       try {
         const response = await axios.get(
-          `https://type-script-server.vercel.app/api/room/available/?lang=${currentLanguage}&checkInDate=${formetDateCheckIn}&checkOutDate=${formetDateCheckOut}&sortOrder=${sortByPrice}&maxGuests=${numberOfGuests},&categoryId=${category}`
+          // `https://type-script-server.vercel.app/api/room/available/?lang=${currentLanguage}&checkInDate=${formetDateCheckIn}&checkOutDate=${formetDateCheckOut}&sortOrder=${sortByPrice}&maxGuests=${numberOfGuests},&sizeOrder=${roomSize}`
+          `https://type-script-server.vercel.app/api/room/available/?lang=${currentLanguage}&checkInDate=${formetDateCheckIn}&checkOutDate=${formetDateCheckOut}&sortOrder=${sortByPrice}&maxGuests=${numberOfGuests},&sizeOrder=${roomSize}`
         );
 
         setAvailableRooms(response.data.data);
@@ -56,41 +60,43 @@ const Search = () => {
       } catch (error) {
         console.error("Error fetching room rates:", error?.response?.data?.error?.statusCode);
         console.error("Error fetching room rates:", error?.response?.data?.issues[0]?.message);
+        // setNotFoundRoom("Error fetching room rates:", error?.response?.data?.issues[0]?.message);
         // setSearchLoading(false);
       }
       setLoadingAvailableRooms(false);
     };
     fetchAllRooms();
     // setSearchLoading(false)
-  }, [setLoadingAvailableRooms, formetDateCheckIn, formetDateCheckOut, sortByPrice, numberOfGuests, currentLanguage, category]);
+  }, [setLoadingAvailableRooms, formetDateCheckIn, formetDateCheckOut, sortByPrice, numberOfGuests, currentLanguage, roomSize]);
 
-  useEffect(() => {
-    const fetchAllRooms = async () => {
-      try {
-        const response = await axios.get(
-          `https://type-script-server.vercel.app/api/category/?lang=${currentLanguage}`
-          // "https://awalive-server-side-hzpa.vercel.app/rooms"
-        );
+  // useEffect(() => {
+  //   const fetchAllRooms = async () => {
+  //     try {
+  //       const response = await axios.get(
+  //         `https://type-script-server.vercel.app/api/category/?lang=${currentLanguage}`
+  //         // "https://awalive-server-side-hzpa.vercel.app/rooms"
+  //       );
 
-        setCategories(response.data.data);
-        // setSearchLoading(false);
-        setLoadingCategory(false);
-      } catch (error) {
-        console.error("Error fetching room rates:", error);
-        // setSearchLoading(false);
-      }
-      setLoadingCategory(false);
-    };
-    fetchAllRooms();
-    // setSearchLoading(false)
-  }, [currentLanguage, setLoadingCategory]);
+  //       // setCategories(response.data.data);
+  //       setRoomSize(response.data.data);
+  //       // setSearchLoading(false);
+  //       setLoadingCategory(false);
+  //     } catch (error) {
+  //       console.error("Error fetching room rates:", error);
+  //       // setSearchLoading(false);
+  //     }
+  //     setLoadingCategory(false);
+  //   };
+  //   fetchAllRooms();
+  //   // setSearchLoading(false)
+  // }, [currentLanguage, setLoadingCategory]);
 
   const handleValue = (value) => {
     setSortByPrice(value);
   };
 
-  const handleCategoryChange = (e) => {
-    setCategory(e.target.value);
+  const handleRoomSizeChange = (value) => {
+    setRoomSize(value);
   };
 
   return (
@@ -125,26 +131,26 @@ const Search = () => {
       <PageAnimation>
         <BannerPage text={t("search")} />
 
-        <section className="bg-[#1a1919]  py-4  " style={{ fontFamily: "Gilda Display, serif" }}>
+        <section className="bg-[#1a1919]  py-4  " style={{ fontFamily: "poppins, serif" }}>
           {/* <SearchBar
             // setAllRooms={setAllRooms}
             // setNoRoomsMessage={setNoRoomsMessage}
             pageContext="search"
           /> */}
-          <div className="max-w-lg mx-auto px-2 md:px-0 grid grid-cols-2 gap-2 py-3   ">
-            <div className="w-full ">
+          <div className="max-w-lg mx-auto px-2 md:px-0 flex  gap-7 py-3 justify-center items-center   ">
+            <div className="">
               <li className="relative group list-none">
                 <div className="flex gap-2 items-center">
-                  <p className="text-white">{t("sortByPrice")}</p>
+                  <p className="text-white uppercase tracking-widest text-sm">{t("sortByPrice")}</p>
                   <FaChevronDown className="font-thin text-xs text-white" />
                 </div>
 
                 {/* Dropdown Content */}
-                <ul className="absolute w-36 left-0 hidden pt-2 bg-[#1a1919] drop-shadow-md text-md text-zinc-400 group-hover:block z-10 rounded-sm">
+                <ul className="absolute w-36 left-0 hidden pt-2  bg-[#1a1919] drop-shadow-md text-md text-white group-hover:block z-10 rounded-sm">
                   <li>
                     <option
                       value={"asc"}
-                      className="p-2 block hover:bg-slate-50 transition duration-300 ease-in-out cursor-pointer "
+                      className="p-2 mb-2 block hover:bg-slate-50 hover:text-black transition duration-300 ease-in-out cursor-pointer text-xs uppercase tracking-widest  "
                       onClick={() => handleValue("asc")}
                     >
                       {t("lowPrice")}
@@ -153,7 +159,7 @@ const Search = () => {
                   <li>
                     <option
                       value={"desc"}
-                      className="p-2 block hover:bg-slate-50 transition duration-300 ease-in-out  cursor-pointer "
+                      className="p-2 block hover:bg-slate-50 hover:text-black transition duration-300 ease-in-out  cursor-pointer text-xs uppercase tracking-widest "
                       onClick={() => handleValue("desc")}
                     >
                       {t("highPrice")}
@@ -163,7 +169,7 @@ const Search = () => {
               </li>
             </div>
 
-            <div className="w-full ">
+            {/* <div className="w-full ">
               <select
                 id=""
                 className="text-white bg-transparent outline-none w-full"
@@ -187,7 +193,39 @@ const Search = () => {
                   ))
                 )}
               </select>
+            </div> */}
+            {/* <p>asdsd</p> */}
+            <div className=" ">
+              <li className="relative group list-none">
+                <div className="flex gap-2 items-center">
+                  <p className="text-white uppercase tracking-widest text-sm">{t("ROOM SIZE")}</p>
+                  <FaChevronDown className="font-thin text-xs text-white" />
+                </div>
+
+                {/* Dropdown Content */}
+                <ul className="absolute w-36 left-0 hidden pt-2 bg-[#1a1919] drop-shadow-md text-md text-white group-hover:block z-10 rounded-sm">
+                  <li>
+                    <option
+                      value={"lowToHigh"}
+                      className="p-2 mb-2 block hover:bg-slate-50 hover:text-black transition duration-300 ease-in-out cursor-pointer text-xs uppercase tracking-widest"
+                      onClick={() => handleRoomSizeChange("lowToHigh")}
+                    >
+                      {t("SMALLER ROOM")}
+                    </option>
+                  </li>
+                  <li>
+                    <option
+                      value={"highToLow"}
+                      className="p-2 block hover:bg-slate-50 hover:text-black transition duration-300 ease-in-out  cursor-pointer text-xs uppercase tracking-widest "
+                      onClick={() => handleRoomSizeChange("highToLow")}
+                    >
+                      {t("LARGER ROOM")}
+                    </option>
+                  </li>
+                </ul>
+              </li>
             </div>
+
           </div>
         </section>
         <section className="max-w-7xl mx-auto py-20 px-2 md:px-0">
@@ -195,6 +233,7 @@ const Search = () => {
             <DatesSearch />
             <AllRooms
               allRooms={allRooms}
+              // notFoundRoom={notFoundRoom}
               availableRooms={availableRooms}
               loadingAvailableRooms={loadingAvailableRooms}
               // noRoomsMessage={noRoomsMessage}
