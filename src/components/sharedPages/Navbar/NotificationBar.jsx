@@ -1,10 +1,14 @@
 import i18next, { t } from "i18next";
 import avatar from "../../../../public/img/avatar.jpg";
+import en from "../../../../public/img/en.png";
+import ar from "../../../../public/img/sa.jpg";
 import { notification } from "antd";
 import { useContext } from "react";
 import { AuthContext } from "../Context/AuthProvider";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+// import ar from '\img\en.png';
+
 
 const NotificationBar = () => {
   const currentLanguage = i18next.language;
@@ -40,15 +44,17 @@ const NotificationBar = () => {
               onClick={() => changeLanguage("en")}
               style={{ opacity: currentLanguage === "en" ? 0.5 : 1 }}
             >
-              ENG
+             <img src={en} alt="" className="" />
             </p>
-            <p
-              className="cursor-pointer"
+            <div
+              className="cursor-pointer flex gap-1"
               onClick={() => changeLanguage("ar")}
               style={{ opacity: currentLanguage === "ar" ? 0.5 : 1 }}
             >
-              AR
-            </p>
+              <img src={ar} alt="" className="" />
+
+              {/* <p>AR</p> */}
+            </div>
           </div>
         </div>
         <div className="flex gap-6 ">

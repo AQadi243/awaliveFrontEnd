@@ -4,8 +4,10 @@ import userPlaceHolderImg from "../../../assets/userPlaceholderImage.jpg";
 import { useEffect, useState } from "react";
 import { notification, Pagination, Skeleton } from "antd";
 import { useTranslation } from "react-i18next";
+import i18next from "i18next";
 
 const ReviewCard = ({ roomId, reviews, setReviews, reviewLoading, setReviewLoading }) => {
+  const currentLanguage = i18next.language;
   const { t } = useTranslation("booking");
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
@@ -57,9 +59,10 @@ const ReviewCard = ({ roomId, reviews, setReviews, reviewLoading, setReviewLoadi
   if (allReviews?.length === 0) return <div className="py-5">{t("notFound")}</div>;
 
   return (
-    <div className="space-y-4">
+    <div  className="space-y-4">
+      <p>asdasds</p>
       {allReviews?.map((review) => (
-        <div key={review._id} className="max-w-sm  overflow-hidden bg-white p-4" style={{ fontFamily: "Gilda Display, serif" }}>
+        <div key={review._id} className={`max-w-sm  overflow-hidden bg-white p-4  ${currentLanguage === 'ar' ? 'body-ar' : 'body-en'} `} >
           <div className="flex items-center mb-4">
             <div className="flex-shrink-0 mr-3">
               {/* Placeholder for user image */}

@@ -52,42 +52,44 @@ const RoomDetails = () => {
         <>
           <RoomBanner singleRoomDetails={singleRoomDetails} />
 
-          <section className="max-w-7xl mx-auto px-2">
+          <section dir="ltr" className="max-w-7xl mx-auto px-2">
             <div className="py-4">
-              <div>
-                <h1 className="text-2xl md:text-5xl py-2" style={{ fontFamily: "Gilda Display, serif" }}>
+              <div dir={`${currentLanguage === 'ar' ? 'rtl' : 'ltr'}`} >
+                <h1 className={`text-2xl md:text-4xl py-2  ${currentLanguage === 'ar' ? 'body-ar' : 'body-en'}`} >
                   {singleRoomDetails.title}
                 </h1>
-                <div>
+                <div className="text-sm">
                   <p className="" >
                     {" "}
-                    <strong>{t("bedRoom")}</strong> : {singleRoomDetails?.subTitle?.roomOne}
+                    <strong className="uppercase tracking-widest">{t("bedRoom")}</strong> : <span className=" uppercase tracking-widest" > {singleRoomDetails?.subTitle?.roomOne}</span>
                   </p>
                   {singleRoomDetails.subTitle?.roomTwo && (
-                    <p className="" >
+                    <p  >
                       {" "}
-                      <strong>Bed Room 2</strong> : {singleRoomDetails?.subTitle?.roomTwo}
+                      <strong className="uppercase tracking-widest">{t("Bed Room 2")}</strong> <span className=" uppercase tracking-widest"> : {singleRoomDetails?.subTitle?.roomTwo}</span>
                     </p>
                   )}
                 </div>
-                <div className="flex gap-1 items-center">
-                  <div>
-                    {[1, 2, 3, 4, 5].map((star) => (
+                <div className="flex gap-1 items-center text-sm uppercase tracking-widest">
+                  <div className="flex gap-3 items-center">
+                    <p>{t("HOTEL ROOM")}</p>
+                    <p>{[1, 2, 3, 4, 5].map((star) => (
                       <span key={star} className={"text-2xl text-[#BE9874]"}>
                         {star <= Math.ceil(reviews.averageRating) ? "★" : "☆"}
                       </span>
-                    ))}
+                    ))}</p>
                   </div>
 
-                  <span className="text-sm">
+                  {/* <span className="text-sm">
                     {reviews.averageRating}/5 {t("ratingReview")}
-                  </span>
+                  </span> */}
                 </div>
               </div>
 
               {/* slider  */}
               <RoomDetailsBody singleRoomDetails={singleRoomDetails} />
-              <h1 className="text-2xl" style={{ fontFamily: "Gilda Display, serif" }}>
+              <div className="lg:w-2/3">
+              <h1 dir={`${currentLanguage === 'ar' ? 'rtl' : 'ltr'}`} className={`text-2xl  py-5 md:py-4 ${currentLanguage === 'ar' ? 'body-ar' : 'body-en'} `} >
                 {t("reviews")}
               </h1>
               <ReviewCard
@@ -98,6 +100,7 @@ const RoomDetails = () => {
                 setReviewLoading={setReviewLoading}
               />
               <RoomReviewForm roomId={id} setReviews={setReviews} />
+              </div>
               <SimilarRoom currentRoomId={singleRoomDetails.id} />
             </div>
           </section>

@@ -12,7 +12,7 @@ import i18next from "i18next";
 import { useTranslation } from "react-i18next";
 
 const Availability = () => {
-  // const currentLanguage = i18next.language;
+  const currentLanguage = i18next.language;
     const { t } = useTranslation("search");
   const [selectionRange, setSelectionRange] = useState({
     startDate: new Date(),
@@ -100,7 +100,7 @@ const Availability = () => {
         </div>
         
       </div>
-      <Link to={'/roomSearch'} className="bg-[#1C1C1D] text-white flex flex-col items-center justify-center cursor-pointer py-6" style={{ fontFamily: "poppins, serif" }}>
+      <Link to={'/roomSearch'} className={`bg-[#1C1C1D] text-white flex flex-col items-center justify-center cursor-pointer py-6 ${currentLanguage === 'ar' ? 'body-ar' : 'body-en'}`} >
         <p className="tracking-[0.2rem]">{t("Check")}</p>
         <p className="tracking-[0.2rem]">{t("Availability")}</p>
       </Link>

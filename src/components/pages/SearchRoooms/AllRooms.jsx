@@ -13,13 +13,14 @@ import pool from '/img/swmming-pool.png'
 import drinks from '/img/welcome-drink.png'
 import smoking from '/img/no-smoking.png'
 import bath from '/img/private-bathroom.png'
+import { CiViewTable } from "react-icons/ci";
 const skeletonCount = 6;
 
-const AllRooms = ({ allRooms, loadingAllRooms, availableRooms, loadingAvailableRooms }) => {
+const AllRooms = ({ allRooms, loadingAllRooms, availableRooms, loadingAvailableRooms, errorMessage, resetSearch }) => {
   const currentLanguage = i18next.language;
   const { t } = useTranslation("booking");
   const [displayRooms, setDisplayRooms] = useState(allRooms);
-
+  console.log(availableRooms,'asdasdas');
   useEffect(() => {
     setDisplayRooms(allRooms);
   }, [allRooms]); // Depend on allRooms.data
@@ -31,6 +32,19 @@ const AllRooms = ({ allRooms, loadingAllRooms, availableRooms, loadingAvailableR
     }
   }, [availableRooms, loadingAvailableRooms]);
 
+
+  if (errorMessage) {
+    return (
+    <div className="md:w-2/3 flex flex-col items-center justify-center gap-5 ">
+    {/* Render other parts of your component here, like the search form and results */}
+    {errorMessage && <div className="text-xl">OPPS: {errorMessage}</div>}
+    <button onClick={resetSearch} className="bg-[#1C1C1C] text-white px-4 py-2 capitalize">{t("reset")} </button>
+    {/* Render the available rooms or a loading indicator */}
+  </div>
+  );
+  }
+ 
+
   return (
     <div className="md:w-2/3 grid grid-cols-1 md:grid-cols-2  gap-5 roomCards">
       {loadingAllRooms || loadingAvailableRooms
@@ -38,29 +52,26 @@ const AllRooms = ({ allRooms, loadingAllRooms, availableRooms, loadingAvailableR
         : displayRooms?.map((room) => (
             <div
               key={room.id}
-              className="col-span-1 border border-gray-200 flex flex-col gap-3 card"
-              data-price="56"
-              style={{ fontFamily: "Gilda Display, serif" }}
+              className={`col-span-1 border border-gray-200 flex flex-col gap-3 card ${currentLanguage === 'ar' ? 'body-ar' : 'body-en'} `}
+              data-price={room.priceOptions[0].price}
+              // className={}
             >
               <CoverSlider images={room.images} />
-              <div className="px-4 py-2 flex flex-col gap-3">
-                <h2 className="text-2xl  text-slate-900  ">{room.title}</h2>
-                <div className="flex justify-between text-gray-900 ">
+              <div className="px-4 py-2 flex flex-col gap-3"  >
+                <h2 className="text-2xl md:text-[25px]  text-slate-900 capitalize " style={{ fontFamily: "Gilda Display, serif" }}>{room.title}</h2>
+                <div className="flex gap-10 text-gray-900 ">
                   <div className="flex gap-2 items-center justify-center">
                     
-                    <LuUserCircle className="text-2xl  " />
+                    <LuUserCircle className="text-2xl text-gray-400 " />
                     
                     <p>{room.maxGuests}</p>
                     <p className="uppercase text-xs">{t("guest")}</p>
                   </div>
-                  {room.availableQty && (
-                    <div className="flex gap-2 items-center">
-                      <p className="text-xl md:text-sm">{t("availableRooms")} </p> <p>{room?.availableQty}</p>
-                    </div>
-                  )}
+                  
                   <div className="flex gap-2 items-center">
                     <p className="text-xl md:text-2xl">
-                      <ArrowsAltOutlined />{" "}
+                      {/* <ArrowsAltOutlined />{" "} */}
+                      <CiViewTable className="text-gray-400" />
                     </p>{" "}
                     <p>{room.size}</p>
                   </div>

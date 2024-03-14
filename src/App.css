@@ -18,6 +18,16 @@
 
 }
 
+/* Default font */
+.body-en {
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Arabic font */
+.body-ar {
+  font-family: 'Amiri', serif;
+}
+
 
 .slideIn {
 position: fixed;

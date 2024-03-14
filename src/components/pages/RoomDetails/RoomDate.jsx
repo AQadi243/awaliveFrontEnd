@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 const RoomDate = ({ singleRoomDetails }) => {
-  const { t } = useTranslation("booking");
+  const { t } = useTranslation("search");
   const authInfo = useContext(AuthContext);
   const {
     setRoomId,
@@ -104,7 +104,7 @@ const RoomDate = ({ singleRoomDetails }) => {
     setCheckOut(formattedEndDate);
     console.log(formattedStartDate);
 
-    console.log(ranges.selection.startDate);
+    
     if (ranges.selection.endDate && ranges.selection.startDate.getTime() !== ranges.selection.endDate.getTime()) {
       setShowDatePicker(false);
 
@@ -113,7 +113,7 @@ const RoomDate = ({ singleRoomDetails }) => {
       const differenceInTime = ranges.selection.endDate.getTime() - ranges.selection.startDate.getTime();
       const numberOfNights = Math.round(differenceInTime / oneDay);
       setNight(numberOfNights);
-      console.log(`Number of nights: ${numberOfNights}`);
+      
       // You can set the number of nights to state or do something else with it
     }
   };
@@ -219,7 +219,7 @@ const RoomDate = ({ singleRoomDetails }) => {
           </Link>
         </div>
       </div> */}
-      <div className="w-full md:w-1/3   ">
+      <div className="w-full   ">
         <div
           className="flex flex-col gap-5  items-center justify-center text-center bg-[#1C1C1C]  py-5 px-5 md:py-16 md:px-10 relative "
           style={{ fontFamily: "Gilda Display, serif" }}
@@ -291,10 +291,25 @@ const RoomDate = ({ singleRoomDetails }) => {
                 <p className="text-5xl text-[#BE9874]">{night}</p>
               </div>
             </div>
-
+            {night === 0 && (
+              <div id="error-message" className="text-red-500 text-xs">
+                {t("Please select check-In & Check-Out date")}
+              </div>
+            )}
+            
             <div id="error-message" className="text-red-500 text-xs"></div>
             <div id="perfect-message" className="text-green-500 text-xs"></div>
+            
           </div>
+          <Link
+            to={night > 0 ? "/booking" : "#"}
+            onClick={night > 0 ? handleBookNow : (e) => e.preventDefault()}
+            className={`bg-[#BE9874] w-full py-2 text-white text-sm bookNow ${
+              night === 0 ? "opacity-50 cursor-not-allowed" : ""
+            }`}
+          >
+            {t("bookNow")}
+          </Link>
         </div>
       </div>
     </>

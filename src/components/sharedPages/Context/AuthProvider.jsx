@@ -20,7 +20,7 @@ const AuthProvider = ({ children }) => {
   const [RoomName, setRoomName] = useState("");
   const [RoomPrice, setRoomPrice] = useState(0);
   const [RoomImage, setRoomImage] = useState("");
-  const [sortByPrice, setSortByPrice] = useState("asc");
+  const [sortByPrice, setSortByPrice] = useState(null);
   const [error, setError] = useState("");
 
   const [searchLoader, setSearchLoader] = useState(true);
@@ -201,7 +201,18 @@ const AuthProvider = ({ children }) => {
           `https://type-script-server.vercel.app/api/room/?lang=${currentLanguage}`
           // "https://awalive-server-side-hzpa.vercel.app/rooms"
         );
-        setAllRooms(response.data.data);
+        let rooms = response.data.data;
+        // if (rooms.length > 1) {
+        //   // setErrorMessage('No rooms available for the selected criteria.');
+       
+        //   // Client-side sorting based on the first price option
+        //   rooms = rooms.sort((a, b) => {
+        //     const priceA = a.priceOptions[0]?.price || 0; // Assuming first price option is the one to sort by
+        //     const priceB = b.priceOptions[0]?.price || 0; // Adjust if your data structure differs
+        //     return sortByPrice === 'asc' ? priceA - priceB : priceB - priceA;
+        //   });
+        // }
+        setAllRooms(rooms);
         // setSearchLoading(false);
         setLoadingAllRooms(false);
       } catch (error) {

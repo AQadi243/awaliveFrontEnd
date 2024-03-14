@@ -3,9 +3,11 @@ import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../Context/AuthProvider";
 import { useTranslation } from "react-i18next";
+import i18next from "i18next";
 
 // eslint-disable-next-line react/prop-types
 const RoomReviewForm = ({ roomId }) => {
+  const currentLanguage = i18next.language;
   const { user } = useContext(AuthContext);
   const [rating, setRating] = useState(0);
   const [email, setEmail] = useState("");
@@ -86,7 +88,7 @@ const RoomReviewForm = ({ roomId }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-lg  py-4" style={{ fontFamily: "Gilda Display, serif" }}>
+    <form  onSubmit={handleSubmit} className="max-w-lg  py-4" style={{ fontFamily: "Gilda Display, serif" }}>
       <div className="mb-4">
         <label htmlFor="email" className="block text-sm font-medium text-gray-700">
           {t("emailReview")}
@@ -122,7 +124,7 @@ const RoomReviewForm = ({ roomId }) => {
       </div>
 
       <div className="mb-4">
-        <label htmlFor="message" className="block text-sm font-medium text-gray-700">
+        <label htmlFor="message" className={`block text-sm font-medium text-gray-700  ${currentLanguage === 'ar' ? 'body-ar' : 'body-en'}`}>
           {t("messageReview")}
         </label>
         <textarea
@@ -132,7 +134,7 @@ const RoomReviewForm = ({ roomId }) => {
           rows="4"
           className={`mt-1 block w-full px-3 py-2 border ${
             errors.message ? "border-red-500" : "border-gray-300"
-          } rounded-md shadow-sm focus:outline-none focus:ring-[#BE9874] focus:border-[#BE9874]`}
+          } rounded-md shadow-sm focus:outline-none focus:ring-[#BE9874] focus:border-[#BE9874] `}
         />
         {errors.message && <p className="text-red-500 text-xs italic">{errors.message}</p>}
       </div>
