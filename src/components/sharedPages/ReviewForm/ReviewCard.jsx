@@ -60,11 +60,11 @@ const ReviewCard = ({ roomId, reviews, setReviews, reviewLoading, setReviewLoadi
 
   return (
     <div  className="space-y-4">
-      <p>asdasds</p>
+      
       {allReviews?.map((review) => (
         <div key={review._id} className={`max-w-sm  overflow-hidden bg-white p-4  ${currentLanguage === 'ar' ? 'body-ar' : 'body-en'} `} >
-          <div className="flex items-center mb-4">
-            <div className="flex-shrink-0 mr-3">
+          <div className="flex items-center mb-4 gap-2">
+            <div className="flex-shrink-0 ">
               {/* Placeholder for user image */}
               <img className="w-10 h-10 rounded-full" src={userPlaceHolderImg} alt="User profile" />
             </div>
@@ -74,7 +74,7 @@ const ReviewCard = ({ roomId, reviews, setReviews, reviewLoading, setReviewLoadi
               {/* Replace with dynamic date */}
             </div>
           </div>
-          <div className="flex items-center mb-4">
+          <div className="flex items-center ">
             {/* Star Rating */}
             <div className="text-[#BE9874] text-xl mr-2">
               {"★".repeat(review.rating)}

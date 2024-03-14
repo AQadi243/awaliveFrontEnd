@@ -52,12 +52,21 @@ const RoomDetails = () => {
         <>
           <RoomBanner singleRoomDetails={singleRoomDetails} />
 
-          <section dir="ltr" className="max-w-7xl mx-auto px-2">
+          <section dir="ltr" className="max-w-7xl mx-auto px-2 py-7 md:py-16">
             <div className="py-4">
               <div dir={`${currentLanguage === 'ar' ? 'rtl' : 'ltr'}`} >
-                <h1 className={`text-2xl md:text-4xl py-2  ${currentLanguage === 'ar' ? 'body-ar' : 'body-en'}`} >
+                {
+                  currentLanguage === 'ar' ? (
+                    <h1 className={`text-3xl md:text-4xl py-2 text-black capitalize  ${currentLanguage === 'ar' && 'body-ar'}`} >
                   {singleRoomDetails.title}
                 </h1>
+                  ):(
+                    <h1 className={`text-3xl md:text-4xl py-2 text-black capitalize `} style={{ fontFamily: "Gilda Display, serif" }} >
+                  {singleRoomDetails.title}
+                </h1>
+                  )
+                }
+                
                 <div className="text-sm">
                   <p className="" >
                     {" "}
@@ -88,9 +97,9 @@ const RoomDetails = () => {
 
               {/* slider  */}
               <RoomDetailsBody singleRoomDetails={singleRoomDetails} />
-              <div className="lg:w-2/3">
-              <h1 dir={`${currentLanguage === 'ar' ? 'rtl' : 'ltr'}`} className={`text-2xl  py-5 md:py-4 ${currentLanguage === 'ar' ? 'body-ar' : 'body-en'} `} >
-                {t("reviews")}
+              <div dir={`${currentLanguage === 'ar' ? 'rtl' : 'ltr'}`} className="lg:w-2/3 ">
+              <h1  className={`text-2xl  py-5 md:py-4 ${currentLanguage === 'ar' ? 'body-ar' : 'body-en'} `} >
+                {t("reviews")} 
               </h1>
               <ReviewCard
                 roomId={id}
@@ -101,7 +110,24 @@ const RoomDetails = () => {
               />
               <RoomReviewForm roomId={id} setReviews={setReviews} />
               </div>
+              <div dir={`${currentLanguage === 'ar' ? 'rtl' : 'ltr'}`}>
+                  <div  className="pb-7">
+                  {
+                  currentLanguage === 'ar' ? (
+                    <h1 className={`text-2xl md:text-4xl  text-black capitalize  ${currentLanguage === 'ar' && 'body-ar'}`} >
+                  {t("Similar Room")}
+                </h1>
+                  ):(
+                    <h1 className={`text-2xl md:text-4xl  text-black capitalize `} style={{ fontFamily: "Gilda Display, serif" }} >
+                  
+                  {t("Similar Room")}
+                </h1>
+                  )
+                }
+                <p className=" bg-black w-10 h-[2px] my-2" />
+                  </div>
               <SimilarRoom currentRoomId={singleRoomDetails.id} />
+              </div>
             </div>
           </section>
         </>

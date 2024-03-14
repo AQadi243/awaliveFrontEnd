@@ -219,9 +219,9 @@ const RoomDate = ({ singleRoomDetails }) => {
           </Link>
         </div>
       </div> */}
-      <div className="w-full   ">
+      <div className="w-full bg-red-400   ">
         <div
-          className="flex flex-col gap-5  items-center justify-center text-center bg-[#1C1C1C]  py-5 px-5 md:py-16 md:px-10 relative "
+          className="flex flex-col gap-5  items-center justify-center text-center bg-[#1C1C1C]  py-5 px-5 md:py-7   relative "
           style={{ fontFamily: "Gilda Display, serif" }}
         >
           <p className="text-white text-xl tracking-widest  bg-[#151515]  w-full py-4 ">{t("selectDates")}</p>
