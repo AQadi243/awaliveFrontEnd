@@ -19,13 +19,19 @@
 }
 
 /* Default font */
+.body-en-title {
+  font-family: 'Gilda Display', sans-serif;
+}
+
 .body-en {
   font-family: 'Poppins', sans-serif;
 }
 
 /* Arabic font */
 .body-ar {
-  font-family: 'Amiri', serif;
+  /* font-family: 'Amiri', serif; */
+  font-family: "Tajawal", sans-serif;
+  /* font-weight: 400; */
 }
 
 

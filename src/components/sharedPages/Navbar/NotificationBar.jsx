@@ -7,6 +7,8 @@ import { useContext } from "react";
 import { AuthContext } from "../Context/AuthProvider";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { FaRegCreditCard } from "react-icons/fa6";
+import { LuCheckSquare } from "react-icons/lu";
 // import ar from '\img\en.png';
 
 
@@ -28,14 +30,16 @@ const NotificationBar = () => {
   };
 
   return (
-    <section className="  container mx-auto ">
-      <div className="hidden lg:flex justify-between font-black ">
+    <section className={`  container mx-auto  ${currentLanguage === 'ar' ? 'body-ar font-semibold  ' : 'body-en font-semibold'}`}>
+      <div className="hidden lg:flex justify-between  ">
         <div className="flex gap-6 text-[12px] tracking-widest py-3 items-center">
-          <div>
+          <div className="flex gap-2 items-center justify-center">
+          <FaRegCreditCard className="text-[16px]" />
             <p>{t("Payment options")}</p>
           </div>
 
-          <div>
+          <div className="flex gap-2 items-center justify-center">
+          <LuCheckSquare className="text-[16px]" />
             <p>{t("Terms Conditions")}</p>
           </div>
           <div className="flex gap-3">

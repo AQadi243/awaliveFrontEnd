@@ -14,7 +14,7 @@ const RoomCards = ({ roomRates, loadingAllRooms }) => {
 
   return (
     <section className="container mx-auto px-4">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-4">
+      <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-4 ${currentLanguage === 'ar' ? 'body-ar  font-medium ' : 'body-en-title '}`}>
         {loadingAllRooms
           ? Array.from({ length: skeletonCount }, (_, index) => <Skeleton key={index} active />)
           : roomRates?.map((room) => (
@@ -41,13 +41,15 @@ const RoomCards = ({ roomRates, loadingAllRooms }) => {
                   } text-white text-xs tracking-widest`}
                 >
                   {t("from")}{" "}
-                  {currentLanguage === "en"
+                  {room.priceOptions[0].price.toLocaleString()} {" "}
+                  {t("SAR")}
+                  {/* {currentLanguage === "en"
                     ? room.priceOptions[0].price.toLocaleString()
                     : room.priceOptions[0].price.toLocaleString("ar-EG")}{" "}
-                  {t("SAR")}
+                  {t("SAR")} */}
                 </p>
-                <div className={`absolute bottom-5 ${currentLanguage === "ar" ? "right-2" : "left-2"} `}>
-                  <h2 className="text-xl text-white " style={{ fontFamily: "Gilda Display, serif" }}>
+                <div className={`absolute bottom-5 ${currentLanguage === "ar" ? "right-4" : "left-4"} `}>
+                  <h2 className={`text-xl md:text-2xl text-white py-2  ${currentLanguage === 'ar' ? 'body-ar  font-semibold ' : 'body-en-title '}`}>
                     {room.title}
                   </h2>
                   <div className="flex gap-2 md:gap-3 items-center text-white text-md md:text-xl">

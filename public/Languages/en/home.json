@@ -21,6 +21,7 @@
   "Luxury Hotel & Best Resort": "Luxury Hotel & Best Resort",
   "enjoyALuxuryExperience": "ENJOY A LUXURY",
   "EXPERIENCE": "EXPERIENCE",
+  "Best Luxury Room": "Best Luxury Room",
   "roomsAndSuits": "Rooms & Suits",
 
   "headerSemiTitleTwo": "Sky-High Dining",
@@ -35,6 +36,8 @@
   "hotelRelaxSubTitle": "Unwind at Awalive International",
   "hotelRelaxTitle": "Where Comfort Meets Splendor",
   "titleManager": "Hotel Manager",
+  "Relax in our": "Relax in our",
+  "Hotel Resort": "Hotel Resort",
 
   "guest": "Guest",
   "SAR": "SAR",
@@ -97,6 +100,7 @@
   },
 
   "discover": "HOTEL FACILITIES",
+  "The Structure": "The Structure",
   "discoverTitle": "Discover Luxury & Comfort",
   "discoverSubtitle": "Immerse yourself in unparalleled comfort and elegance at Awalive International Hotel. Our hotel boasts a range of state-of-the-art facilities designed to cater to your every need. From exquisite 24/7 room service to renowned on-site dining options, including complimentary breakfast and world-class laundry services, we ensure a stay that is both luxurious and convenient. Experience the pinnacle of hospitality at Awalive, nestled in the heart of Taif.",
   "rooms": {
@@ -146,7 +150,7 @@
   "primeLocationDescription": "Discover the charm of the city from our prime location. Nestled just steps away from major bus stations, awalive International hotel offers easy access to vibrant shopping, dining, and cultural landmarks. Immerse yourself in the local scene while enjoying our world-class amenities.",
   "paymentOptions": "DIVERSE PAYMENT OPTIONS:",
   "exclusiveOffer": {
-    "label": "Exclusive Offer",
+    "label": "Up to",
     "discount": "50% OFF",
     "description": "on Selected Luxury Rooms"
   },

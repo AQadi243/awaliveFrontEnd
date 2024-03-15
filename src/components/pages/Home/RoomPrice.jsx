@@ -1,10 +1,12 @@
 import { useEffect, useRef,  } from "react";
 import heroSlide from "../../../assets/5.jpg";
 import { useTranslation } from "react-i18next";
+import i18next from "i18next";
 // import AOS from 'aos';
 // import 'aos/dist/aos.css';
 
 const RoomPrice = () => {
+  const currentLanguage = i18next.language
   const { t } = useTranslation("home");
     const zoomCardRef = useRef(null);
 
@@ -49,22 +51,22 @@ const RoomPrice = () => {
       }}
     >
       <div className="absolute top-0 left-0 w-full h-full bg-black opacity-60 "></div>
-      <div className="container mx-auto py-20 px-4  ">
+      <div className={`container mx-auto py-20 px-4 ${currentLanguage === 'ar' ? 'body-ar  font-normal ' : 'body-en '}`} >
         <div data-aos="fade-up" className="text-center pb-6 text-white">
-          <p className="text-xs  tracking-[0.2rem] uppercase ">{t("OUR ROOM PRICES")}</p>
-          <h2 className="text-4xl py-4 md:text-6xl md:py-3" style={{ fontFamily: "Gilda Display, serif" }}>
+          <p className="  tracking-[0.2rem] uppercase ">{t("OUR ROOM PRICES")}</p>
+          <h2 className={`text-4xl py-4 md:text-6xl md:py-3 ${currentLanguage === 'ar' ? 'body-ar  font-bold ' : 'body-en-title '}`} >
             {t("The Best Prices")}
           </h2>
         </div>
         {/* pricing cards */}
         <div className=" max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 py-6 md:py-10">
           <div data-aos="zoom-in-up" className="grid-cols-1 bg-white text-center items-center py-10 flex flex-col justify-center">
-            <h2 className="text-xl md:text-2xl" style={{ fontFamily: "Gilda Display, serif" }}>
+            <h2 className={`text-xl md:text-2xl ${currentLanguage === 'ar' ? 'body-ar  font-bold ' : 'body-en-title '}`} >
             {t("deluxeSingleRoom.title")}
             </h2>
-            <p className="py-3 md:py-4 text-xl md:text-2xl">
+            <p className="py-3 md:py-4 text-sm ">
               ${" "}
-              <span className="text-3xl md:text-5xl" style={{ fontFamily: "Gilda Display, serif" }}>
+              <span className="text-6xl" style={{ fontFamily: "Gilda Display, serif" }}>
                 55
               </span>{" "}
               / {t("deluxeSingleRoom.price")}
@@ -93,15 +95,15 @@ const RoomPrice = () => {
             }}
             ref={zoomCardRef} 
           >
-            <h2 className="text-xl md:text-2xl " style={{ fontFamily: "Gilda Display, serif" }}>
+            <h2 className={`text-xl md:text-2xl ${currentLanguage === 'ar' ? 'body-ar  font-bold ' : 'body-en-title '}`}>
             {t("singleRoom.title")}
             </h2>
-            <p className="py-3 text-xl md:text-2xl">
+            <p className="py-3 text-2xl">
               ${" "}
-              <span className="text-3xl md:text-5xl" style={{ fontFamily: "Gilda Display, serif" }}>
+              <span className="text-6xl" style={{ fontFamily: "Gilda Display, serif" }}>
                 45
               </span>{" "}
-              / {t("singleRoom.price")}
+              / {t("singleRoom.price")} 
             </p>
             <ul className="flex flex-col gap-2 text-sm ">
             <li>{t("singleRoom.amenities one")}</li>
@@ -119,15 +121,15 @@ const RoomPrice = () => {
             </div>
           </div>
           <div data-aos="fade-up" className="grid-cols-1 bg-white text-center py-10">
-            <h2 className="text-2xl md:text-2xl " style={{ fontFamily: "Gilda Display, serif" }}>
+            <h2 className={`text-xl md:text-2xl ${currentLanguage === 'ar' ? 'body-ar  font-bold ' : 'body-en-title '}`}>
             {t("apartment.title")}
             </h2>
-            <p className="py-3 text-xl md:text-2xl">
+            <p className="py-3 text-sm">
               ${" "}
-              <span className="text-3xl md:text-5xl" style={{ fontFamily: "Gilda Display, serif" }}>
+              <span className="text-6xl" style={{ fontFamily: "Gilda Display, serif" }}>
                 45
               </span>{" "}
-              / {t("apartment.price")}
+              / <span className="">{t("apartment.price")}</span>
             </p>
             <ul className="flex flex-col gap-2 text-sm text-gray-400">
             <li>{t("apartment.amenities two")}</li>

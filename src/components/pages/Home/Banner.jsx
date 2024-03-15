@@ -56,7 +56,8 @@ const Banner = () => {
             dir={!currentLanguage ? "rtl" : "ltr"}
             key={currentLanguage}
           >
-            <SwiperSlide className="bg-cover bg-center relative cursor-pointer" style={{ fontFamily: "Gilda Display, serif" }}>
+            {/* <SwiperSlide className="bg-cover bg-center relative cursor-pointer" style={{ fontFamily: "Gilda Display, serif" }}> */}
+            <SwiperSlide className={`bg-cover bg-center relative cursor-pointer ${currentLanguage === 'ar' ? 'body-ar text-xl font-medium ' : 'body-en-title'}`} >
               <div className="absolute top-0 left-0 w-full h-full bg-black opacity-70"></div>
               <img className="w-full h-full  object-cover block  " src={bannerImagTwo} alt="" />
               {/* <div className='absolute top-0 left-0 w-full h-full bg-black opacity-50'></div> */}
@@ -79,7 +80,7 @@ const Banner = () => {
                 </motion.div>
               </div>
             </SwiperSlide>
-            <SwiperSlide className="bg-cover bg-center relative cursor-pointer" style={{ fontFamily: "Gilda Display, serif" }}>
+            <SwiperSlide className={`bg-cover bg-center relative cursor-pointer ${currentLanguage === 'ar' ? 'body-ar text-xl font-medium ' : 'body-en-title'}`}>
               <div className="absolute top-0 left-0 w-full h-full bg-black opacity-70"></div>
               <img className="w-full h-full  object-cover block  " src={bannerImagOne} alt="" />
               <div

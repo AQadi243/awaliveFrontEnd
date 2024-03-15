@@ -13,7 +13,7 @@ const Footer = () => {
   return (
     <>
       <PageAnimation>
-        <section className="bg-[#1D1D1D] " style={{ fontFamily: "Gilda Display, serif" }}>
+        <section className={`bg-[#1D1D1D] ${currentLanguage === 'ar' ? 'body-ar  font-medium ' : 'body-en-title '} `} >
           <div className="container mx-auto">
             <div className="px-8 py-10 grid grid-cols-1 md:grid-cols-3 text-white text-center gap-2">
               <div className="">

@@ -12,6 +12,7 @@ import ButtonAfterLogin from "./Buttons/BuutonAfterLogin";
 import { AuthContext } from "../Context/AuthProvider";
 import Headroom from "react-headroom";
 import { useTranslation } from "react-i18next";
+import i18next from "i18next";
 
 const navLinks = [
   { title: "Home", href: "/" },
@@ -25,6 +26,7 @@ const navLinks = [
 const Navbar = () => {
   const { user,userRole, handleLogout } = useContext(AuthContext);
   const { t } = useTranslation("home");
+  const currentLanguage = i18next.language
   const [open, setOpen] = useState(false);
 
   console.log(user,'user');
@@ -94,10 +96,10 @@ const Navbar = () => {
       style={{ transition: "all .5s ease-in-out", backgroundColor: "#1C1C1D",    zIndex: 1000 }}
     >
       <nav className="container mx-auto" >
-        <div className=" flex items-center justify-between  px-2">
+        <div className={` flex items-center justify-between  px-2 ${currentLanguage === 'ar' ? 'body-ar font-normal  ' : 'body-en '}`}>
           <div className=" flex items-center gap-[1ch]">
             
-            <Link to={"/"} className=" text-xs md:text-lg font-semibold tracking-widest text-white">
+            <Link to={"/"} className=" text-sm md:text-xl font-normal tracking-widest uppercase text-white">
               {t("Awalive Hotel")}
             </Link>
           </div>

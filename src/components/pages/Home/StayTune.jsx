@@ -1,4 +1,5 @@
 import { Image } from "antd";
+import i18next from "i18next";
 import { useTranslation } from "react-i18next";
 
 const images = [
@@ -67,15 +68,16 @@ const images = [
 
 const StayTune = () => {
   const { t } = useTranslation("home");
+  const currentLanguage = i18next.language
 
   return (
-    <section className="bg-[#F9F9F9] py-10 md:py-20">
-      <div className="container mx-auto text-center text-black ">
-        <p className="text-xs uppercase tracking-widest">{t("visualJourney")}</p>
-        <h2 className="text-3xl md:text-6xl mt-2" style={{ fontFamily: "Gilda Display, serif" }}>
+    <section className="bg-[#F9F9F9] my-18 md:my-28">
+      <div className={`container mx-auto text-center text-black ${currentLanguage === 'ar' ? 'body-ar  font-medium ' : 'body-en '}`}>
+        <p className="text-sm uppercase tracking-widest">{t("visualJourney")}</p>
+        <h2 className={`text-3xl md:text-6xl mt-6 ${currentLanguage === 'ar' ? 'body-ar  font-medium ' : 'body-en-title '}`}>
           {t("discoverSpaces")}
         </h2>
-        <p className="mt-2 md:mt-4 text-xs text-gray-400 px-4 md:px-20 md:w-[50%] md:mx-auto">{t("galleryDescription")}</p>
+        <p className="mt-2 md:mt-4 text-sm text-gray-400 px-4 md:px-20 md:w-[50%] md:mx-auto">{t("galleryDescription")}</p>
       </div>
 
       <div className="container mx-auto grid grid-cols-6 gap-1  mt-10 md:mt-16 px-2">
