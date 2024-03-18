@@ -9,21 +9,22 @@ import { Image } from "antd";
 import { useState } from "react";
 import { LuHome, LuUserCircle } from "react-icons/lu";
 import { CiViewTable } from "react-icons/ci";
+import pool from '../../../../public/img/swmming-pool.png'
+import tv from '../../../../public/img/television .png'
+import drink from '../../../../public/img/welcome-drink.png'
+import bath from '../../../../public/img/private-bathroom.png'
+import noSmoking from '../../../../public/img/no-smoking.png'
 
 const RoomDetailsBody = ({ singleRoomDetails }) => {
   const currentLanguage = i18next.language;
   const { t } = useTranslation("booking");
-  const [showAll, setShowAll] = useState(false);
+  
 
   const { description, features, images, maxGuests, priceOptions, services, size } = singleRoomDetails;
 
-  // Toggle the showAll state
-  const toggleShowAll = () => {
-    setShowAll(!showAll);
-  };
+ 
 
-  // Determine how many services to show
-  const displayedServices = showAll ? services : services.slice(0, 4);
+ 
 
   return (
     <>
@@ -33,7 +34,7 @@ const RoomDetailsBody = ({ singleRoomDetails }) => {
 
           {/* Facilities   */}
           <div dir={`${currentLanguage === "ar" ? "rtl" : "ltr"}`}>
-            <div className="flex justify-between  py-2 md:py-4 px-2">
+            <div className="flex justify-between  py-2 px-4 md:py-4 md:px-20 ">
               <div className="flex flex-col items-center gap-3 ">
                 <p className="text-2xl">
                   {/* <UserOutlined />{" "} */}
@@ -76,24 +77,48 @@ const RoomDetailsBody = ({ singleRoomDetails }) => {
           <hr />
           <p
             dir={`${currentLanguage === "ar" ? "rtl" : "ltr"}`}
-            className={`py-3 text-sm leading-7 ${currentLanguage === "ar" ? "body-ar" : "body-en"} `}
+            className={`py-3 px-3 md:px-0 text-sm leading-7  ${currentLanguage === "ar" ? "body-ar" : "body-en"} `}
           >
             {description}
           </p>
           <hr />
-          <div dir={`${currentLanguage === "ar" ? "rtl" : "ltr"}`} className=" mb-4">
-            <h2 className={`text-2xl  py-5 md:py-4 ${currentLanguage === "ar" ? "body-ar" : "body-en"} `}>{t("roomFeatures")}</h2>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
-              {features?.map((feature, index) => (
+          <div dir={`${currentLanguage === "ar" ? "rtl" : "ltr"}`} className=" mt-4 pb-4 px-3 md:px-0">
+            <h2 className={`text-2xl  py-5 md:py-4 ${currentLanguage === "ar" ? "body-ar font-medium" : "body-en-title"} `}>{t("roomService")}</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 ">
+              <div className="flex gap-5 items-center ">
+                <img className="w-8 h-8" src={pool} alt="" />
+                <p>{t("Swimming pool")}</p>
+              </div>
+              <div className="flex gap-5 items-center ">
+                <img className="w-8 h-8" src={tv} alt="" />
+                <p>{t("Television")}</p>
+                
+              </div>
+              <div className="flex gap-5 items-center ">
+                <img className="w-8 h-8" src={noSmoking} alt="" />
+                <p>{t("No Smoking")}</p>
+              
+              </div>
+              <div className="flex gap-5 items-center ">
+                <img className="w-8 h-8" src={bath} alt="" />
+                <p>{t("Privet Bathroom")}</p>
+               
+              </div>
+              <div className="flex gap-5 items-center ">
+                <img className="w-8 h-8" src={drink} alt="" />
+                <p>{t("Welcome Drinks")}</p>
+               
+              </div>
+              {/* {features?.map((feature, index) => (
                 <div key={index} className="flex gap-2 items-center text-xs ">
                   <CheckOutlined className="text-green-400" />
                   <p className={`text-sm ${currentLanguage === "ar" ? "body-ar" : "body-en"}`}>{feature}</p>
                 </div>
-              ))}
+              ))} */}
             </div>
           </div>
           <hr />
-          <div dir={`${currentLanguage === "ar" ? "rtl" : "ltr"}`} className="">
+          {/* <div dir={`${currentLanguage === "ar" ? "rtl" : "ltr"}`} className="">
             <h2 className={`text-2xl  py-5 md:py-4 ${currentLanguage === "ar" ? "body-ar" : "body-en"} `}>{t("roomService")}</h2>
 
             <div>
@@ -111,15 +136,15 @@ const RoomDetailsBody = ({ singleRoomDetails }) => {
                 </button>
               )}
             </div>
-          </div>
+          </div> */}
 
           {/* Around hotels start */}
 
           {/* Around hotels end */}
         </div>
-        <div className=" lg:w-1/3 lg:h-screen flex flex-col lg:sticky lg:top-0 ">
+        <div className=" lg:w-1/3  flex flex-col  ">
           <RoomDate singleRoomDetails={singleRoomDetails} />
-          <div dir={`${currentLanguage === "ar" ? "rtl" : "ltr"}`} className="py-2">
+          <div dir={`${currentLanguage === "ar" ? "rtl" : "ltr"}`} className="hidden md:flex py-2">
             <Image.PreviewGroup>
               <div style={{ display: "flex", flexWrap: "wrap", gap: "10px" }}>
                 {images.map((url, index) => (

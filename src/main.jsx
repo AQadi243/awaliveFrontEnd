@@ -32,6 +32,8 @@ import BookTable from "./components/pages/Restaurent/BookTable/BookTable";
 import router from "./router";
 import { QueryClient, QueryClientProvider } from "react-query";
 import 'flatpickr/dist/flatpickr.min.css';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 // import ScrollToTop from './components/sharedPages/ScrollToTop';
 
 // import 'flag-icon-css/css/flag-icon.min.css'

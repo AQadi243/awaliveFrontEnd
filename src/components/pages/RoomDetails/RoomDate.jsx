@@ -1,6 +1,6 @@
-import { useContext, useEffect, useState } from "react";
-import "react-date-range/dist/styles.css"; // main css file
-import "react-date-range/dist/theme/default.css"; // theme css file
+import { useContext, useEffect, useRef, useState } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import { DateRange } from "react-date-range";
 // import { addDays } from "date-fns";
 import { FaAngleDown, FaAngleUp } from "react-icons/fa6";
@@ -9,8 +9,12 @@ import { Link } from "react-router-dom";
 // import { addDays } from 'date-fns';
 
 import { useTranslation } from "react-i18next";
+import i18next from "i18next";
+import { addDays, differenceInCalendarDays, format } from "date-fns";
+import { SlArrowDown, SlArrowUp } from "react-icons/sl";
 
 const RoomDate = ({ singleRoomDetails }) => {
+  const currentLanguage = i18next.language
   const { t } = useTranslation("search");
   const authInfo = useContext(AuthContext);
   const {
@@ -30,16 +34,19 @@ const RoomDate = ({ singleRoomDetails }) => {
     setRoomPrice,
     setRoomName,
   } = authInfo;
-  const { roomName, roomPrice, image, id, priceOptions } = singleRoomDetails;
+  const { roomName, roomPrice, images, id, priceOptions } = singleRoomDetails;
   // const [showDatePicker, setShowDatePicker] = useState(false);
 
-  // Update room details
-  useEffect(() => {
-    setRoomId(id);
-    // setRoomImage(image);
-    setRoomName(roomName);
-    setRoomPrice(priceOptions[0].price);
-  }, [id, setRoomId, roomName, priceOptions, setRoomImage, setRoomName, setRoomPrice]);
+  
+  // // Update room details
+
+ 
+  // useEffect(() => {
+  //   setRoomId(id);
+  //   // setRoomImage(images[0] );
+  //   // setRoomName(roomName);
+  //   // setRoomPrice(priceOptions[0].price);
+  // }, [id, setRoomId, roomName, priceOptions, setRoomImage, setRoomName, setRoomPrice, images]);
 
   // useEffect(() => {
   //   if (calender[0].startDate && calender[0].endDate) {
@@ -76,54 +83,83 @@ const RoomDate = ({ singleRoomDetails }) => {
   // const tomorrow = addDays(new Date(), 1);
 
    // Define initial states for selection range
-   const [selectionRange, setSelectionRange] = useState({
-    startDate: checkIn ? new Date(checkIn) : new Date(), // Use existing checkIn date or today
-    endDate: checkOut ? new Date(checkOut) : tomorrow, // Use existing checkOut date or tomorrow
-    key: "selection",
-  });
+  //  const [selectionRange, setSelectionRange] = useState({
+  //   startDate: checkIn ? new Date(checkIn) : new Date(), // Use existing checkIn date or today
+  //   endDate: checkOut ? new Date(checkOut) : tomorrow, // Use existing checkOut date or tomorrow
+  //   key: "selection",
+  // });
 
   // const [guests, setGuests] = useState(1);
-  const [showDatePicker, setShowDatePicker] = useState(false);
+  // const [showDatePicker, setShowDatePicker] = useState(false);
 
-  const handleSelect = (ranges) => {
-    setSelectionRange(ranges.selection);
-    if (ranges.selection.endDate && ranges.selection.startDate.getTime() !== ranges.selection.endDate.getTime()) {
-      setShowDatePicker(false);
-    }
+  // const handleSelect = (ranges) => {
+  //   setSelectionRange(ranges.selection);
+  //   if (ranges.selection.endDate && ranges.selection.startDate.getTime() !== ranges.selection.endDate.getTime()) {
+  //     setShowDatePicker(false);
+  //   }
 
-    // Format start and end dates
-    const startDate = new Date(ranges.selection.startDate);
-    startDate.setHours(0, 0, 0, 0); // Set time to 00:00:00.000
-    const formattedStartDate = startDate.toDateString(); // Converts to format "Mon Mar 18 2024"
+  //   // Format start and end dates
+  //   const startDate = new Date(ranges.selection.startDate);
+  //   startDate.setHours(0, 0, 0, 0); // Set time to 00:00:00.000
+  //   const formattedStartDate = startDate.toDateString(); // Converts to format "Mon Mar 18 2024"
 
-    const endDate = new Date(ranges.selection.endDate);
-    endDate.setHours(0, 0, 0, 0); // Set time to 00:00:00.000
-    const formattedEndDate = endDate.toDateString(); // Converts to format "Mon Mar 18 2024"
+  //   const endDate = new Date(ranges.selection.endDate);
+  //   endDate.setHours(0, 0, 0, 0); // Set time to 00:00:00.000
+  //   const formattedEndDate = endDate.toDateString(); // Converts to format "Mon Mar 18 2024"
 
-    setCheckIn(formattedStartDate);
-    setCheckOut(formattedEndDate);
-    console.log(formattedStartDate);
+  //   setCheckIn(formattedStartDate);
+  //   setCheckOut(formattedEndDate);
+  //   console.log(formattedStartDate);
 
     
-    if (ranges.selection.endDate && ranges.selection.startDate.getTime() !== ranges.selection.endDate.getTime()) {
-      setShowDatePicker(false);
+  //   if (ranges.selection.endDate && ranges.selection.startDate.getTime() !== ranges.selection.endDate.getTime()) {
+  //     setShowDatePicker(false);
 
-      // Calculate the number of nights between checkIn and checkOut
-      const oneDay = 1000 * 60 * 60 * 24; // milliseconds in one day
-      const differenceInTime = ranges.selection.endDate.getTime() - ranges.selection.startDate.getTime();
-      const numberOfNights = Math.round(differenceInTime / oneDay);
-      setNight(numberOfNights);
+  //     // Calculate the number of nights between checkIn and checkOut
+  //     const oneDay = 1000 * 60 * 60 * 24; // milliseconds in one day
+  //     const differenceInTime = ranges.selection.endDate.getTime() - ranges.selection.startDate.getTime();
+  //     const numberOfNights = Math.round(differenceInTime / oneDay);
+  //     setNight(numberOfNights);
       
-      // You can set the number of nights to state or do something else with it
+  //     // You can set the number of nights to state or do something else with it
+  //   }
+  // };
+
+  // Function to format and return day and month separately
+  // const formatDate = (date) => {
+  //   const day = date.getDate();
+  //   const month = date.toLocaleString("default", { month: "short" });
+  //   return { day, month };
+  // };
+
+  
+  const [startDate, setStartDate] = useState(checkIn || new Date());
+  const [endDate, setEndDate] = useState(checkOut || addDays(new Date(), 1));
+  const [guest, setGuest] = useState(numberOfGuests || 1);
+
+  
+
+  const startDatePickerRef = useRef();
+  const endDatePickerRef = useRef();
+
+  const handleStartDateChange = (date) => {
+    setStartDate(date);
+    // Check if the end date is before the new start date
+    const updatedEndDate = addDays(date, 1);
+    if (endDate < updatedEndDate) {
+      setEndDate(updatedEndDate);
     }
   };
 
-  // Function to format and return day and month separately
-  const formatDate = (date) => {
-    const day = date.getDate();
-    const month = date.toLocaleString("default", { month: "short" });
-    return { day, month };
-  };
+  useEffect(()=>{
+    setRoomId(id)
+    setGuests(guest)
+    setCheckIn(startDate)
+    setCheckOut(endDate)
+    
+  },[endDate, guest, setCheckIn, setCheckOut, setGuests, startDate, setRoomId, id])
+
+  const nights = differenceInCalendarDays(endDate, startDate);
 
   return (
     <>
@@ -219,7 +255,8 @@ const RoomDate = ({ singleRoomDetails }) => {
           </Link>
         </div>
       </div> */}
-      <div className="w-full bg-red-400   ">
+      {/* <div className="w-full  bg-red-400   ">
+      
         <div
           className="flex flex-col gap-5  items-center justify-center text-center bg-[#1C1C1C]  py-5 px-5 md:py-7   relative "
           style={{ fontFamily: "Gilda Display, serif" }}
@@ -287,7 +324,7 @@ const RoomDate = ({ singleRoomDetails }) => {
                 {t("night")}
               </p>
               <div className="flex gap-3  items-center">
-                {/* <p className="text-5xl ">{guests}</p> */}
+       
                 <p className="text-5xl text-[#BE9874]">{night}</p>
               </div>
             </div>
@@ -310,6 +347,121 @@ const RoomDate = ({ singleRoomDetails }) => {
           >
             {t("bookNow")}
           </Link>
+        </div>
+      </div> */}
+      <div className={` w-full ${currentLanguage === 'ar' ? 'body-ar font-medium ' : 'body-en-title'} `}>
+        <div
+          className={`flex flex-col gap-5  items-center justify-center text-center bg-[#1C1C1C]  py-5 px-5  md:px-10 relative  ${
+            currentLanguage === "ar" ? "body-ar" : "body-en"
+          } `}
+        >
+          <p
+            className={`text-white text-xl tracking-widest  bg-[#151515]  w-full py-4 ${
+              currentLanguage === "ar" ? "body-ar" : "body-en"
+            } `}
+          >
+            {t("selectDates")}
+          </p>
+          <div className="grid grid-cols-2 gap-5  w-full">
+            <div className="bg-[#151515] flex items-center justify-center py-6">
+              <div
+                onClick={() => startDatePickerRef.current.setOpen(true)}
+                className="text-black flex flex-col gap-2 items-center justify-center focus:outline-none cursor-pointer"
+              >
+                <p className="tracking-widest text-sm uppercase text-white">{t("CHECK IN")}</p>
+                <div className="flex gap-2  items-center" style={{ fontFamily: "Gilda Display, serif" }}>
+                  <p className="text-5xl text-[#BE9874]">{format(startDate, "dd")}</p>
+
+                  <div className="flex flex-col items-center">
+                    <p className="text-[#BE9874]">{format(startDate, "MMM")}</p>
+                    <SlArrowDown className=" text-xs text-[#BE9874]" />
+                  </div>
+                </div>
+              </div>
+              {/* Hidden DatePicker for start date */}
+              <DatePicker
+                ref={startDatePickerRef}
+                selected={startDate}
+                onChange={handleStartDateChange}
+                selectsStart
+                startDate={startDate}
+                endDate={endDate}
+                minDate={new Date()}
+                dateFormat="dd MMM"
+                className="hidden"
+              />
+            </div>
+            <div className="bg-[#151515] flex items-center justify-center py-6">
+              <div
+                onClick={() => endDatePickerRef.current.setOpen(true)}
+                className="text-black flex flex-col gap-2 items-center justify-center focus:outline-none cursor-pointer"
+              >
+                <p className="tracking-widest text-sm uppercase text-white">{t("CHECK OUT")}</p>
+                <div className="flex gap-2  items-center" style={{ fontFamily: "Gilda Display, serif" }}>
+                  <p className="text-5xl text-[#BE9874]">{format(endDate, "dd")}</p>
+
+                  <div className="flex flex-col items-center">
+                    <p className="text-[#BE9874]">{format(endDate, "MMM")}</p>
+                    <SlArrowDown className=" text-xs text-[#BE9874]" />
+                  </div>
+                </div>
+              </div>
+              {/* Hidden DatePicker for end date */}
+              <DatePicker
+                ref={endDatePickerRef}
+                selected={endDate}
+                onChange={(date) => setEndDate(date)}
+                selectsEnd
+                startDate={startDate}
+                endDate={endDate}
+                minDate={addDays(startDate, 1)}
+                dateFormat="dd MMM"
+                className="hidden"
+              />
+            </div>
+
+            <div className={`bg-[#151515] flex items-center justify-center py-4  `}>
+              <div className="text-black flex flex-col gap-2 items-center justify-center ">
+                <p className="tracking-widest text-sm text-white">{t("GUESTS")}</p>
+                <div className="flex gap-3  items-center">
+                  <p className="text-5xl text-[#BE9874]" style={{ fontFamily: "Gilda Display, serif" }}>
+                    {guest}
+                  </p>
+                  <div className="flex flex-col gap-2">
+                    <button onClick={() => setGuest(guest + 1)} className="text-xl">
+                      <SlArrowUp className="text-gray-400 text-sm" />
+                    </button>
+                    <button onClick={() => setGuest(Math.max(1, guest - 1))} className="text-xl">
+                      <SlArrowDown className="text-gray-400 text-sm" />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="text-black flex flex-col gap-2 items-center justify-center bg-[#151515] ">
+              <p className="tracking-widest text-sm text-white uppercase">{t("night")}</p>
+              <div className="flex gap-3  items-center">
+                <p className="text-5xl text-[#BE9874]" style={{ fontFamily: "Gilda Display, serif" }}>
+                  {nights}
+                </p>
+              </div>
+            </div>
+              
+            
+          </div>
+          <Link
+            to={nights > 0 ? "/booking" : "#"}
+            onClick={nights > 0 ? handleBookNow : (e) => e.preventDefault()}
+            className={`bg-[#BE9874] w-full py-2 text-white text-sm bookNow ${
+              nights === 0 ? "opacity-50 cursor-not-allowed" : ""
+            }`}
+          >
+            {t("bookNow")}
+          </Link>
+          {/* <Link>{t("bookNow")} </Link> */}
+
+          <div id="error-message" className="text-red-500 text-xs"></div>
+            <div id="perfect-message" className="text-green-500 text-xs"></div>
         </div>
       </div>
     </>

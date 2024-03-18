@@ -1,13 +1,9 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Navigation } from "swiper/modules";
+import Slider from "react-slick";
 
-import "swiper/css";
-import "swiper/css/navigation";
 import i18next from "i18next";
-import { LazyLoadImage } from "react-lazy-load-image-component";
-import placeholerImage from "../../../assets/hotel-service.png";
+
 
 const RoomImageSlider = ({ images }) => {
   const [languageKey, setLanguageKey] = useState(i18next.language);
@@ -24,29 +20,32 @@ const RoomImageSlider = ({ images }) => {
     };
   }, [setLanguageKey]);
 
+  const settings = {
+    // dots: true,
+    // fade: true,
+    infinite: true,
+    speed: 800,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,        // Enable autoplay
+  autoplaySpeed: 3000,   // Set delay between transitions to 3000 milliseconds (3 seconds)
+  waitForAnimate: false
+  };
+
+console.log(images,'images');
   return (
     <div className="">
-      <Swiper
-        key={languageKey}
-        dir={!languageKey ? "rtl" : "ltr"}
-        navigation={true}
-        modules={[Navigation, Autoplay]}
-        className="mySwiper   "
-        autoplay={{ delay: 2000 }}
-        loop={true}
-      >
-        {images?.map((image, index) => (
-          <SwiperSlide key={index}>
-            <LazyLoadImage
-              className="w-full aspect-video object-fill object-center"
-              src={image}
-              alt={`awalive ${index}`}
-              effect="blur" // Optional: choose an effect like 'blur' or leave it out
-              placeholderSrc={placeholerImage}
-            />
-          </SwiperSlide>
-        ))}
-      </Swiper>
+      
+      <div className="slider-container w-full" dir={!languageKey ? "rtl" : "ltr"}>
+      <Slider   {...settings} className="w-full overflow-hidden">
+        {images?.map((img, ind) =>(
+          <div key={ind}>
+          <img src={img} className="w-full aspect-video object-fill object-center cursor-grab"  />
+        </div>
+        ) )}
+        
+      </Slider>
+    </div>
     </div>
   );
 };

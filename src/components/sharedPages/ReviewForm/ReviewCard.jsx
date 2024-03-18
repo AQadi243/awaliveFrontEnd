@@ -5,6 +5,9 @@ import { useEffect, useState } from "react";
 import { notification, Pagination, Skeleton } from "antd";
 import { useTranslation } from "react-i18next";
 import i18next from "i18next";
+import Slider from 'react-slick';
+import { FaStar } from 'react-icons/fa';
+
 
 const ReviewCard = ({ roomId, reviews, setReviews, reviewLoading, setReviewLoading }) => {
   const currentLanguage = i18next.language;
@@ -13,6 +16,8 @@ const ReviewCard = ({ roomId, reviews, setReviews, reviewLoading, setReviewLoadi
   const [totalPages, setTotalPages] = useState(0);
   const pageSize = 5; // Number of reviews per page
   const allReviews = reviews.reviews;
+
+  
 
   useEffect(() => {
     const fetchReviews = async () => {
@@ -41,11 +46,12 @@ const ReviewCard = ({ roomId, reviews, setReviews, reviewLoading, setReviewLoadi
     // }
   }, [roomId, currentPage, pageSize, setReviews, setTotalPages, setReviewLoading]);
 
-  const handlePageChange = (page) => {
-    setCurrentPage(page);
-  };
+  // const handlePageChange = (page) => {
+  //   setCurrentPage(page);
+  // };
 
   const skeletonCount = 5;
+
 
   // if (reviewLoading) return <p>Loading reviews...</p>;
   if (reviewLoading)
@@ -57,41 +63,74 @@ const ReviewCard = ({ roomId, reviews, setReviews, reviewLoading, setReviewLoadi
       </div>
     );
   if (allReviews?.length === 0) return <div className="py-5">{t("notFound")}</div>;
+  // const reviewss = [
+  //   { id: 1, date: "2022-01-01", stars: 4, message: "Great experience. asjdasd. asdasdha asdhuah ahsdfue iausuhawe aiuwerhfwerf uawefb auhbf auds aedfuawe iasdfua iaufea iasudfas  asiudfiau aiudnfia iasudiau asefiun ", imageUrl: userPlaceHolderImg },
+  //   { id: 2, date: "2022-02-02", stars: 5, message: "Loved it!", imageUrl: userPlaceHolderImg },
+  //   { id: 3, date: "2022-03-03", stars: 3, message: "Good, but could be better.", imageUrl:userPlaceHolderImg },
+  //   // Add more reviews as needed
+  // ];
 
+   // Settings for the slider
+  //  const settings = {
+  //   className: "center",
+  //   dots: true,
+  //   infinite: true,
+  //   speed: 500,
+  //   centerPadding: "60px",
+  //   slidesToShow: 3,
+  //   slidesToScroll: 3,
+  //   responsive: [
+  //     {
+  //       breakpoint: 1024,
+  //       settings: {
+  //         slidesToShow: 2,
+  //         slidesToScroll: 2,
+  //         infinite: true,
+  //         dots: true
+  //       }
+  //     },
+  //     {
+  //       breakpoint: 600,
+  //       settings: {
+  //         slidesToShow: 1,
+  //         slidesToScroll: 1
+  //       }
+  //     }
+  //   ]
+  // };
+  const settings = {
+    
+    dots: true,
+    infinite: allReviews?.length > 1,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1
+  };
+  console.log(allReviews , 'reviews');  
   return (
-    <div  className="space-y-4">
+    <>
       
-      {allReviews?.map((review) => (
-        <div key={review._id} className={`max-w-sm  overflow-hidden bg-white p-4  ${currentLanguage === 'ar' ? 'body-ar' : 'body-en'} `} >
-          <div className="flex items-center mb-4 gap-2">
-            <div className="flex-shrink-0 ">
-              {/* Placeholder for user image */}
-              <img className="w-10 h-10 rounded-full" src={userPlaceHolderImg} alt="User profile" />
+    
+    <div className='review-slider w-full text-center items-center mx-auto cursor-grab '>
+    <Slider {...settings} className="   h-auto ">
+      {allReviews?.map(review => (
+        <div key={review._id} className="review-card flex flex-col items-center justify-center overflow-hidden  mx-auto py-4  ">
+          <img  src={userPlaceHolderImg} alt="Review" className="review-image w-12 h-12 rounded-full mx-auto"/>
+          <div className="review-content">
+            <div className="review-date text-sm">{new Date(review?.createdAt).toLocaleDateString()}</div>
+            <div className="review-stars flex flex-row justify-center gap-2 my-2">
+              {/* {Array(review.stars).fill().map((_, index) => (
+                <FaStar key={index} />
+              ))} */}
+              {"★".repeat(review?.rating)}
             </div>
-            <div className="flex-1">
-              <div className="font-bold text-lg">{review?.userId?.fullName}</div> {/* Replace with dynamic user name */}
-              <p className="text-gray-600">{new Date(review?.createdAt).toLocaleDateString()}</p>{" "}
-              {/* Replace with dynamic date */}
-            </div>
+            <p className="review-message flex-wrap">{review?.message}</p>
           </div>
-          <div className="flex items-center ">
-            {/* Star Rating */}
-            <div className="text-[#BE9874] text-xl mr-2">
-              {"★".repeat(review.rating)}
-              {"☆".repeat(5 - review.rating)}
-            </div>
-          </div>
-          <p className="text-gray-700 text-base">{review.message}</p>
         </div>
       ))}
-      <Pagination
-        current={currentPage}
-        onChange={handlePageChange}
-        total={totalPages * pageSize}
-        pageSize={pageSize}
-        showSizeChanger={false}
-      />
-    </div>
+    </Slider>
+  </div>
+  </>
   );
 };
 

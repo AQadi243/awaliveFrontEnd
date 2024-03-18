@@ -20,7 +20,7 @@
 
 /* Default font */
 .body-en-title {
-  font-family: 'Gilda Display', sans-serif;
+  font-family: 'Gilda Display', serif;
 }
 
 .body-en {
@@ -98,6 +98,25 @@ z-index: 1 ;
   border-color: #E2E8F0;
 }
 
+.ant-tabs .ant-tabs-tab-btn{
+  font-weight: 400;
+  letter-spacing: 0.1rem;
+  color: #24303F;
+  
+}
+
+
+.react-datepicker__header {
+  background-color:#8d643e !important;
+  
+}
+
+.react-datepicker__month-container {
+  float: left;
+  background-color: #8d643e !important;
+  
+  
+}
 
 .rdrCalendarWrapper{
   background-color: #0f0f0f !important;

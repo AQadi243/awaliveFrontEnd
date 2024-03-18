@@ -83,7 +83,7 @@ const Home = () => {
       <PageAnimation>
         {/* <Banner /> */}
         <HeroBanner />
-        <div className="container mx-auto flex md:hidden ">
+        <div className="max-w-7xl mx-auto flex md:hidden ">
           <Availability />
         </div>
         <Relax />

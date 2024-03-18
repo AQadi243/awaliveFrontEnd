@@ -88,7 +88,7 @@ const RoomReviewForm = ({ roomId }) => {
   };
 
   return (
-    <form  onSubmit={handleSubmit} className="max-w-lg  py-4" style={{ fontFamily: "Gilda Display, serif" }}>
+    <form  onSubmit={handleSubmit} className={`max-w-lg  py-4  ${currentLanguage === "ar" ? "body-ar font-medium" : "body-en-title"} `}>
       <div className="mb-4">
         <label htmlFor="email" className="block text-sm font-medium text-gray-700">
           {t("emailReview")}

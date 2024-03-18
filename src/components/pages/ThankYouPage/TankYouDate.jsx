@@ -9,76 +9,32 @@ import { Skeleton } from "antd";
 import { Link } from "react-router-dom";
 import { differenceInCalendarDays, format } from "date-fns";
 
-const BookingDate = () => {
+const ThankYouDate = ({bookedRoomDetails}) => {
+    
+    const { t } = useTranslation("booking");
   const currentLanguage = i18next.language;
-  const { t } = useTranslation("booking");
-  // const authInfo = useContext(AuthContext);
-  // const [bookingInformation, setBookingInformation] = useState("");
-  // const { loading, setLoading, } = authInfo;
-  const [checkIn, setCheckIn] = useState(null);
-  const [checkOut, setCheckOut] = useState(null);
   const [nights, setNights] = useState(0);
-  const [guests, setGuests] = useState(1); // Default to 1 guest
-  const [roomDetails, setRoomDetails] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() => {
-    const fetchRoomDetails = async () => {
-      // Retrieve data from localStorage on component mount
-      const storedBookingInfo = localStorage.getItem("bookingInfo");
-    if (storedBookingInfo) {
-      const {roomId, checkIn: storedCheckIn, checkOut: storedCheckOut, numberOfGuests: storedGuests } = JSON.parse(storedBookingInfo);
-      const inDate = new Date(storedCheckIn);
-      const outDate = new Date(storedCheckOut);
+    if (bookedRoomDetails?.checkIn && bookedRoomDetails?.checkOut) {
+      const checkInDate = new Date(bookedRoomDetails?.checkIn);
+      const checkOutDate = new Date(bookedRoomDetails?.checkOut);
+      const diffDays = differenceInCalendarDays(checkOutDate, checkInDate);
+      setNights(diffDays);
 
-      setCheckIn(inDate);
-      setCheckOut(outDate);
-      setGuests(storedGuests || 1);
-      setNights(differenceInCalendarDays(outDate, inDate))
+      // Calculate total price and VAT
+      const perNightPrice = bookedRoomDetails?.roomId?.priceOptions[0]?.price || 0;
+      const totalPriceBeforeVAT = perNightPrice * diffDays;
+      const VAT = totalPriceBeforeVAT * 0.15; // 15% VAT
+      setTotalPrice(totalPriceBeforeVAT + VAT);
+    }
+  }, [bookedRoomDetails]);
 
-        try {
-          setLoading(true); // Start loading
-          const response = await axios.get(`https://type-script-server.vercel.app/api/room/${roomId}?lang=${currentLanguage}`);
-          setRoomDetails(response.data.data); // Set your state based on response
-          console.log(response.data.data, "room resposne ");
-        } catch (err) {
-          setError(err.message); // Set error message in state
-        } finally {
-          setLoading(false); // Finish loading regardless of the outcome
-        }
-        
-      }
-    };
-
-    fetchRoomDetails();
-  }, [currentLanguage]);
-
-   // Calculate total price and VAT
-   const perNightPrice = roomDetails ? roomDetails.priceOptions[0].price : 0;
-   const totalPriceBeforeVAT = perNightPrice * nights;
-   const VAT = totalPriceBeforeVAT * 0.15; // 15% VAT
-   const totalPrice = totalPriceBeforeVAT + VAT;
-
-  if (loading)
-    return (
-      <div className="w-full md:w-1/3 ">
-        <Skeleton active />
-      </div>
-    );
-  if (error)
-    return (
-      <div>
-        <p>Error fetching room: {error}</p>
-        <Link className="bg-black px-4 py-2 " to={"/home"}>
-          Home
-        </Link>
-      </div>
-    );
-  if (!roomDetails) return <div>No room details available</div>;
-
-
- 
+  // Ensure you handle loading or empty states appropriately
+  if (!bookedRoomDetails) {
+    return <div>Loading or no booking details available...</div>;
+  }
 
 
 
@@ -88,9 +44,9 @@ const BookingDate = () => {
     <div className={` ${currentLanguage === "ar" ? "body-ar font-medium " : "body-en-title"} `}>
       <div className="relative">
         <div style={{ width: "100%", height: "100%", backgroundColor: "#e0e0e0" }}>
-          <img src={roomDetails?.images[0]} alt="Room" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+          <img src={bookedRoomDetails?.roomId?.images[0]} alt="Room" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
         </div>
-        <p className="absolute top-4 left-4 text-white z-10 bg-[#151515] px-2 py-[2px] text-xs ">{roomDetails?.title}</p>
+        <p className="absolute top-4 left-4 text-white z-10 bg-[#151515] px-2 py-[2px] text-xs ">{bookedRoomDetails?.roomId?.title[currentLanguage]}</p>
         <div className="overlay absolute inset-0 bg-gradient-to-t from-[#1C1C1C] to-transparent"></div>
       </div>
       <div
@@ -114,15 +70,18 @@ const BookingDate = () => {
             >
               <p className="tracking-widest text-sm uppercase text-white">{t("Check In")}</p>
               <div className="flex flex-col   items-center" style={{ fontFamily: "Gilda Display, serif" }}>
+              {/* {checkIn && checkOut && (
+                <> */}
                 {/* <p className="text-5xl text-[#BE9874]">{format(startDate, "dd")}</p> */}
-                <p className="text-5xl text-[#BE9874]">{format(checkIn, "dd")}</p>
+                <p className="text-5xl text-[#BE9874]">{format(new Date(bookedRoomDetails.checkIn), "dd")}</p>
 
                 <div className="flex flex-col items-center">
                   {/* <p className="text-[#BE9874]">{format(startDate, "MMM")}</p> */}
-                  <p className="text-white text-xs italic ">{format(checkIn, "MMM yyyy")}</p>
-                  <p className="text-xs text-white">{format(checkIn, "EEEE")}</p>
+                  <p className="text-white text-xs italic ">{format(new Date(bookedRoomDetails.checkIn), "MMM yyyy")}</p>
+                  <p className="text-xs text-white">{format(new Date(bookedRoomDetails.checkIn), "EEEE")}</p>
                   {/* <SlArrowDown className=" text-xs text-[#BE9874]" /> */}
                 </div>
+               
               </div>
             </div>
             
@@ -134,15 +93,17 @@ const BookingDate = () => {
             >
               <p className="tracking-widest text-sm uppercase text-white">{t("Check Out")}</p>
               <div className="flex flex-col   items-center" style={{ fontFamily: "Gilda Display, serif" }}>
-                {/* <p className="text-5xl text-[#BE9874]">{format(startDate, "dd")}</p> */}
-                <p className="text-5xl text-[#BE9874]">{format(checkOut, "dd")}</p>
-
+              {/* {checkIn && checkOut && (
+                <> */}
+                <p className="text-5xl text-[#BE9874]">{format(new Date(bookedRoomDetails.checkOut), "dd")}</p>
                 <div className="flex flex-col items-center">
-                  {/* <p className="text-[#BE9874]">{format(startDate, "MMM")}</p> */}
-                  <p className="text-white text-xs italic ">{format(checkOut, "MMM yyyy")}</p>
-                  <p className="text-xs text-white">{format(checkOut, "EEEE")}</p>
-                  {/* <SlArrowDown className=" text-xs text-[#BE9874]" /> */}
+                  
+                  <p className="text-white text-xs italic ">{format(new Date(bookedRoomDetails.checkOut), "MMM yyyy")}</p>
+                  <p className="text-xs text-white">{format(new Date(bookedRoomDetails.checkOut), "EEEE")}</p>
+                 
                 </div>
+                {/* </>
+              )} */}
               </div>
             </div>
             
@@ -153,7 +114,7 @@ const BookingDate = () => {
               <p className="tracking-widest text-sm text-white uppercase">{t("guest")}</p>
               <div className="flex gap-3  items-center">
                 <p className="text-5xl text-[#BE9874]" style={{ fontFamily: "Gilda Display, serif" }}>
-                  {guests}
+                  {bookedRoomDetails.numberOfGuests}
                 </p>
                 
               </div>
@@ -175,9 +136,9 @@ const BookingDate = () => {
             </div>
       </div>
     </div>
-          <p className="px-3 mt-4 text-xs text-center tracking-widest uppercase font-semibold">{t("INCLUDED  15 % VAT ALREADY APPLIED")}</p>
+          {/* <p className="px-3 mt-4 text-xs text-center tracking-widest uppercase font-semibold">{t("INCLUDED  15 % VAT ALREADY APPLIED")}</p> */}
     </div>
   );
 };
 
-export default BookingDate;
+export default ThankYouDate;

@@ -7,14 +7,18 @@ import AllRooms from "./AllRooms";
 import { FaChevronDown } from "react-icons/fa6";
 import { AuthContext } from "../../sharedPages/Context/AuthProvider";
 // import SearchBar from "../Home/SearchBar";
+import { SlGrid, SlList } from "react-icons/sl";
 
 import axios from "axios";
 import i18next from "i18next";
 import { useTranslation } from "react-i18next";
 import { Spin } from "antd";
 import { Helmet } from "react-helmet";
+import { useLocation } from "react-router-dom";
 
 const Search = () => {
+  const location = useLocation(); 
+  console.log(location , 'searc room locations ');
   const {
     category,
     setSortByPrice,
@@ -38,6 +42,7 @@ const Search = () => {
   const [availableRooms, setAvailableRooms] = useState([]);
   const [errorMessage, setErrorMessage] = useState('');
   const [loadingAvailableRooms, setLoadingAvailableRooms] = useState(true);
+  const [viewMode, setViewMode] = useState('grid');
   // const [notFoundRoom, setNotFoundRoom] = useState('');
   console.log(availableRooms,'seache');
 
@@ -46,7 +51,6 @@ const Search = () => {
   };
   const formetDateCheckIn = formatDateString(checkIn);
   const formetDateCheckOut = formatDateString(checkOut);
-
   // // console.log(sortByPrice);
   // useEffect(() => {
   //   setLoadingAvailableRooms(true);
@@ -186,13 +190,15 @@ console.log(roomSize,'sixeeeeeee');
       <PageAnimation>
         <BannerPage text={t("search")} />
 
-        <section className="bg-[#1a1919]  py-4  " style={{ fontFamily: "poppins, serif" }}>
+        <section className={`bg-[#1a1919]  py-4 px-8 lg::px-0 ${currentLanguage === 'ar' ? 'body-ar font-normal  ' : 'body-en '}  `} >
           {/* <SearchBar
             // setAllRooms={setAllRooms}
             // setNoRoomsMessage={setNoRoomsMessage}
             pageContext="search"
           /> */}
-          <div className="max-w-lg mx-auto px-2 md:px-0 flex  gap-7 py-3 justify-center items-center   ">
+          
+          <div className="max-w-7xl mx-auto px-2 md:px-0 grid md:grid-cols-2   py-4    ">
+          <div className=" flex gap-4 md:justify-end justify-center">
             <div className="">
               <li className="relative group list-none">
                 <div className="flex gap-2 items-center">
@@ -281,13 +287,27 @@ console.log(roomSize,'sixeeeeeee');
                 </ul>
               </li>
             </div>
+          </div>
+          <div className=" hidden md:flex gap-6 justify-end items-center text-gray-300">
+            <button onClick={() => setViewMode('list')}>
+
+          <SlList className="text-2xl cursor-pointer" />
+            </button>
+            <button  onClick={() => setViewMode('grid')}>
+
+          <SlGrid className="text-xl cursor-pointer" />
+            </button>
+           
+          </div>
 
           </div>
+          
         </section>
         <section className="max-w-7xl mx-auto py-16 px-2 md:px-0">
           <div dir="ltr" className="flex flex-col md:flex-row gap-5">
             <DatesSearch />
             <AllRooms
+            viewMode={viewMode}
               allRooms={allRooms}
               // notFoundRoom={notFoundRoom}
               resetSearch={resetSearch}

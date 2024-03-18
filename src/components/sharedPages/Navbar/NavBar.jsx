@@ -95,7 +95,7 @@ const Navbar = () => {
       downTolerance={10}
       style={{ transition: "all .5s ease-in-out", backgroundColor: "#1C1C1D",    zIndex: 1000 }}
     >
-      <nav className="container mx-auto" >
+      <nav className="max-w-7xl mx-auto" >
         <div className={` flex items-center justify-between  px-2 ${currentLanguage === 'ar' ? 'body-ar font-normal  ' : 'body-en '}`}>
           <div className=" flex items-center gap-[1ch]">
             

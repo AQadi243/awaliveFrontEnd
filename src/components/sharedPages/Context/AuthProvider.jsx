@@ -3,6 +3,7 @@ import { createContext, useEffect, useState } from "react";
 import { notification } from "antd";
 import i18next from "i18next";
 import { useTranslation } from "react-i18next";
+import { addDays } from "date-fns";
 
 export const AuthContext = createContext(null);
 
@@ -26,8 +27,9 @@ const AuthProvider = ({ children }) => {
   const [searchLoader, setSearchLoader] = useState(true);
   const [category, setCategory] = useState("");
   const [night, setNight] = useState(0);
-  const [checkIn, setCheckIn] = useState("Check-In");
-  const [checkOut, setCheckOut] = useState("Check-Out");
+  const [checkIn, setCheckIn] = useState(new Date());
+  const [checkOut, setCheckOut] = useState(addDays(new Date(), 1));
+  const [createdBooking, setCreatedBooking] = useState({})
   const [calender, setCalender] = useState([{ startDate: null, endDate: null, key: "selection" }]);
   // const [guests, setGuests] = useState(1);
   const [numberOfGuests, setGuests] = useState(1);
@@ -38,40 +40,42 @@ const AuthProvider = ({ children }) => {
   const { t } = useTranslation();
 
   const handleBookNow = () => {
-    const totalPrice = night * RoomPrice;
-    const taxPercentage = 0.15; // 15% tax rate
-    const tax = parseFloat((totalPrice * taxPercentage).toFixed(2));
-    const totalWithTax = parseFloat((totalPrice + tax).toFixed(2));
-    // const tax = totalPrice * taxPercentage;
-    // const totalWithTax = totalPrice + tax;
-    const formattedTotalPrice = totalPrice.toLocaleString("en-US", {
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-    });
-    const formattedTax = tax.toLocaleString("en-US", {
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-    });
-    const formattedTotalWithTax = totalWithTax.toLocaleString("en-US", {
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-    });
+    // const totalPrice = night * RoomPrice;
+    // const taxPercentage = 0.15; // 15% tax rate
+    // const tax = parseFloat((totalPrice * taxPercentage).toFixed(2));
+    // const totalWithTax = parseFloat((totalPrice + tax).toFixed(2));
+    // // const tax = totalPrice * taxPercentage;
+    // // const totalWithTax = totalPrice + tax;
+    // const formattedTotalPrice = totalPrice.toLocaleString("en-US", {
+    //   minimumFractionDigits: 2,
+    //   maximumFractionDigits: 2,
+    // });
+    // const formattedTax = tax.toLocaleString("en-US", {
+    //   minimumFractionDigits: 2,
+    //   maximumFractionDigits: 2,
+    // });
+    // const formattedTotalWithTax = totalWithTax.toLocaleString("en-US", {
+    //   minimumFractionDigits: 2,
+    //   maximumFractionDigits: 2,
+    // });
 
     const bookingInfo = {
-      roomId,
-      checkIn,
-      checkOut,
+      
+      roomId: roomId,
+      checkIn: checkIn.toLocaleDateString(),
+      checkOut: checkOut.toLocaleDateString(),
+      numberOfGuests: numberOfGuests,
+     
       // guests,
-      numberOfGuests,
-      tax: formattedTax,
-      totalWithTax: formattedTotalWithTax,
-      night,
-      RoomName,
-      RoomPrice,
-      RoomImage,
-      totalPrice: formattedTotalPrice,
+      // tax: formattedTax,
+      // totalWithTax: formattedTotalWithTax,
+      // night,
+      // RoomName,
+      // RoomPrice,
+      // RoomImage,
+      // totalPrice: formattedTotalPrice,
     };
-
+    
     // Save booking information to localStorage
     localStorage.setItem("bookingInfo", JSON.stringify(bookingInfo));
   };
@@ -170,20 +174,22 @@ const AuthProvider = ({ children }) => {
     }
   }, []);
 
-  useEffect(() => {
-    // Retrieve booking information from localStorage on component mount
-    const storedBookingInfo = localStorage.getItem("bookingInfo");
-    if (storedBookingInfo) {
-      const parsedBookingInfo = JSON.parse(storedBookingInfo);
-      setCheckIn(parsedBookingInfo.checkIn);
-      setCheckOut(parsedBookingInfo.checkOut);
-      setGuests(parsedBookingInfo.numberOfGuests);
-      setNight(parsedBookingInfo.night);
-      setRoomName(parsedBookingInfo.roomName);
-      setRoomPrice(parsedBookingInfo.roomPrice);
-      setRoomImage(parsedBookingInfo.roomImage);
-    }
-  }, []);
+  //  local storageing getting data  
+  
+  // useEffect(() => {
+  //   // Retrieve booking information from localStorage on component mount
+  //   const storedBookingInfo = localStorage.getItem("bookingInfo");
+  //   if (storedBookingInfo) {
+  //     const parsedBookingInfo = JSON.parse(storedBookingInfo);
+  //     setCheckIn(parsedBookingInfo.checkIn);
+  //     setCheckOut(parsedBookingInfo.checkOut);
+  //     setGuests(parsedBookingInfo.numberOfGuests);
+  //     setNight(parsedBookingInfo.night);
+  //     setRoomName(parsedBookingInfo.roomName);
+  //     setRoomPrice(parsedBookingInfo.roomPrice);
+  //     setRoomImage(parsedBookingInfo.roomImage);
+  //   }
+  // }, []);
 
   useEffect(() => {
     const storedUserData = localStorage.getItem("userData");
@@ -258,6 +264,8 @@ const AuthProvider = ({ children }) => {
     setCategory,
     setSearchLoader,
     handleBookNow,
+    setCreatedBooking,
+    createdBooking,
     // roomId,
     setRoomImage,
     setRoomPrice,
@@ -266,6 +274,7 @@ const AuthProvider = ({ children }) => {
     // bookingInfo,
     handleLogin,
     handleLogout,
+    setError,
     error,
     user,
   };

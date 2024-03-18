@@ -1,10 +1,11 @@
-import React from 'react'
+import i18next from 'i18next';
 import { useTranslation } from 'react-i18next';
 
 const ActionSteps = () => {
     const { t } = useTranslation("booking");
+    const currentLanguage = i18next.language
   return (
-    <div className='grid grid-cols-2 md:grid-cols-4 w-80 md:w-[36rem] lg:w-[40rem] gap-5 lg:gap-6 justify-center items-center text-white '>
+    <div className={`grid grid-cols-2 md:grid-cols-4 w-80 md:w-[36rem] lg:w-[40rem] gap-5 lg:gap-6 justify-center items-center text-white ${currentLanguage === 'ar' ? 'body-ar font-normal  ' : 'body-en '}`}>
         <div className='flex gap-3 items-center col-span-1'>
             <p className='bg-black  h-7 w-7 flex items-center justify-center text-xs  rounded-full '>1</p>
             <p className='uppercase tracking-[0.2rem] text-xs '>{t("SEARCH")}</p>

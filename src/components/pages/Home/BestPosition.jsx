@@ -42,7 +42,7 @@ const BestPosition = () => {
                 <img src={stripe} alt="logo" className="w-14" />
               </div>
             </div>
-            <div  className="md:w-[50%] flex flex-col gap-5 items-center">
+            <div  className="md:w-[50%] flex flex-col gap-5 items-center overflow-hidden">
               <div
                 className="w-48 h-48 bg-[#BE9874] opacity-90 rounded-full text-center flex flex-col justify-center gap-4 offerScale"
                 

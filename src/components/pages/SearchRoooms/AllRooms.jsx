@@ -14,9 +14,10 @@ import drinks from '/img/welcome-drink.png'
 import smoking from '/img/no-smoking.png'
 import bath from '/img/private-bathroom.png'
 import { CiViewTable } from "react-icons/ci";
+// import { AnimatePresence, motion } from 'framer-motion';
 const skeletonCount = 6;
 
-const AllRooms = ({ allRooms, loadingAllRooms, availableRooms, loadingAvailableRooms, errorMessage, resetSearch }) => {
+const AllRooms = ({viewMode, allRooms, loadingAllRooms, availableRooms, loadingAvailableRooms, errorMessage, resetSearch }) => {
   const currentLanguage = i18next.language;
   const { t } = useTranslation("booking");
   const [displayRooms, setDisplayRooms] = useState(allRooms);
@@ -46,26 +47,26 @@ const AllRooms = ({ allRooms, loadingAllRooms, availableRooms, loadingAvailableR
  
 
   return (
-    <div className="md:w-2/3 grid grid-cols-1 md:grid-cols-2  gap-5 roomCards">
+    <div className={`md:w-2/3 roomCards ease-in duration-100 transition-all  ${viewMode === "grid" ? "grid grid-cols-1 md:grid-cols-2 gap-5 " : "flex flex-col gap-8"}`}>
       {loadingAllRooms || loadingAvailableRooms
         ? Array.from({ length: skeletonCount }, (_, index) => <Skeleton key={index} active />)
         : displayRooms?.map((room) => (
             <div
               key={room.id}
-              className={`col-span-1 border border-gray-200 flex flex-col gap-3 card ${currentLanguage === 'ar' ? 'body-ar' : 'body-en'} `}
+              className={`col-span-1 border border-gray-200 flex flex-col gap-3 card ${currentLanguage === 'ar' ? 'body-ar font-normal' : 'body-en'} `}
               data-price={room.priceOptions[0].price}
               // className={}
             >
               <CoverSlider images={room.images} />
               <div className="px-4 py-2 flex flex-col gap-3"  >
-                <h2 className="text-2xl md:text-[25px]  text-slate-900 capitalize " style={{ fontFamily: "Gilda Display, serif" }}>{room.title}</h2>
+              <Link to={`/room/${room.id}`} className={`text-xl md:text-xl  text-slate-900 capitalize ${currentLanguage === 'ar' ? 'body-ar font-semibold  ' : 'body-en-title '} `} >{room.title}</Link>
                 <div className="flex gap-10 text-gray-900 ">
                   <div className="flex gap-2 items-center justify-center">
                     
                     <LuUserCircle className="text-2xl text-gray-400 " />
                     
-                    <p>{room.maxGuests}</p>
-                    <p className="uppercase text-xs">{t("guest")}</p>
+                    <p className="text-sm">{room.maxGuests}</p>
+                    <p className="uppercase text-sm">{t("guest")}</p>
                   </div>
                   
                   <div className="flex gap-2 items-center">
@@ -73,7 +74,7 @@ const AllRooms = ({ allRooms, loadingAllRooms, availableRooms, loadingAvailableR
                       {/* <ArrowsAltOutlined />{" "} */}
                       <CiViewTable className="text-gray-400" />
                     </p>{" "}
-                    <p>{room.size}</p>
+                    <p className="text-sm">{room.size}</p>
                   </div>
                 </div>
 
@@ -83,29 +84,30 @@ const AllRooms = ({ allRooms, loadingAllRooms, availableRooms, loadingAvailableR
                 <div>
                   <Link
                     to={`/room/${room.id}`}
-                    className="px-4 py-2 md:px-6 md:py-2 border border-[#BE9874] text-[#BE9874] uppercase text-sm tracking-widest font-semibold  "
+                    className="px-4 py-2 md:px-6 md:py-2  border-2 border-[#1C1C1C] text-[#1C1C1C] uppercase text-sm tracking-widest font-semibold  "
                   >
                     {t("bookNowFor")}{" "}
                     <strong>
-                      {currentLanguage === "en"
+                    {room.priceOptions[0].price.toLocaleString()}
+                      {/* {currentLanguage === "en"
                         ? room.priceOptions[0].price.toLocaleString()
-                        : room.priceOptions[0].price.toLocaleString("ar-EG")}
+                        : room.priceOptions[0].price.toLocaleString("ar-EG")} */}
                     </strong>{" "}
                     {room.priceOptions[0].currency}
                   </Link>
                 </div>
                 <hr className="mt-2" />
               </div>
-              <div className="px-6 flex justify-between items-center ">
-              <div className="flex gap-2 pb-2">
+              <div className="px-6 flex justify-between items-center pb-4">
+              <div className="flex gap-2 flex-row items-center justify-center ">
                 <img className="w-5 h-5" src={pool} alt="" />
                 <img className="w-5 h-5" src={drinks} alt="" />
                 <img className="w-5 h-5" src={smoking} alt="" />
                 <img className="w-5 h-5" src={bath} alt="" />
                 
               </div>
-              <div>
-                <Link to={`/room/${room.id}`} className="text-xs tracking-widest">{t("FULL INFO")}</Link>
+              <div >
+                <Link to={`/room/${room.id}`} className="text-xs tracking-widest cursor-pointer">{t("FULL INFO")}</Link>
               </div>
               </div>
             </div>

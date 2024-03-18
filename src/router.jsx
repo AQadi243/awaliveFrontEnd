@@ -21,6 +21,7 @@ import Index from "./components/admin/dashboard/Index";
 import AllGuest from "./components/admin/dashboard/component/pages/allGuests/AllGuest";
 import Users from "./components/admin/dashboard/component/pages/allGuests/Users";
 import AddRoom from "./components/admin/dashboard/component/pages/Rooms/AddRooms/AddRoom";
+import ThankYou from "./components/pages/ThankYouPage/ThankYou";
 
 const router = createBrowserRouter([
   {
@@ -56,15 +57,18 @@ const router = createBrowserRouter([
       {
         path: "/booking",
         element: (
-          <PrivateRoute>
             
             <BookNow />
-          </PrivateRoute>
+          
         ),
       },
       {
         path: "/BookingConfirm",
         element: <BookingConfirm />,
+      },
+      {
+        path: "/thank-you",
+        element: <ThankYou />,
       },
       {
         path: "/mybookings",

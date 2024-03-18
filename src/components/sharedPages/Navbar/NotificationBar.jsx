@@ -30,7 +30,7 @@ const NotificationBar = () => {
   };
 
   return (
-    <section className={`  container mx-auto  ${currentLanguage === 'ar' ? 'body-ar font-semibold  ' : 'body-en font-semibold'}`}>
+    <section className={`  max-w-7xl mx-auto  ${currentLanguage === 'ar' ? 'body-ar font-semibold  ' : 'body-en font-semibold'}`}>
       <div className="hidden lg:flex justify-between  ">
         <div className="flex gap-6 text-[12px] tracking-widest py-3 items-center">
           <div className="flex gap-2 items-center justify-center">
