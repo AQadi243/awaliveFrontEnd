@@ -9,57 +9,13 @@ import { Skeleton } from "antd";
 import { Link } from "react-router-dom";
 import { differenceInCalendarDays, format } from "date-fns";
 
-const BookingDate = () => {
+const BookingDate = ({totalPrice ,checkIn ,checkOut ,guests,loading ,error ,roomDetails ,nights}) => {
   const currentLanguage = i18next.language;
   const { t } = useTranslation("booking");
   // const authInfo = useContext(AuthContext);
   // const [bookingInformation, setBookingInformation] = useState("");
   // const { loading, setLoading, } = authInfo;
-  const [checkIn, setCheckIn] = useState(null);
-  const [checkOut, setCheckOut] = useState(null);
-  const [nights, setNights] = useState(0);
-  const [guests, setGuests] = useState(1); // Default to 1 guest
-  const [roomDetails, setRoomDetails] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const fetchRoomDetails = async () => {
-      // Retrieve data from localStorage on component mount
-      const storedBookingInfo = localStorage.getItem("bookingInfo");
-    if (storedBookingInfo) {
-      const {roomId, checkIn: storedCheckIn, checkOut: storedCheckOut, numberOfGuests: storedGuests } = JSON.parse(storedBookingInfo);
-      const inDate = new Date(storedCheckIn);
-      const outDate = new Date(storedCheckOut);
-
-      setCheckIn(inDate);
-      setCheckOut(outDate);
-      setGuests(storedGuests || 1);
-      setNights(differenceInCalendarDays(outDate, inDate))
-
-        try {
-          setLoading(true); // Start loading
-          const response = await axios.get(`https://type-script-server.vercel.app/api/room/${roomId}?lang=${currentLanguage}`);
-          setRoomDetails(response.data.data); // Set your state based on response
-          console.log(response.data.data, "room resposne ");
-        } catch (err) {
-          setError(err.message); // Set error message in state
-        } finally {
-          setLoading(false); // Finish loading regardless of the outcome
-        }
-        
-      }
-    };
-
-    fetchRoomDetails();
-  }, [currentLanguage]);
-
-   // Calculate total price and VAT
-   const perNightPrice = roomDetails ? roomDetails.priceOptions[0].price : 0;
-   const totalPriceBeforeVAT = perNightPrice * nights;
-   const VAT = totalPriceBeforeVAT * 0.15; // 15% VAT
-   const totalPrice = totalPriceBeforeVAT + VAT;
-
+ 
   if (loading)
     return (
       <div className="w-full md:w-1/3 ">
@@ -78,15 +34,11 @@ const BookingDate = () => {
   if (!roomDetails) return <div>No room details available</div>;
 
 
- 
-
-
-
   return (
     <div className=" w-full md:w-1/3">
 
     <div className={` ${currentLanguage === "ar" ? "body-ar font-medium " : "body-en-title"} `}>
-      <div className="relative">
+      <div className="hidden md:flex md:flex-col relative">
         <div style={{ width: "100%", height: "100%", backgroundColor: "#e0e0e0" }}>
           <img src={roomDetails?.images[0]} alt="Room" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
         </div>
