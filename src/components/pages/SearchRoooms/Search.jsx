@@ -44,7 +44,7 @@ const Search = () => {
   const [loadingAvailableRooms, setLoadingAvailableRooms] = useState(true);
   const [viewMode, setViewMode] = useState('grid');
   // const [notFoundRoom, setNotFoundRoom] = useState('');
-  console.log(availableRooms,'seache');
+  
 
   const formatDateString = (dateString) => {
     return dateString ? new Date(dateString).toLocaleDateString() : null;
@@ -117,13 +117,14 @@ const Search = () => {
       console.log(params.toString(), 'params sring');
       try {
         const response = await axios.get(
-          `https://type-script-server.vercel.app/api/room/available/?${params.toString()}`
+          // `https://type-script-server.vercel.app/api/room/available/?${params.toString()}`
           // `https://type-script-server.vercel.app/api/room/available/?lang=${currentLanguage}&checkInDate=${formetDateCheckIn}&checkOutDate=${formetDateCheckOut}&maxGuests=${numberOfGuests}&sizeOrder=${roomSize}&sortByPrice=${sortByPrice}`
           // `https://type-script-server.vercel.app/api/room/available/?${params.toString()}`
-          // `http://localhost:5000/api/room/available/?${params.toString()}`
+          `https://type-script-server.vercel.app/api/room/available/?${params.toString()}`
         );
 
         let rooms = response.data.data;
+        console.log(rooms , 'seareded rooms ');
         setAvailableRooms(rooms);
         // if (rooms.length === 0) {
         //   setErrorMessage('No rooms available for the selected criteria.');

@@ -10,6 +10,8 @@ import { FaCircleInfo } from "react-icons/fa6";
 import i18next from "i18next";
 import BannerPage from "../../sharedPages/PageBanner/BannerPage";
 
+// import https from 'https';
+
 const BookingConfirm = () => {
   const currentLanguage = i18next.language;
   // const [loading, setLoading] = useState(true);
@@ -18,7 +20,9 @@ const BookingConfirm = () => {
   const navigate = useNavigate();
   
   const { t } = useTranslation("booking");
-  
+  // const agent = new https.Agent({  
+  //   rejectUnauthorized: false
+  // });
 
   useEffect(  () => {
     setLoading(true)
@@ -30,11 +34,12 @@ const BookingConfirm = () => {
     }
     setLoading(false)
   }, [setLoading]);
-
+  
 
   const handleBookNow = async (paymentType) => {
     
     setLoading(true)
+    const token =  localStorage.getItem('token');
     const userId = user ? user.email : bookingInfo.guestData.email;
     // Assuming storedBookingInfo is already parsed from localStorage
     const bookingData = {
@@ -43,9 +48,14 @@ const BookingConfirm = () => {
       userId: userId,
     };
 
-    console.log(bookingData, 'booking dataa ');
+    
     try {
-      const response = await axios.post('https://type-script-server.vercel.app/api/booking', bookingData); // Use the correct endpoint
+      const response = await axios.post('https://type-script-server.vercel.app/api/booking', bookingData,  {
+        // httpsAgent: agent,
+        headers: {
+            Authorization: `${token}` // This will send your token in the Authorization header
+        }
+    }); // Use the correct endpoint
       setCreatedBooking(response.data.data); // Assuming the server responds with the created booking in 'data' field
       sessionStorage.setItem('bookingId', response.data.data._id);
       setError(''); // Clear any previous errors

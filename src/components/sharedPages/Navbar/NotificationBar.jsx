@@ -65,7 +65,8 @@ const NotificationBar = () => {
           <div className="flex gap-6 text-[12px] tracking-widest py-3 items-center">
             <div>
               {/* <p>My Bookings</p> */}
-              {user?.fullName ? <Link to={"/mybookings"}>{t("myBookings")}</Link> : <Link to={"/login"}>{t("myBookings")}</Link>}
+              
+              {user?.role === 'user' ? <Link to={"/mybookings"}>{t("myBookings")}</Link> : <Link to={"/login"}>{t("myBookings")}</Link>}
             </div>
 
             <div>

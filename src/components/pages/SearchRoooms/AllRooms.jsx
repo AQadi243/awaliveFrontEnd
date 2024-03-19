@@ -74,7 +74,7 @@ const AllRooms = ({viewMode, allRooms, loadingAllRooms, availableRooms, loadingA
                       {/* <ArrowsAltOutlined />{" "} */}
                       <CiViewTable className="text-gray-400" />
                     </p>{" "}
-                    <p className="text-sm">{room.size}</p>
+                    <p className="text-sm">{room.size} {t("ft")}  </p>
                   </div>
                 </div>
 

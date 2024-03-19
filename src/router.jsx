@@ -56,7 +56,12 @@ const router = createBrowserRouter([
       },
       {
         path: "/booking",
-        element: <BookNow />
+        element: (
+          <PrivateRoute>
+
+          <BookNow />
+          </PrivateRoute>
+          )
       },
       {
         path: "/BookingConfirm",

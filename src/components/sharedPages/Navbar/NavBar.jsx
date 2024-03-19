@@ -172,6 +172,11 @@ const Navbar = () => {
                 Dashboard
             </Link>
             }
+            {user?.role === 'user' &&
+            <Link to={'/mybookings'} className={"py-8 lg:py-6"} >
+                My Bookings
+            </Link>
+            }
             <div className="py-8 lg:py-6">
 
             <Link to={"/roomSearch"} className="bg-white px-3 py-1 text-black  text-[12px] font-semibold tracking-[0.2rem] cursor-pointer hover:bg-[#BE9874] hover:text-white ">{t("BOOK NOW")}</Link>
