@@ -37,7 +37,7 @@ const Search = () => {
   const { t } = useTranslation("search");
   const currentLanguage = i18next.language;
   // const [categories, setCategories] = useState([]);
-  const [roomSize, setRoomSize] = useState([]);
+  const [roomSize, setRoomSize] = useState(null);
   // const [loadingCategory, setLoadingCategory] = useState(true);
   const [availableRooms, setAvailableRooms] = useState([]);
   const [errorMessage, setErrorMessage] = useState('');
@@ -84,28 +84,58 @@ const Search = () => {
   //   // setSearchLoading(false)
   // }, [setLoadingAvailableRooms,setAvailableRooms, formetDateCheckIn, formetDateCheckOut, sortByPrice, numberOfGuests, currentLanguage, roomSize]);
 
+  const handleValue = (value) => {
+    setSortByPrice(value);
+    setRoomSize(null);
+  };
+
+  const handleRoomSizeChange = (value) => {
+    setRoomSize(value);
+    setSortByPrice(null);
+
+  };
+
   useEffect(() => {
     setLoadingAvailableRooms(true);
     setErrorMessage('');
 
     const fetchAllRooms = async () => {
+      const params = new URLSearchParams({
+        lang: currentLanguage,
+        checkInDate: formetDateCheckIn,
+        checkOutDate: formetDateCheckOut,
+        maxGuests: numberOfGuests
+      });
+    
+      // Add sorting parameters if they exist
+      if (roomSize) {
+        params.append('sizeOrder', roomSize);
+      }
+      if (sortByPrice) {
+        params.append('sortByPrice', sortByPrice);
+      }
+      console.log(params.toString(), 'params sring');
       try {
         const response = await axios.get(
-          `https://type-script-server.vercel.app/api/room/available/?lang=${currentLanguage}&checkInDate=${formetDateCheckIn}&checkOutDate=${formetDateCheckOut}&maxGuests=${numberOfGuests}&sizeOrder=${roomSize}`
+          `https://type-script-server.vercel.app/api/room/available/?${params.toString()}`
+          // `https://type-script-server.vercel.app/api/room/available/?lang=${currentLanguage}&checkInDate=${formetDateCheckIn}&checkOutDate=${formetDateCheckOut}&maxGuests=${numberOfGuests}&sizeOrder=${roomSize}&sortByPrice=${sortByPrice}`
+          // `https://type-script-server.vercel.app/api/room/available/?${params.toString()}`
+          // `http://localhost:5000/api/room/available/?${params.toString()}`
         );
 
         let rooms = response.data.data;
-        if (rooms.length === 0) {
-          setErrorMessage('No rooms available for the selected criteria.');
-        } else {
-          // Client-side sorting based on the first price option
-          rooms = rooms.sort((a, b) => {
-           // If sizes are equal, or if size sorting is not a priority, sort by price
-           const priceA = a.priceOptions[0]?.price || 0;
-           const priceB = b.priceOptions[0]?.price || 0;
-           return sortByPrice === 'asc' ? priceA - priceB : priceB - priceA;
-          });
-        }
+        setAvailableRooms(rooms);
+        // if (rooms.length === 0) {
+        //   setErrorMessage('No rooms available for the selected criteria.');
+        // } else {
+        //   // Client-side sorting based on the first price option
+        //   rooms = rooms.sort((a, b) => {
+        //    // If sizes are equal, or if size sorting is not a priority, sort by price
+        //    const priceA = a.priceOptions[0]?.price || 0;
+        //    const priceB = b.priceOptions[0]?.price || 0;
+        //    return sortByPrice === 'asc' ? priceA - priceB : priceB - priceA;
+        //   });
+        // }
         setAvailableRooms(rooms);
         setLoadingAvailableRooms(false);
       } catch (error) {
@@ -119,18 +149,11 @@ const Search = () => {
     fetchAllRooms();
 }, [setLoadingAvailableRooms, setAvailableRooms, formetDateCheckIn, formetDateCheckOut, sortByPrice, numberOfGuests, currentLanguage, roomSize]);
 
-console.log(roomSize,'sixeeeeeee');
+
 
   
 
-  const handleValue = (value) => {
-    setSortByPrice(value);
-  };
-
-  const handleRoomSizeChange = (value) => {
-    console.log(value,'room sizeeee');
-    setRoomSize(value);
-  };
+ 
 
   const tomorrow = new Date();
   tomorrow.setDate(tomorrow.getDate() + 1);
@@ -231,32 +254,7 @@ console.log(roomSize,'sixeeeeeee');
               </li>
             </div>
 
-            {/* <div className="w-full ">
-              <select
-                id=""
-                className="text-white bg-transparent outline-none w-full"
-                onChange={handleCategoryChange}
-                value={category} // This is important to make the selected value controlled
-              >
-                <option className="bg-[#1C1C1D] py-2 border-b hover:bg-[#BE9874]" value="">
-                  {t("allCategories")}
-                </option>
-                {loadingCategory ? (
-                  <Spin />
-                ) : (
-                  categories.map((categoryItem) => (
-                    <option
-                      key={categoryItem.id} // Replace 'id' with the actual property name that uniquely identifies a category
-                      className="bg-[#1C1C1D] py-2 border-b"
-                      value={categoryItem.id} // Replace 'name' with the property that holds the category name
-                    >
-                      {categoryItem.title}
-                    </option>
-                  ))
-                )}
-              </select>
-            </div> */}
-            {/* <p>asdsd</p> */}
+           
             <div className=" ">
               <li className="relative group list-none">
                 <div className="flex gap-2 items-center">

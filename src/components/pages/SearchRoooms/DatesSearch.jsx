@@ -11,7 +11,7 @@ import { useLocation } from "react-router-dom";
 
 const DatesSearch = () => {
   const authInfo = useContext(AuthContext);
-  const location = useLocation(); 
+ 
   const currentLanguage = i18next.language;
   const { t } = useTranslation("search");
   const { night, setNight, setCheckIn, setCheckOut, setGuests, numberOfGuests, checkIn, checkOut, } = authInfo;
