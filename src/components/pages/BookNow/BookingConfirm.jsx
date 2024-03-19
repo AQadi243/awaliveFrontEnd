@@ -20,10 +20,7 @@ const BookingConfirm = () => {
   const navigate = useNavigate();
   
   const { t } = useTranslation("booking");
-  // const agent = new https.Agent({  
-  //   rejectUnauthorized: false
-  // });
-
+ 
   useEffect(  () => {
     setLoading(true)
     // Retrieve data from localStorage on component mount
