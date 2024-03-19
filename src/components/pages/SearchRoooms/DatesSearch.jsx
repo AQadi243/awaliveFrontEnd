@@ -18,9 +18,7 @@ const DatesSearch = () => {
   const [startDate, setStartDate] = useState(checkIn || new Date());
   const [endDate, setEndDate] = useState(checkOut || addDays(new Date(), 1));
   const [guest, setGuest] = useState(numberOfGuests || 1);
-  console.log(startDate,'start dateasd');
-
-  console.log(location.state,'locations ');
+  
 
   const startDatePickerRef = useRef();
   const endDatePickerRef = useRef();

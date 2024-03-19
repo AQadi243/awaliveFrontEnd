@@ -451,10 +451,8 @@ const RoomDate = ({ singleRoomDetails }) => {
           </div>
           <Link
             to={nights > 0 ? "/booking" : "#"}
-            onClick={nights > 0 ? handleBookNow : (e) => e.preventDefault()}
-            className={`bg-[#BE9874] w-full py-2 text-white text-sm bookNow ${
-              nights === 0 ? "opacity-50 cursor-not-allowed" : ""
-            }`}
+            onClick={ handleBookNow }
+            className={`bg-[#BE9874] w-full py-2 text-white text-sm bookNow `}
           >
             {t("bookNow")}
           </Link>

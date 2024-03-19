@@ -51,6 +51,7 @@ const BookingConfirm = () => {
       setError(''); // Clear any previous errors
       navigate('/thank-you');
       setLoading(false)
+      localStorage.removeItem('bookingInfo');
     } catch (error) {
       console.error('Booking creation failed:', error);
       setError(`Booking creation failed. Please try again. ${error.message}`); // Simplified error handling for user feedback

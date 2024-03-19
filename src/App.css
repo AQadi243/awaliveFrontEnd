@@ -8,6 +8,9 @@
 /* html {
   
 } */
+.body{
+  overflow: hidden;
+}
 
 .App {
   scroll-behavior: smooth;
