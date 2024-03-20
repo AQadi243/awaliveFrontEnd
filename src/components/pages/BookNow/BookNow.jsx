@@ -4,7 +4,7 @@ import BannerPage from "../../sharedPages/PageBanner/BannerPage";
 import BookingDate from "./BookingDate";
 import BookingForm from "./BookingForm";
 import axios from "axios";
-import { differenceInCalendarDays } from "date-fns";
+import { differenceInCalendarDays, format } from "date-fns";
 import { useEffect, useState } from "react";
 import i18next from "i18next";
 
@@ -28,6 +28,8 @@ const BookNow = () => {
       const {roomId, checkIn: storedCheckIn, checkOut: storedCheckOut, numberOfGuests: storedGuests } = JSON.parse(storedBookingInfo);
       const inDate = new Date(storedCheckIn);
       const outDate = new Date(storedCheckOut);
+
+   
 
       setCheckIn(inDate);
       setCheckOut(outDate);
@@ -55,7 +57,6 @@ const BookNow = () => {
    const totalPriceBeforeVAT = perNightPrice * nights;
    const VAT = totalPriceBeforeVAT * 0.15; // 15% VAT
    const totalPrice = totalPriceBeforeVAT + VAT;
-
 
 
 

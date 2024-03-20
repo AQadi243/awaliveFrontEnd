@@ -67,12 +67,12 @@ const BookingDate = ({totalPrice ,checkIn ,checkOut ,guests,loading ,error ,room
               <p className="tracking-widest text-sm uppercase text-white">{t("Check In")}</p>
               <div className="flex flex-col   items-center" style={{ fontFamily: "Gilda Display, serif" }}>
                 {/* <p className="text-5xl text-[#BE9874]">{format(startDate, "dd")}</p> */}
-                <p className="text-5xl text-[#BE9874]">{format(checkIn, "dd")}</p>
+                <p className="text-5xl text-[#BE9874]">{checkIn ? format(checkIn, "dd") : ""}</p>
 
                 <div className="flex flex-col items-center">
                   {/* <p className="text-[#BE9874]">{format(startDate, "MMM")}</p> */}
-                  <p className="text-white text-xs italic ">{format(checkIn, "MMM yyyy")}</p>
-                  <p className="text-xs text-white">{format(checkIn, "EEEE")}</p>
+                  <p className="text-white text-xs italic ">{checkIn ? format(checkIn, "MMM yyyy") : ""}</p>
+                  <p className="text-xs text-white">{checkIn ? format(checkIn, "EEEE") : ""}</p>
                   {/* <SlArrowDown className=" text-xs text-[#BE9874]" /> */}
                 </div>
               </div>
@@ -87,12 +87,12 @@ const BookingDate = ({totalPrice ,checkIn ,checkOut ,guests,loading ,error ,room
               <p className="tracking-widest text-sm uppercase text-white">{t("Check Out")}</p>
               <div className="flex flex-col   items-center" style={{ fontFamily: "Gilda Display, serif" }}>
                 {/* <p className="text-5xl text-[#BE9874]">{format(startDate, "dd")}</p> */}
-                <p className="text-5xl text-[#BE9874]">{format(checkOut, "dd")}</p>
+                <p className="text-5xl text-[#BE9874]">{checkIn ? format(checkOut, "dd") : ""}</p>
 
                 <div className="flex flex-col items-center">
                   {/* <p className="text-[#BE9874]">{format(startDate, "MMM")}</p> */}
-                  <p className="text-white text-xs italic ">{format(checkOut, "MMM yyyy")}</p>
-                  <p className="text-xs text-white">{format(checkOut, "EEEE")}</p>
+                  <p className="text-white text-xs italic ">{checkIn ? format(checkOut, "MMM yyyy") : ""}</p>
+                  <p className="text-xs text-white">{checkIn ? format(checkOut, "EEEE") : ""}</p>
                   {/* <SlArrowDown className=" text-xs text-[#BE9874]" /> */}
                 </div>
               </div>
