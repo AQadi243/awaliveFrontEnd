@@ -2,8 +2,9 @@
 import { Helmet } from "react-helmet";
 import PageAnimation from "../../PageAnimation/PageAnimation";
 import BestPrice from "./BestPrice";
-import Slider from "./Slider";
+// import Slider from "./Slider";
 import breadCums from '../../../assets/5.jpg'
+import StaffSlider from "./StaffSlider";
 // import { LanguageContext } from "../../sharedPages/Context/LanguageProvider";
 // import i18next from "i18next";
 
@@ -39,7 +40,8 @@ const About = () => {
       </Helmet>
       <PageAnimation>
         <>
-          <Slider />
+          {/* <Slider /> */}
+          <StaffSlider />
           <BestPrice />
         </>
         {/* ) */}

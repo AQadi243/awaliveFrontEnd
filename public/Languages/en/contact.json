@@ -5,8 +5,9 @@
     "serviceDescription": "Indulge in the comfort of your room with our exceptional room service. From gourmet dining to daily necessities, our attentive staff caters to your every need, ensuring a luxurious and personalized experience.",
     "waitersDescription": "Our wait services set the standard for excellence. Whether you’re dining in our restaurants or hosting an event, our professional team provides impeccable service, ensuring your expectations are not only met but exceeded."
   },
+  "Contact": "Contact",
 
-  "hotel_location": "Get in Touch",
+  "Hotel Location": "Hotel Location",
   "hotel_st": " Abu Baker As Siddiq Street, Shobra, 99999* Taif, Saudi Arabia",
   "hotel_ph": "Phone: [Your Hotel's Phone Number]",
   "hotel_em": "Email: [Your Hotel's Email Address]",
@@ -17,13 +18,13 @@
     "sat": "SAT ...... 11:00 - 03:00 pm",
     "sun": "SUN ...... 11:00 - 03:00 pm"
   },
-  "lunch_title": "Gastronomic Delights",
-  "lunch_description": "Indulge in an exquisite lunch experience at Sky View, our in-house restaurant. Savor a wide range of culinary creations crafted by our skilled chefs.",
+  "Lunch": "Lunch",
   "lunch_more_info": "More Info",
-  "spa_title": "Rejuvenate at Our Spa",
-  "spa_description": "Escape to a world of relaxation and rejuvenation at our luxurious spa. Choose from a variety of treatments designed to soothe your mind and body.",
+  "Spa": "Spa",
   "spa_check_here": "Check Here",
   "meet_our_team": "Meet Our Dedicated Team",
+  "OUR TEAM":"OUR TEAM",
+  "Meet Our Team":"Meet Our Team",
   "team_description": "Our staff is the heart of Awalive Hotel. Each team member is committed to providing exceptional service to make your stay unforgettable. Get to know the faces behind our renowned hospitality.",
   "contact_title": "We're Here to Help",
   "contact_description": "Have questions or special requests? Fill out the form below to get in touch with our team. We're committed to responding promptly and helping you with any needs you may have during your stay with us.",
