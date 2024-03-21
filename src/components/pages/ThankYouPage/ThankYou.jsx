@@ -41,7 +41,7 @@ const ThankYou = () => {
   //   console.log(loading,'from thnyou page ');
   //   console.log(createdBooking,'from thnyou page ');
   if (thankYouLoading) {
-    return <div>Loading...</div>; // This should be 'return', not just expression.
+    return <div className="h-screen flex justify-center items-center">Loading...</div>; // This should be 'return', not just expression.
   }
 
   return (

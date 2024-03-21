@@ -67,15 +67,28 @@ const BookingDate = () => {
     const fetchRoomDetails = async () => {
       setLoading(true);
       const storedBookingInfo = localStorage.getItem("bookingInfo");
+      console.log('Stored booking info:', storedBookingInfo);
       if (storedBookingInfo) {
         const { roomId, checkIn: storedCheckIn, checkOut: storedCheckOut, numberOfGuests: storedGuests } = JSON.parse(storedBookingInfo);
   
-        // Convert dates to ISO format for consistent parsing
-        const checkInDate = moment(storedCheckIn, 'MM/DD/YYYY').format('YYYY-MM-DD');
-        const checkOutDate = moment(storedCheckOut, 'MM/DD/YYYY').format('YYYY-MM-DD');
+        console.log('Original stored dates:', storedCheckIn, storedCheckOut);
+        const correctCheckInFormet = new Date(storedCheckIn)
+        const correctCheckOutFormet = new Date(storedCheckOut)
   
-        setCheckIn(checkInDate);
-        setCheckOut(checkOutDate);
+        let checkInDate = moment(correctCheckInFormet, 'MM/DD/YYYY').isValid() ? moment(correctCheckInFormet, 'MM/DD/YYYY').format('YYYY-MM-DD') : moment().format('YYYY-MM-DD');
+        let checkOutDate = moment(correctCheckOutFormet, 'MM/DD/YYYY').isValid() ? moment(correctCheckOutFormet, 'MM/DD/YYYY').format('YYYY-MM-DD') : moment().add(1, 'days').format('YYYY-MM-DD');
+  
+        console.log('Formatted dates:', checkInDate, checkOutDate);
+  
+        if (!checkInDate || !checkOutDate) {
+          console.error('Invalid stored date formats');
+          setError('Invalid stored date formats');
+          setLoading(false);
+          return; // Exit the function if dates are invalid
+        }
+  
+        setCheckIn(new Date(checkInDate));
+        setCheckOut(new Date(checkOutDate));
         setGuests(storedGuests || 1);
         setNights(moment(checkOutDate).diff(moment(checkInDate), 'days'));
   
@@ -93,6 +106,10 @@ const BookingDate = () => {
     fetchRoomDetails();
   }, [currentLanguage]);
   
+
+  console.log(checkIn, 'chjeckin dateerrrrrrrrrrrr ');
+  console.log(checkIn ? (moment(checkIn).isValid() ? moment(checkIn).format('D') : "Invalid Date") : "") ;
+
 
   const perNightPrice = roomDetails.priceOptions?.[0]?.price ?? 0;
   const totalPriceBeforeVAT = perNightPrice * nights;
@@ -162,11 +179,11 @@ const BookingDate = () => {
                 <p className="tracking-widest text-sm uppercase text-white">{t("Check In")}</p>
                 <div className="flex flex-col   items-center" style={{ fontFamily: "Gilda Display, serif" }}>
                   {/* <p className="text-5xl text-[#BE9874]">{checkIn ? format(checkIn, "dd") : ""}</p> */}
-                  <p className="text-5xl text-[#BE9874]">{checkIn ? moment(checkIn).format('D') : ""}</p>
+                  <p className="text-5xl text-[#BE9874]">{checkIn ? (moment(checkIn).isValid() ? moment(checkIn).format('D') : "Invalid Date") : ""}</p>
 
                   <div className="flex flex-col items-center">
-                    <p className="text-white text-xs italic ">{checkIn ? moment(checkIn).format('MMM, YYYY') : ""}</p>
-                    <p className="text-xs text-white">{checkIn ? moment(checkIn).format('dddd') : ""}</p>
+                    <p className="text-white text-xs italic ">{checkIn ? (moment(checkIn).isValid() ? moment(checkIn).format('MMM, YYYY') : "Invalid Date") : ""}</p>
+                    <p className="text-xs text-white">{checkIn ? (moment(checkIn).isValid() ? moment(checkIn).format('dddd') : "Invalid Date") : ""}</p>
                   </div>
                 </div>
               </div>
@@ -175,11 +192,11 @@ const BookingDate = () => {
               <div className="text-black flex flex-col gap-2 items-center justify-center focus:outline-none cursor-pointer">
                 <p className="tracking-widest text-sm uppercase text-white">{t("Check Out")}</p>
                 <div className="flex flex-col   items-center" style={{ fontFamily: "Gilda Display, serif" }}>
-                  <p className="text-5xl text-[#BE9874]">{checkIn ? moment(checkOut).format('D') : ""}</p>
+                  <p className="text-5xl text-[#BE9874]">{checkOut ? (moment(checkOut).isValid() ? moment(checkOut).format('D') : "Invalid Date") : ""}</p>
 
                   <div className="flex flex-col items-center">
-                    <p className="text-white text-xs italic ">{checkIn ? moment(checkOut).format('MMM, YYYY') : ""}</p>
-                    <p className="text-xs text-white">{checkIn ? moment(checkOut).format('dddd') : ""}</p>
+                    <p className="text-white text-xs italic ">{checkOut ? (moment(checkOut).isValid() ? moment(checkOut).format('MMM, YYYY') : "Invalid Date") : ""}</p>
+                    <p className="text-xs text-white">{checkOut ? (moment(checkOut).isValid() ? moment(checkOut).format('dddd') : "Invalid Date") : ""}</p>
                   </div>
                 </div>
               </div>

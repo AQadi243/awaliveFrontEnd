@@ -39,7 +39,7 @@ const DatesSearch = () => {
   },[endDate, guest, setCheckIn, setCheckOut, setGuests, startDate])
 
   const nights = differenceInCalendarDays(endDate, startDate);
-
+console.log(startDate, endDate, 'searche fodated formting ');
   return (
     <>
       <div className={` w-full md:w-1/3 ${currentLanguage === 'ar' ? 'body-ar font-medium ' : 'body-en-title'} `}>
