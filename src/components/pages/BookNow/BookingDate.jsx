@@ -1,13 +1,14 @@
-import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../../sharedPages/Context/AuthProvider";
-import { CheckOutlined } from "@ant-design/icons";
+import {  useEffect, useState } from "react";
+// import { AuthContext } from "../../sharedPages/Context/AuthProvider";
+// import { CheckOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 import i18next from "i18next";
-import { SlArrowDown } from "react-icons/sl";
+// import { SlArrowDown } from "react-icons/sl";
 import axios from "axios";
 import { Skeleton } from "antd";
-import { Link } from "react-router-dom";
-import { differenceInCalendarDays, format } from "date-fns";
+// import { Link } from "react-router-dom";
+// import { differenceInCalendarDays, format } from "date-fns";
+import moment from 'moment';
 
 const BookingDate = () => {
   const currentLanguage = i18next.language;
@@ -15,44 +16,77 @@ const BookingDate = () => {
   // const authInfo = useContext(AuthContext);
   // const [bookingInformation, setBookingInformation] = useState("");
   // const { loading, setLoading, } = authInfo;
-  const [checkIn, setCheckIn] = useState(new Date());
-  const [checkOut, setCheckOut] = useState(new Date());
-  const [nights, setNights] = useState(0);
+  const [checkIn, setCheckIn] = useState(moment());
+  const [checkOut, setCheckOut] = useState(moment().add(1, 'days')); // Default check-out is tomorrow
+  const [nights, setNights] = useState(1); // Default to 1 night
   const [guests, setGuests] = useState(1); // Default to 1 guest
   const [roomDetails, setRoomDetails] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    console.log('Effect running...');
+  // useEffect(() => {
+  //   console.log('Effect running...');
+  //   const fetchRoomDetails = async () => {
+  //     console.log('Fetching room details...');
+  //     setLoading(true);
+  //     const storedBookingInfo = localStorage.getItem("bookingInfo");
+  //     if (storedBookingInfo) {
+  //       const { roomId, checkIn: storedCheckIn, checkOut: storedCheckOut, numberOfGuests: storedGuests } = JSON.parse(storedBookingInfo);
+  //       const inDate = new Date(storedCheckIn);
+  //       const outDate = new Date(storedCheckOut);
+  
+  //       setCheckIn(inDate);
+  //       setCheckOut(outDate);
+  //       setGuests(storedGuests || 1);
+  //       setNights(differenceInCalendarDays(outDate, inDate));
+  
+  //       try {
+  //         const response = await axios.get(`https://type-script-server.vercel.app/api/room/${roomId}?lang=${currentLanguage}`);
+  //         setRoomDetails(response.data.data);
+  //         console.log('Room details fetched:', response.data.data);
+  //       } catch (err) {
+  //         setError(err.message);
+  //         console.error('Error fetching room details:', err);
+  //       } finally {
+  //         console.log('Setting loading to false');
+  //         setLoading(false);
+  //       }
+  //     } else {
+  //       console.log('No stored booking info found');
+  //       setLoading(false); // Ensure loading is also set to false if there's no storedBookingInfo
+  //     }
+  //   };
+  
+  //   fetchRoomDetails();
+  // }, [currentLanguage]);
+  
+
+   // Calculate total price and VAT
+   
+   useEffect(() => {
     const fetchRoomDetails = async () => {
-      console.log('Fetching room details...');
       setLoading(true);
       const storedBookingInfo = localStorage.getItem("bookingInfo");
       if (storedBookingInfo) {
         const { roomId, checkIn: storedCheckIn, checkOut: storedCheckOut, numberOfGuests: storedGuests } = JSON.parse(storedBookingInfo);
-        const inDate = new Date(storedCheckIn);
-        const outDate = new Date(storedCheckOut);
   
-        setCheckIn(inDate);
-        setCheckOut(outDate);
+        // Convert dates to ISO format for consistent parsing
+        const checkInDate = moment(storedCheckIn, 'MM/DD/YYYY').format('YYYY-MM-DD');
+        const checkOutDate = moment(storedCheckOut, 'MM/DD/YYYY').format('YYYY-MM-DD');
+  
+        setCheckIn(checkInDate);
+        setCheckOut(checkOutDate);
         setGuests(storedGuests || 1);
-        setNights(differenceInCalendarDays(outDate, inDate));
+        setNights(moment(checkOutDate).diff(moment(checkInDate), 'days'));
   
         try {
           const response = await axios.get(`https://type-script-server.vercel.app/api/room/${roomId}?lang=${currentLanguage}`);
           setRoomDetails(response.data.data);
-          console.log('Room details fetched:', response.data.data);
         } catch (err) {
           setError(err.message);
-          console.error('Error fetching room details:', err);
         } finally {
-          console.log('Setting loading to false');
           setLoading(false);
         }
-      } else {
-        console.log('No stored booking info found');
-        setLoading(false); // Ensure loading is also set to false if there's no storedBookingInfo
       }
     };
   
@@ -60,33 +94,44 @@ const BookingDate = () => {
   }, [currentLanguage]);
   
 
-   // Calculate total price and VAT
-   const perNightPrice = roomDetails.priceOptions?.[0]?.price ?? 0;
-  //  const perNightPrice = roomDetails ? roomDetails.priceOptions[0].price : 0;
-   const totalPriceBeforeVAT = perNightPrice * nights;
-   const VAT = totalPriceBeforeVAT * 0.15; // 15% VAT
-   const totalPrice = totalPriceBeforeVAT + VAT;
+  const perNightPrice = roomDetails.priceOptions?.[0]?.price ?? 0;
+  const totalPriceBeforeVAT = perNightPrice * nights;
+  const VAT = totalPriceBeforeVAT * 0.15; // 15% VAT
+  const totalPrice = totalPriceBeforeVAT + VAT;
 
-    console.log( format(checkIn, "EEEE"), "forrmtt");
-    console.log(nights, "forrmtt");
+  // console.log(moment(checkIn).format('d'), 'chek in formtmonemt ');
+ 
 
-
-  if (loading)
-    return (
-      <div className="w-full md:w-1/3 ">
-        <Skeleton active />
-      </div>
-    );
-  if (error)
-    return (
-      <div>
-        <p>Error fetching room: {error}</p>
-        <Link className="bg-black px-4 py-2 " to={"/home"}>
-          Home
-        </Link>
-      </div>
-    );
+  if (loading) return <Skeleton active />;
+  if (error) return <div>Error fetching room: {error}</div>;
   if (!roomDetails) return <div>No room details available</div>;
+   
+  //  const perNightPrice = roomDetails.priceOptions?.[0]?.price ?? 0;
+  // //  const perNightPrice = roomDetails ? roomDetails.priceOptions[0].price : 0;
+  //  const totalPriceBeforeVAT = perNightPrice * nights;
+  //  const VAT = totalPriceBeforeVAT * 0.15; // 15% VAT
+  //  const totalPrice = totalPriceBeforeVAT + VAT;
+
+  //   console.log( format(checkIn, "EEEE"), "forrmtt");
+  //   console.log(nights, "forrmtt");
+
+
+  // if (loading)
+  //   return (
+  //     <div className="w-full md:w-1/3 ">
+  //       <Skeleton active />
+  //     </div>
+  //   );
+  // if (error)
+  //   return (
+  //     <div>
+  //       <p>Error fetching room: {error}</p>
+  //       <Link className="bg-black px-4 py-2 " to={"/home"}>
+  //         Home
+  //       </Link>
+  //     </div>
+  //   );
+  // if (!roomDetails) return <div>No room details available</div>;
 
   return (
     <div className=" w-full md:w-1/3">
@@ -116,11 +161,12 @@ const BookingDate = () => {
               <div className="text-black flex flex-col gap-2 items-center justify-center focus:outline-none cursor-pointer">
                 <p className="tracking-widest text-sm uppercase text-white">{t("Check In")}</p>
                 <div className="flex flex-col   items-center" style={{ fontFamily: "Gilda Display, serif" }}>
-                  <p className="text-5xl text-[#BE9874]">{checkIn ? format(checkIn, "dd") : ""}</p>
+                  {/* <p className="text-5xl text-[#BE9874]">{checkIn ? format(checkIn, "dd") : ""}</p> */}
+                  <p className="text-5xl text-[#BE9874]">{checkIn ? moment(checkIn).format('D') : ""}</p>
 
                   <div className="flex flex-col items-center">
-                    <p className="text-white text-xs italic ">{checkIn ? format(checkIn, "MMM yyyy") : ""}</p>
-                    <p className="text-xs text-white">{checkIn ? format(checkIn, "EEEE") : ""}</p>
+                    <p className="text-white text-xs italic ">{checkIn ? moment(checkIn).format('MMM, YYYY') : ""}</p>
+                    <p className="text-xs text-white">{checkIn ? moment(checkIn).format('dddd') : ""}</p>
                   </div>
                 </div>
               </div>
@@ -129,11 +175,11 @@ const BookingDate = () => {
               <div className="text-black flex flex-col gap-2 items-center justify-center focus:outline-none cursor-pointer">
                 <p className="tracking-widest text-sm uppercase text-white">{t("Check Out")}</p>
                 <div className="flex flex-col   items-center" style={{ fontFamily: "Gilda Display, serif" }}>
-                  <p className="text-5xl text-[#BE9874]">{checkIn ? format(checkOut, "dd") : ""}</p>
+                  <p className="text-5xl text-[#BE9874]">{checkIn ? moment(checkOut).format('D') : ""}</p>
 
                   <div className="flex flex-col items-center">
-                    <p className="text-white text-xs italic ">{checkIn ? format(checkOut, "MMM yyyy") : ""}</p>
-                    <p className="text-xs text-white">{checkIn ? format(checkOut, "EEEE") : ""}</p>
+                    <p className="text-white text-xs italic ">{checkIn ? moment(checkOut).format('MMM, YYYY') : ""}</p>
+                    <p className="text-xs text-white">{checkIn ? moment(checkOut).format('dddd') : ""}</p>
                   </div>
                 </div>
               </div>
