@@ -1,257 +1,580 @@
 import React, { useState } from "react";
 import { FaAngleDown, FaAngleUp } from "react-icons/fa6";
-import img from "../../../../assets/relaxArea.jpg";
+import img from "../../../../assets/restaurant.jpg";
 import { Select, Space } from "antd";
-import './TableBooking.css'
-import { Calendar } from 'react-date-range';
-import 'react-date-range/dist/styles.css'; // main style file
-import 'react-date-range/dist/theme/default.css'; // theme css file
+import "./TableBooking.css";
+import { Calendar } from "react-date-range";
+import "react-date-range/dist/styles.css"; // main style file
+import "react-date-range/dist/theme/default.css"; // theme css file
 import { useNavigate } from "react-router-dom";
+import i18next from "i18next";
+import { useTranslation } from "react-i18next";
+import axios from "axios";
 
 const TableDateAndTime = () => {
-  const navigate = useNavigate()
-    const [selectedDate, setSelectedDate] = useState(new Date());
-    const [person, setPerson] = useState(1);
-    const [selectedRestaurant, setSelectedRestaurant] = useState("Roof Top");
-    const [selectedTime, setSelectedTime] = useState("");
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [phone, setPhone] = useState("");
-    const [message, setMessage] = useState("");
-    const [errors, setErrors] = useState({
-      name: "",
-      email: "",
-      phone: "",
-    });
-    const [page, setPage] = useState(1);
-    const currentDate = new Date();
+  const currentLanguage = i18next.language;
+  const { t } = useTranslation("restaurant");
+  const navigate = useNavigate();
+  // const [selectedTime, setSelectedTime] = useState(null);
+  // const [selectedDate, setSelectedDate] = useState(new Date());
+  // const [person, setPerson] = useState(1);
+  // const [selectedRestaurant, setSelectedRestaurant] = useState("Roof Top");
+  // // const [selectedTime, setSelectedTime] = useState("");
+  // const [name, setName] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [phone, setPhone] = useState("");
+  // const [message, setMessage] = useState("");
+  // const [errors, setErrors] = useState({
+  //   name: "",
+  //   email: "",
+  //   phone: "",
+  // });
+  // const [page, setPage] = useState(1);
+  // const currentDate = new Date();
 
-  const handleRestaurant = (value) => {
-    setSelectedRestaurant(value);
-  };
+  const [page, setPage] = useState(1);
+  const [selectedTime, setSelectedTime] = useState("9:00 am");
+  const [person, setPerson] = useState(1); // Number of guests
+  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [selectedRestaurant, setSelectedRestaurant] = useState(t("Roof Top"));
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [errors, setErrors] = useState({});
+  const [bookingSuccessOrErr, setBookingSuccessOrErr] = useState('');
+  const [bookingMessage, setBookingMessage] = useState('');
+  const [loading, setLoading] = useState(false);
+  
 
-  const handleIncrement = () => {
-    setPerson((prevGuests) => prevGuests + 1);
-  };
+  // Error state for form validation
 
-  const handleDecrement = () => {
-    if (person > 1) {
-      setPerson((prevGuests) => prevGuests - 1);
-    }
-  };
+  const timeSlots = [
+    "9:00 am",
+    "9:30 am",
+    "10:00 am",
+    "10:30 am",
+    "11:00 am",
+    "11:30 am",
+    "12:00 pm",
+    "12:30 pm",
+    "1:00 pm",
+    "1:30 pm",
+    "2:00 pm",
+    "2:30 pm",
+    "3:00 pm",
+    "3:30 pm",
+    "4:00 pm",
+    "4:30 pm",
+    "5:00 pm",
+    "5:30 pm",
+    "6:00 pm",
+  ];
+
+  // const handleTimeSlotSelect = (time) => {
+  //   setSelectedTime(time);
+  // };
 
   const handleSelect = (date) => {
     setSelectedDate(date);
   };
 
-  const handleTimeChange = (event) => {
-    setSelectedTime(event.target.value);
+  const handleRestaurant = (event) => {
+    event.preventDefault();
+    setSelectedRestaurant(event.target.value);
   };
 
-  const handleNextPage = () => {
-    setPage(2);
-  };
+  // Function to navigate to the next page
+  // const validatePage2 = () => {
+  //   const errors = {};
+  //   if (!name) errors.name = "Name is required";
+  //   if (!phone) errors.phone = "Phone is required";
+  //   if (!email.includes("@")) errors.email = "Email is invalid";
+  //   return errors;
+  // };
 
-  const validateFields = () => {
-    const newErrors = {
-      name: name ? "" : "Name is required",
-      email: email ? "" : "Email is required",
-      phone: phone ? "" : "Phone is required",
-    };
+  // const handleNextPage = () => {
+  //   let newErrors = {};
 
-    setErrors(newErrors);
+  //   // Perform validation based on the current page
+  //   if (page === 2) {
+  //     newErrors = validatePage2();
+  //     setErrors(newErrors);
+  //   }
 
-    return Object.values(newErrors).every((error) => error === "");
-  };
-  
-  const handleBookTable = () => {
-    // Validate fields before proceeding
-    if (!validateFields()) {
-      return;
+  //   // If there are errors on the current page, stop here
+  //   if (Object.keys(newErrors).length > 0) {
+  //     // Optional: Focus on the first input field with an error
+  //     if (newErrors.name) document.getElementById("name").focus();
+  //     else if (newErrors.phone) document.getElementById("phone").focus();
+  //     else if (newErrors.email) document.getElementById("email").focus();
+  //     return;
+  //   }
+
+  //   // If on Page 1 (no validation needed) or validation passed on Page 2, move to the next page
+  //   setPage((prevPage) => prevPage + 1);
+  // };
+
+  // Function to handle form validation and submission for booking
+  // const handleBookTable = () => {
+  //   // Example form validation
+  //   const newErrors = {};
+  //   if (!name) newErrors.name = "Name is required";
+  //   if (!phone) newErrors.phone = "Phone is required";
+  //   if (!email.includes("@")) newErrors.email = "Email is invalid";
+
+  //   setErrors(newErrors);
+
+  //   // Check if there are any errors
+  //   if (Object.keys(newErrors).length > 0) {
+  //       // Optional: Focus on the first input field with an error
+  //       if (newErrors.name) document.getElementById("name").focus();
+  //       else if (newErrors.phone) document.getElementById("phone").focus();
+  //       else if (newErrors.email) document.getElementById("email").focus();
+  //       return; // Stop the submission if there are errors
+  //   }
+
+  //   // Proceed with form submission or navigation...
+  //   console.log("Booking confirmed", { name, phone, email, message, selectedDate, selectedTime, person });
+  //   // Optionally, reset form here or navigate to a confirmation page
+  // };
+
+  // Ensure you have handlers for your inputs
+  // For example:
+  const handleIncrement = () => setPerson(person + 1);
+  const handleDecrement = () => setPerson(Math.max(1, person - 1)); // Prevent less than 1
+  const handleTimeSlotSelect = (time) => setSelectedTime(time);
+
+
+  // Handling input changes
+const handleChange = (e) => {
+  const { name, value } = e.target;
+  if (errors[name]) {
+    setErrors({ ...errors, [name]: '' }); // Clear specific error when user starts typing
+  }
+  // Update state based on input name
+  switch(name) {
+    case 'name':
+      setName(value);
+      break;
+    case 'phone':
+      setPhone(value);
+      break;
+    case 'email':
+      setEmail(value);
+      break;
+    case 'message':
+      setMessage(value);
+      break;
+    default:
+      break;
+  }
+};
+
+// Validate page 2 form inputs
+const validateForm = () => {
+  const newErrors = {};
+  if (!name.trim()) newErrors.name = 'Name is required';
+  if (!phone.trim()) newErrors.phone = 'Phone is required';
+  if (!email.trim() || !email.includes('@')) newErrors.email = 'Valid email is required';
+  // Add more validation as needed
+
+  setErrors(newErrors);
+  return Object.keys(newErrors).length === 0; // Returns true if no errors
+};
+
+// Function to handle next page transition
+const handleNextPage = async () => {
+  if (page === 1) {
+    setPage(2); // No validation needed for page 1, move to page 2 directly
+  } else if (page === 2) {
+    const isValid = validateForm(); // Validate form inputs for page 2
+    if (isValid) {
+      // Prepare the data to be sent
+      const bookingData = {
+        name: name,
+        email: email,
+        phone: phone,
+        message: message,
+        bookingDate: new Date(selectedDate),
+        time: selectedTime,
+        guest: person,
+        restaurantName:selectedRestaurant
+      };
+      
+      setLoading(true); // Start loading
+      try {
+        const response = await axios.post('http://localhost:5000/api/Table-booking/create', bookingData);
+
+        console.log(response, 'datassss');
+        // setBookingSuccess(true);
+        setBookingMessage('Booking confirmed!');
+        setPage(3);
+      } catch (error) {
+        console.log(error,'errrrrrr');
+        // setBookingSuccess(false);
+        if (error.response && error.response.data.issues ) {
+          // If the server sends back a list of errors, display them
+          setBookingSuccessOrErr(error.response.data?.message);
+          console.log(error.response.data.issues.map(issue => `${issue.path}: ${issue.message}`));
+          setBookingMessage(Object.values(error.response.data.issues.map(issue => `${issue.path}: ${issue.message}`) ));
+        } else {
+          // Use a general error message if the server response doesn't include error details
+          setBookingMessage('An error occurred');
+        }
+        setPage(3);
+      } finally {
+        setLoading(false); // End loading
+      }
     }
+  }
+  // No actions needed for page 3 within this function
+};
 
-    // Consolidate all information into an object
-    const bookingData = {
-      guests: person,
-      date: selectedDate.toDateString(),
-      time: selectedTime,
-      name: name,
-      email: email,
-      phone: phone,
-      message: message,
-    };
-
-    // Log the consolidated object to the console
-    console.log("Booking Data:", bookingData);
-    // alert('table booked')
-    navigate('/');
-  };
-
-
+console.log(new Date(selectedDate), 'asdasfc date time ');
 
   return (
-    <section
-      className="w-[90%] mx-auto"
-      style={{ fontFamily: "Gilda Display, serif" }}
-    >
-      <div className="flex flex-col gap-5 md:gap-10 items-center justify-center py-10">
-        {page === 1 && (
-          <div>
-          <div className="flex flex-col md:flex-row gap-5">
-          <div className="relative md:w-[50%]">
-            <img src={img} alt=" " className="md:h-full w-full" />
-            <Space
-              wrap
-              className="absolute top-10 left-[50%] translate-x-[-50%] translate-y-[-50%] flex flex-col text-center justify-center text-white "
-            >
-              <Select
-                defaultValue="Roof Top"
-                className="uppercase"
-                style={{
-                  width: 200,
-                  
-                }}
-                onChange={handleRestaurant}
-                options={[
-                  {
-                    value: "Roof Top",
-                    label: "Roof Top",
-                  },
-                  {
-                    value: "Hotel Restaurant",
-                    label: "Hotel Restaurant",
-                  },
-                ]}
-              />
-            </Space>
-            <div className="absolute bottom-10 left-[50%] translate-x-[-50%] translate-y-[-50%] flex flex-col text-center justify-center text-white">
-              <div className="flex items-center gap-4 text-4xl">
-                <p>{person}</p>
-                <div className="flex flex-col gap-2 text-xl">
-                  <button className="text-[#BE9874] " onClick={handleIncrement}>
-                    <FaAngleUp />
-                  </button>
-                  <button className="text-[#BE9874]" onClick={handleDecrement}>
-                    <FaAngleDown />
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="md:w-[50%] ">
-          <p>Booking Table: {selectedDate.toDateString()}</p>
-      <Calendar
-      className="w-full"
-        onChange={handleSelect}
-        date={selectedDate}
-        minDate={currentDate} 
-        showSelectionPreview
-      />
-      
-    </div>
-    
-        </div>
-        <div>
-            <label htmlFor="time" className= "time-xl md:text-3xl">Time:</label>
-            <input
-              type="time"
-              id="time"
-              name="time"
-              value={selectedTime}
-            onChange={handleTimeChange}
-              className="bg-white"
-            />
-          </div>
-          <button
-            type="button"
-            id="book-button"
-            className="bg-[#BE9874] text-white px-8 py-2"
-            onClick={handleNextPage}
-          >
-            Book Table
-          </button>
-          </div>
-        )}
-        {page === 2 && (
-          <>
-            <div className="flex flex-col gap-5 md:gap-10 items-center justify-center py-10">
-              <div className="flex flex-col md:flex-row gap-5">
-                <div className=" md:w-[50%]">
-                  <img
-                    src={img}
-                    alt=" "
-                    className="h-2/3 w-full"
-                  />
-                  <ul
-                    className="h-1/3 text-white bg-[#1C1C1D] w-full flex flex-row px-2 md:px-10 items-center justify-between py-3 text-xs md:text-sm"
+    <>
+      <section className="max-w-6xl mx-auto">
+        <div className="flex flex-col  items-center justify-center pb-20 ">
+          {page === 1 && (
+            <>
+              <div>
+                {/* steps  */}
+                <div className={`max-w-7xl mx-auto flex items-center justify-center py-16 `}>
+                  <div
+                    className={`flex flex-wrap items-center justify-center w-80 md:w-[36rem] lg:w-[40rem] gap-5 md:gap-16  text-black ${
+                      currentLanguage === "ar" ? "body-ar font-semibold  " : "body-en "
+                    }`}
                   >
-                    <li>Number of Guests: <span>{person}</span></li>
-                    <li>Date: <span>{selectedDate.toDateString()}</span></li>
-                    <li>Time: <span>{selectedTime}</span></li>
-                  </ul>
+                    <div className="flex gap-3 items-center col-span-1">
+                      <p className="bg-[#BE9874] text-white  h-7 w-7 flex items-center justify-center text-sm  rounded-full ">
+                        1
+                      </p>
+                      <p className="uppercase tracking-[0.2rem] text-sm ">{t("SEARCH")}</p>
+                    </div>
+                    <div className="flex flex-row gap-3 justify-center items-center ">
+                      <p className=" bg-[#1C1C1D] text-white border border-gray-100-50 h-7 w-7 flex items-center justify-center  text-sm  rounded-full ">
+                        2
+                      </p>
+                      <p className="uppercase tracking-[0.2rem] text-sm ">{t("DETAILS")}</p>
+                    </div>
+                    <div className="flex flex-row gap-3 justify-center items-center ">
+                      <p className=" bg-[#1C1C1D] text-white border border-gray-100-50 h-7 w-7 flex items-center justify-center  text-sm  rounded-full ">
+                        3
+                      </p>
+                      <p className="uppercase tracking-[0.2rem] text-sm ">{t("CONFIRM")}</p>
+                    </div>
+                  </div>
                 </div>
-                <div className="md:w-[50%] flex flex-col md:flex-row md:justify-center py-5 px-5 border">
-                  <form className="w-full flex flex-col gap-5 py-10" id="guest-info-form">
-                    <p className="text-center">Insert your Information :</p>
-                    <input
-                      type="text"
-                      name="name"
-                      id="name"
-                      placeholder="Name"
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      className={`py-2 px-2 border bg-slate-50 ${errors.name && 'border-red-500'}`}
-                      required
-                    />
-                    {errors.name && <p className="text-red-500 text-xs">{errors.name}</p>}
-                    <input
-                      type="tel"
-                      name="phone"
-                      id="phone"
-                      placeholder="Phone"
-                      value={phone}
-                      onChange={(e) => setPhone(e.target.value)}
-                      className={`py-2 px-2 border bg-slate-50 ${errors.phone && 'border-red-500'}`}
-                      required
-                    />
-                    {errors.phone && <p className="text-red-500 text-xs">{errors.phone}</p>}
-                    <input
-                      type="email"
-                      name="email"
-                      id="email"
-                      placeholder="Email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      className={`py-2 px-2 border bg-slate-50 ${errors.email && 'border-red-500'}`}
-                      required
-                    />
-                    {errors.email && <p className="text-red-500 text-xs">{errors.email}</p>}
-                    <textarea
-                      name="message"
-                      id="message"
-                      cols="30"
-                      rows="3"
-                      placeholder="Message"
-                      value={message}
-                      onChange={(e) => setMessage(e.target.value)}
-                      className="py-2 px-2 border bg-slate-50"
-                    ></textarea>
-                    <button
-                      type="button"
-                      id="confirm-button"
-                      className="uppercase bg-[#BE9874] text-xs text-white py-3"
-                      onClick={handleBookTable}
+
+                <div dir="ltr" className="flex flex-col md:flex-row gap-5 items-stretch ">
+                  <div className="relative md:w-1/2 flex flex-col justify-center">
+                    <div className="absolute inset-0 bg-gradient-to-b from-black  to-transparent opacity-100"></div>
+                    <img src={img} alt=" " className=" min-h-[300px] md:h-full w-full object-cover" />
+                    <div className="absolute top-10 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col text-center justify-center text-white ">
+                      <div className="relative h-16   min-w-[200px]">
+                        <select
+                          value={selectedRestaurant} // Bind state to select
+                          onChange={handleRestaurant} // Attach event handler
+                          className="peer h-full w-full uppercase tracking-widest text-xl  bg-black  border-t-transparent bg-transparent px-3 py-2.5 font-sans font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 empty:!bg-gray-900  focus:border-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+                        >
+                          <option className="bg-black py-4 uppercase text-sm" value="Roof Top">
+                            {t("Roof Top")}
+                          </option>
+                          <option className="bg-black py-4 uppercase text-sm" value=" Hotel Restaurant">
+                            {t("Hotel Restaurant")}
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                    <div
+                      className={`absolute  bottom-0 left-[50%] translate-x-[-50%] translate-y-[-50%] flex flex-col text-center justify-center gap-3 text-white ${
+                        currentLanguage === "ar" ? "body-ar font-semibold  " : "body-en-title "
+                      }`}
                     >
-                      Checkout
-                    </button>
-                  </form>
+                      <p className="uppercase tracking-widest text-xl">{t("Guest")}</p>
+                      <div className="flex justify-center items-center gap-4 ">
+                        <p className="text-5xl min-w-[30px]">{person}</p>
+                        <div className="flex flex-col gap-3 text-xl">
+                          <button className="text-white " onClick={handleIncrement}>
+                            <FaAngleUp />
+                          </button>
+                          <button className="text-white" onClick={handleDecrement}>
+                            <FaAngleDown />
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="md:w-1/2 min-h-[300px]  flex">
+                    <Calendar
+                      className="w-full   flex-1" // Ensure the Calendar takes full width and expands to fill the flex container
+                      onChange={handleSelect}
+                      date={selectedDate}
+                      minDate={new Date()}
+                      showSelectionPreview
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
-          </>
-        )}
-      </div>
-    </section>
+              <div className=" max-w-5xl flex flex-col items-center pt-16 gap-4">
+                <div className="mb-4 text-2xl">{t("TIME")}:</div>
+                <div className="flex flex-wrap justify-center gap-4 mb-4">
+                  {timeSlots.map((time) => (
+                    <button
+                      key={time}
+                      onClick={() => handleTimeSlotSelect(time)}
+                      className={`py-2 px-4 text-white text-sm tracking-widest  ${
+                        selectedTime === time ? "bg-[#1C1C1D] " : "bg-[#BE9874]"
+                      }`}
+                    >
+                      {time}
+                    </button>
+                  ))}
+                </div>
+                <button
+                  className={`py-3 px-6 text-xs font-semibold tracking-[0.2rem] uppercase text-white ${
+                    selectedTime ? "bg-[#BE9874] hover:bg-[#dda875]" : "bg-gray-300"
+                  } cursor-pointer`}
+                  onClick={handleNextPage}
+                  disabled={!selectedTime}
+                >
+                  {t("Book A Table")}
+                </button>
+              </div>
+            </>
+          )}
+          {page === 2 && (
+            <>
+              <div className="max-w-7xl mx-auto flex items-center justify-center py-16">
+                <div
+                  className={`grid grid-cols-2 md:grid-cols-3 w-80 md:w-[36rem] lg:w-[40rem] gap-5 lg:gap-6  text-black ${
+                    currentLanguage === "ar" ? "body-ar font-normal  " : "body-en "
+                  }`}
+                >
+                  <div className="flex gap-3 items-center col-span-1">
+                    <p className=" bg-[#1C1C1D] text-white  h-7 w-7 flex items-center justify-center text-sm  rounded-full ">1</p>
+                    <p className="uppercase tracking-[0.2rem] text-sm ">{t("SEARCH")}</p>
+                  </div>
+                  <div className="flex flex-row gap-3 justify-center items-center ">
+                    <p className=" bg-[#BE9874] text-white border border-gray-100-50 h-7 w-7 flex items-center justify-center  text-sm  rounded-full ">
+                      2
+                    </p>
+                    <p className="uppercase tracking-[0.2rem] text-sm ">{t("DETAILS")}</p>
+                  </div>
+                  <div className="flex flex-row gap-3 justify-center items-center ">
+                    <p className=" bg-[#1C1C1D] text-white border border-gray-100-50 h-7 w-7 flex items-center justify-center  text-sm  rounded-full ">
+                      3
+                    </p>
+                    <p className="uppercase tracking-[0.2rem] text-sm ">{t("CONFIRM")}</p>
+                  </div>
+                </div>
+              </div>
+              <div dir="" className="flex flex-col gap-5 md:gap-10 items-center justify-center ">
+                <div className="flex flex-col md:flex-row gap-5">
+                  <div className=" md:w-1/2 relative ">
+                    <div className="absolute inset-0 bg-gradient-to-b from-black  to-transparent "></div>
+                    <img src={img} alt=" " className="h-2/3 w-full object-cover" />
+                    <div className="absolute top-15 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col text-center justify-center text-white ">
+                      <p className=" h-full w-full text-xl    ">{selectedRestaurant}</p>
+                      {/* </div> */}
+                    </div>
+                    <ul className="h-1/3 text-white bg-[#1C1C1D] w-full flex flex-row px-2 md:px-10 items-center justify-between py-3 text-xs md:text-sm tracking-widest">
+                      <li>
+                        <span className="text-sm"> {t("Guest")}:</span> <span className="">{person}</span>
+                      </li>
+                      <li className="capitalize">
+                        {t("Date")}: <span>{selectedDate.toDateString()}</span>
+                      </li>
+                      <li className="capitalize">
+                        {t("TIME")}: <span>{selectedTime}</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div className="md:w-[50%] flex flex-col  md:justify-center  px-5 border pb-10 text-black">
+                    <p className="text-center py-10 text-xl">{t("Booking confirmation :")} :</p>
+                    <div className="w-full flex flex-col gap-5 " id="guest-info-form">
+                      <div className="flex flex-col">
+                        <label className="tracking-widest capitalize" htmlFor="name">
+                          {t("Name")}*
+                        </label>
+                        <input
+                          type="text"
+                          name="name"
+                          id="name"
+                          value={name}
+                          // onChange={(e) => setName(e.target.value)}
+                          onChange={handleChange}
+                          className={`py-2 px-2  border bg-slate-50 ${errors.name && "border-red-500 "}`}
+                          required
+                        />
+                        {errors.name && <p className="text-red-500 text-xs">{errors.name}</p>}
+                      </div>
+
+                      <div className="flex flex-col">
+                        <label className="capitalize" htmlFor="email">
+                          {t("Email")}*
+                        </label>
+                        <input
+                          type="email"
+                          name="email"
+                          id="email"
+                          value={email}
+                          // onChange={(e) => setEmail(e.target.value)}
+                          onChange={handleChange}
+                          className={`py-2 px-2 border bg-slate-50 ${errors.email && "border-red-500"}`}
+                          required
+                        />
+                        {errors.email && <p className="text-red-500 text-xs">{errors.email}</p>}
+                      </div>
+                      <div className="flex flex-col">
+                        <label className="capitalize" htmlFor="phone">
+                          {t("Phone")}*
+                        </label>
+                        <input
+                          type="tel"
+                          name="phone"
+                          id="phone"
+                          value={phone}
+                          // onChange={(e) => setPhone(e.target.value)}
+                          onChange={handleChange}
+                          className={`py-2 px-2 border bg-slate-50 ${errors.phone && "border-red-500"}`}
+                          required
+                        />
+                        {errors.phone && <p className="text-red-500 text-xs">{errors.phone}</p>}
+                      </div>
+                      <div className="flex flex-col">
+                        <label className="capitalize" htmlFor="message">
+                          {t("Message")}
+                        </label>
+                        <textarea
+                          name="message"
+                          id="message"
+                          cols="30"
+                          rows="5"
+                          value={message}
+                          // onChange={(e) => setMessage(e.target.value)}
+                          onChange={handleChange}
+                          className="py-2 px-2 border bg-slate-50"
+                        ></textarea>
+                      </div>
+                      <div className="pt-4">
+                        <button
+                          type="button"
+                          id="confirm-button"
+                          className="uppercase w-full bg-[#BE9874] text-xs tracking-[0.2rem] font-semibold text-white py-3"
+                          // onClick={handleBookTable}
+                          onClick={handleNextPage}
+                        >
+                          {t("Checkout")}
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </>
+          )}
+          {page === 3 && (
+            <>
+              <div className="max-w-7xl mx-auto flex items-center justify-center py-16">
+                <div
+                  className={`grid grid-cols-2 md:grid-cols-3  w-80 md:w-[36rem] lg:w-[40rem] gap-5 lg:gap-6  text-black ${
+                    currentLanguage === "ar" ? "body-ar font-normal  " : "body-en "
+                  }`}
+                >
+                  <div className="flex gap-3 items-center col-span-1">
+                    <p className=" bg-[#1C1C1D] text-white  h-7 w-7 flex items-center justify-center text-sm  rounded-full ">1</p>
+                    <p className="uppercase tracking-[0.2rem] text-sm ">{t("SEARCH")}</p>
+                  </div>
+                  <div className="flex flex-row gap-3 justify-center items-center ">
+                    <p className=" bg-[#1C1C1D] text-white  border border-gray-100-50 h-7 w-7 flex items-center justify-center  text-sm  rounded-full ">
+                      2
+                    </p>
+                    <p className="uppercase tracking-[0.2rem] text-sm ">{t("DETAILS")}</p>
+                  </div>
+                  <div className="flex flex-row gap-3 justify-center items-center ">
+                    <p className="  bg-[#BE9874] text-white border border-gray-100-50 h-7 w-7 flex items-center justify-center  text-sm  rounded-full ">
+                      3
+                    </p>
+                    <p className="uppercase tracking-[0.2rem] text-sm ">{t("CONFIRM")}</p>
+                  </div>
+                </div>
+              </div>
+              <div dir="" className="flex flex-col gap-5 md:gap-10 items-center justify-center ">
+                <div className="flex flex-col md:flex-row gap-5">
+                  <div className=" md:w-1/2 relative ">
+                    <div className="absolute inset-0 bg-gradient-to-b from-black  to-transparent "></div>
+                    <img src={img} alt=" " className="h-2/3 w-full object-cover" />
+                    <div className="absolute top-15 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col text-center justify-center text-white ">
+                      <p className=" h-full w-full text-xl    ">{selectedRestaurant}</p>
+                      {/* </div> */}
+                    </div>
+                    <ul className="h-1/3 text-white flex flex-col justify-center items-center gap-5 bg-[#1C1C1D]  py-3 text-xs md:text-sm tracking-widest">
+                      <div className="w-full flex flex-row px-2 md:px-10 items-center justify-between">
+                        <li>
+                          <span className="text-sm"> {t("Guest")}:</span> <span className="">{person}</span>
+                        </li>
+                        <li className="capitalize">
+                          {t("Date")}: <span>{selectedDate.toDateString()}</span>
+                        </li>
+                        <li className="capitalize">
+                          {t("TIME")}: <span>{selectedTime}</span>
+                        </li>
+                      </div>
+                      <div className="px-3  ">
+                        <div className="flex flex-row flex-wrap gap-3 justify-center items-center text-xs">
+                          <div className="flex  items-center">
+                            <p>{t("Name")} :</p>
+                            <p>{name}</p>
+                          </div>
+                          <div className="flex  items-center">
+                            <p>{t("Email")} :</p>
+                            <p>{email}</p>
+                          </div>
+                          <div className="flex items-center ">
+                            <p>{t("Phone")} :</p>
+                            <p>{phone}</p>
+                          </div>
+                          <div className="flex items-center overflow-hidden max-w-[260px] ">
+                            <p>{t("Message")} :</p>
+                            <p className="">{message}</p>
+                          </div>
+                        </div>
+                      </div>
+                    </ul>
+                  </div>
+                  {loading? (
+                    <div>Loading</div>
+                  ): (
+                    <div className="md:w-[50%] flex flex-col  md:justify-center  px-5 border pb-10 text-black">
+                    {/* <p className="text-center py-10 text-xl">{t("tableBookSuccessMessage")}</p> */}
+                    <p className="text-center py-10 text-xl">{bookingSuccessOrErr}</p>
+                    <p className="text-center py-10 text-xl">{bookingMessage}</p>
+                    <div className="w-full flex flex-col gap-5 text-center " id="guest-info-form">
+                      {!bookingSuccessOrErr && <p>{t("tableBookSuccessMessage")}</p> }
+                      <div className="pt-4">
+                        <button
+                          type="button"
+                          id="confirm-button"
+                          className="uppercase w-full bg-[#BE9874] text-xs tracking-[0.2rem] font-semibold text-white py-3"
+                        
+                        >
+                          {t("Back to Home")}
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  )  }
+                  
+                </div>
+              </div>
+            </>
+          )}
+        </div>
+      </section>
+    </>
   );
 };
 

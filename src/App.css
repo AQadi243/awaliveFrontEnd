@@ -107,6 +107,12 @@ z-index: 1 ;
   color: #24303F;
   
 }
+.selector{
+    background-color: transparent !important;
+    border: none !important;
+    color:  white !important;
+    transition: all 0.2s 
+}
 
 
 .react-datepicker__header {
@@ -121,17 +127,29 @@ z-index: 1 ;
   
 }
 
+/* .react-datepicker-popper {
+  z-index: 9999;
+} */
+#picker{
+  z-index: 9999;
+}
+
 .rdrCalendarWrapper{
   background-color: #0f0f0f !important;
-  /* color: aliceblue !important; */
+
 }
 .rdrDayNumber span{
   color: white !important;
 }
 
-.rdrDateDisplayItemActive  {
+/* .rdrDateDisplayItemActive  {
   color: #BE9874 !important;
+} */
+.rdrMonthAndYearPickers select  {
+  color: #BE9874 !important;
+  /* background-color: wheat !important; */
 }
+
 .rdrDayDisabled span {
   color: #BE9874 !important;
   background-color: #0f0f0f !important;

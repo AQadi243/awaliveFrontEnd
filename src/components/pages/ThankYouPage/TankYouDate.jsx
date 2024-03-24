@@ -10,7 +10,7 @@ import i18next from "i18next";
 // import { differenceInCalendarDays, format } from "date-fns";
 import moment from "moment";
 
-const ThankYouDate = ({ bookedRoomDetails }) => {
+const ThankYouDate = ({ bookedRoomDetails ,thankYouLoading, setThanYouLoading }) => {
   const [checkedIn, setCheckedIn] = useState(new Date()); // Default to current date
   const [checkedOut, setCheckedOut] = useState(new Date());
 
@@ -20,22 +20,8 @@ const ThankYouDate = ({ bookedRoomDetails }) => {
   const [nights, setNights] = useState(0);
 const [totalPrice, setTotalPrice] = useState(0);
 
-  // useEffect(() => {
-  //   if (bookedRoomDetails?.checkIn && bookedRoomDetails?.checkOut) {
-  //     const checkInDate = new Date(bookedRoomDetails?.checkIn);
-  //     const checkOutDate = new Date(bookedRoomDetails?.checkOut);
-  //     const diffDays = differenceInCalendarDays(checkOutDate, checkInDate);
-  //     setNights(diffDays);
-
-  //     // Calculate total price and VAT
-  //     const perNightPrice = bookedRoomDetails?.roomId?.priceOptions[0]?.price || 0;
-  //     const totalPriceBeforeVAT = perNightPrice * diffDays;
-  //     const VAT = totalPriceBeforeVAT * 0.15; // 15% VAT
-  //     setTotalPrice(totalPriceBeforeVAT + VAT);
-  //   }
-  // }, [bookedRoomDetails]);
-
   useEffect(() => {
+    setThanYouLoading(true)
     if (bookedRoomDetails?.checkIn && bookedRoomDetails?.checkOut) {
       // Convert dates to ISO format for consistent parsing
       const checkInDate = moment(bookedRoomDetails?.checkIn).isValid()
@@ -59,14 +45,19 @@ const [totalPrice, setTotalPrice] = useState(0);
       const VAT = totalPriceBeforeVAT * 0.15; // 15% VAT
       setTotalPrice(totalPriceBeforeVAT + VAT);
     }
-  }, [bookedRoomDetails]);
+    setThanYouLoading(false)
+  }, [bookedRoomDetails , setThanYouLoading]);
 
-  console.log(checkedIn ? (moment(checkedIn).isValid() ? moment(checkedIn).format('MMM, YYYY') : "Invalid Date") : "");
+  console.log(totalPrice);
 
-
+  
   // Ensure you handle loading or empty states appropriately
   if (!bookedRoomDetails) {
     return <div>Loading or no booking details available...</div>;
+  }
+
+  if(thankYouLoading) {
+    return <div>Loading..</div>
   }
 
   return (

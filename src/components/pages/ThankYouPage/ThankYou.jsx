@@ -50,7 +50,7 @@ const ThankYou = () => {
       <section className="bg-slate-50">
         <div className="max-w-7xl mx-auto px-2">
           <div className="flex flex-col md:flex-row gap-3 md:gap-5 py-10 md:py-20">
-            <ThankYouDate bookedRoomDetails={bookedRoomDetails} />
+            <ThankYouDate bookedRoomDetails={bookedRoomDetails} thankYouLoading={thankYouLoading} setThanYouLoading={setThanYouLoading} />
             <div className="md:w-2/3">
               <div>
                 {!user && (
