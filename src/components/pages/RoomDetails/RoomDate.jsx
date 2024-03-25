@@ -417,6 +417,7 @@ const RoomDate = ({ singleRoomDetails }) => {
                 minDate={addDays(startDate, 1)}
                 dateFormat="dd MMM"
                 className="hidden"
+                popperPlacement="bottom-end"
               />
             </div>
 

@@ -49,6 +49,8 @@ const TableDateAndTime = () => {
 
   // Error state for form validation
 
+  
+
   const timeSlots = [
     "9:00 am",
     "9:30 am",
@@ -204,7 +206,7 @@ const handleNextPage = async () => {
       
       setLoading(true); // Start loading
       try {
-        const response = await axios.post('http://localhost:5000/api/Table-booking/create', bookingData);
+        const response = await axios.post('https://type-script-server.vercel.app/api/Table-booking/create', bookingData);
 
         console.log(response, 'datassss');
         // setBookingSuccess(true);

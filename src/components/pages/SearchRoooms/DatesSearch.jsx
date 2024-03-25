@@ -82,6 +82,7 @@ console.log(startDate, endDate, 'searche fodated formting ');
                 minDate={new Date()}
                 dateFormat="dd MMM"
                 className="hidden z-20"
+                portalId="picker"
               />
             </div>
             <div  className="bg-[#151515] flex items-center justify-center py-6">
@@ -112,23 +113,8 @@ console.log(startDate, endDate, 'searche fodated formting ');
                 className="hidden z-50" 
                 portalId="picker"
                 popperClassName=" z-50"// Increase z-index
-                popperPlacement="bottom-end" // Adjust popper placement
-                // popperModifiers={[
-                //   {
-                //     name: 'offset',
-                //     options: {
-                //       offset: [0, 10], // Adjust for better positioning
-                //     },
-                //   },
-                //   {
-                //     name: 'preventOverflow',
-                //     options: {
-                //       rootBoundary: 'viewport',
-                //       tether: false, // This allows the datepicker to overflow its container
-                //       padding: 30, // Additional padding from edge of the viewport
-                //     },
-                //   },
-                // ]}
+                popperPlacement="bottom-start" // Adjust popper placement
+               
               />
             </div>
 

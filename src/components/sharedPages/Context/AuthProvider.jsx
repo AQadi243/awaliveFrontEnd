@@ -11,6 +11,9 @@ export const AuthContext = createContext(null);
 const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState(null);
+  const [promotionsData, setPromotionsData] = useState([])
+  const [promotionLoading, setPromotionLoading] = useState(true)
+  const [promotionError, setPromotionError] = useState(null)
   // const [userRole, setUserRole] = useState(null);
   
 
@@ -231,6 +234,46 @@ const AuthProvider = ({ children }) => {
     // setSearchLoading(false)
   }, [currentLanguage, t, setLoadingAllRooms]);
 
+
+
+  useEffect(() => {
+    
+    const fetchPromotionData = async () => {
+      try {
+        const response = await axios.get(`https://type-script-server.vercel.app/api/promotion/?lang=${currentLanguage}`);
+
+        console.log(response.data.data,'promotion data ');
+        const firstFourItems = response.data.data
+    
+        setPromotionsData(firstFourItems)
+        setPromotionLoading(false)
+      } catch (error) {
+        if (error.response) {
+          // The request was made, but the server responded with an error status
+          console.error('Server responded with an error:', error.response.data);
+          console.error('Status code:', error.response.status);
+          setPromotionLoading(false)
+          setPromotionError(error.response.status || error.response.data )
+        } else if (error.request) {
+          // The request was made, but no response was received
+          console.error('No response received from the server');
+          setPromotionLoading(false)
+        } else {
+          // Something happened in setting up the request that triggered an Error
+          console.error('Error setting up the request:', error.message);
+          setPromotionLoading(false)
+        }
+        
+        // Handle the error as needed
+      }
+    };
+    
+    fetchPromotionData(); // Call the async function
+    setPromotionLoading(false)
+  }, [currentLanguage]); 
+
+
+
   const authInfo = {
     loading,
     setLoading,
@@ -266,6 +309,9 @@ const AuthProvider = ({ children }) => {
     handleBookNow,
     setCreatedBooking,
     createdBooking,
+    promotionError,
+    promotionLoading,
+    promotionsData,
     // roomId,
     setRoomImage,
     setRoomPrice,

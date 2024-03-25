@@ -1,42 +1,59 @@
-import relaxAreaImage from '../../../assets/relaxArea.webp'
-import relaxAreaImage2 from '../../../assets/relazArea2.webp'
+import i18next from "i18next";
+import relaxAreaImage from "../../../assets/parallax-8-1.jpeg";
+import relaxAreaImage2 from "../../../assets/restaurant.jpg";
 // import LazyImage from '../../sharedPages/LazyImage'
 
 const RelaxArea = () => {
+    const currentLanguage = i18next.language
+
+    const componentStyleOne = {
+        backgroundImage: `url(${relaxAreaImage})`,
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "bottom",
+        backgroundSize: "cover", 
+      };
+    const componentStyleTwo = {
+        backgroundImage: `url(${relaxAreaImage2})`,
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "bottom",
+        backgroundSize: "cover", 
+      };
+
+
   return (
-    <section style={{ fontFamily: "Gilda Display, serif" }}>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="relative"  >
-                <picture>
-                <img src={relaxAreaImage} alt="" />
-                </picture>
-                <div className="absolute top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 flex flex-col gap-2 items-center text-white">
-                    <p className="text-xs tracking-widest">FREE WIFI</p>
-                    <h2 className="text-3xl">Relax Area</h2>
-                    <div>
-                        <a href="#" className="bg-black py-2 px-4 text-white text-xs md:text-sm">View All </a>
-                    </div>
-                </div>
+    <section >
+      <div className="grid grid-cols-1 md:grid-cols-2 h-[350px]">
+        <div className="relative w-full h-full" style={componentStyleOne}>
+          {/* <img src={relaxAreaImage} alt="" className=" object-bottom" /> */}
+
+          <div className=" flex  flex-col gap-5 items-center justify-center h-full text-white">
+            <p className="text-xs tracking-widest">FREE WIFI</p>
+            <h2 className={`text-6xl ${currentLanguage === 'ar' ? 'body-ar  font-medium ' : 'body-en-title'}`}>Relax Area</h2>
+            <div>
+              <a href="#" className="bg-[#BE9874] py-2 px-4 tracking-widest text-white text-xs md:text-sm">
+                View All{" "}
+              </a>
             </div>
-            
-                <div className="relative" >
-                    <picture>
-
-                    <img src={relaxAreaImage2} alt="" />
-                    </picture>
-                    <div className="absolute top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 flex flex-col gap-2 items-center text-white">
-                        <p className="text-xs tracking-widest">FREE WIFI</p>
-                        <h2 className="text-3xl">Relax Area</h2>
-                        <div>
-                            <a href="#" className="bg-black py-2 px-4 text-white text-xs md:text-sm">View All </a>
-                        </div>
-                    </div>
-                </div>
-            
+          </div>
         </div>
-   
-      </section>
-  )
-}
 
-export default RelaxArea
+        <div className=" relative"  style={componentStyleTwo}>
+          {/* <img src={relaxAreaImage2} alt="" /> */}
+          <div className="absolute inset-0 bg-black opacity-20"></div>
+
+          <div className="relative flex  flex-col gap-5 items-center justify-center h-full text-white">
+            <p className="text-xs tracking-widest">FREE WIFI</p>
+            <h2 className={`text-6xl ${currentLanguage === 'ar' ? 'body-ar  font-medium ' : 'body-en-title'}`}>Breakfast</h2>
+            <div>
+              <a href="#" className="bg-black py-2 px-4 tracking-widest text-white text-xs md:text-sm ">
+                View All{" "}
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default RelaxArea;

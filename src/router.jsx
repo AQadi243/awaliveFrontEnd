@@ -22,6 +22,7 @@ import AllGuest from "./components/admin/dashboard/component/pages/allGuests/All
 import Users from "./components/admin/dashboard/component/pages/allGuests/Users";
 import AddRoom from "./components/admin/dashboard/component/pages/Rooms/AddRooms/AddRoom";
 import ThankYou from "./components/pages/ThankYouPage/ThankYou";
+import Promotions from "./components/pages/Promotion/Promotions";
 
 const router = createBrowserRouter([
   {
@@ -60,7 +61,7 @@ const router = createBrowserRouter([
           <PrivateRoute>
 
           <BookNow />
-          </PrivateRoute>
+          </PrivateRoute> 
           )
       },
       {
@@ -80,10 +81,10 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
-      // {
-      //   path: "/promotions",
-      //   element: <Promotions />,
-      // },
+      {
+        path: "/promotions",
+        element: <Promotions />,
+      },
       {
         path: "/singlePromotionRoom/:id",
         element: <SinglePromoRoom />,

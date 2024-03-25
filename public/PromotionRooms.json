@@ -6,7 +6,9 @@
     "roomImage": "https://ik.imagekit.io/appgas2t34/awalive/roomViewCard.jpg?updatedAt=1701594932951",
     "price": 300,
     "saleTag": "Special Offer",
-    "numberOfGuests": "2 person",
+    "numberOfGuests":[
+      
+    ] ,
     "breakfastAvailable": "Not included",
     "description": "Experience luxury in our spacious Deluxe Suite with stunning views.",
     "fullDatails":"Morbi malesuada imperdiet imperdiet. Fusce in neque a magna sagittis tincidunt sit amet facilisis purus. Etiam in semper arcu, quis vulputate nisl. Curabitur maximus orci a ex cursus consectetur.Fusce eu ante luctus ligula aliquam vestibulum. Sed non arcu sit amet nisl vestibulum posuere. Phasellus lorem nisl, porttitor in volutpat sit amet, congue malesuada neque. Orci varius natoque pena",
