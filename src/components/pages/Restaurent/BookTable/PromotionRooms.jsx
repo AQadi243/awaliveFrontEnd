@@ -48,7 +48,7 @@ const PromotionRooms = () => {
         <div className=" w-full flex flex-col lg:flex-row gap-3  items-center justify-center py-10  ">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-7">
                 {promotionsData.map((singleROom) => (
-                    <Link to={`/singlePromotionRoom/${singleROom._id}`} key={singleROom._id} className="grid md:grid-cols-6 gap-5  ">
+                    <Link to={`/singlePromotionRoom/${singleROom._id}`} key={singleROom._id} className="grid md:grid-cols-6 gap-5 px-4 ">
                       <div className="col-span-1">
                         <img src={singleROom.roomImage} alt="" className=" w-full h-20 object-cover " />
                       </div>

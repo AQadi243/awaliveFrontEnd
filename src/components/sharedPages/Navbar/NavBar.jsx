@@ -14,14 +14,7 @@ import Headroom from "react-headroom";
 import { useTranslation } from "react-i18next";
 import i18next from "i18next";
 
-const navLinks = [
-  { title: "Home", href: "/" },
-  { title: "Room Search", href: "/roomSearch" },
-  { title: "Promotions", href: "/promotions" },
-  { title: "Restaurant", href: "/bookTable" },
-  { title: "About", href: "/about" },
-  { title: "Contact", href: "/contact" },
-];
+
 
 const Navbar = () => {
   const { user,userRole, handleLogout } = useContext(AuthContext);
@@ -29,14 +22,21 @@ const Navbar = () => {
   const currentLanguage = i18next.language
   const [open, setOpen] = useState(false);
 
-  console.log(user,'user');
-  console.log(user?.role,'userRole');
-
+  const navLinks = [
+    { title: t("home"), href: "/" },
+    { title: t("roomSearch"), href: "/roomSearch" },
+    { title: t("promotions"), href: "/promotions" },
+    { title: t("bookTable"), href: "/bookTable" },
+    
+    { title: t("about"), href: "/about" },
+    { title: t("contact"), href: "/contact" },
+  ];
   // const navigate = useNavigate();
   // const [isDropdownOpen, setDropdownOpen] = useState(false);
   const toggleMenu = () => {
     setOpen((prevOpen) => !prevOpen);
   };
+
   const menuVars = {
     initial: {
       scaleY: 0,
@@ -193,8 +193,8 @@ const Navbar = () => {
               )}
               {/* mobile login button todo to solve  */}
             </div>
-            <div className="cursor-pointer lg:hidden text-md text-black" onClick={toggleMenu}>
-              Menu
+            <div className="cursor-pointer lg:hidden text-md text-white" onClick={toggleMenu}>
+              {t("menu")}
             </div>
           </div>
         </div>
@@ -212,7 +212,7 @@ const Navbar = () => {
               <div className="flex justify-between">
                 <h1 className="text-lg text-black">Awalive Hotel</h1>
                 <p className="cursor-pointer text-md text-black" onClick={toggleMenu}>
-                  Close
+                  {t("Close")}
                 </p>
               </div>
               <motion.div
