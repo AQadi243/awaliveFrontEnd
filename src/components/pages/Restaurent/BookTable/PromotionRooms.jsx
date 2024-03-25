@@ -1,9 +1,12 @@
 import axios from "axios"
 import i18next from "i18next"
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
+import { AuthContext } from "../../../sharedPages/Context/AuthProvider"
+import { Link } from "react-router-dom"
 
 
 const PromotionRooms = () => {
+  const {  promotionLoading, promotionError, promotionsData } = useContext(AuthContext)
   const currentLanguage = i18next.language
     const [promotion, setPromotionRooms] = useState([])
     const [loading, setLoading] = useState(true)
@@ -27,7 +30,7 @@ const PromotionRooms = () => {
     
   return (
     <>
-    {loading ? (
+    {promotionLoading ? (
         <div> loading...</div>
     ) : (
         <section className="max-w-7xl mx-auto py-20" >
@@ -44,14 +47,16 @@ const PromotionRooms = () => {
 
         <div className=" w-full flex flex-col lg:flex-row gap-3  items-center justify-center py-10  ">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-7">
-                {promotion.map((singleROom) => (
-                    <div key={singleROom.id} className="grid md:grid-cols-6 gap-5  ">
+                {promotionsData.map((singleROom) => (
+                    <Link to={`/singlePromotionRoom/${singleROom._id}`} key={singleROom._id} className="grid md:grid-cols-6 gap-5  ">
                       <div className="col-span-1">
                         <img src={singleROom.roomImage} alt="" className=" w-full h-20 object-cover " />
                       </div>
-                       <div className="col-span-4 flex flex-col justify-between gap-2">
-                           <h2 className="text-2xl">{singleROom.roomName}</h2>
-                           <p className="text-xs">{singleROom.description }</p>
+                       <div className="col-span-4 flex flex-col  gap-2">
+                           <h2 className={`text-2xl ${currentLanguage === "ar" ? "body-ar font-medium " : "body-en-title"}  `}>{singleROom.roomName}</h2>
+                           {/* <p className="text-xs">{singleROom.fullDetails }</p> */}
+                           <p className="text-xs overflow-hidden text-ellipsis block h-12 leading-6 clamp-2">{singleROom.fullDetails}</p>
+
                        </div>
                        <div className="text-xs col-span-1 flex flex-col gap-4">
                            <p className="text-sm">{singleROom.price } $ / night</p>
@@ -59,7 +64,7 @@ const PromotionRooms = () => {
                            <a href="../promotions/chaletRoom.html" className="bg-[#1C1C1D] text-xs tracking-widest uppercase text-white text-center px-4 ">Sale</a>
                            </div>
                        </div>
-                    </div>
+                    </Link>
                 ))}
             </div>
         </div>    

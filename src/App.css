@@ -107,6 +107,12 @@ z-index: 1 ;
   color: #24303F;
   
 }
+.ant-tabs-tab+.ant-tabs-tab {
+ margin: 0 !important;
+}
+.ant-tabs-nav .ant-tabs-nav-list {
+  column-gap: 32px !important;
+}
 .selector{
     background-color: transparent !important;
     border: none !important;

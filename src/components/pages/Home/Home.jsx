@@ -18,7 +18,9 @@ import HeroBanner from "./HeroBanner";
 import Availability from "./Availability";
 
 const Home = () => {
-  const { allRooms, loadingAllRooms, setLoadingAllRooms } = useContext(AuthContext);
+  const { allRooms, loadingAllRooms, setLoadingAllRooms, promotionLoading, promotionError, promotionsData } = useContext(AuthContext);
+  console.log(promotionLoading, 'loadingggggggggg');
+ 
   const [roomRates, setRoomRates] = useState([]);
   // const [loading, setLoading] = useState(true)
   const [showButton, setShowButton] = useState(false);
@@ -88,7 +90,7 @@ const Home = () => {
         </div>
         <Relax />
         <RoomCards roomRates={roomRates} loadingAllRooms={loadingAllRooms} />
-        <CheckPromotion />
+        <CheckPromotion promotionsData={promotionsData} promotionError={promotionError} promotionLoading={promotionLoading} />
         <RoomPrice />
         <HotelStucture />
         <BestPosition />

@@ -5,14 +5,14 @@ import { Link } from "react-router-dom";
 
 const BestPromotions = ({ data, loading }) => {
   const currentLanguage = i18next.language
-  const {t} = useTranslation('promotion')
+  const {t} = useTranslation("promotion")
 
-  
+  console.log(data, 'room data ');
 
   return (
-    <section className="max-w-7xl mx-auto" style={{ fontFamily: "Gilda Display, serif" }}>
+    <section className="max-w-7xl mx-auto" >
         <div className=" py-20">
-      <div className=" text-center pb-16  flex flex-col  gap-4 text-black">
+      <div className={` text-center pb-16  flex flex-col  gap-4 text-black ${currentLanguage === 'ar' ? 'body-ar  font-medium  ' : 'body-en-title '} `}>
         <p className="tracking-[0.2rem] text-sm">{t("MONTHLY SALE")}</p>
         <h2 className="text-3xl md:text-6xl">{t("Best Promo of the Day")}</h2>
       </div>
@@ -30,7 +30,7 @@ const BestPromotions = ({ data, loading }) => {
                 <p className="text-lg font-thin">{room.price} SR</p>
                 <div>
                   <button className="py-2 px-4 uppercase text-sm bg-[#1C1C1D] text-white tracking-widest ">
-                    Read More
+                    {t("Read More")}
                   </button>
                 </div>
               </div>

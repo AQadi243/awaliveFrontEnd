@@ -8,10 +8,14 @@ import i18next from "i18next";
 import { useTranslation } from "react-i18next";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import placeholderImage from "../../../assets/hotel-service.png";
+import { Link } from "react-router-dom";
 
-const CheckPromotion = () => {
+const CheckPromotion = ({promotionsData, promotionLoading, promotionError}) => {
+
   const currentLanguage = i18next.language;
   const { t } = useTranslation("home");
+  
+  const promotionData = promotionsData.slice(0, 3)
   
   return (
     <>
@@ -46,20 +50,31 @@ const CheckPromotion = () => {
             />
 
 
+<div>
+            {promotionLoading ? (
+    <div>Loading..</div>
+) : (
             <div className={`lg:absolute overflow-hidden ${currentLanguage === "ar" ? "left-0" : "right-0"} my-20 md:my-0  md top-40 w-full  lg:w-[50%] flex flex-col gap-10`}>
-            <div data-aos="fade-left" data-aos-duration="900" >
-              <div  className="grid grid-cols-4 gap-6 items-center justify-center ">
-                <img src={luxuryRoom}  alt="" className="col-span-1 w-70  " />
-                <div className="col-span-2">
-                  <p className="text-xs tracking-widest">{t("One week")}</p>
-                  <p className={`text-xl ${currentLanguage === 'ar' ? 'body-ar  font-normal ' : 'body-en-title '}`} >
-                    {t("Small Sea Room")}
-                  </p>
-                </div>
-                <p className="bg-[#2E2E2E] py-1 px-3 col-span-1 text-white text-center text-xs md:text-sm">$ 40</p>
-              </div>
-            </div>
-            <div data-aos="fade-left" data-aos-duration="900">
+              {promotionData.slice(0, 3).map((room) => (
+                  <Link  to={`/singlePromotionRoom/${room._id}`} key={room._id} data-aos="fade-left" data-aos-duration="900">
+                      <div className="grid grid-cols-4 gap-6 items-center justify-center ">
+                          <img src={room.roomImage} alt="" className="col-span-1 w-70" />
+                          <div className="col-span-2">
+                              <p className="text-xs tracking-widest">{room.saleTag}</p>
+                              <p className={`text-xl ${currentLanguage === 'ar' ? 'body-ar font-normal' : 'body-en-title'}`}>
+                                  {room.roomName}
+                              </p>
+                          </div>
+                          <p  className="bg-[#2E2E2E] py-1 px-3 col-span-1 text-white text-center text-xs md:text-sm">{t("SR")} {room.price}</p>
+                      </div>
+                  </Link>
+              ))}
+          </div>
+)}
+</div>
+
+            
+            {/* <div data-aos="fade-left" data-aos-duration="900">
               <div className="grid grid-cols-4 gap-6 items-center justify-center ">
                 <img src={familyRoom} alt="" className="col-span-1   w-48 object-cover" />
                 <div className="col-span-2">
@@ -82,8 +97,8 @@ const CheckPromotion = () => {
                 </div>
                 <p className="bg-[#2E2E2E] py-1 px-3 col-span-1 text-white text-center text-xs md:text-sm">$ 40</p>
               </div>
-            </div>
-            </div>
+            </div> */}
+            {/* </div> */}
             
           </div>
         </div>
