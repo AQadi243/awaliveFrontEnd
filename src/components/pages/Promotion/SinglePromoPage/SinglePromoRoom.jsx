@@ -21,7 +21,7 @@ const SinglePromoRoom = () => {
         setError(null); // Clear previous errors
 
         try {
-            const response = await axios.get(`http://localhost:5000/api/promotion/${id}?lang=${currentLanguage}`);
+            const response = await axios.get(`https://type-script-server.vercel.app/api/promotion/${id}?lang=${currentLanguage}`);
             setSinglePromotionData(response.data.data.room);
         } catch (error) {
             console.error('Error fetching data:', error);
