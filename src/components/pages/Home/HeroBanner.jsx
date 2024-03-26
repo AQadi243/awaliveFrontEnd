@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import bannerImageTwo from "../../../assets/hero-tree.jpg";
 import bannerImageOne from "../../../assets/hero-four.jpg";
@@ -8,8 +8,10 @@ import { Link } from "react-router-dom";
 import i18next from "i18next";
 
 const HeroBanner = () => {
-  const currentLanguage = i18next.language
+  const currentLanguage = i18next.language;
   const { t } = useTranslation("home");
+  const magneticRef = useRef(null);
+
   const imageData = useMemo(
     () => [
       { src: bannerImageOne, title: t("enjoyALuxuryExperience"), subtitle: t("EXPERIENCE") },
@@ -48,12 +50,25 @@ const HeroBanner = () => {
     exit: { y: -20, opacity: 0, transition: { duration: 1 } },
   };
 
+  const handleMagneticEffect = (e) => {
+    const magneticElement = magneticRef.current;
+    const children = magneticElement.childNodes;
+    const rect = magneticElement.getBoundingClientRect();
+  
+    children.forEach((child, index) => {
+      const scale = index === 1 ? 0.05 : 0.1; // For example, reduce the effect on the third child (subtitle)
+      const x = (e.clientX - rect.left - rect.width / 2) * scale;
+      const y = (e.clientY - rect.top - rect.height / 2) * scale;
+      child.style.transform = `translate(${x}px, ${y}px)`;
+    });
+  };
+
   return (
-          <motion.div className={` bg-[#1C1C1D] flex justify-center items-center relative h-screen lg:h-[calc(100vh-50px)]  `}>
-      <AnimatePresence mode="wait" >
+    <motion.div className={` bg-[#1C1C1D] flex justify-center items-center relative h-screen lg:h-[calc(100vh-50px)]  `}>
+      <AnimatePresence mode="wait">
         <motion.div
           key={activeImageIndex}
-          className={ `carousel overflow-hidden  flex justify-center items-center w-full `} 
+          className={`carousel overflow-hidden  flex justify-center items-center w-full `}
           initial="hidden"
           animate="visible"
           exit="exit"
@@ -67,37 +82,54 @@ const HeroBanner = () => {
             height: "100%", // Set height to viewport height
           }}
         >
-          
           <motion.div
-            className={`text-container relative z-10 text-center flex flex-col items-center justify-center pb-20 ${currentLanguage === 'ar' ? 'body-ar  font-medium ' : 'body-en-title '}`}
+          ref={magneticRef}
+          onMouseMove={handleMagneticEffect}
+          onMouseLeave={() => magneticRef.current.childNodes.forEach(child => child.style.transform = 'translate(0, 0)')}
+            className={`w-full h-full text-container relative z-10 text-center flex flex-col items-center justify-center pb-20 ${
+              currentLanguage === "ar" ? "body-ar  font-medium " : "body-en-title "
+            }`}
             variants={textVariants}
-            
           >
-            <motion.p className={`text-xs md:text-sm text-white uppercase mt-2 mb-4 tracking-[0.2rem]  ${currentLanguage === 'ar' ? 'body-ar text-xl font-medium ' : 'body-en'}`} variants={textVariants} >
+            <motion.p
+              className={`text-xs md:text-sm text-white uppercase mt-2 mb-4 tracking-[0.2rem]  ${
+                currentLanguage === "ar" ? "body-ar text-xl font-medium " : "body-en"
+              }`}
+              variants={textVariants}
+            >
               {t("Luxury Hotel & Best Resort")}
             </motion.p>
             <div className="w-12 h-[1px] bg-white items-center mb-5"></div>
             <motion.h2 className="text-3xl md:text-6xl text-white uppercase mt-2  font-semibold" variants={textVariants}>
               {imageData[activeImageIndex].title}
             </motion.h2>
-            <motion.p className=" text-3xl md:text-6xl text-white uppercase mt-2  tracking-widest font-semibold" variants={textVariants}>
+            <motion.p
+              className=" text-3xl md:text-6xl text-white uppercase mt-2  tracking-widest font-semibold"
+              variants={textVariants}
+            >
               {imageData[activeImageIndex].subtitle}
             </motion.p>
             <motion.p className=" text-md md:text-xl text-white mt-10 md-mt-10 xl:mt-10" variants={textVariants}>
-              <Link to={'/roomSearch'} className={`text-white uppercase  font-bold border-2 border-gray-50 py-3 px-10 tracking-widest ${currentLanguage === 'ar' ? 'body-ar text-sm font-medium ' : 'body-en text-xs '}`} style={{ fontFamily: "poppins, serif" }}>
-               {t("roomsAndSuits")}
+              <Link
+              
+                to={"/roomSearch"}
+                className={`text-white uppercase  font-bold border-2 border-gray-50 py-3 px-10 tracking-widest ${
+                  currentLanguage === "ar" ? "body-ar text-sm font-medium " : "body-en text-xs "
+                }`}
+                style={{ fontFamily: "poppins, serif" }}
+              >
+                {t("roomsAndSuits")}
               </Link>{" "}
               {/* Update your link text and href here */}
             </motion.p>
           </motion.div>
         </motion.div>
       </AnimatePresence>
-        <div className="hidden md:flex md:absolute   md:left-1/2 md:transform md:-translate-x-1/2 md:bottom-8 md:z-10 w-full">
-          {/* <SearchBar pageContext="home" /> */}
-          <Availability />
-        </div>
+      <div className="hidden md:flex md:absolute   md:left-1/2 md:transform md:-translate-x-1/2 md:bottom-8 md:z-10 w-full">
+        {/* <SearchBar pageContext="home" /> */}
+        <Availability />
+      </div>
     </motion.div>
-      
   );
 };
 

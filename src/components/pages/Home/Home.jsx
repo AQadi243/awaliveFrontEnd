@@ -19,7 +19,7 @@ import Availability from "./Availability";
 
 const Home = () => {
   const { allRooms, loadingAllRooms, setLoadingAllRooms, promotionLoading, promotionError, promotionsData } = useContext(AuthContext);
-  console.log(promotionLoading, 'loadingggggggggg');
+  
  
   const [roomRates, setRoomRates] = useState([]);
   // const [loading, setLoading] = useState(true)
