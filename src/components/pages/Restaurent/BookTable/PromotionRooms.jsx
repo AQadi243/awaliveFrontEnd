@@ -11,22 +11,22 @@ const PromotionRooms = () => {
     const [promotion, setPromotionRooms] = useState([])
     const [loading, setLoading] = useState(true)
 
-    useEffect(() => {
-      const promotionRoomsAll = async () => {
-        setLoading(true)
-        try {
-            const response = await axios.get('PromotionRooms.json')
-            setPromotionRooms(response.data)
-            setLoading(false)
+    // useEffect(() => {
+    //   const promotionRoomsAll = async () => {
+    //     setLoading(true)
+    //     try {
+    //         const response = await axios.get('PromotionRooms.json')
+    //         setPromotionRooms(response.data)
+    //         setLoading(false)
             
-        } catch (error) {
-            console.log('promo ', error.message);
-            setLoading(false)
-        }
+    //     } catch (error) {
+    //         console.log('promo ', error.message);
+    //         setLoading(false)
+    //     }
 
-      }
-      promotionRoomsAll()
-    }, [])
+    //   }
+    //   promotionRoomsAll()
+    // }, [])
     
   return (
     <>

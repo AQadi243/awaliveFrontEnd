@@ -23,6 +23,7 @@ import Users from "./components/admin/dashboard/component/pages/allGuests/Users"
 import AddRoom from "./components/admin/dashboard/component/pages/Rooms/AddRooms/AddRoom";
 import ThankYou from "./components/pages/ThankYouPage/ThankYou";
 import Promotions from "./components/pages/Promotion/Promotions";
+import RoomRate from "./components/pages/Room Rate/RoomRate";
 
 const router = createBrowserRouter([
   {
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
       {
         path: "/contact",
         element: <Contact />,
+      },
+      {
+        path: "/roomRate",
+        element: <RoomRate />,
       },
       {
         path: "/roomSearch",
