@@ -149,7 +149,7 @@ const Availability = () => {
   }
 
   return (
-    <div dir="ltr" className="w-full h-full md:w-[70%] lg:w-[40%] mx-auto grid grid-cols-1 md:grid-cols-4" style={{ fontFamily: "Gilda Display, serif" }}>
+    <div  className="w-full h-full md:w-[70%] lg:w-[40%] mx-auto grid grid-cols-1 md:grid-cols-4" style={{ fontFamily: "Gilda Display, serif" }}>
       
       {/* Check-in date section */}
       <div className="bg-white flex items-center justify-center py-5">
@@ -221,8 +221,8 @@ const Availability = () => {
 
       {/* Search button */}
       <Link to={ `/roomSearch`} onClick={handleAvailable} className={`bg-[#1C1C1D] text-white flex flex-col items-center justify-center cursor-pointer py-5 ${currentLanguage === 'ar' ? 'body-ar font-medium ' : 'body-en text-sm'}`}>
-        <p className="tracking-[0.2rem] uppercase">{t("Check")}</p>
-        <p className="tracking-[0.2rem] uppercase">{t("Availability")}</p>
+        <p className="tracking-widest uppercase">{t("Check")}</p>
+        <p className="tracking-widest uppercase">{t("Availability")}</p>
       </Link>
     </div>
   );

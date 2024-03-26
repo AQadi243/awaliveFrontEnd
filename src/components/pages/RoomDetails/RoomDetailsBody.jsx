@@ -33,10 +33,11 @@ const RoomDetailsBody = ({ singleRoomDetails }) => {
           <RoomImageSlider images={images} />
 
           {/* Facilities   */}
-          <div dir={`${currentLanguage === "ar" ? "rtl" : "ltr"}`}>
+          <div >
             <div className="flex justify-between  py-2 px-4 md:py-4 md:px-20 ">
               <div className="flex flex-col items-center gap-3 ">
                 <p className="text-2xl">
+                  
                   {/* <UserOutlined />{" "} */}
                   <LuUserCircle className="text-3xl md:text-4xl text-gray-400 " />
                 </p>{" "}

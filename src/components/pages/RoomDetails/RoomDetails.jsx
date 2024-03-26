@@ -54,7 +54,7 @@ const RoomDetails = () => {
         <>
           <RoomBanner singleRoomDetails={singleRoomDetails} />
 
-          <section dir="ltr" className="max-w-7xl mx-auto px-2 py-7 md:py-16">
+          <section  className="max-w-7xl mx-auto px-2 py-7 md:py-16">
             <div className={`py-4 ${currentLanguage === "ar" ? "body-ar font-normal  " : "body-en "} `}>
               <div dir={`${currentLanguage === "ar" ? "rtl" : "ltr"}`}>
                 {currentLanguage === "ar" ? (

@@ -51,12 +51,12 @@ const LanguageDropdown = () => {
   const handleMenuClick = (e) => {
     // changeLanguage(e.key);
     i18next.changeLanguage(e.key);
-    notification['warning']({
-      message: 'Language Changed',
-      description: `Language has been changed to ${languages.find(l => l.code === e.key).name}.`,
-      placement: 'topRight',
-      duration: 3.5, // duration in seconds
-    });
+    // notification['warning']({
+    //   message: 'Language Changed',
+    //   description: `Language has been changed to ${languages.find(l => l.code === e.key).name}.`,
+    //   placement: 'topRight',
+    //   duration: 3.5, // duration in seconds
+    // });
   };
 
   return (

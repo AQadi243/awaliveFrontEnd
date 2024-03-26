@@ -303,7 +303,7 @@ const Search = () => {
           
         </section>
         <section className="max-w-7xl mx-auto py-16 px-2 md:px-0">
-          <div dir="ltr" className="flex flex-col md:flex-row gap-5">
+          <div className="flex flex-col md:flex-row gap-5">
             <DatesSearch />
             <AllRooms
             viewMode={viewMode}

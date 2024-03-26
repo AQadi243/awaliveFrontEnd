@@ -15,7 +15,7 @@ const RateComponent = () => {
                 {promotionsData.map((singleROom) => (
                     <p to={`/singlePromotionRoom/${singleROom._id}`} key={singleROom._id} className="grid md:grid-cols-6 gap-5 px-4 ">
                       <div className="col-span-1">
-                        <img src={singleROom.roomImage} alt="" className=" w-48 h-20 object-cover " />
+                        <img src={singleROom.roomImage} alt="" className=" w-full h-20 object-cover " />
                       </div>
                        <div className="col-span-4 flex flex-col  gap-2">
                            <h2 className={`text-2xl ${currentLanguage === "ar" ? "body-ar font-medium " : "body-en-title"}  `}>{singleROom.roomName}</h2>
