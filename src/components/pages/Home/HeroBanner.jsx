@@ -54,14 +54,22 @@ const HeroBanner = () => {
     const magneticElement = magneticRef.current;
     const children = magneticElement.childNodes;
     const rect = magneticElement.getBoundingClientRect();
-  
+
     children.forEach((child, index) => {
-      const scale = index === 1 ? 0.05 : 0.1; // For example, reduce the effect on the third child (subtitle)
+      // Setting different scales based on child index
+      let scale;
+      if (index === 0 || index === 2) { // Reduce the effect for the first and third children
+        scale = 0.05; // Smaller movement
+      } else {
+        scale = 0.1; // Normal movement
+      }
+
       const x = (e.clientX - rect.left - rect.width / 2) * scale;
       const y = (e.clientY - rect.top - rect.height / 2) * scale;
       child.style.transform = `translate(${x}px, ${y}px)`;
     });
-  };
+};
+
 
   return (
     <motion.div className={` bg-[#1C1C1D] flex justify-center items-center relative h-screen lg:h-[calc(100vh-50px)]  `}>
@@ -100,6 +108,7 @@ const HeroBanner = () => {
               {t("Luxury Hotel & Best Resort")}
             </motion.p>
             <div className="w-12 h-[1px] bg-white items-center mb-5"></div>
+            <motion.div>
             <motion.h2 className="text-3xl md:text-6xl text-white uppercase mt-2  font-semibold" variants={textVariants}>
               {imageData[activeImageIndex].title}
             </motion.h2>
@@ -109,6 +118,7 @@ const HeroBanner = () => {
             >
               {imageData[activeImageIndex].subtitle}
             </motion.p>
+            </motion.div>
             <motion.p className=" text-md md:text-xl text-white mt-10 md-mt-10 xl:mt-10" variants={textVariants}>
               <Link
               
