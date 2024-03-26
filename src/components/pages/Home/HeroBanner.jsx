@@ -59,9 +59,9 @@ const HeroBanner = () => {
       // Setting different scales based on child index
       let scale;
       if (index === 0 || index === 2) { // Reduce the effect for the first and third children
-        scale = 0.05; // Smaller movement
+        scale = -0.05; // Smaller, opposite direction movement
       } else {
-        scale = 0.1; // Normal movement
+        scale = -0.1; // Normal, opposite direction movement
       }
 
       const x = (e.clientX - rect.left - rect.width / 2) * scale;
@@ -107,8 +107,8 @@ const HeroBanner = () => {
             >
               {t("Luxury Hotel & Best Resort")}
             </motion.p>
-            <div className="w-12 h-[1px] bg-white items-center mb-5"></div>
-            <motion.div>
+            <div className="w-12 h-[1px] bg-white items-center my-5 mb-5"></div>
+            <motion.div className="pt-2">
             <motion.h2 className="text-3xl md:text-6xl text-white uppercase mt-2  font-semibold" variants={textVariants}>
               {imageData[activeImageIndex].title}
             </motion.h2>
