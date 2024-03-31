@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import  { useContext, useEffect, useState } from "react";
 
 import i18next from "i18next";
 import { useTranslation } from "react-i18next";
@@ -6,6 +6,7 @@ import BannerPage from "../../sharedPages/PageBanner/BannerPage";
 import { AuthContext } from "../../sharedPages/Context/AuthProvider";
 import ThankYouDate from "./TankYouDate";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const ThankYou = () => {
   const [thankYouLoading, setThanYouLoading] = useState(true);
@@ -21,7 +22,7 @@ const ThankYou = () => {
         setThanYouLoading(true); // Start loading
         const response = await axios.get(`https://type-script-server.vercel.app/api/booking/${bookingId}`);
         setBookedRoomDetails(response.data.data); // Set your state based on response
-        console.log(response.data.data, "room resposne ");
+       
       } catch (err) {
         // setError(err.message); // Set error message in state
         console.log(err.message, "room resposne ");
@@ -35,11 +36,6 @@ const ThankYou = () => {
     fetchRoomDetails();
   }, [currentLanguage, setThanYouLoading]);
 
-
- 
-
-  //   console.log(loading,'from thnyou page ');
-  //   console.log(createdBooking,'from thnyou page ');
   if (thankYouLoading) {
     return <div className="h-screen flex justify-center items-center">Loading...</div>; // This should be 'return', not just expression.
   }
@@ -141,9 +137,9 @@ const ThankYou = () => {
                 </p>
                 <p className="py-4 text-slate-700">{bookedRoomDetails.paymentType}</p>
                 {/* <Tabs defaultActiveKey="1" items={items} onChange={onChange} /> */}
-                <button className="py-2 px-6 bg-black text-white uppercase tracking-widest text-sm">
+                <Link to={`/roomSearch`} className="py-2 px-6 bg-black text-white uppercase tracking-widest text-sm">
                   {t("Retune to Search Room")}
-                </button>
+                </Link>
               </div>
             </div>
           </div>

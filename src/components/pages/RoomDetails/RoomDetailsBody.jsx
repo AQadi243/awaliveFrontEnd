@@ -20,7 +20,7 @@ const RoomDetailsBody = ({ singleRoomDetails }) => {
   const { t } = useTranslation("booking");
   
 
-  const { description, features, images, maxGuests, priceOptions, services, size } = singleRoomDetails;
+  const { description, features, images, maxGuests, priceOptions,priceHistory,services, size } = singleRoomDetails;
 
  
 
@@ -57,15 +57,17 @@ const RoomDetailsBody = ({ singleRoomDetails }) => {
               <div className="flex flex-col gap-3 items-center">
                 {/* <p className="text-xl  md:text-xl">{t("SAR")} </p>{" "} */}
                 <LuHome className="text-3xl md:text-4xl text-gray-400" />
+                <div className="flex gap-2">
+                {priceHistory && (
+                  <s className="uppercase tracking-widest text-sm  ">
+                  {priceHistory}
+                </s>
+                )}
                 <p className="uppercase tracking-widest text-sm  ">
                   {priceOptions[0].price} {priceOptions[0].currency}
                 </p>
-                {/* <p>
-                  {currentLanguage === "en"
-                    ? priceOptions[0].price.toLocaleString()
-                    : priceOptions[0].price.toLocaleString("ar-EG")}{" "}
-                  {priceOptions[0].currency}
-                </p> */}
+                </div>
+                
               </div>
               <div className="flex flex-col items-center">
                 <p className="text-xl  md:text-2xl">

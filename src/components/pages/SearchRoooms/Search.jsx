@@ -17,8 +17,7 @@ import { Helmet } from "react-helmet";
 import { useLocation } from "react-router-dom";
 
 const Search = () => {
-  const location = useLocation(); 
-  console.log(location , 'searc room locations ');
+
   const {
     category,
     setSortByPrice,
@@ -45,7 +44,7 @@ const Search = () => {
   const [viewMode, setViewMode] = useState('grid');
   // const [notFoundRoom, setNotFoundRoom] = useState('');
   
-
+console.log(errorMessage,'data error ');
   const formatDateString = (dateString) => {
     return dateString ? new Date(dateString).toLocaleDateString() : null;
   };
@@ -117,12 +116,12 @@ const Search = () => {
       console.log(params.toString(), 'params sring');
       try {
         const response = await axios.get(
-          // `https://type-script-server.vercel.app/api/room/available/?${params.toString()}`
-          // `https://type-script-server.vercel.app/api/room/available/?lang=${currentLanguage}&checkInDate=${formetDateCheckIn}&checkOutDate=${formetDateCheckOut}&maxGuests=${numberOfGuests}&sizeOrder=${roomSize}&sortByPrice=${sortByPrice}`
-          // `https://type-script-server.vercel.app/api/room/available/?${params.toString()}`
           `https://type-script-server.vercel.app/api/room/available/?${params.toString()}`
+          // `https://type-script-server.vercel.app/api/room/available/?lang=${currentLanguage}&checkInDate=${formetDateCheckIn}&checkOutDate=${formetDateCheckOut}&maxGuests=${numberOfGuests}&sizeOrder=${roomSize}&sortByPrice=${sortByPrice}`
+          // `http://localhost:5000/api/room/available/?${params.toString()}`
+          // `https://type-script-server.vercel.app/api/room/available/?${params.toString()}`
         );
-
+          console.log(response, 'resposnse data ta');
         let rooms = response.data.data;
         console.log(rooms , 'seareded rooms ');
         setAvailableRooms(rooms);
@@ -140,6 +139,7 @@ const Search = () => {
         setAvailableRooms(rooms);
         setLoadingAvailableRooms(false);
       } catch (error) {
+        console.log(error);
         console.error(error?.response?.data?.error?.statusCode);
         console.error(error?.response?.data?.issues[0]?.message);
         setErrorMessage(` ${error?.response?.data?.issues[0]?.message}`);

@@ -17,6 +17,26 @@ import PageAnimation from "../../PageAnimation/PageAnimation";
 import HeroBanner from "./HeroBanner";
 import Availability from "./Availability";
 
+
+
+function shuffleArray(array) {
+  let currentIndex = array.length,  randomIndex;
+
+  // While there remain elements to shuffle...
+  while (currentIndex !== 0) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    // And swap it with the current element.
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex], array[currentIndex]];
+  }
+
+  return array;
+}
+
 const Home = () => {
   const { allRooms, loadingAllRooms, setLoadingAllRooms, promotionLoading, promotionError, promotionsData } = useContext(AuthContext);
   
@@ -25,12 +45,19 @@ const Home = () => {
   // const [loading, setLoading] = useState(true)
   const [showButton, setShowButton] = useState(false);
 
+  // useEffect(() => {
+  //   setLoadingAllRooms(true);
+  //   if (allRooms && allRooms.length > 0) {
+  //     setRoomRates(allRooms.slice(0, 6)); // Take the first 6 rooms
+  //     setLoadingAllRooms(false);
+  //   }
+  // }, [allRooms, setLoadingAllRooms]);
   useEffect(() => {
-    setLoadingAllRooms(true);
     if (allRooms && allRooms.length > 0) {
-      setRoomRates(allRooms.slice(0, 6)); // Take the first 6 rooms
-      setLoadingAllRooms(false);
+      const shuffledRooms = shuffleArray([...allRooms]); // Create a shuffled copy of allRooms
+      setRoomRates(shuffledRooms.slice(0, 6)); // Take the first 6 rooms after shuffling
     }
+    setLoadingAllRooms(false);
   }, [allRooms, setLoadingAllRooms]);
 
   useEffect(() => {
@@ -89,7 +116,7 @@ const Home = () => {
           <Availability />
         </div>
         <Relax />
-        <RoomCards roomRates={roomRates} loadingAllRooms={loadingAllRooms} />
+        <RoomCards rooms={roomRates} loadingAllRooms={loadingAllRooms} />
         <CheckPromotion promotionsData={promotionsData} promotionError={promotionError} promotionLoading={promotionLoading} />
         <RoomPrice />
         <HotelStucture />

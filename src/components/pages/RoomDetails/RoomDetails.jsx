@@ -28,6 +28,7 @@ const RoomDetails = () => {
     const fetchRoom = async () => {
       try {
         const response = await axios.get(`https://type-script-server.vercel.app/api/room/${id}?lang=${currentLanguage}`);
+        // const response = await axios.get(`http://localhost:5000/api/room/${id}?lang=${currentLanguage}`);
         setSingleRoomDetails(response.data.data);
         setLoading(false);
       } catch (error) {
@@ -38,7 +39,7 @@ const RoomDetails = () => {
     fetchRoom();
   }, [id, currentLanguage, t, setSingleRoomDetails]);
 
-  
+  console.log(singleRoomDetails, "sibgle data ");
 
   return (
     <>

@@ -13,6 +13,7 @@ import { AuthContext } from "../Context/AuthProvider";
 import Headroom from "react-headroom";
 import { useTranslation } from "react-i18next";
 import i18next from "i18next";
+import logo from "../../../../public/img/Untitled-3.svg"
 
 
 
@@ -97,12 +98,13 @@ const Navbar = () => {
     >
       <nav className="max-w-7xl mx-auto" >
         <div className={` flex items-center justify-between  px-2 ${currentLanguage === 'ar' ? 'body-ar font-normal  ' : 'body-en '}`}>
-          <div className=" flex items-center gap-[1ch]">
+          <Link to={"/"} className=" flex items-center justify-center gap-[1ch]">
             
-            <Link to={"/"} className=" text-sm md:text-xl font-normal tracking-widest uppercase text-white">
-              {t("Awalive Hotel")}
-            </Link>
-          </div>
+            {/* <Link to={"/"} className=" text-sm md:text-xl  "> */}
+              {/* {t("Awalive Hotel")} */}
+              <img src={logo} alt="awalive-hotel-logo" className="h-20 max-w-40 " />
+            {/* </Link> */}
+          </Link>
           <div className="lg:flex hidden   gap-8 text-md text-zinc-400">
             <NavLink to={"/"} className={({ isActive }) => (isActive ? " text-white py-8 lg:py-6" : "py-8 lg:py-6")}>
               {t("home")}

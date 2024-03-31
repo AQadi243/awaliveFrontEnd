@@ -26,7 +26,7 @@ function App() {
     <>
     <ScrollToTop />
 
-    <div className="App   ">
+    <div className="App ">
           <NotificationBar />
           <Navbar />
           <Outlet />

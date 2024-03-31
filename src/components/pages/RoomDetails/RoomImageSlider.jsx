@@ -23,11 +23,13 @@ const RoomImageSlider = ({ images }) => {
   const settings = {
     // dots: true,
     // fade: true,
-    infinite: true,
+    // infinite: true,
+    infinite: images.length > 1,
     speed: 800,
     slidesToShow: 1,
     slidesToScroll: 1,
-    autoplay: true,        // Enable autoplay
+    // autoplay: true,        // Enable autoplay
+    autoplay: images.length > 1,
   autoplaySpeed: 3000,   // Set delay between transitions to 3000 milliseconds (3 seconds)
   waitForAnimate: false
   };

@@ -2,11 +2,11 @@
 import { useContext, useEffect } from "react";
 import { Navigate, useLocation } from "react-router-dom";
 import { AuthContext } from "../sharedPages/Context/AuthProvider";
-import { notification } from "antd";
+import { message } from "antd";
 // import { use } from "i18next";
 
 const PrivateRoute = ({ children }) => {
-  const { user, loading, setLoading } = useContext(AuthContext);
+  const { user, loading,  } = useContext(AuthContext);
   const location = useLocation();
 
   console.log(user,'suersss');
@@ -38,12 +38,13 @@ const PrivateRoute = ({ children }) => {
   useEffect(() => {
     if (!loading && !user) {
       // Notify and redirect if not logged in
-      notification["warning"]({
-        message: "Access Denied",
-        description: "You need to log in to access this page.",
-        placement: "topRight",
-        duration: 3.5,
-      });
+      // notification["warning"]({
+      //   message: "Access Denied",
+      //   description: "You need to log in to access this page.",
+      //   placement: "topRight",
+      //   duration: 3.5,
+      // });
+      message.warning('You need to log in to access this page.')
     }
   }, [user, loading, location.pathname]); // Add location.pathname to dependencies to avoid showing the notification when the user is already logged in but navigates to another page
 

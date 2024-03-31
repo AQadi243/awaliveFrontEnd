@@ -14,7 +14,6 @@ import { LuCheckSquare } from "react-icons/lu";
 const NotificationBar = () => {
   const currentLanguage = i18next.language;
   const { user, userRole, handleLogout } = useContext(AuthContext);
-  console.log(user, "asdaseawefwefwe");
   const { t } = useTranslation("home");
 
   const changeLanguage = (languageCode) => {
@@ -51,7 +50,7 @@ const NotificationBar = () => {
               onClick={() => changeLanguage("en")}
               style={{ opacity: currentLanguage === "en" ? 0.5 : 1 }}
             >
-              <p>EN</p>
+              <a>EN</a>
               {/* <img src={en} alt="" className="" /> */}
             </p>
             <div

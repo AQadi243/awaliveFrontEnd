@@ -1,13 +1,12 @@
 import i18next from "i18next";
-import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
-const BestPromotions = ({ data, loading }) => {
+const BestPromotions = ({ data, loading, promotionError }) => {
   const currentLanguage = i18next.language
   const {t} = useTranslation("promotion")
 
-  console.log(data, 'room data ');
+  
 
   return (
     <section className="max-w-7xl mx-auto" >
@@ -18,16 +17,24 @@ const BestPromotions = ({ data, loading }) => {
       </div>
       {loading ? (
         <div>Loading</div>
+      ) : promotionError? (
+        <div className="text-center font-semibold">{promotionError}</div>
       ) : (
         <div className=" max-w-6xl mx-auto grid md:grid-cols-3 gap-7">
           {data.slice(0, 6).map((room) => (
-            <Link to={`/singlePromotionRoom/${room._id}`} key={room._id} className="shadow-lg ">
-              <div>
-              <img src={room.roomImage} alt="" className="h-full md:h-[350px] w-full object-cover" />
+            <Link to={`/room/${room._id}`} key={room._id} className="shadow-lg ">
+              <div className="relative">
+              <img src={room.images[0]} alt="" className="h-full md:h-[350px] w-full object-cover " />
+              <div className=" absolute inset-0 bg-black opacity-30"></div>
+              <p className="absolute top-5 left-5 text-white bg-[#D34949] text-xs tracking-widest px-5 ">{`- ${room?.discount} %`}</p>
+
               </div>
-              <div className="text-center flex flex-col justify-center gap-4 py-10">
-                <h3 className={`text-2xl md:text-2xl ${currentLanguage === 'ar' ? 'body-ar  font-medium  ' : 'body-en-title font-semibold'}  `}>{room.roomName}</h3>
-                <p className="text-lg font-thin">{room.price} SR</p>
+              <div className="text-center flex flex-col justify-center items-center gap-4 py-10">
+                <h3 className={`text-2xl md:text-2xl ${currentLanguage === 'ar' ? 'body-ar  font-medium  ' : 'body-en-title font-semibold'}  `}>{room.title}</h3>
+                <div className=" flex gap-2 items-center">
+                <s className="text-lg font-thin text-gray-300">{room?.priceHistory} SR</s>
+                <p className="text-lg font-thin">{room.priceOptions[0].price} SR</p>
+                </div>
                 <div>
                   <button className="py-2 px-4 uppercase text-sm bg-[#1C1C1D] text-white tracking-widest ">
                     {t("Read More")}
@@ -37,7 +44,7 @@ const BestPromotions = ({ data, loading }) => {
             </Link>
           ))}
         </div>
-      )}
+      ) }
       </div>
     </section>
   );

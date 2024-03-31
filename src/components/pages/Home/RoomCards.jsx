@@ -6,50 +6,72 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import placeholderImage from "../../../assets/hotel-service.png";
 import { Skeleton } from "antd";
 
-const RoomCards = ({ roomRates, loadingAllRooms }) => {
+const RoomCards = ({ rooms, loadingAllRooms }) => {
   const { t } = useTranslation("home");
   const currentLanguage = i18next.language;
+
+  console.log(rooms, "rooms from home");
 
   const skeletonCount = 6;
 
   return (
     <section className="container mx-auto px-4">
-      <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-4 ${currentLanguage === 'ar' ? 'body-ar  font-medium ' : 'body-en-title '}`}>
+      <div
+        className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-4 ${
+          currentLanguage === "ar" ? "body-ar  font-medium " : "body-en-title "
+        }`}
+      >
         {loadingAllRooms
           ? Array.from({ length: skeletonCount }, (_, index) => <Skeleton key={index} active />)
-          : roomRates?.map((room) => (
-            // <div className="transition duration-300 transform hover:scale-75">
-              <Link data-aos="fade-up" key={room.id} to={`/room/${room.id}`} className="grid-cols-1 cursor-pointer relative "
-              style={{
-                transition: 'transform 0.3s ease',
-                transform: 'scale(1)',
-              }}
-              onMouseEnter={e => e.currentTarget.style.transform = 'scale(0.95)'}
-              onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
+          : rooms?.map((room) => (
+              // <div className="transition duration-300 transform hover:scale-75">
+              <Link
+                data-aos="fade-up"
+                key={room.id}
+                to={`/room/${room.id}`}
+                className="grid-cols-1 cursor-pointer relative "
+                style={{
+                  transition: "transform 0.3s ease",
+                  transform: "scale(1)",
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(0.95)")}
+                onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
               >
                 <LazyLoadImage
-                  className="w-full h-full aspect-video object-fill relative"
+                  className="w-full h-[300px] object-cover relative"
                   src={room.images[0]}
                   alt={`awalive ${room.images[0]}`}
                   effect="blur"
                   placeholderSrc={placeholderImage}
                 />
                 {/* <div className="absolute top-0 left-0 w-full h-full hover:bg-black transition duration-500 opacity-40"></div> */}
-                <p
-                  className={`bg-[#2E2E2E] py-2 px-6 absolute top-5  ${
-                    currentLanguage === "ar" ? "left-0" : "right-0"
-                  } text-white text-xs tracking-widest`}
+                <p className={`bg-[#2E2E2E] py-2 px-6 absolute top-5  ${currentLanguage === "ar" ? "left-0" : "right-0"} text-white text-xs tracking-widest`}
                 >
-                  {t("from")}{" "}
-                  {room.priceOptions[0].price.toLocaleString()} {" "}
-                  {t("SAR")}
+                  {t("from")} {room.priceOptions[0].price.toLocaleString()} {t("SAR")}
                   {/* {currentLanguage === "en"
                     ? room.priceOptions[0].price.toLocaleString()
                     : room.priceOptions[0].price.toLocaleString("ar-EG")}{" "}
                   {t("SAR")} */}
                 </p>
+                {
+                  room.discount &&(
+                    <p className={`bg-[#fd4444] py-2 px-6 absolute top-5  ${currentLanguage === "ar" ? "right-0" : "left-0"} text-white text-xs tracking-widest`}
+                >
+                  {t("Upto -")} {room.discount} {t("%")}
+                  {/* {currentLanguage === "en"
+                    ? room.priceOptions[0].price.toLocaleString()
+                    : room.priceOptions[0].price.toLocaleString("ar-EG")}{" "}
+                  {t("SAR")} */}
+                </p>
+                  )
+                }
+                
                 <div className={`absolute bottom-5 ${currentLanguage === "ar" ? "right-4" : "left-4"} `}>
-                  <h2 className={`text-xl md:text-2xl text-white py-2  ${currentLanguage === 'ar' ? 'body-ar  font-semibold ' : 'body-en-title '}`}>
+                  <h2
+                    className={`text-xl md:text-2xl text-white py-2  ${
+                      currentLanguage === "ar" ? "body-ar  font-semibold " : "body-en-title "
+                    }`}
+                  >
                     {room.title}
                   </h2>
                   <div className="flex gap-2 md:gap-3 items-center text-white text-md md:text-xl">

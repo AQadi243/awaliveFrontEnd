@@ -11,7 +11,7 @@ import PrivateRoute from "./components/PrivetAuth/PrivetRoute";
 import BookNow from "./components/pages/BookNow/BookNow";
 // import BookingConfirm from "./components/pages/BookNow/BookingConfirm";
 import MyBookings from "./components/pages/My Bookings/MyBookings";
-import SinglePromoRoom from "./components/pages/Promotion/SinglePromoPage/SinglePromoRoom";
+// import SinglePromoRoom from "./components/pages/Promotion/SinglePromoPage/SinglePromoRoom";
 import BookTable from "./components/pages/Restaurent/BookTable/BookTable";
 import Loginpage from "./components/sharedPages/LoginPage/Loginpage";
 import SignUpPage from "./components/sharedPages/SignInPage/SignUpPage";
@@ -90,10 +90,10 @@ const router = createBrowserRouter([
         path: "/promotions",
         element: <Promotions />,
       },
-      {
-        path: "/singlePromotionRoom/:id",
-        element: <SinglePromoRoom />,
-      },
+      // {
+      //   path: "/singlePromotionRoom/:id",
+      //   element: <SinglePromoRoom />,
+      // },
       {
         path: "/bookTable",
         element: <BookTable />,

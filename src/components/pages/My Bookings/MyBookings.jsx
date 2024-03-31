@@ -1,12 +1,13 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../sharedPages/Context/AuthProvider";
 import BannerPage from "../../sharedPages/PageBanner/BannerPage";
-import { notification } from "antd";
+import { message } from "antd";
 import axios from "axios";
 import BookedRooms from "./BookedRooms";
 import i18next from "i18next";
 import { useTranslation } from "react-i18next";
 import PageAnimation from "../../PageAnimation/PageAnimation";
+import MyBookingBanner from "./MyBookingBanner";
 // import { Modal, Spin, Table, notification  } from 'antd'
 // import { Link } from 'react-router-dom'
 // import BookingInformation from './BookingInformation/BookingInformation'
@@ -17,18 +18,20 @@ const MyBookings = () => {
   const currentLanguage = i18next.language;
   const { user } = useContext(AuthContext);
   const [loading, setLoading] = useState(true);
-  const [userOrders, setUserOrders] = useState([]);
-  const { t } = useTranslation("booking");
+  const [bookedRooms, setBookedRooms] = useState([]);
+
+ 
 
   useEffect(() => {
     if (!user) {
       // If the user is not logged in, show a message and stop the loading
-      notification["info"]({
-        message: "Please Log In",
-        description: "You need to log in to view your bookings.",
-        placement: "topRight",
-        duration: 3.5,
-      });
+      // notification["info"]({
+      //   message: "Please Log In",
+      //   description: "You need to log in to view your bookings.",
+      //   placement: "topRight",
+      //   duration: 3.5,
+      // });
+      message.info('Please Log In')
       setLoading(false);
       return;
     }
@@ -39,8 +42,8 @@ const MyBookings = () => {
         const userToken = localStorage.getItem("token");
 
         const response = await axios.get(
-          `https://type-script-server.vercel.app/api/booking/${userEmail}?lang=${currentLanguage}`,
-          // `http://localhost:5000/api/booking/${userEmail}?lang=${currentLanguage}`,
+          // `https://type-script-server.vercel.app/api/booking/${userEmail}?lang=${currentLanguage}`,
+          `http://localhost:5000/api/booking/${userEmail}?lang=${currentLanguage}`,
           {
             headers: {
               Authorization: `${userToken}`,
@@ -48,23 +51,25 @@ const MyBookings = () => {
             },
           }
         );
-
+        console.log(response.data.data,'ordersss');
         if (response.status === 200) {
-          setUserOrders(response.data.data);
+          setBookedRooms(response.data.data);
 
-          notification["success"]({
-            message: response.data.message,
-            description: response.data.message,
-            placement: "topRight",
-            duration: 3.5,
-          });
+          // notification["success"]({
+          //   message: response.data.message,
+          //   description: response.data.message,
+          //   placement: "topRight",
+          //   duration: 3.5,
+          // });
+          message.success(response.data.message)
         } else {
-          notification["error"]({
-            message: "Failed to fetch user orders",
-            description: "Failed to fetch user orders",
-            placement: "topRight",
-            duration: 3.5,
-          });
+          // notification["error"]({
+          //   message: "Failed to fetch user orders",
+          //   description: "Failed to fetch user orders",
+          //   placement: "topRight",
+          //   duration: 3.5,
+          // });
+          message.error("Failed to fetch user orders")
         }
       } catch (error) {
         let errorMessage = "Please Login";
@@ -89,12 +94,13 @@ const MyBookings = () => {
           errorMessage = error.message || "An unexpected error occurred.";
         }
 
-        notification["error"]({
-          message: errorMessage,
-          description: errorMessage,
-          placement: "topRight",
-          duration: 3.5,
-        });
+        // notification["error"]({
+        //   message: errorMessage,
+        //   description: errorMessage,
+        //   placement: "topRight",
+        //   duration: 3.5,
+        // });
+        message.error(errorMessage)
       } finally {
         setLoading(false);
       }
@@ -106,8 +112,9 @@ const MyBookings = () => {
   return (
     <>
     <PageAnimation>
-      <BannerPage text={t("myBooking")} />
-      <BookedRooms loading={loading} bookedData={userOrders} />
+      {/* <BannerPage text={t("myBooking")} /> */}
+      <MyBookingBanner />
+      <BookedRooms loading={loading} bookedData={bookedRooms} />
     </PageAnimation>
     </>
   );

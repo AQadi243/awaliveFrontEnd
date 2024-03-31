@@ -93,7 +93,8 @@ const BookingDate = () => {
         setNights(moment(checkOutDate).diff(moment(checkInDate), 'days'));
   
         try {
-          const response = await axios.get(`https://type-script-server.vercel.app/api/room/${roomId}?lang=${currentLanguage}`);
+          // const response = await axios.get(`https://type-script-server.vercel.app/api/room/${roomId}?lang=${currentLanguage}`);
+          const response = await axios.get(`http://localhost:5000/api/room/${roomId}?lang=${currentLanguage}`);
           setRoomDetails(response.data.data);
         } catch (err) {
           setError(err.message);

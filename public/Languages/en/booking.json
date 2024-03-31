@@ -13,6 +13,7 @@
   "Privet Bathroom":"Privet Bathroom",
   "Welcome Drinks": "Welcome Drinks",
 
+  "Payment": "Payment",
   "requiredField": " Required",
   "property": "1 Property",
   "Check In": "Check In",
@@ -84,6 +85,7 @@
   "Complete payment in": "Complete payment in",
   "completed": "completed",
   "total": "Total",
+  "Subtotal": "Subtotal",
   "Including 15% vat": "Including 15% vat",
   "Confirmation Status": "Confirmation Status",
   "Amenities": "Amenities",

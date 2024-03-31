@@ -1,6 +1,6 @@
 import axios from "axios";
 import { createContext, useEffect, useState } from "react";
-import { notification } from "antd";
+import { message } from "antd";
 import i18next from "i18next";
 import { useTranslation } from "react-i18next";
 import { addDays } from "date-fns";
@@ -43,24 +43,7 @@ const AuthProvider = ({ children }) => {
   const { t } = useTranslation();
 
   const handleBookNow = () => {
-    // const totalPrice = night * RoomPrice;
-    // const taxPercentage = 0.15; // 15% tax rate
-    // const tax = parseFloat((totalPrice * taxPercentage).toFixed(2));
-    // const totalWithTax = parseFloat((totalPrice + tax).toFixed(2));
-    // // const tax = totalPrice * taxPercentage;
-    // // const totalWithTax = totalPrice + tax;
-    // const formattedTotalPrice = totalPrice.toLocaleString("en-US", {
-    //   minimumFractionDigits: 2,
-    //   maximumFractionDigits: 2,
-    // });
-    // const formattedTax = tax.toLocaleString("en-US", {
-    //   minimumFractionDigits: 2,
-    //   maximumFractionDigits: 2,
-    // });
-    // const formattedTotalWithTax = totalWithTax.toLocaleString("en-US", {
-    //   minimumFractionDigits: 2,
-    //   maximumFractionDigits: 2,
-    // });
+   
 
     const bookingInfo = {
       
@@ -69,14 +52,6 @@ const AuthProvider = ({ children }) => {
       checkOut: checkOut.toLocaleDateString(),
       numberOfGuests: numberOfGuests,
      
-      // guests,
-      // tax: formattedTax,
-      // totalWithTax: formattedTotalWithTax,
-      // night,
-      // RoomName,
-      // RoomPrice,
-      // RoomImage,
-      // totalPrice: formattedTotalPrice,
     };
     
     // Save booking information to localStorage
@@ -103,11 +78,12 @@ const AuthProvider = ({ children }) => {
       localStorage.setItem("userData", JSON.stringify(data.user));
       localStorage.setItem("token", data.accessToken);
       setUser(JSON.parse(localStorage.getItem("userData")))
-      notification["success"]({
-        message: "Welcome Nice to see you",
-        placement: "topRight",
-        duration: 3.5,
-      });
+      // notification["success"]({
+      //   message: "Welcome Nice to see you",
+      //   placement: "topRight",
+      //   duration: 3.5,
+      // });
+      message.success('Welcome Nice to see you.')
     } catch (error) {
       if (error.response) {
         // The request was made and the server responded with a status code
@@ -123,12 +99,13 @@ const AuthProvider = ({ children }) => {
         console.error("Error message:", error.message);
         setError("Error during login");
       }
-      notification["error"]({
-        message: "Access denied",
-        description: "PLease check Email and Password is correct",
-        placement: "topRight",
-        duration: 3.5,
-      });
+      // notification["error"]({
+      //   message: "Access denied",
+      //   description: "PLease check Email and Password is correct",
+      //   placement: "topRight",
+      //   duration: 3.5,
+      // });
+      message.error('PLease check Email and Password is correct.')
     } finally {
       setLoading(false);
     }
@@ -141,30 +118,12 @@ const AuthProvider = ({ children }) => {
     localStorage.removeItem("userData");
     localStorage.removeItem("token");
     // setUserRole(null);
-    notification.info({
-      message: "Logged Out",
-      description: "You have been logged out successfully.",
-      placement: "topRight",
-      duration: 3.5,
-    });
+    
+    message.success('You have been logged out successfully.')
     // notification logic here
   };
 
-  // checking if user token is expire or not
-  // useEffect(() => {
-  //   const checkTokenExpiration = () => {
-  //     const token = localStorage.getItem("token");
-  //     if (token) {
-  //       const tokenExpiration = JSON.parse(atob(token.split(".")[1])).exp;
-  //       const currentTime = Date.now() / 1000; // current time in seconds
-  //       if (tokenExpiration < currentTime) {
-  //         handleLogout();
-  //       }
-  //     }
-  //   };
-  //   const intervalId = setInterval(checkTokenExpiration, 60000); // check every minute
-  //   return () => clearInterval(intervalId); // clear interval on component unmount
-  // }, []);
+  
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
@@ -177,22 +136,7 @@ const AuthProvider = ({ children }) => {
     }
   }, []);
 
-  //  local storageing getting data  
   
-  // useEffect(() => {
-  //   // Retrieve booking information from localStorage on component mount
-  //   const storedBookingInfo = localStorage.getItem("bookingInfo");
-  //   if (storedBookingInfo) {
-  //     const parsedBookingInfo = JSON.parse(storedBookingInfo);
-  //     setCheckIn(parsedBookingInfo.checkIn);
-  //     setCheckOut(parsedBookingInfo.checkOut);
-  //     setGuests(parsedBookingInfo.numberOfGuests);
-  //     setNight(parsedBookingInfo.night);
-  //     setRoomName(parsedBookingInfo.roomName);
-  //     setRoomPrice(parsedBookingInfo.roomPrice);
-  //     setRoomImage(parsedBookingInfo.roomImage);
-  //   }
-  // }, []);
 
   useEffect(() => {
     const storedUserData = localStorage.getItem("userData");
@@ -208,24 +152,17 @@ const AuthProvider = ({ children }) => {
       try {
         const response = await axios.get(
           `https://type-script-server.vercel.app/api/room/?lang=${currentLanguage}`
+          // `http://localhost:5000/api/room/?lang=${currentLanguage}`
           // "https://awalive-server-side-hzpa.vercel.app/rooms"
         );
         let rooms = response.data.data;
-        // if (rooms.length > 1) {
-        //   // setErrorMessage('No rooms available for the selected criteria.');
-       
-        //   // Client-side sorting based on the first price option
-        //   rooms = rooms.sort((a, b) => {
-        //     const priceA = a.priceOptions[0]?.price || 0; // Assuming first price option is the one to sort by
-        //     const priceB = b.priceOptions[0]?.price || 0; // Adjust if your data structure differs
-        //     return sortByPrice === 'asc' ? priceA - priceB : priceB - priceA;
-        //   });
-        // }
+        
         setAllRooms(rooms);
         // setSearchLoading(false);
         setLoadingAllRooms(false);
       } catch (error) {
         console.error("Error fetching room rates:", error);
+
         // setSearchLoading(false);
       }
       setLoadingAllRooms(false);
@@ -240,6 +177,7 @@ const AuthProvider = ({ children }) => {
     
     const fetchPromotionData = async () => {
       try {
+        // const response = await axios.get(`http://localhost:5000/api/room/promotion?lang=${currentLanguage}`);
         const response = await axios.get(`https://type-script-server.vercel.app/api/promotion/?lang=${currentLanguage}`);
 
         console.log(response.data.data,'promotion data ');
@@ -250,13 +188,12 @@ const AuthProvider = ({ children }) => {
       } catch (error) {
         if (error.response) {
           // The request was made, but the server responded with an error status
-          console.error('Server responded with an error:', error.response.data);
-          console.error('Status code:', error.response.status);
+          
+          setPromotionError(error.response.data.issues[0].message            || error.response.data )
           setPromotionLoading(false)
-          setPromotionError(error.response.status || error.response.data )
         } else if (error.request) {
           // The request was made, but no response was received
-          console.error('No response received from the server');
+          
           setPromotionLoading(false)
         } else {
           // Something happened in setting up the request that triggered an Error

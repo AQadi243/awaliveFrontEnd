@@ -12,8 +12,9 @@
   "No Smoking": "ممنوع التدخين",
   "Privet Bathroom": "حمام خاص",
   "Welcome Drinks": "مشروبات ترحيبية",
-  
 
+  
+  "Payment": "تسديد الديون",
   "requiredField": "هذا الحقل مطلوب",
   "YOUR RESERVATION": "الحجز الخاص بك",
   "property": "1 ممتلكة",
@@ -91,6 +92,7 @@
   "Complete payment in": "الدفع الكامل",
   "completed": "منجز",
   "total": "المجموع",
+  "Subtotal": "المجموع الفرعي",
   "Including 15% vat": "شامل 15% ضريبة القيمة المضافة",
   "Confirmation Status": "حالة التأكيد",
   "Amenities": "المرافق",
