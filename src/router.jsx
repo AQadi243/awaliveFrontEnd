@@ -24,6 +24,7 @@ import AddRoom from "./components/admin/dashboard/component/pages/Rooms/AddRooms
 import ThankYou from "./components/pages/ThankYouPage/ThankYou";
 import Promotions from "./components/pages/Promotion/Promotions";
 import RoomRate from "./components/pages/Room Rate/RoomRate";
+import Banquet from "./components/pages/Banquet & meetings/Banquet";
 
 const router = createBrowserRouter([
   {
@@ -47,6 +48,10 @@ const router = createBrowserRouter([
       {
         path: "/contact",
         element: <Contact />,
+      },
+      {
+        path: "/banquet",
+        element: <Banquet />,
       },
       {
         path: "/roomRate",

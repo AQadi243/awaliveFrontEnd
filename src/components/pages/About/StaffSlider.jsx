@@ -38,7 +38,11 @@ const StaffSlider = () => {
     slidesToShow: 1,
     swipeToSlide: true,
     arrows: false,
-    // fade: true // Use fade for smooth transition
+    autoplay: true, // Enable autoplay
+  // autoplaySpeed: 3000,
+    // fade: true, // Use fade for smooth transition
+    pauseOnHover: false
+    
     
   };
 
@@ -51,7 +55,8 @@ const StaffSlider = () => {
     swipeToSlide: true,
     focusOnSelect: true,
     centerMode: true, // Enable center mode for the thumbnails
-    infinite: true
+    infinite: true,
+ 
     
   };
 

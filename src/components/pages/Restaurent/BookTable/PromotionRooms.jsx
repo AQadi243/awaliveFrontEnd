@@ -8,8 +8,8 @@ import { Link } from "react-router-dom"
 const PromotionRooms = () => {
   const {  promotionLoading, promotionError, promotionsData } = useContext(AuthContext)
   const currentLanguage = i18next.language
-    const [promotion, setPromotionRooms] = useState([])
-    const [loading, setLoading] = useState(true)
+    // const [promotion, setPromotionRooms] = useState([])
+    // const [loading, setLoading] = useState(true)
 
     // useEffect(() => {
     //   const promotionRoomsAll = async () => {
@@ -27,6 +27,8 @@ const PromotionRooms = () => {
     //   }
     //   promotionRoomsAll()
     // }, [])
+
+    console.log(promotionsData,'promotion datas');
     
   return (
     <>
@@ -47,21 +49,21 @@ const PromotionRooms = () => {
 
         <div className=" w-full flex flex-col lg:flex-row gap-3  items-center justify-center py-10  ">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-7">
-                {promotionsData.map((singleROom) => (
-                    <Link to={`/singlePromotionRoom/${singleROom._id}`} key={singleROom._id} className="grid md:grid-cols-6 gap-5 px-4 ">
+                {promotionsData.map((singleRoom) => (
+                    <Link to={`/room/${singleRoom.id}`} key={singleRoom._id} className="grid md:grid-cols-6 gap-5 px-4 ">
                       <div className="col-span-1">
-                        <img src={singleROom.roomImage} alt="" className=" w-full h-20 object-cover " />
+                        <img src={singleRoom.images[0]} alt="" className=" w-full h-20 object-cover " />
                       </div>
                        <div className="col-span-4 flex flex-col  gap-2">
-                           <h2 className={`text-2xl ${currentLanguage === "ar" ? "body-ar font-medium " : "body-en-title"}  `}>{singleROom.roomName}</h2>
+                           <h2 className={`text-2xl ${currentLanguage === "ar" ? "body-ar font-medium " : "body-en-title"}  `}>{singleRoom.title}</h2>
                            {/* <p className="text-xs">{singleROom.fullDetails }</p> */}
-                           <p className="text-xs overflow-hidden text-ellipsis block h-12 leading-6 clamp-2">{singleROom.fullDetails}</p>
+                           <p className="text-xs overflow-hidden text-ellipsis block h-12 leading-6 clamp-2">{singleRoom.description}</p>
 
                        </div>
                        <div className="text-xs col-span-1 flex flex-col gap-4">
-                           <p className="text-sm">{singleROom.price } $ / night</p>
+                           <p className="text-sm">{singleRoom.priceOptions[0].price } $ / night</p>
                            <div>
-                           <a href="../promotions/chaletRoom.html" className="bg-[#1C1C1D] text-xs tracking-widest uppercase text-white text-center px-4 ">Sale</a>
+                           <a  className="bg-[#1C1C1D] text-xs tracking-widest uppercase text-white text-center px-4 ">Sale</a>
                            </div>
                        </div>
                     </Link>
