@@ -111,7 +111,7 @@ const BookedRooms = ({ loading, bookedData }) => {
                   {t("Payment")}: <span className="font-semibold"> {selectedRoom.paymentStatus}</span>
                 </p>
                 <p className="text-gray-600 mb-2">
-                  {t("Confirmation Status")}: <span className="font-semibold"> {selectedRoom.bookingStatus}</span>
+                  {t("Booking Status")}: <span className="font-semibold"> {selectedRoom.bookingStatus}</span>
                 </p>
                 <p className="text-gray-600 mb-2">
                   {t("Check In")}: <span className="font-semibold"> {dayjs(selectedRoom.checkIn).format("MMM D, YYYY")}</span>
