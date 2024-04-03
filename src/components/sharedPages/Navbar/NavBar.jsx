@@ -28,6 +28,7 @@ const Navbar = () => {
     { title: t("roomSearch"), href: "/roomSearch" },
     { title: t("promotions"), href: "/promotions" },
     { title: t("bookTable"), href: "/bookTable" },
+    { title: t("Restaurant & Cafe"), href: "/cafe" },
     { title: t("Banquet & Meeting"), href: "/banquet" },
     
     { title: t("about"), href: "/about" },
@@ -154,6 +155,14 @@ const Navbar = () => {
                     className={({ isActive }) => (isActive ? " " : "")}
                   >
                     {t("bookTable")}
+                  </NavLink>
+                </li>
+                <li className="p-2 block hover:bg-slate-50 transition duration-300 ease-in-out ">
+                  <NavLink
+                    to={"/cafe"}
+                    className={({ isActive }) => (isActive ? " " : "")}
+                  >
+                    {t("Restaurant & Cafe")}
                   </NavLink>
                 </li>
                 <li className="p-2 block hover:bg-slate-50 transition duration-300 ease-in-out ">

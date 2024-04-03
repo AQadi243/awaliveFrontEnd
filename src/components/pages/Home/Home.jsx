@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 // import PageAnimation from "../../PageAnimation/PageAnimation";
-import Banner from "./Banner";
+// import Banner from "./Banner";
 import BestPosition from "./BestPosition";
 import CheckPromotion from "./CheckPromotion";
 import HotelStucture from "./HotelStucture";

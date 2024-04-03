@@ -25,6 +25,7 @@ import ThankYou from "./components/pages/ThankYouPage/ThankYou";
 import Promotions from "./components/pages/Promotion/Promotions";
 import RoomRate from "./components/pages/Room Rate/RoomRate";
 import Banquet from "./components/pages/Banquet & meetings/Banquet";
+import Cafe from "./components/pages/Restaurent/restaurant&cafe/Cafe";
 
 const router = createBrowserRouter([
   {
@@ -99,6 +100,10 @@ const router = createBrowserRouter([
       //   path: "/singlePromotionRoom/:id",
       //   element: <SinglePromoRoom />,
       // },
+      {
+        path: "/cafe",
+        element: <Cafe />,
+      },
       {
         path: "/bookTable",
         element: <BookTable />,

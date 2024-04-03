@@ -85,7 +85,7 @@ const HeroBanner = () => {
             backgroundImage: `url(${imageData[activeImageIndex].src})`,
             backgroundSize: "cover", // Adjust background size to fit the image within the container
             backgroundRepeat: "no-repeat", // Prevent image from repeating
-            backgroundPosition: "center", // Center the background image
+            backgroundPosition: "center", // Center the background imagebg
             width: "100%", // Set width to viewport width
             height: "100%", // Set height to viewport height
           }}
@@ -100,9 +100,7 @@ const HeroBanner = () => {
             variants={textVariants}
           >
             <motion.p
-              className={`text-xs md:text-sm text-white uppercase mt-2 mb-4 tracking-[0.2rem]  ${
-                currentLanguage === "ar" ? "body-ar text-xl font-medium " : "body-en"
-              }`}
+              className={`text-xs md:text-sm text-white uppercase mt-2 mb-4 tracking-[0.2rem]  ${currentLanguage === "ar" ? "body-ar text-xl font-medium " : "body-en"}`}
               variants={textVariants}
             >
               {t("Luxury Hotel & Best Resort")}
