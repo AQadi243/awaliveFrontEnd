@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React, { Suspense, useState } from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import {  RouterProvider } from "react-router-dom";
@@ -34,6 +34,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import 'flatpickr/dist/flatpickr.min.css';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import logo from '../public/img/awalive-Blaack.png'
 // import ScrollToTop from './components/sharedPages/ScrollToTop';
 
 // import 'flag-icon-css/css/flag-icon.min.css'
@@ -59,90 +60,16 @@ i18next
     preload: ["home", "contact", "booking", "loginAndSignUp", "footer", "about", "contact"],
   });
 
+  
+
 const loadingMarkup = (
   <div className=" h-screen flex flex-col items-center justify-center text-center gap-5">
-    <h1 className="text-6xl">Awalive</h1>
-    <Spin />
-    <h3 className="text-3xl">Loading..</h3>
+  
+    <img src={logo} alt="" className="w-1/2" />
+    
   </div>
 );
 
-// const router = createBrowserRouter([
-//   {
-//     path: "/",
-//     element: <App />,
-//     errorElement: <ErrorPage />,
-
-//     children: [
-//       {
-//         path: "/",
-//         element: <Home />,
-//       },
-//       {
-//         path: "/check",
-//         element: <Check />,
-//       },
-//       {
-//         path: "/about",
-//         element: <About />,
-//       },
-//       {
-//         path: "/contact",
-//         element: <Contact />,
-//       },
-//       {
-//         path: "/roomSearch",
-//         element: <Search />,
-//       },
-//       {
-//         path: "/room/:id",
-//         element: <RoomDetails />,
-//       },
-//       {
-//         path: "/booking",
-//         element: (
-//           <PrivateRoute>
-//             {" "}
-//             <BookNow />{" "}
-//           </PrivateRoute>
-//         ),
-//       },
-//       {
-//         path: "/BookingConfirm",
-//         element: <BookingConfirm />,
-//       },
-//       {
-//         path: "/mybookings",
-//         element: (
-//           <PrivateRoute>
-//             {" "}
-//             <MyBookings />{" "}
-//           </PrivateRoute>
-//         ),
-//       },
-//       // {
-//       //   path: "/promotions",
-//       //   element: <Promotions />,
-//       // },
-//       {
-//         path: "/singlePromotionRoom/:id",
-//         element: <SinglePromoRoom />,
-//       },
-//       {
-//         path: "/bookTable",
-//         element: <BookTable />,
-//       },
-//       {
-//         path: "/login",
-//         element: <Loginpage />,
-//       },
-//       {
-//         path: "/signup",
-//         element: <SignUpPage />,
-//       },
-//     ],
-//   },
-// ]);
 
 const queryClient = new QueryClient()
 
