@@ -6,7 +6,10 @@ import { useTranslation } from 'react-i18next';
 import banquet1 from '../../../../public/img/hallRoom1.jpg'
 import banquet2 from '../../../../public/img/file.jpg'
 import banquet3 from '../../../../public/img/meeting.jpg'
+import placeholderImage from '../../../../public/img/awalive-Blaack.png'
+
 import i18next from 'i18next';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const BanquetBanner = () => {
     const currentLanguage = i18next.language;
@@ -34,14 +37,24 @@ const BanquetBanner = () => {
       // asNavFor: nav2,
       // ref: slider => (sliderRef1.current = slider),
       afterChange: index => setCurrentSlide(index),
-      slidesToShow: 1,
-      swipeToSlide: true,
-      arrows: false,
-      autoplay: true, // Enable autoplay
-    // autoplaySpeed: 3000,
-      // fade: true, // Use fade for smooth transition
-      pauseOnHover: false
-      
+    //   slidesToShow: 1,
+    //   swipeToSlide: true,
+    //   arrows: false,
+    //   autoplay: true, // Enable autoplay
+    // // autoplaySpeed: 3000,
+    //   // fade: true, // Use fade for smooth transition
+    //   pauseOnHover: false
+    slidesToShow: 1,
+    swipeToSlide: true,
+    arrows: false,
+    autoplay: true, // Enable autoplay
+    infinite: slides.length > 1,
+    speed: 2000,
+    slidesToScroll: 1,
+    // autoplay: slides.length > 1,
+    autoplaySpeed: 7000,
+    // fade: true, // Use fade for smooth transition
+    pauseOnHover: false,
       
     };
   
@@ -53,13 +66,13 @@ const BanquetBanner = () => {
     
     <Slider {...settingsMain} className={`h-full w-full overflow-hidden ${currentLanguage === 'ar' ? 'body-ar  font-medium text-end ' : 'body-en  text-start'}`}>
       {slides.map((slide, index) => (
-          <div key={index} className={` w-full relative bg-red-100 h-full md:h-[calc(100vh-120px)] cursor-grab `}>
+          <div key={index} className={` w-full relative bg-red-100 h-96 md:h-[calc(100vh-120px)] cursor-grab `}>
               {/* <img className="w-full h-full object-cover" src={slide.img} alt={`Slide ${index + 1}`} /> */}
-              <picture>
-                <source srcSet={slide.img} type={slide.img}  />
-               
+              {/* <picture> */}
+                {/* <source srcSet={slide.img} type={slide.img}  /> */}
                 <img src={slide.img}   alt="Descriptive text for the image" className='object-cover h-full  w-full' />
-              </picture>
+              {/* </picture> */}
+              
              
               <div className={`absolute inset-0 flex flex-col justify-center  transition-opacity duration-500 w-[90%] md:w-[40%] mx-auto  gap-7 ${currentSlide === index ? 'opacity-100' : 'opacity-0'}`}>
                   <p className={`text-white  text-5xl capitalize tracking-widest ${currentLanguage === 'ar' ? 'body-ar  font-medium ' : 'body-en-title '}`} >{slide.name}</p>

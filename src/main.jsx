@@ -65,7 +65,7 @@ i18next
 const loadingMarkup = (
   <div className=" h-screen flex flex-col items-center justify-center text-center gap-5">
   
-    <img src={logo} alt="" className="w-1/2" />
+    <img src={logo} alt="" className="w-1/4" />
     
   </div>
 );
