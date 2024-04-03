@@ -1,13 +1,17 @@
 import BanquetBanner from "./BanquetBanner"
 import BanquetDetails from "./BanquetDetails"
+import PageAnimation from "../../PageAnimation/PageAnimation";
 
 
 const Banquet = () => {
   return (
-    <div>
+    <>
+    <PageAnimation >
+
       <BanquetBanner />
       <BanquetDetails />
-    </div>
+    </PageAnimation>
+    </>
   )
 }
 

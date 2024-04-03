@@ -57,10 +57,10 @@ const BanquetBanner = () => {
               {/* <img className="w-full h-full object-cover" src={slide.img} alt={`Slide ${index + 1}`} /> */}
               <picture>
                 <source srcSet={slide.img} type={slide.img}  />
-                {/* <source srcSet="path/to/image.jpg" type="image/jpeg" /> */}
+               
                 <img src={slide.img}   alt="Descriptive text for the image" className='object-cover h-full  w-full' />
               </picture>
-              {/* <div className={`absolute inset-0  ${currentLanguage === 'ar' ? "bg-gradient-to-l": "bg-gradient-to-r"}   from-black bg-opacity-60`}></div>  */}
+             
               <div className={`absolute inset-0 flex flex-col justify-center  transition-opacity duration-500 w-[90%] md:w-[40%] mx-auto  gap-7 ${currentSlide === index ? 'opacity-100' : 'opacity-0'}`}>
                   <p className={`text-white  text-5xl capitalize tracking-widest ${currentLanguage === 'ar' ? 'body-ar  font-medium ' : 'body-en-title '}`} >{slide.name}</p>
                   <p className="text-white  text-xs uppercase tracking-widest ">{slide.role}</p>
@@ -71,13 +71,7 @@ const BanquetBanner = () => {
       ))}
   </Slider>
     
-            {/* <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-full md:w-96 h-24">
-                <Slider {...settingsNav} className="w-full h-full cursor-pointer">
-                    <div className="w-full h-full"><img className="w-full h-full object-cover" src={sliderOne} alt="Thumbnail 1" /></div>
-                    <div className="w-full h-full"><img className="w-full h-full object-cover" src={sliderTwo} alt="Thumbnail 2" /></div>
-                    <div className="w-full h-full"><img className="w-full h-full object-cover" src={sliderThree} alt="Thumbnail 3" /></div>
-                </Slider>
-            </div> */}
+            
         </div>
   
     
