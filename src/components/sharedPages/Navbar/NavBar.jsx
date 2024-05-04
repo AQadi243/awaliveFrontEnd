@@ -183,8 +183,8 @@ const Navbar = () => {
               {/* <AnimatedLink title={"Home"} /> */}
             </NavLink>
             {user?.role === 'admin' &&
-            <Link to={'/dashboard'} className={"py-8 lg:py-6"} >
-                Dashboard
+            <Link to={'/dashboard'} className={"py-8 lg:py-6 px-4"} >
+                {t("Dashboard")}
             </Link>
             }
             

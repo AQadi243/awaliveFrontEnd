@@ -7,7 +7,7 @@ const Index = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   return (
     
-      <div className="dark:bg-boxdark-2 dark:text-bodydark">
+      <div dir="ltr" className="dark:bg-boxdark-2 dark:text-bodydark">
       <div className="flex h-screen overflow-hidden ">
         <SideBar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
         <div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">

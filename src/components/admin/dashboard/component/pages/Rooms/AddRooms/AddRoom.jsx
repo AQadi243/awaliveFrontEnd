@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+
 import CategorySelector from "./CategorySelector";
 import ImageField from "./ImageField";
 import RoomFeatures from "./RoomFeatures";
@@ -9,6 +8,103 @@ const AddRoom = () => {
   // const [isChecked, setIsChecked] = useState(false);
   return (
     <section>
+      <>
+      <form className="space-y-6  p-4 rounded shadow-lg max-w-3xl mx-auto my-8  border-stroke bg-white  dark:border-strokedark dark:bg-boxdark">
+  <h2 className="text-2xl font-semibold text-center mb-4">Room Details</h2>
+  
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+    {/* Title */}
+    <div>
+      <label htmlFor="titleEn" className="block text-sm font-medium  text-black dark:text-white">Title (EN) <span className="text-meta-1">*</span></label>
+      <input type="text" id="titleEn" name="titleEn" className="mt-1 block py-2 px-2 w-full border  border-gray-300 shadow-sm text-black outline-none transition  dark:border-form-strokedark dark:bg-form-input dark:text-white"  />
+    </div>
+    
+    <div>
+      <label htmlFor="titleAr" className="block text-sm font-medium text-black dark:text-white">Title (AR) <span className="text-meta-1">*</span></label>
+      <input dir="rtl" type="text" id="titleAr" name="titleAr" className="mt-1 block py-2 px-2 w-full  border border-gray-300 shadow-sm text-black outline-none transition    dark:border-form-strokedark dark:bg-form-input dark:text-white" />
+    </div>
+    
+    {/* SubTitle */}
+    <div>
+      <label htmlFor="subTitleRoomOneEn" className="block text-sm font-medium text-black dark:text-white">SubTitle Room One (EN)<span className="text-meta-1">*</span></label>
+      <input type="text" id="subTitleRoomOneEn" name="subTitleRoomOneEn" className="mt-1 block py-2 px-2 w-full  border border-gray-300 shadow-sm text-black outline-none transition  dark:border-form-strokedark dark:bg-form-input dark:text-white" />
+    </div>
+    
+    <div>
+      <label htmlFor="subTitleRoomOneAr" className="block text-sm font-medium text-black dark:text-white">SubTitle Room One (AR)<span className="text-meta-1">*</span></label>
+      <input dir="rtl" type="text" id="subTitleRoomOneAr" name="subTitleRoomOneAr" className="mt-1 block py-2 px-2 w-full  border border-gray-300 shadow-sm text-black outline-none transition  dark:border-form-strokedark dark:bg-form-input dark:text-white" />
+    </div>
+
+    {/* Max Guests */}
+    <div>
+      <label htmlFor="maxGuests" className="block text-sm font-medium text-black dark:text-white">Max Guests <span className="text-meta-1">*</span></label>
+      <input type="number" id="maxGuests" name="maxGuests" className="mt-1 block py-2 px-2 w-full  border border-gray-300 shadow-sm text-black outline-none transition  dark:border-form-strokedark dark:bg-form-input dark:text-white" />
+    </div>
+    
+    {/* Room Quantity */}
+    <div>
+      <label htmlFor="roomQTY" className="block text-sm font-medium text-black dark:text-white">Room Quantity <span className="text-meta-1">*</span></label>
+      <input type="number" id="roomQTY" name="roomQTY" className="mt-1 block py-2 px-2 w-full  border border-gray-300 shadow-sm text-black outline-none transition  dark:border-form-strokedark dark:bg-form-input dark:text-white" />
+    </div>
+    
+    {/* Room Size */}
+    <div>
+      <label htmlFor="size" className="block text-sm font-medium text-black dark:text-white">Room Size <span className="text-meta-1">*</span></label>
+      <input type="number" id="size" name="size" className="mt-1 block py-2 px-2 w-full  border border-gray-300 shadow-sm text-black outline-none transition  dark:border-form-strokedark dark:bg-form-input dark:text-white" />
+    </div>
+    
+    {/* Description */}
+    <div className="col-span-1 md:col-span-2">
+      <label htmlFor="descriptionEn" className="block text-sm font-medium text-black dark:text-white">Description (EN) <span className="text-meta-1">*</span></label>
+      <textarea id="descriptionEn" name="descriptionEn" rows={3} className="mt-1 block w-full border text-black  border-gray-300 rounded-md shadow-sm px-2 py-2"></textarea>
+    </div>
+
+    {/* Description */}
+    <div className="col-span-1 md:col-span-2">
+      <label htmlFor="descriptionEn" className="block text-sm font-medium text-black dark:text-white">Description (AR) <span className="text-meta-1">*</span></label>
+      <textarea dir="rtl" id="descriptionEn" name="descriptionEn" rows={3} className="mt-1 block w-full border text-black  border-gray-300 rounded-md shadow-sm px-2 py-2"></textarea>
+    </div>
+    
+    {/* Images */}
+    <ImageField />
+    
+    
+    {/* Services - Repeat for each service */}
+    <div className="col-span-1 md:col-span-2">
+      <label htmlFor="service" className="block text-sm font-medium text-black dark:text-white">Services</label>
+      <div className="flex items-center space-x-3">
+        <input type="text" id="serviceEn" name="serviceEn" placeholder="Service Name (EN)" className="mt-1 block flex-1  border border-gray-300 rounded-md shadow-sm" />
+        <input type="text" id="serviceAr" name="serviceAr" placeholder="Service Name (AR)" className="mt-1 block flex-1  border border-gray-300 rounded-md shadow-sm" />
+        <input type="text" id="serviceImage" name="serviceImage" placeholder="Image URL" className="mt-1 block flex-1  border border-gray-300 rounded-md shadow-sm" />
+      </div>
+    </div>
+    
+    {/* Price Options */}
+    <div className="col-span-1 md:col-span-2">
+      <label htmlFor="price" className="block text-sm font-medium text-gray-700">Price</label>
+      <input type="number" id="price" name="price" className="mt-1 block py-2 px-2 w-full  border border-gray-300 shadow-sm text-black outline-none transition  dark:border-form-strokedark dark:bg-form-input dark:text-white" />
+    </div>
+    
+    {/* Tags */}
+    <div className="col-span-1 md:col-span-2">
+      <label htmlFor="tags" className="block text-sm font-medium text-gray-700">Tags</label>
+      <input type="text" id="tags" name="tags" placeholder="Use comma to separate tags" className="mt-1 block py-2 px-2 w-full  border border-gray-300 shadow-sm text-black outline-none transition  dark:border-form-strokedark dark:bg-form-input dark:text-white" />
+    </div>
+    
+    {/* Price History */}
+    <div>
+      <label htmlFor="priceHistory" className="block text-sm font-medium text-gray-700">Price History</label>
+      <input type="number" id="priceHistory" name="priceHistory" className="mt-1 block py-2 px-2 w-full  border border-gray-300 shadow-sm text-black outline-none transition  dark:border-form-strokedark dark:bg-form-input dark:text-white" />
+    </div>
+    
+    {/* Buttons */}
+    <div className="col-span-1 md:col-span-2 text-center">
+      <button type="submit" className="px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Submit</button>
+    </div>
+  </div>
+</form>
+
+      </>
       <div className="grid grid-cols-1 gap-9 sm:grid-cols-2">
         <div className="flex flex-col gap-9">
           {/* <!-- Contact Form --> */}
