@@ -1,21 +1,34 @@
 import { useState } from "react";
 
-const ImageField = () => {
-     // Initialize state with a single input field
+// eslint-disable-next-line react/prop-types
+const ImageField = ({ handleImagesChange }) => {
   const [inputFields, setInputFields] = useState(['']);
 
-  // Function to handle adding a new input field
-  const addField = () => {
-    setInputFields([...inputFields, '']); // Add a new empty string to represent the new input field
-  };
+    const addField = () => {
+        setInputFields([...inputFields, '']);
+    };
 
-  // Function to update the value of an existing input field
-  const handleChange = (index, event) => {
-    const values = [...inputFields];
-    values[index] = event.target.value;
-    setInputFields(values);
-  };
-  console.log(inputFields);
+    const handleChange = (index, event) => {
+        const values = [...inputFields];
+        values[index] = event.target.value;
+        setInputFields(values);
+        handleImagesChange(values); // Call the handler with the new image URLs
+    };
+  //    // Initialize state with a single input field
+  // const [inputFields, setInputFields] = useState(['']);
+
+  // // Function to handle adding a new input field
+  // const addField = () => {
+  //   setInputFields([...inputFields, '']); // Add a new empty string to represent the new input field
+  // };
+
+  // // Function to update the value of an existing input field
+  // const handleChange = (index, event) => {
+  //   const values = [...inputFields];
+  //   values[index] = event.target.value;
+  //   setInputFields(values);
+  // };
+  // console.log(inputFields);
   
   return (
     <div>
