@@ -4,6 +4,7 @@ import { message } from "antd";
 import i18next from "i18next";
 import { useTranslation } from "react-i18next";
 import { addDays } from "date-fns";
+import { Navigate } from "react-router-dom";
 
 export const AuthContext = createContext(null);
 
@@ -111,14 +112,15 @@ const AuthProvider = ({ children }) => {
     }
   };
 
-  const handleLogout = () => {
+  const handleLogout = () => { 
     // Clear user data and token from state and localStorage
     // setUser(null);
     setUser("");
     localStorage.removeItem("userData");
     localStorage.removeItem("token");
     // setUserRole(null);
-    
+    setUser(null);  // Assuming you have a setUser method in your context to update the state
+  Navigate("/login");
     message.success('You have been logged out successfully.')
     // notification logic here
   };

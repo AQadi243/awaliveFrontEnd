@@ -54,11 +54,12 @@ const BookingConfirm = () => {
         }
     }); // Use the correct endpoint
       setCreatedBooking(response.data.data); // Assuming the server responds with the created booking in 'data' field
+      console.log(response.data, 'after bokking click');
       sessionStorage.setItem('bookingId', response.data.data._id);
       setError(''); // Clear any previous errors
       navigate('/thank-you');
       setLoading(false)
-      localStorage.removeItem('bookingInfo');
+      localStorage.removeItem('bookingInfo'); 
     } catch (error) {
       console.error('Booking creation failed:', error);
       setError(`Booking creation failed. Please try again. ${error.message}`); // Simplified error handling for user feedback

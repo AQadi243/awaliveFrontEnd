@@ -92,8 +92,9 @@ const BookedHistory = ({ completedBookings, showModal, localizeNumber }) => {
     //   </div>
     // </section>
     <section className=" bg-slate-100 py-10">
-      <div className="md:max-w-5xl mx-auto ">
-        <h1 className="mb-4  text-xl font-semibold" style={{ fontFamily: "Gilda Display, serif" }}>{t("New Booking")}</h1>
+      {completedBookings.length > 0 && (
+        <div className="md:max-w-5xl mx-auto ">
+        <h1 className="mb-4  text-xl font-semibold" style={{ fontFamily: "Gilda Display, serif" }}>{t("History Booking")}</h1>
         <div className=" grid grid-cols-1 md:grid-cols-2 gap-2 ">
           {completedBookings &&  completedBookings.length > 0 ? (
             completedBookings.map((room) => (
@@ -106,6 +107,7 @@ const BookedHistory = ({ completedBookings, showModal, localizeNumber }) => {
           )}
         </div>
       </div>
+      )}
     </section>
   );
 };

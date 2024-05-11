@@ -37,6 +37,7 @@ const AdminAllRooms = () => {
 
         const response = await axios.get(
           `https://type-script-server.vercel.app/api/room/admin/room?lang=${currentLanguage}`,{
+          // `http://localhost:5000/api/room/admin/room?lang=${currentLanguage}`,{
             headers: {
                 'Authorization': `${token}`
             }}
@@ -63,7 +64,7 @@ const AdminAllRooms = () => {
     // setSearchLoading(false)
   }, [currentLanguage, setLoadingAllRooms]);
 
-  console.log(AllRooms);
+  console.log('alls rooms admin ',AllRooms);
   return (
 
     <>

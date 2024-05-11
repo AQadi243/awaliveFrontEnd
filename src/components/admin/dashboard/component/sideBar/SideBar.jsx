@@ -8,7 +8,7 @@ import { useEffect, useRef, useState } from "react";
 // import { FiSettings, FiShoppingCart } from "react-icons/fi";
 import {  NavLink, useLocation } from "react-router-dom";
 import SidebarLinkGroup from "./SideBarLinkGroup";
-import { LuUserCircle2 } from "react-icons/lu";
+import { LuUserCircle2, LuCalendarCheck } from "react-icons/lu";
 // import Logo from '../../component/images/logo/logo.svg'
 
 const SideBar = ({ sidebarOpen, setSidebarOpen }) => {
@@ -328,6 +328,18 @@ const SideBar = ({ sidebarOpen, setSidebarOpen }) => {
               </SidebarLinkGroup>
               <li>
                 <NavLink
+                  to="/dashboard/room/all-bookings"
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                    pathname.includes('calendar') &&
+                    'bg-graydark dark:bg-meta-4'
+                  }`}
+                >
+                  <LuCalendarCheck />
+                  Bookings
+                </NavLink>
+              </li>
+              {/* <li>
+                <NavLink
                   to="/calendar"
                   className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
                     pathname.includes('calendar') &&
@@ -349,7 +361,7 @@ const SideBar = ({ sidebarOpen, setSidebarOpen }) => {
                   </svg>
                   Calendar
                 </NavLink>
-              </li>
+              </li> */}
               {/* <!-- Menu Item Calendar --> */}
 
               {/* <!-- Menu Item Profile --> */}

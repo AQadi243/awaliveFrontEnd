@@ -27,8 +27,9 @@ import RoomRate from "./components/pages/Room Rate/RoomRate";
 import Banquet from "./components/pages/Banquet & meetings/Banquet";
 import Cafe from "./components/pages/Restaurent/restaurant&cafe/Cafe";
 import AddAdmin from "./components/admin/dashboard/component/pages/AddAdmin/AddAdmin";
-import AllRooms from "./components/admin/dashboard/component/pages/Rooms/AllRooms/AdminAllRooms";
+// import AllRooms from "./components/admin/dashboard/component/pages/Rooms/AllRooms/AdminAllRooms";
 import AdminAllRooms from "./components/admin/dashboard/component/pages/Rooms/AllRooms/AdminAllRooms";
+import AdminBookings from "./components/admin/dashboard/component/pages/Bookings/AdminBookings";
 
 const router = createBrowserRouter([
   {
@@ -148,6 +149,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/room/all-rooms",
         element: <AdminAllRooms />
+      },
+      {
+        path: "/dashboard/room/all-bookings",
+        element: <AdminBookings />
       },
     ],
   },

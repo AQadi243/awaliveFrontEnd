@@ -48,7 +48,7 @@ const [totalPrice, setTotalPrice] = useState(0);
     setThanYouLoading(false)
   }, [bookedRoomDetails , setThanYouLoading]);
 
-  console.log(totalPrice);
+ 
 
   
   // Ensure you handle loading or empty states appropriately

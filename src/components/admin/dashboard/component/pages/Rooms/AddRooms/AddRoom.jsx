@@ -2,10 +2,12 @@ import axios from "axios";
 import ImageField from "./ImageField";
 import TagSelector from "./TagSelector";
 import { jwtDecode } from "jwt-decode";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { message } from "antd";
+import { AuthContext } from "../../../../../../sharedPages/Context/AuthProvider";
 
 const AddRoom = () => {
+  const {handleLogout} = useContext(AuthContext)
   const [formData, setFormData] = useState({
     titleEn: '',
     titleAr: '',
@@ -17,7 +19,8 @@ const AddRoom = () => {
     descriptionEn: '',
     descriptionAR: '',
     price: 0,
-    tags:[],
+    priceHistory: null,
+    tags:'Regular',
     images:[]
   });
   const [formErrors, setFormErrors] = useState({});
@@ -32,20 +35,20 @@ const AddRoom = () => {
     }
   };
 
-  const handleTags = (newTags) => {
-    console.log('new tages', newTags);
+  
+  const handleTags = (selectedTags) => {
+    console.log('new tags', selectedTags); // This should log an array of selected tag strings
     setFormData(prevFormData => ({
       ...prevFormData,
-      tags: [...newTags]
+      tags: selectedTags // Directly use the array from Select
     }));
   };
   
-  const handleImagesChange = (newImageUrl) => {
-    console.log('new Imagess', newImageUrl);
+  const handleImagesChange = (newImageUrls) => {
+    
     setFormData(prevFormData => ({
       ...prevFormData,
-      images: [...prevFormData.images, newImageUrl]
-      
+      images: newImageUrls.filter(url => url !== '') // Replace with new URLs and filter out any empty strings
     }));
   };
 
@@ -77,6 +80,7 @@ const AddRoom = () => {
     if (!formData.price) {
       errors.price = 'Price per night is required.';
     }
+    
     if (formData.descriptionEn.trim() === '') {
       errors.descriptionEn = 'Arabic sub title is required.';
     }
@@ -109,18 +113,22 @@ const AddRoom = () => {
       roomQTY: parseInt(formData.roomQTY, 10), // Convert to integer
       size: parseInt(formData.size, 10), // Convert to integer
       price: parseInt(formData.price, 10), // Convert to integer
-      images: [], // Assuming you have image input handling
+      images: formData.images, // Assuming you have image input handling
       priceOptions: [
         {
           price: parseInt(formData.price, 10), // Assuming this is the room price per night
           // Other details like currency, taxes, etc., need to be added here
         }
       ],
-      tags: [], // Assuming you have tag input handling
-      priceHistory: parseInt(formData.priceHistory, 10) // Convert to integer
+      tags: formData.tags, // Assuming you have tag input handling
+      priceHistory: formData.priceHistory ? parseInt(formData.priceHistory, 10) : undefined // Handle null or empty
     };
-  
-    // Add more processing logic if needed for other fields like services, images, etc.
+
+    // Optionally omit priceHistory if it's undefined to avoid sending it altogether
+    if (processedData.priceHistory === undefined) {
+      delete processedData.priceHistory;
+    }
+
     return processedData;
   };
 
@@ -147,7 +155,9 @@ const AddRoom = () => {
     // Check token expiration and admin role
     const currentTime = Date.now() / 1000; // to get in milliseconds
     if (decodedToken.exp < currentTime) {
+      
       message.error('Session has expired. Please log in again.');
+      handleLogout()
       return;
     }
 
@@ -156,19 +166,23 @@ const AddRoom = () => {
         message.error('You are not authorized to delete this room.');
         return;
     }
+    
     const processedData = processDataForSubmission(formData);
-    console.log(processedData);
-    const url = 'YOUR_API_ENDPOINT_URL';
+    console.log(processedData,'asdasd');
+    // const url = 'http://localhost:5000/api/room/create';
+    const url = 'https://type-script-server.vercel.app/api/room/create';
     try {
       const response = await axios.post(url, processedData, {
         headers: {
-          Authorization: `Bearer ${token}`
+          Authorization: `${token}`
         }
       });
       console.log('Success:', response.data);
+      message.error(`${response.data.message}`);
       // Handle further actions like redirecting or showing a success message
     } catch (error) {
       console.error('Error posting data:', error);
+      message.error(`${error.response.data.issues[0].message}`);
       // Handle errors like showing error message to user
     }
   };
@@ -379,6 +393,8 @@ const AddRoom = () => {
                 type="number"
                 id="priceHistory"
                 name="priceHistory"
+                value={formData.price}
+                onChange={handleChange}
                 className="mt-1 block py-2 px-2 w-full  border border-gray-300 shadow-sm text-black outline-none transition  dark:border-form-strokedark dark:bg-form-input dark:text-white"
               />
             </div>
