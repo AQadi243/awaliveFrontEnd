@@ -1,10 +1,10 @@
 import { Table, Tag, Space, } from "antd";
-import {  useState } from "react";
-import { LuMoreHorizontal, LuTrash2 } from "react-icons/lu";
-import BookingInfoAdmin from "./BookingInfoAdmin";
+import { useState } from "react";
+import {  LuMoreHorizontal, } from "react-icons/lu";
 import FilterBookingsByDate from "./FilterBookingsByDate";
-
-
+import BookingInfoAdmin from "./BookingInfoAdmin";
+import ActionButton from "./ActionButton";
+import { useNavigate } from "react-router-dom";
 
 // Extract unique room names to create filters dynamically
 const generateRoomNameFilters = (data) => {
@@ -25,16 +25,26 @@ const generateBookingStatusFilters = (data) => {
 };
 
 // eslint-disable-next-line react/prop-types
-const AllBookingsAdmin = ({allBookingData, loading, fetchBookings, setAllBookingData}) => {
- 
+const NewBookingsAdmin = ({ allNewBookingData, newLoading, fetchNewBookings, setAllNewBookingData, fetchBookings }) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [selectedData, setSelectedData] = useState(null);
+  const navigate = useNavigate();
   // const { t } = useTranslation("booking");
+
 
   const showModal = (record) => {
     setSelectedData(record);
     setIsModalVisible(true);
   };
+
+  const showInvoice = (record) => {
+    console.log(record,"record");
+    // Navigate to the invoice route with a parameter, if necessary
+    navigate(`/dashboard/booking/invoice/${record.id}`);  // Assuming record.id is how you identify bookings
+  };
+
+  console.log(allNewBookingData,'new booking');
+
 
   const columns = [
     {
@@ -64,9 +74,10 @@ const AllBookingsAdmin = ({allBookingData, loading, fetchBookings, setAllBooking
       key: "roomName",
       // sorter: (a, b) => a.roomName.localeCompare(b.roomName),
       // filters: roomNameFilters,
-      filters: generateRoomNameFilters(allBookingData),
+      filters: generateRoomNameFilters(allNewBookingData),
       onFilter: (value, record) => record.roomName.startsWith(value),
       filterSearch: true,
+      render: (text, record) => <a onClick={() => showInvoice(record)}>{text}</a>
     },
     {
       title: "CheckIn",
@@ -97,7 +108,7 @@ const AllBookingsAdmin = ({allBookingData, loading, fetchBookings, setAllBooking
       title: "Booking Status",
       dataIndex: "status", // Correctly referencing 'status' as defined in transformData
       key: "status",
-      filters: generateBookingStatusFilters(allBookingData),
+      filters: generateBookingStatusFilters(allNewBookingData),
       onFilter: (value, record) => record.status.startsWith(value),
       filterSearch: true,
       render: (status) => {
@@ -129,25 +140,34 @@ const AllBookingsAdmin = ({allBookingData, loading, fetchBookings, setAllBooking
         <Space size="small">
           {/* <LuFileEdit onClick={() => showModal(record)} className='text-lg cursor-pointer text-yellow-600' /> */}
           <LuMoreHorizontal onClick={() => showModal(record)} className="text-lg cursor-pointer text-yellow-600" title="Full Info" />
-          <LuTrash2 className="text-lg cursor-pointer text-red-400" title="Delete" />
+          <ActionButton record={record} fetchNewBookings={fetchNewBookings} fetchBookings={fetchBookings} />
         </Space>
       ),
     },
   ];
-
   return (
     <>
       <div className="py-6">
-        <FilterBookingsByDate fetchBookings={fetchBookings} setAllBookingData={setAllBookingData} allBookingData={allBookingData} />
+        <FilterBookingsByDate
+          fetchBookings={fetchNewBookings}
+          setAllBookingData={setAllNewBookingData}
+          allBookingData={allNewBookingData}
+        />
       </div>
-      <div >
-        {loading ? (
-          <div className="min-h-[400px] w-full flex justify-center items-center ">
-
+      <div>
+        {newLoading ? (
           <p>Loading....</p>
-          </div>
         ) : (
-          <Table scroll={{ x: "max-content" }} columns={columns} dataSource={allBookingData} pagination={{ pageSize: 5 }} size="small" />
+          <Table 
+          
+          scroll={{ x: "max-content" }}
+          columns={columns}
+          dataSource={allNewBookingData}
+          pagination={{ pageSize: 5 }} 
+          size="small"
+          
+          
+          />
         )}
       </div>
       <BookingInfoAdmin
@@ -160,4 +180,4 @@ const AllBookingsAdmin = ({allBookingData, loading, fetchBookings, setAllBooking
   );
 };
 
-export default AllBookingsAdmin;
+export default NewBookingsAdmin;

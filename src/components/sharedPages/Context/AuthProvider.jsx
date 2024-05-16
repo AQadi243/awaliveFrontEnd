@@ -182,7 +182,6 @@ const AuthProvider = ({ children }) => {
         // const response = await axios.get(`http://localhost:5000/api/room/promotion?lang=${currentLanguage}`);
         const response = await axios.get(`https://type-script-server.vercel.app/api/room/promotion?lang=${currentLanguage}`);
 
-        console.log(response.data.data,'promotion data ');
         const firstFourItems = response.data.data
     
         setPromotionsData(firstFourItems)

@@ -67,21 +67,17 @@ const BookingDate = () => {
     const fetchRoomDetails = async () => {
       setLoading(true);
       const storedBookingInfo = localStorage.getItem("bookingInfo");
-      console.log('Stored booking info:', storedBookingInfo);
       if (storedBookingInfo) {
         const { roomId, checkIn: storedCheckIn, checkOut: storedCheckOut, numberOfGuests: storedGuests } = JSON.parse(storedBookingInfo);
   
-        console.log('Original stored dates:', storedCheckIn, storedCheckOut);
         const correctCheckInFormet = new Date(storedCheckIn)
         const correctCheckOutFormet = new Date(storedCheckOut)
   
         let checkInDate = moment(correctCheckInFormet, 'MM/DD/YYYY').isValid() ? moment(correctCheckInFormet, 'MM/DD/YYYY').format('YYYY-MM-DD') : moment().format('YYYY-MM-DD');
         let checkOutDate = moment(correctCheckOutFormet, 'MM/DD/YYYY').isValid() ? moment(correctCheckOutFormet, 'MM/DD/YYYY').format('YYYY-MM-DD') : moment().add(1, 'days').format('YYYY-MM-DD');
   
-        console.log('Formatted dates:', checkInDate, checkOutDate);
   
         if (!checkInDate || !checkOutDate) {
-          console.error('Invalid stored date formats');
           setError('Invalid stored date formats');
           setLoading(false);
           return; // Exit the function if dates are invalid
@@ -93,8 +89,8 @@ const BookingDate = () => {
         setNights(moment(checkOutDate).diff(moment(checkInDate), 'days'));
   
         try {
-          // const response = await axios.get(`https://type-script-server.vercel.app/api/room/${roomId}?lang=${currentLanguage}`);
-          const response = await axios.get(`http://localhost:5000/api/room/${roomId}?lang=${currentLanguage}`);
+          const response = await axios.get(`https://type-script-server.vercel.app/api/room/${roomId}?lang=${currentLanguage}`);
+          // const response = await axios.get(`http://localhost:5000/api/room/${roomId}?lang=${currentLanguage}`);
           setRoomDetails(response.data.data);
         } catch (err) {
           setError(err.message);
@@ -108,8 +104,6 @@ const BookingDate = () => {
   }, [currentLanguage]);
   
 
-  console.log(checkIn, 'chjeckin dateerrrrrrrrrrrr ');
-  console.log(checkIn ? (moment(checkIn).isValid() ? moment(checkIn).format('D') : "Invalid Date") : "") ;
 
 
   const perNightPrice = roomDetails.priceOptions?.[0]?.price ?? 0;

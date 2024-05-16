@@ -28,8 +28,7 @@ const deleteGuest = async (guestId) => {
   const { data, isLoading, isError } = useQuery('guests', fetchGuests);
   const queryClient = useQueryClient();
 
-  // console.log(allGuests);
-  // console.log(isError);
+
 
   const { mutate } = useMutation(deleteGuest, {
     onSuccess: () => {
@@ -63,6 +62,10 @@ const deleteGuest = async (guestId) => {
           <div className="py-10 ">
             <GuestsTable allGuests={data} deleteGuest={handleDelete} />
             {/* <GuestListTable allGuests={data} deleteGuest={handleDelete} /> */}
+          </div>
+          <div>
+            <p>asdcasdc</p>
+          
           </div>
         </div>
       </section>

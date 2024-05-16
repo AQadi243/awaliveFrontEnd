@@ -30,6 +30,8 @@ import AddAdmin from "./components/admin/dashboard/component/pages/AddAdmin/AddA
 // import AllRooms from "./components/admin/dashboard/component/pages/Rooms/AllRooms/AdminAllRooms";
 import AdminAllRooms from "./components/admin/dashboard/component/pages/Rooms/AllRooms/AdminAllRooms";
 import AdminBookings from "./components/admin/dashboard/component/pages/Bookings/AdminBookings";
+import Invoice from "./components/admin/dashboard/component/pages/Invoice/Invoice";
+import Dashboard from "./components/admin/dashboard/component/pages/Dashboard/Dashboard";
 
 const router = createBrowserRouter([
   {
@@ -131,12 +133,12 @@ const router = createBrowserRouter([
     ),  
     children: [
       {
-        path: "/dashboard/createAdmin",
-        element: <AddAdmin />,
+        path: "/dashboard",
+        element: <Dashboard />,
       },
       {
-        path: "/dashboard",
-        element: <Users />,
+        path: "/dashboard/createAdmin",
+        element: <AddAdmin />,
       },
       {
         path: "/dashboard/allGuest",
@@ -153,6 +155,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/room/all-bookings",
         element: <AdminBookings />
+      },
+      {
+        path:"/dashboard/booking/invoice/:id",
+        element: <Invoice />
       },
     ],
   },

@@ -4,8 +4,8 @@ import { AuthContext } from "../../../../sharedPages/Context/AuthProvider";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import DarkModeSwitcher from "./DarkModeSwitcher";
-import DropdownNotification from "./DropdownNotification";
-import DropdownMessage from "./DropdownMessage";
+// import DropdownNotification from "./DropdownNotification";
+// import DropdownMessage from "./DropdownMessage";
 import DropdownUser from "./DropdownUser";
 import LogoIcon from '../../component/images/logo/logoIcon.svg'
 
@@ -121,11 +121,11 @@ const AdminNavBar = ({sidebarOpen, setSidebarOpen}) => {
             {/* <!-- Dark Mode Toggler --> */}
 
             {/* <!-- Notification Menu Area --> */}
-            <DropdownNotification />
+            {/* <DropdownNotification /> */}
             {/* <!-- Notification Menu Area --> */}
 
             {/* <!-- Chat Notification Area --> */}
-            <DropdownMessage />
+            {/* <DropdownMessage /> */}
             {/* <!-- Chat Notification Area --> */}
           </ul>
 

@@ -63,43 +63,7 @@ const BookingInfoAdmin = ({ setIsModalVisible, isModalVisible, selectedData }) =
           </div>
           
         </div>
-        {/* <Form labelCol={{ span: 8 }} wrapperCol={{ span: 16 }}>
-          <Form.Item label="CheckIn"  >
-            <p>12/12123</p>
-          </Form.Item>
-          <Form.Item label="CheckOut">
-            <DatePicker />
-          </Form.Item>
-          <Form.Item label="Bed type">
-            <Select>
-              <Option value="single">Single</Option>
-              <Option value="double">Double</Option>
-              <Option value="suite">Suite</Option>
-            </Select>
-          </Form.Item>
-          <Form.Item label="Proof">
-            <Input defaultValue="Adhar Card" />
-          </Form.Item>
-          <Form.Item label="Person">
-            <Input placeholder="Enter Person" />
-          </Form.Item>
-          <Form.Item label="Rooms">
-            <Input placeholder="Enter Rooms" />
-          </Form.Item>
-          <Form.Item label="Room Type">
-            <Select>
-              <Option value="junior">Junior Suite</Option>
-              <Option value="master">Master Suite</Option>
-            </Select>
-          </Form.Item>
-          <Form.Item label="Payment">
-            <Select>
-              <Option value="cash">Cash</Option>
-              <Option value="credit">Credit Card</Option>
-              <Option value="online">Online</Option>
-            </Select>
-          </Form.Item>
-        </Form> */}
+        
       </Modal>
     </>
   );
