@@ -31,4 +31,4 @@ jobs:
 
     - name: Start or Reload Application
       run: |
-        pm2 start ecosystem.config.js --only my-next-app || pm2 reload my-next-app --update-env
+        pm2 start ecosystem.config.cjs --only my-next-app || pm2 reload my-next-app --update-env
