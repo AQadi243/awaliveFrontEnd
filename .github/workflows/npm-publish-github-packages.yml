@@ -1,0 +1,34 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main  # Trigger on pushes to the main branch
+  pull_request:
+    branches:
+      - main  # Trigger on PRs to the main branch
+
+jobs:
+  build-and-deploy:
+    runs-on: self-hosted  # Specify using your self-hosted runner
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v2
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '18'  # Match this version to your project's requirements
+
+    - name: Install Dependencies
+      run: npm install
+
+    - name: Build
+      run: npm run build
+
+    - name: Install pm2
+      run: npm install -g pm2
+
+    - name: Start or Reload Application
+      run: |
+        pm2 start ecosystem.config.js --only my-next-app || pm2 reload my-next-app --update-env
