@@ -61,7 +61,8 @@ const RoomReviewForm = ({ roomId }) => {
       message,
     };
     try {
-      const response = await axios.post("https://type-script-server.vercel.app/api/review/create", reviewData, {
+      const response = await axios.post("https://www.awalivhotel.com/api/review/create", reviewData, {
+      // const response = await axios.post("https://type-script-server.vercel.app/api/review/create", reviewData, {
         headers: {
           Authorization: token,
         },

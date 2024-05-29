@@ -170,7 +170,8 @@ const AddRoom = () => {
     const processedData = processDataForSubmission(formData);
     console.log(processedData,'asdasd');
     // const url = 'http://localhost:5000/api/room/create';
-    const url = 'https://type-script-server.vercel.app/api/room/create';
+    const url = 'https://www.awalivhotel.com/api/room/create';
+    // const url = 'https://type-script-server.vercel.app/api/room/create';
     try {
       const response = await axios.post(url, processedData, {
         headers: {

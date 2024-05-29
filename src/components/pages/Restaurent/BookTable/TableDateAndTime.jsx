@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import { FaAngleDown, FaAngleUp } from "react-icons/fa6";
 import img from "../../../../assets/restaurant.jpg";
-import { Select, Space } from "antd";
+// import { Select, Space } from "antd";
 import "./TableBooking.css";
 import { Calendar } from "react-date-range";
 import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import i18next from "i18next";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
@@ -14,7 +14,7 @@ import axios from "axios";
 const TableDateAndTime = () => {
   const currentLanguage = i18next.language;
   const { t } = useTranslation("restaurant");
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   // const [selectedTime, setSelectedTime] = useState(null);
   // const [selectedDate, setSelectedDate] = useState(new Date());
   // const [person, setPerson] = useState(1);
@@ -86,63 +86,7 @@ const TableDateAndTime = () => {
     setSelectedRestaurant(event.target.value);
   };
 
-  // Function to navigate to the next page
-  // const validatePage2 = () => {
-  //   const errors = {};
-  //   if (!name) errors.name = "Name is required";
-  //   if (!phone) errors.phone = "Phone is required";
-  //   if (!email.includes("@")) errors.email = "Email is invalid";
-  //   return errors;
-  // };
-
-  // const handleNextPage = () => {
-  //   let newErrors = {};
-
-  //   // Perform validation based on the current page
-  //   if (page === 2) {
-  //     newErrors = validatePage2();
-  //     setErrors(newErrors);
-  //   }
-
-  //   // If there are errors on the current page, stop here
-  //   if (Object.keys(newErrors).length > 0) {
-  //     // Optional: Focus on the first input field with an error
-  //     if (newErrors.name) document.getElementById("name").focus();
-  //     else if (newErrors.phone) document.getElementById("phone").focus();
-  //     else if (newErrors.email) document.getElementById("email").focus();
-  //     return;
-  //   }
-
-  //   // If on Page 1 (no validation needed) or validation passed on Page 2, move to the next page
-  //   setPage((prevPage) => prevPage + 1);
-  // };
-
-  // Function to handle form validation and submission for booking
-  // const handleBookTable = () => {
-  //   // Example form validation
-  //   const newErrors = {};
-  //   if (!name) newErrors.name = "Name is required";
-  //   if (!phone) newErrors.phone = "Phone is required";
-  //   if (!email.includes("@")) newErrors.email = "Email is invalid";
-
-  //   setErrors(newErrors);
-
-  //   // Check if there are any errors
-  //   if (Object.keys(newErrors).length > 0) {
-  //       // Optional: Focus on the first input field with an error
-  //       if (newErrors.name) document.getElementById("name").focus();
-  //       else if (newErrors.phone) document.getElementById("phone").focus();
-  //       else if (newErrors.email) document.getElementById("email").focus();
-  //       return; // Stop the submission if there are errors
-  //   }
-
-  //   // Proceed with form submission or navigation...
-  //   console.log("Booking confirmed", { name, phone, email, message, selectedDate, selectedTime, person });
-  //   // Optionally, reset form here or navigate to a confirmation page
-  // };
-
-  // Ensure you have handlers for your inputs
-  // For example:
+  
   const handleIncrement = () => setPerson(person + 1);
   const handleDecrement = () => setPerson(Math.max(1, person - 1)); // Prevent less than 1
   const handleTimeSlotSelect = (time) => setSelectedTime(time);
@@ -206,7 +150,8 @@ const handleNextPage = async () => {
       
       setLoading(true); // Start loading
       try {
-        const response = await axios.post('https://type-script-server.vercel.app/api/Table-booking/create', bookingData);
+        const response = await axios.post('https://www.awalivhotel.com/api/Table-booking/create', bookingData);
+        // const response = await axios.post('https://type-script-server.vercel.app/api/Table-booking/create', bookingData);
 
         console.log(response, 'datassss');
         // setBookingSuccess(true);

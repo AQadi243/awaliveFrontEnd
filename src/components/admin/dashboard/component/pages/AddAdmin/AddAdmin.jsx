@@ -80,7 +80,8 @@ const AddAdmin = () => {
       
         try {
           
-          const response = await axios.post('https://type-script-server.vercel.app/api/user/create/admin', adminData ,{ 
+          // const response = await axios.post('https://type-script-server.vercel.app/api/user/create/admin', adminData ,{ 
+          const response = await axios.post('https://www.awalivhotel.com/api/user/create/admin', adminData ,{ 
         //   const response = await axios.post('http://localhost:5000/api/user/create/admin', adminData, {
             headers: {
                 'Authorization': `${token}`
@@ -201,7 +202,7 @@ const AddAdmin = () => {
                     placeholder={t('passwordPlaceholder')}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className={`py-2 px-2 w-full border  border-gray-300 shadow-sm text-black outline-none transition  dark:border-form-strokedark dark:bg-form-input dark:text-white w-full ${errors.password && 'border-red-500'}`}
+                    className={`py-2 px-2  border  border-gray-300 shadow-sm text-black outline-none transition  dark:border-form-strokedark dark:bg-form-input dark:text-white w-full ${errors.password && 'border-red-500'}`}
                     required
                 />
                 <button

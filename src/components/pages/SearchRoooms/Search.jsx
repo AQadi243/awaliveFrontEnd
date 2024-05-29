@@ -12,16 +12,13 @@ import { SlGrid, SlList } from "react-icons/sl";
 import axios from "axios";
 import i18next from "i18next";
 import { useTranslation } from "react-i18next";
-import { Spin } from "antd";
 import { Helmet } from "react-helmet";
-import { useLocation } from "react-router-dom";
 
 const Search = () => {
 
   const {
-    category,
+
     setSortByPrice,
-    setCategory,
     setCheckIn,
     setCheckOut,
     allRooms,
@@ -50,38 +47,7 @@ console.log(errorMessage,'data error ');
   };
   const formetDateCheckIn = formatDateString(checkIn);
   const formetDateCheckOut = formatDateString(checkOut);
-  // // console.log(sortByPrice);
-  // useEffect(() => {
-  //   setLoadingAvailableRooms(true);
-  //   setErrorMessage('');
-
-  //   const fetchAllRooms = async () => {
-  //     try {
-  //       const response = await axios.get(
-  //         // `https://type-script-server.vercel.app/api/room/available/?lang=${currentLanguage}&checkInDate=${formetDateCheckIn}&checkOutDate=${formetDateCheckOut}&sortOrder=${sortByPrice}&maxGuests=${numberOfGuests},&sizeOrder=${roomSize}`
-  //         `https://type-script-server.vercel.app/api/room/available/?lang=${currentLanguage}&checkInDate=${formetDateCheckIn}&checkOutDate=${formetDateCheckOut}&maxGuests=${numberOfGuests},&sortOrder=${sortByPrice}&sizeOrder=${roomSize}`
-  //       );
-
-  //       setAvailableRooms(response.data.data);
-  //       if(response.data.data.length === 0) {
-  //         // Handle no rooms found scenario
-  //         setErrorMessage('No rooms available for the selected criteria.');
-  //       }
-  //       console.log(response.data.data,'chnking available room ');
-  //       // setCategories(response.data.data);
-  //       // setSearchLoading(false);
-  //       setLoadingAvailableRooms(false);
-  //     } catch (error) {
-  //       console.error("Error fetching room rates:", error?.response?.data?.error?.statusCode);
-  //       console.error("Error fetching room rates:", error?.response?.data?.issues[0]?.message);
-  //       setErrorMessage(`Error fetching room rates: ${error?.response?.data?.issues[0]?.message}`);
-  //       setAvailableRooms([]); // Clear rooms as there was an error
-  //     }
-  //     setLoadingAvailableRooms(false);
-  //   };
-  //   fetchAllRooms();
-  //   // setSearchLoading(false)
-  // }, [setLoadingAvailableRooms,setAvailableRooms, formetDateCheckIn, formetDateCheckOut, sortByPrice, numberOfGuests, currentLanguage, roomSize]);
+  
 
   const handleValue = (value) => {
     setSortByPrice(value);
@@ -116,7 +82,8 @@ console.log(errorMessage,'data error ');
       console.log(params.toString(), 'params sring');
       try {
         const response = await axios.get(
-          `https://type-script-server.vercel.app/api/room/available/?${params.toString()}`
+          `https://www.awalivhotel.com/api/room/available/?${params.toString()}`
+          // `https://type-script-server.vercel.app/api/room/available/?${params.toString()}`
           // `https://type-script-server.vercel.app/api/room/available/?lang=${currentLanguage}&checkInDate=${formetDateCheckIn}&checkOutDate=${formetDateCheckOut}&maxGuests=${numberOfGuests}&sizeOrder=${roomSize}&sortByPrice=${sortByPrice}`
           // `http://localhost:5000/api/room/available/?${params.toString()}`
           // `https://type-script-server.vercel.app/api/room/available/?${params.toString()}`

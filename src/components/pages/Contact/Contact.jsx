@@ -1,5 +1,4 @@
 import { useTranslation } from "react-i18next";
-import BannerPage from "../../sharedPages/PageBanner/BannerPage";
 import PageAnimation from "../../PageAnimation/PageAnimation";
 import keyImage from "/src/assets/icon-16.png";
 import serImage from "/src/assets/icon-17.png";
@@ -15,10 +14,10 @@ import ContactBanner from "./ContactBanner";
 import i18next from "i18next";
 import axios from "axios";
 
-const initialFormData = {
-  email: "",
-  message: "",
-};
+// const initialFormData = {
+//   email: "",
+//   message: "",
+// };
 
 const Contact = () => {
   const currentLanguage = i18next.language
@@ -69,7 +68,8 @@ const handleSubmit = async (e) => {
 
     // Implement Axios POST request here
     try {
-        const response = await axios.post('https://type-script-server.vercel.app/api/contact-message/create', formData);
+        const response = await axios.post('https://www.awalivhotel.com/api/contact-message/create', formData);
+        // const response = await axios.post('https://type-script-server.vercel.app/api/contact-message/create', formData);
         console.log(response.data); // Handle success
         setFormData({ email: '', message: '' }); // Clear form on success
         alert(t("form_success_message")); // Show success message

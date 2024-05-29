@@ -22,7 +22,8 @@ const ThankYou = () => {
     const fetchRoomDetails = async () => {
       try {
         setThanYouLoading(true); // Start loading
-        const response = await axios.get(`https://type-script-server.vercel.app/api/booking/room/${bookingId}`);
+        const response = await axios.get(`https://www.awalivhotel.com/api/booking/room/${bookingId}`);
+        // const response = await axios.get(`https://type-script-server.vercel.app/api/booking/room/${bookingId}`);
         // const response = await axios.get(`http://localhost:5000/api/booking/room/${bookingId}`);
         setBookedRoomDetails(response.data.data); // Set your state based on response
        console.log(response.data.data,'thank you page ');

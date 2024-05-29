@@ -32,7 +32,8 @@ const Invoice = () => {
 
         const response = await axios.get(
           // `https://type-script-server.vercel.app/api/booking/${userEmail}?lang=${currentLanguage}`,
-          `https://type-script-server.vercel.app/api/booking/invoice/${bookingId}?lang=${currentLanguage}`,
+          `https://www.awalivhotel.com/api/booking/invoice/${bookingId}?lang=${currentLanguage}`,
+          // `https://type-script-server.vercel.app/api/booking/invoice/${bookingId}?lang=${currentLanguage}`,
           // `http://localhost:5000/api/booking/invoice/${bookingId}?lang=${currentLanguage}`,
           {
             headers: {

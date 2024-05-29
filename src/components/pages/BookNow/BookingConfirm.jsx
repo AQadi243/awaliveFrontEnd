@@ -1,12 +1,10 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../sharedPages/Context/AuthProvider";
 import BookingDate from "./BookingDate";
-import { Tabs, Modal, notification, Spin } from "antd";
+import { Tabs,  } from "antd";
 import { useNavigate } from "react-router-dom";
-import PageAnimation from "../../PageAnimation/PageAnimation";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
-import { FaCircleInfo } from "react-icons/fa6";
 import i18next from "i18next";
 import BannerPage from "../../sharedPages/PageBanner/BannerPage";
 
@@ -47,7 +45,8 @@ const BookingConfirm = () => {
 
     
     try {
-      const response = await axios.post('https://type-script-server.vercel.app/api/booking', bookingData,  {
+      const response = await axios.post('https://www.awalivhotel.com/api/booking', bookingData,  {
+      // const response = await axios.post('https://type-script-server.vercel.app/api/booking', bookingData,  {
         // httpsAgent: agent,
         headers: {
             Authorization: `${token}` // This will send your token in the Authorization header
@@ -68,6 +67,7 @@ const BookingConfirm = () => {
   };
   
 
+  // eslint-disable-next-line no-unused-vars
   const onChange = (key) => {
     // console.log(key);
   };

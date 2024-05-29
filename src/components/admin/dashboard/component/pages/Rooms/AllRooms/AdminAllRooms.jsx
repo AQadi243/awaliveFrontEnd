@@ -36,7 +36,8 @@ const AdminAllRooms = () => {
 
 
         const response = await axios.get(
-          `https://type-script-server.vercel.app/api/room/admin/room?lang=${currentLanguage}`,{
+          `https://www.awalivhotel.com/api/room/admin/room?lang=${currentLanguage}`,{
+          // `https://type-script-server.vercel.app/api/room/admin/room?lang=${currentLanguage}`,{
           // `http://localhost:5000/api/room/admin/room?lang=${currentLanguage}`,{
             headers: {
                 'Authorization': `${token}`

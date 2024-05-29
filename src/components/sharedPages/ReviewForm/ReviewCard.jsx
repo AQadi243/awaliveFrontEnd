@@ -2,18 +2,15 @@
 import axios from "axios";
 import userPlaceHolderImg from "../../../assets/userPlaceholderImage.jpg";
 import { useEffect, useState } from "react";
-import { notification, Pagination, Skeleton } from "antd";
+import { notification, Skeleton } from "antd";
 import { useTranslation } from "react-i18next";
-import i18next from "i18next";
 import Slider from 'react-slick';
-import { FaStar } from 'react-icons/fa';
 
 
 const ReviewCard = ({ roomId, reviews, setReviews, reviewLoading, setReviewLoading }) => {
-  const currentLanguage = i18next.language;
   const { t } = useTranslation("booking");
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(0);
+  const [currentPage, ] = useState(1);
+  const [ setTotalPages] = useState(0);
   const pageSize = 5; // Number of reviews per page
   const allReviews = reviews.reviews;
 
@@ -24,7 +21,8 @@ const ReviewCard = ({ roomId, reviews, setReviews, reviewLoading, setReviewLoadi
       try {
         setReviewLoading(true);
         const response = await axios.get(
-          `https://type-script-server.vercel.app/api/review/${roomId}?page=${currentPage}&limit=${pageSize}`
+          `https://www.awalivhotel.com/api/review/${roomId}?page=${currentPage}&limit=${pageSize}`
+          // `https://type-script-server.vercel.app/api/review/${roomId}?page=${currentPage}&limit=${pageSize}`
         );
         setReviews(response.data.data);
 

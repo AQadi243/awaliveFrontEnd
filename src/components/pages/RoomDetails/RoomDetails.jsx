@@ -27,7 +27,8 @@ const RoomDetails = () => {
   useEffect(() => {
     const fetchRoom = async () => {
       try {
-        const response = await axios.get(`https://type-script-server.vercel.app/api/room/${id}?lang=${currentLanguage}`);
+        const response = await axios.get(`https://www.awalivhotel.com/api/room/${id}?lang=${currentLanguage}`);
+        // const response = await axios.get(`https://type-script-server.vercel.app/api/room/${id}?lang=${currentLanguage}`);
         // const response = await axios.get(`http://localhost:5000/api/room/${id}?lang=${currentLanguage}`);
         setSingleRoomDetails(response.data.data);
         setLoading(false);

@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { Dropdown, Space, message } from "antd";
 import { LuAlignCenter } from "react-icons/lu";
 import { MoneyCollectOutlined, CloseOutlined } from "@ant-design/icons";
@@ -42,8 +43,10 @@ const ActionButton = ({ record, fetchBookings, fetchNewBookings }) => {
       return;
     }
     try {
+      // eslint-disable-next-line no-unused-vars
       const response = await axios.patch(
-        `https://type-script-server.vercel.app/api/booking/markAsPaid/${record.id}`,{},{
+        `https://www.awalivhotel.com/api/booking/markAsPaid/${record.id}`,{},{
+        // `https://type-script-server.vercel.app/api/booking/markAsPaid/${record.id}`,{},{
           headers: { Authorization: `${token}` },
         }
         // `http://localhost:5000/api/booking/mark-as-paid/${record.id}`,
@@ -94,8 +97,10 @@ const ActionButton = ({ record, fetchBookings, fetchNewBookings }) => {
     }
   
     try {
+      // eslint-disable-next-line no-unused-vars
       const response = await axios.patch(
-        `https://type-script-server.vercel.app/api/booking/cancelBooking/${record.id}`,{},
+        `https://www.awalivhotel.com/booking/cancelBooking/${record.id}`,{},
+        // `https://type-script-server.vercel.app/api/booking/cancelBooking/${record.id}`,{},
         // `http://localhost:5000/api/booking/cancelBooking/${record.id}`,{},
         {
           headers: {

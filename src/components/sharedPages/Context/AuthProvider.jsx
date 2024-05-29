@@ -65,8 +65,8 @@ const AuthProvider = ({ children }) => {
     try {
       setLoading(true);
       const response = await axios.post(
-        // "https://awalive-server-side-hzpa.vercel.app/login",
-        "https://type-script-server.vercel.app/api/auth/login",
+        "https://www.awalivhotel.com/api/auth/login",
+        // "https://type-script-server.vercel.app/api/auth/login",
         // "http://localhost:5000/api/auth/login",
         {
           email,
@@ -153,7 +153,8 @@ const AuthProvider = ({ children }) => {
     const fetchAllRooms = async () => {
       try {
         const response = await axios.get(
-          `https://type-script-server.vercel.app/api/room/?lang=${currentLanguage}`
+          `https://www.awalivhotel.com/api/room/?lang=${currentLanguage}`
+          // `https://type-script-server.vercel.app/api/room/?lang=${currentLanguage}`
           // `http://localhost:5000/api/room/?lang=${currentLanguage}`
           // "https://awalive-server-side-hzpa.vercel.app/rooms"
         );
@@ -180,7 +181,8 @@ const AuthProvider = ({ children }) => {
     const fetchPromotionData = async () => {
       try {
         // const response = await axios.get(`http://localhost:5000/api/room/promotion?lang=${currentLanguage}`);
-        const response = await axios.get(`https://type-script-server.vercel.app/api/room/promotion?lang=${currentLanguage}`);
+        const response = await axios.get(`https://www.awalivhotel.com/api/room/promotion?lang=${currentLanguage}`);
+        // const response = await axios.get(`https://type-script-server.vercel.app/api/room/promotion?lang=${currentLanguage}`);
 
         const firstFourItems = response.data.data
     

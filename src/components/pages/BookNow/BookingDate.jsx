@@ -24,44 +24,7 @@ const BookingDate = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // useEffect(() => {
-  //   console.log('Effect running...');
-  //   const fetchRoomDetails = async () => {
-  //     console.log('Fetching room details...');
-  //     setLoading(true);
-  //     const storedBookingInfo = localStorage.getItem("bookingInfo");
-  //     if (storedBookingInfo) {
-  //       const { roomId, checkIn: storedCheckIn, checkOut: storedCheckOut, numberOfGuests: storedGuests } = JSON.parse(storedBookingInfo);
-  //       const inDate = new Date(storedCheckIn);
-  //       const outDate = new Date(storedCheckOut);
-  
-  //       setCheckIn(inDate);
-  //       setCheckOut(outDate);
-  //       setGuests(storedGuests || 1);
-  //       setNights(differenceInCalendarDays(outDate, inDate));
-  
-  //       try {
-  //         const response = await axios.get(`https://type-script-server.vercel.app/api/room/${roomId}?lang=${currentLanguage}`);
-  //         setRoomDetails(response.data.data);
-  //         console.log('Room details fetched:', response.data.data);
-  //       } catch (err) {
-  //         setError(err.message);
-  //         console.error('Error fetching room details:', err);
-  //       } finally {
-  //         console.log('Setting loading to false');
-  //         setLoading(false);
-  //       }
-  //     } else {
-  //       console.log('No stored booking info found');
-  //       setLoading(false); // Ensure loading is also set to false if there's no storedBookingInfo
-  //     }
-  //   };
-  
-  //   fetchRoomDetails();
-  // }, [currentLanguage]);
-  
-
-   // Calculate total price and VAT
+ 
    
    useEffect(() => {
     const fetchRoomDetails = async () => {
@@ -89,7 +52,8 @@ const BookingDate = () => {
         setNights(moment(checkOutDate).diff(moment(checkInDate), 'days'));
   
         try {
-          const response = await axios.get(`https://type-script-server.vercel.app/api/room/${roomId}?lang=${currentLanguage}`);
+          const response = await axios.get(`https://www.awalivhotel.com/api/room/${roomId}?lang=${currentLanguage}`);
+          // const response = await axios.get(`https://type-script-server.vercel.app/api/room/${roomId}?lang=${currentLanguage}`);
           // const response = await axios.get(`http://localhost:5000/api/room/${roomId}?lang=${currentLanguage}`);
           setRoomDetails(response.data.data);
         } catch (err) {
@@ -118,32 +82,7 @@ const BookingDate = () => {
   if (error) return <div>Error fetching room: {error}</div>;
   if (!roomDetails) return <div>No room details available</div>;
    
-  //  const perNightPrice = roomDetails.priceOptions?.[0]?.price ?? 0;
-  // //  const perNightPrice = roomDetails ? roomDetails.priceOptions[0].price : 0;
-  //  const totalPriceBeforeVAT = perNightPrice * nights;
-  //  const VAT = totalPriceBeforeVAT * 0.15; // 15% VAT
-  //  const totalPrice = totalPriceBeforeVAT + VAT;
-
-  //   console.log( format(checkIn, "EEEE"), "forrmtt");
-  //   console.log(nights, "forrmtt");
-
-
-  // if (loading)
-  //   return (
-  //     <div className="w-full md:w-1/3 ">
-  //       <Skeleton active />
-  //     </div>
-  //   );
-  // if (error)
-  //   return (
-  //     <div>
-  //       <p>Error fetching room: {error}</p>
-  //       <Link className="bg-black px-4 py-2 " to={"/home"}>
-  //         Home
-  //       </Link>
-  //     </div>
-  //   );
-  // if (!roomDetails) return <div>No room details available</div>;
+  
 
   return (
     <div className=" w-full md:w-1/3">

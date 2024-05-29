@@ -1,18 +1,12 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../sharedPages/Context/AuthProvider";
-import BannerPage from "../../sharedPages/PageBanner/BannerPage";
+// import BannerPage from "../../sharedPages/PageBanner/BannerPage";
 import { message } from "antd";
 import axios from "axios";
 import BookedRooms from "./BookedRooms";
 import i18next from "i18next";
-import { useTranslation } from "react-i18next";
 import PageAnimation from "../../PageAnimation/PageAnimation";
 import MyBookingBanner from "./MyBookingBanner";
-// import { Modal, Spin, Table, notification  } from 'antd'
-// import { Link } from 'react-router-dom'
-// import BookingInformation from './BookingInformation/BookingInformation'
-// import BookingUserInformation from './BookingInformation/BookingUserInformation'
-// import { color } from 'framer-motion'
 
 const MyBookings = () => {
   const currentLanguage = i18next.language;
@@ -24,13 +18,7 @@ const MyBookings = () => {
 
   useEffect(() => {
     if (!user) {
-      // If the user is not logged in, show a message and stop the loading
-      // notification["info"]({
-      //   message: "Please Log In",
-      //   description: "You need to log in to view your bookings.",
-      //   placement: "topRight",
-      //   duration: 3.5,
-      // });
+      
       message.info('Please Log In')
       setLoading(false);
       return;
@@ -42,7 +30,8 @@ const MyBookings = () => {
         const userToken = localStorage.getItem("token");
 
         const response = await axios.get(
-          `https://type-script-server.vercel.app/api/booking/${userEmail}?lang=${currentLanguage}`,
+          `https://www.awalivhotel.com/api/booking/${userEmail}?lang=${currentLanguage}`,
+          // `https://type-script-server.vercel.app/api/booking/${userEmail}?lang=${currentLanguage}`,
           // `http://localhost:5000/api/booking/${userEmail}?lang=${currentLanguage}`,
           {
             headers: {

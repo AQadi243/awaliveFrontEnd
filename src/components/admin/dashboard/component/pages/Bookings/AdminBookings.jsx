@@ -47,7 +47,8 @@ const AdminBookings = () => {
   const fetchNewBookings = async () => {
     setNewLoading(true); // Start loading before the request
     try {
-      const response = await axios.get(`https://type-script-server.vercel.app/api/booking/new?lang=${currentLanguage}`, {
+      const response = await axios.get(`https://www.awalivhotel.com/api/booking/new?lang=${currentLanguage}`, {
+      // const response = await axios.get(`https://type-script-server.vercel.app/api/booking/new?lang=${currentLanguage}`, {
       // const response = await axios.get(`http://localhost:5000/api/booking/new?lang=${currentLanguage}`, {
       
         headers: { Authorization: `${localStorage.getItem("token")}` },
@@ -66,13 +67,14 @@ const AdminBookings = () => {
     fetchNewBookings();
   }, [currentLanguage,]);
 
-  console.log(allBookingData,'all booking data ');
+ 
 
   const fetchBookings = async () => {
     setLoading(true); // Start loading before the request
     try {
       // const response = await axios.get(`http://localhost:5000/api/booking?lang=${currentLanguage}`, {
-      const response = await axios.get(`https://type-script-server.vercel.app/api/booking?lang=${currentLanguage}`, {
+      const response = await axios.get(`https://www.awalivhotel.com/api/booking?lang=${currentLanguage}`, {
+      // const response = await axios.get(`https://type-script-server.vercel.app/api/booking?lang=${currentLanguage}`, {
         headers: { Authorization: `${localStorage.getItem("token")}` },
       });
       const transformedData = transformData(response?.data?.data);

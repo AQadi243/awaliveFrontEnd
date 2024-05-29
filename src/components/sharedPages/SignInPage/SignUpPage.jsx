@@ -63,7 +63,8 @@ const SignUpPage = () => {
       
         try {
           
-          const response = await axios.post('https://type-script-server.vercel.app/api/auth/resister', registerData);
+          // const response = await axios.post('https://type-script-server.vercel.app/api/auth/resister', registerData);
+          const response = await axios.post('https://www.awalivhotel.com/api/auth/resister', registerData);
           console.log('User registered successfully:', response.data);
           setErrorMessageReg('User registered successfully')
           setLoading(false)
