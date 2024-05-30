@@ -32,7 +32,7 @@ const Invoice = () => {
 
         const response = await axios.get(
           // `https://type-script-server.vercel.app/api/booking/${userEmail}?lang=${currentLanguage}`,
-          `https://www.awalivhotel.com/api/booking/invoice/${bookingId}?lang=${currentLanguage}`,
+          `https://server.awalivhotel.com/api/booking/invoice/${bookingId}?lang=${currentLanguage}`,
           // `https://type-script-server.vercel.app/api/booking/invoice/${bookingId}?lang=${currentLanguage}`,
           // `http://localhost:5000/api/booking/invoice/${bookingId}?lang=${currentLanguage}`,
           {
@@ -84,7 +84,6 @@ const Invoice = () => {
   }, [id, currentLanguage, navigate]);
 
 
-  console.log(bookedRooms,'booking datasa');
 
   if (loading) {
     return <div>Loading...</div>; // Or handle this case appropriately

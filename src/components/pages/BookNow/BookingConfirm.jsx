@@ -45,7 +45,7 @@ const BookingConfirm = () => {
 
     
     try {
-      const response = await axios.post('https://www.awalivhotel.com/api/booking', bookingData,  {
+      const response = await axios.post('https://server.awalivhotel.com/api/booking', bookingData,  {
       // const response = await axios.post('https://type-script-server.vercel.app/api/booking', bookingData,  {
         // httpsAgent: agent,
         headers: {

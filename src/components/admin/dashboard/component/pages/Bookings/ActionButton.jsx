@@ -9,7 +9,6 @@ import { AuthContext } from "../../../../../sharedPages/Context/AuthProvider";
 
 // eslint-disable-next-line react/prop-types
 const ActionButton = ({ record, fetchBookings, fetchNewBookings }) => {
-  // console.log(record.id,'recordeeeee')
   // Handler functions for Pay and Cancel
   // API call to handle payment
   const { handleLogout } = useContext(AuthContext);
@@ -45,7 +44,7 @@ const ActionButton = ({ record, fetchBookings, fetchNewBookings }) => {
     try {
       // eslint-disable-next-line no-unused-vars
       const response = await axios.patch(
-        `https://www.awalivhotel.com/api/booking/markAsPaid/${record.id}`,{},{
+        `https://server.awalivhotel.com/api/booking/markAsPaid/${record.id}`,{},{
         // `https://type-script-server.vercel.app/api/booking/markAsPaid/${record.id}`,{},{
           headers: { Authorization: `${token}` },
         }
@@ -99,7 +98,7 @@ const ActionButton = ({ record, fetchBookings, fetchNewBookings }) => {
     try {
       // eslint-disable-next-line no-unused-vars
       const response = await axios.patch(
-        `https://www.awalivhotel.com/booking/cancelBooking/${record.id}`,{},
+        `https://server.awalivhotel.com/booking/cancelBooking/${record.id}`,{},
         // `https://type-script-server.vercel.app/api/booking/cancelBooking/${record.id}`,{},
         // `http://localhost:5000/api/booking/cancelBooking/${record.id}`,{},
         {

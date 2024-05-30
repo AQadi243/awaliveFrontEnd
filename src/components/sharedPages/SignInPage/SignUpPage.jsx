@@ -64,8 +64,8 @@ const SignUpPage = () => {
         try {
           
           // const response = await axios.post('https://type-script-server.vercel.app/api/auth/resister', registerData);
-          const response = await axios.post('https://www.awalivhotel.com/api/auth/resister', registerData);
-          console.log('User registered successfully:', response.data);
+          const response = await axios.post('https://server.awalivhotel.com/api/auth/resister', registerData);
+          
           setErrorMessageReg('User registered successfully')
           setLoading(false)
           
@@ -82,19 +82,19 @@ const SignUpPage = () => {
           if (error.response) {
             // The request was made and the server responded with a status code
             // that falls out of the range of 2xx
-            console.error('Registration failed:', error.response.data);
+           
             setErrorMessageReg('Registration failed:', error.response.data)
           setLoading(false)
 
           } else if (error.request) {
             // The request was made but no response was received
-            console.error('No response received:', error.request);
+         
             setErrorMessageReg('No response received:', error.request)
         setLoading(false)
 
           } else {
             // Something happened in setting up the request that triggered an Error
-            console.error('Error:', error.message);
+           
             setErrorMessageReg('Error:', error.message)
         setLoading(false)
 

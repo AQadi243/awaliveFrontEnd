@@ -65,7 +65,7 @@ const AuthProvider = ({ children }) => {
     try {
       setLoading(true);
       const response = await axios.post(
-        "https://www.awalivhotel.com/api/auth/login",
+        "https://server.awalivhotel.com/api/auth/login",
         // "https://type-script-server.vercel.app/api/auth/login",
         // "http://localhost:5000/api/auth/login",
         {
@@ -89,15 +89,12 @@ const AuthProvider = ({ children }) => {
       if (error.response) {
         // The request was made and the server responded with a status code
         // that falls out of the range of 2xx
-        console.error("Error response:", error.response.data);
         setError(error.response.data.message || "Incorrect email or password");
       } else if (error.request) {
         // The request was made but no response was received
-        console.error("Error request:", error.request);
         setError("No response from the server");
       } else {
         // Something happened in setting up the request that triggered an Error
-        console.error("Error message:", error.message);
         setError("Error during login");
       }
       // notification["error"]({
@@ -153,7 +150,7 @@ const AuthProvider = ({ children }) => {
     const fetchAllRooms = async () => {
       try {
         const response = await axios.get(
-          `https://www.awalivhotel.com/api/room/?lang=${currentLanguage}`
+          `https://server.awalivhotel.com/api/room/?lang=${currentLanguage}`
           // `https://type-script-server.vercel.app/api/room/?lang=${currentLanguage}`
           // `http://localhost:5000/api/room/?lang=${currentLanguage}`
           // "https://awalive-server-side-hzpa.vercel.app/rooms"
@@ -164,7 +161,6 @@ const AuthProvider = ({ children }) => {
         // setSearchLoading(false);
         setLoadingAllRooms(false);
       } catch (error) {
-        console.error("Error fetching room rates:", error);
 
         // setSearchLoading(false);
       }
@@ -181,7 +177,7 @@ const AuthProvider = ({ children }) => {
     const fetchPromotionData = async () => {
       try {
         // const response = await axios.get(`http://localhost:5000/api/room/promotion?lang=${currentLanguage}`);
-        const response = await axios.get(`https://www.awalivhotel.com/api/room/promotion?lang=${currentLanguage}`);
+        const response = await axios.get(`https://server.awalivhotel.com/api/room/promotion?lang=${currentLanguage}`);
         // const response = await axios.get(`https://type-script-server.vercel.app/api/room/promotion?lang=${currentLanguage}`);
 
         const firstFourItems = response.data.data

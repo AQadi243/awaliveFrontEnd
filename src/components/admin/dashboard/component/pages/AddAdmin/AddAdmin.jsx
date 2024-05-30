@@ -81,13 +81,12 @@ const AddAdmin = () => {
         try {
           
           // const response = await axios.post('https://type-script-server.vercel.app/api/user/create/admin', adminData ,{ 
-          const response = await axios.post('https://www.awalivhotel.com/api/user/create/admin', adminData ,{ 
+          const response = await axios.post('https://server.awalivhotel.com/api/user/create/admin', adminData ,{ 
         //   const response = await axios.post('http://localhost:5000/api/user/create/admin', adminData, {
             headers: {
                 'Authorization': `${token}`
             }
           });
-          console.log('Admin created successfully:', response.data.message);
         //   setErrorMessageReg(response.data.message)
           setLoading(false)
           
@@ -105,7 +104,6 @@ const AddAdmin = () => {
 
       };
 
-      console.log(errorMessageReg);
     
   return (
    

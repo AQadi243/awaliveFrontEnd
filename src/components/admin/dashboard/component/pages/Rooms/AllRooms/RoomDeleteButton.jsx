@@ -28,7 +28,7 @@ const RoomDeleteButton = ({roomId}) => {
 
             // If token is valid and user is admin, perform the deletion
             // await axios.delete(`http://localhost:5000/api/room/${roomId}`, {
-            await axios.delete(`https://www.awalivhotel.com/api/room/${roomId}`, {
+            await axios.delete(`https://server.awalivhotel.com/api/room/${roomId}`, {
             // await axios.delete(`https://type-script-server.vercel.app/api/room/${roomId}`, {
                 headers: {
                     'Authorization': `${token}`

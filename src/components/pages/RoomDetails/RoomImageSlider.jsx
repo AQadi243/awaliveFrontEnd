@@ -34,7 +34,7 @@ const RoomImageSlider = ({ images }) => {
   waitForAnimate: false
   };
 
-console.log(images,'images');
+
   return (
     <div className="">
       

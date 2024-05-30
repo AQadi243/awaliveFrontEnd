@@ -37,7 +37,6 @@ const AddRoom = () => {
 
   
   const handleTags = (selectedTags) => {
-    console.log('new tags', selectedTags); // This should log an array of selected tag strings
     setFormData(prevFormData => ({
       ...prevFormData,
       tags: selectedTags // Directly use the array from Select
@@ -168,9 +167,8 @@ const AddRoom = () => {
     }
     
     const processedData = processDataForSubmission(formData);
-    console.log(processedData,'asdasd');
     // const url = 'http://localhost:5000/api/room/create';
-    const url = 'https://www.awalivhotel.com/api/room/create';
+    const url = 'https://server.awalivhotel.com/api/room/create';
     // const url = 'https://type-script-server.vercel.app/api/room/create';
     try {
       const response = await axios.post(url, processedData, {
@@ -178,7 +176,6 @@ const AddRoom = () => {
           Authorization: `${token}`
         }
       });
-      console.log('Success:', response.data);
       message.error(`${response.data.message}`);
       // Handle further actions like redirecting or showing a success message
     } catch (error) {

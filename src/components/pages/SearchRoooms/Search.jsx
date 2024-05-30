@@ -79,18 +79,15 @@ console.log(errorMessage,'data error ');
       if (sortByPrice) {
         params.append('sortByPrice', sortByPrice);
       }
-      console.log(params.toString(), 'params sring');
       try {
         const response = await axios.get(
-          `https://www.awalivhotel.com/api/room/available/?${params.toString()}`
+          `https://server.awalivhotel.com/api/room/available/?${params.toString()}`
           // `https://type-script-server.vercel.app/api/room/available/?${params.toString()}`
           // `https://type-script-server.vercel.app/api/room/available/?lang=${currentLanguage}&checkInDate=${formetDateCheckIn}&checkOutDate=${formetDateCheckOut}&maxGuests=${numberOfGuests}&sizeOrder=${roomSize}&sortByPrice=${sortByPrice}`
           // `http://localhost:5000/api/room/available/?${params.toString()}`
           // `https://type-script-server.vercel.app/api/room/available/?${params.toString()}`
         );
-          console.log(response, 'resposnse data ta');
         let rooms = response.data.data;
-        console.log(rooms , 'seareded rooms ');
         setAvailableRooms(rooms);
         // if (rooms.length === 0) {
         //   setErrorMessage('No rooms available for the selected criteria.');

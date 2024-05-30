@@ -14,23 +14,7 @@ import axios from "axios";
 const TableDateAndTime = () => {
   const currentLanguage = i18next.language;
   const { t } = useTranslation("restaurant");
-  // const navigate = useNavigate();
-  // const [selectedTime, setSelectedTime] = useState(null);
-  // const [selectedDate, setSelectedDate] = useState(new Date());
-  // const [person, setPerson] = useState(1);
-  // const [selectedRestaurant, setSelectedRestaurant] = useState("Roof Top");
-  // // const [selectedTime, setSelectedTime] = useState("");
-  // const [name, setName] = useState("");
-  // const [email, setEmail] = useState("");
-  // const [phone, setPhone] = useState("");
-  // const [message, setMessage] = useState("");
-  // const [errors, setErrors] = useState({
-  //   name: "",
-  //   email: "",
-  //   phone: "",
-  // });
-  // const [page, setPage] = useState(1);
-  // const currentDate = new Date();
+  
 
   const [page, setPage] = useState(1);
   const [selectedTime, setSelectedTime] = useState("9:00 am");
@@ -150,10 +134,9 @@ const handleNextPage = async () => {
       
       setLoading(true); // Start loading
       try {
-        const response = await axios.post('https://www.awalivhotel.com/api/Table-booking/create', bookingData);
+        const response = await axios.post('https://server.awalivhotel.com/api/Table-booking/create', bookingData);
         // const response = await axios.post('https://type-script-server.vercel.app/api/Table-booking/create', bookingData);
 
-        console.log(response, 'datassss');
         // setBookingSuccess(true);
         setBookingMessage('Booking confirmed!');
         setPage(3);
@@ -178,7 +161,6 @@ const handleNextPage = async () => {
   // No actions needed for page 3 within this function
 };
 
-console.log(new Date(selectedDate), 'asdasfc date time ');
 
   return (
     <>

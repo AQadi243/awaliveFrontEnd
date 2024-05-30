@@ -10,7 +10,7 @@ const AllGuest = () => {
   
 const fetchGuests = async () => {
   // const { data } = await axios.get("http://localhost:5000/api/user", {
-  const { data } = await axios.get("https://www.awalivhotel.com/api/user", {
+  const { data } = await axios.get("https://server.awalivhotel.com/api/user", {
   // const { data } = await axios.get("https://type-script-server.vercel.app/api/user", {
     headers: { Authorization: `${localStorage.getItem("token")}` },
   });
@@ -19,7 +19,7 @@ const fetchGuests = async () => {
 
 const deleteGuest = async (guestId) => {
   // await axios.delete(`http://localhost:5000/api/user/${guestId}`, {
-  await axios.delete(`https://www.awalivhotel.com/api/user/${guestId}`, {
+  await axios.delete(`https://server.awalivhotel.com/api/user/${guestId}`, {
   // await axios.delete(`https://type-script-server.vercel.app/api/user/${guestId}`, {
     headers: { Authorization: `${localStorage.getItem("token")}` },
   });

@@ -58,7 +58,6 @@ const validateForm = () => {
     return formIsValid;
 };
 
-console.log(formData,'form dataaa');
 
 const handleSubmit = async (e) => {
     e.preventDefault();
@@ -68,9 +67,8 @@ const handleSubmit = async (e) => {
 
     // Implement Axios POST request here
     try {
-        const response = await axios.post('https://www.awalivhotel.com/api/contact-message/create', formData);
+        const response = await axios.post('https://server.awalivhotel.com/api/contact-message/create', formData);
         // const response = await axios.post('https://type-script-server.vercel.app/api/contact-message/create', formData);
-        console.log(response.data); // Handle success
         setFormData({ email: '', message: '' }); // Clear form on success
         alert(t("form_success_message")); // Show success message
     } catch (error) {

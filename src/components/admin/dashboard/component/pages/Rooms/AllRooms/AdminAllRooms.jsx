@@ -36,7 +36,7 @@ const AdminAllRooms = () => {
 
 
         const response = await axios.get(
-          `https://www.awalivhotel.com/api/room/admin/room?lang=${currentLanguage}`,{
+          `https://server.awalivhotel.com/api/room/admin/room?lang=${currentLanguage}`,{
           // `https://type-script-server.vercel.app/api/room/admin/room?lang=${currentLanguage}`,{
           // `http://localhost:5000/api/room/admin/room?lang=${currentLanguage}`,{
             headers: {
@@ -65,7 +65,6 @@ const AdminAllRooms = () => {
     // setSearchLoading(false)
   }, [currentLanguage, setLoadingAllRooms]);
 
-  console.log('alls rooms admin ',AllRooms);
   return (
 
     <>

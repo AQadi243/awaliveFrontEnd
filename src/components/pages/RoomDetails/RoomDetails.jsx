@@ -27,25 +27,25 @@ const RoomDetails = () => {
   useEffect(() => {
     const fetchRoom = async () => {
       try {
-        const response = await axios.get(`https://www.awalivhotel.com/api/room/${id}?lang=${currentLanguage}`);
+        const response = await axios.get(`https://server.awalivhotel.com/api/room/${id}?lang=${currentLanguage}`);
         // const response = await axios.get(`https://type-script-server.vercel.app/api/room/${id}?lang=${currentLanguage}`);
         // const response = await axios.get(`http://localhost:5000/api/room/${id}?lang=${currentLanguage}`);
         setSingleRoomDetails(response.data.data);
         setLoading(false);
       } catch (error) {
         setLoading(false);
+        console.log(error);
       }
     };
 
     fetchRoom();
   }, [id, currentLanguage, t, setSingleRoomDetails]);
 
-  console.log(singleRoomDetails, "sibgle data ");
 
   return (
     <>
       <Helmet>
-        {loading ? <title> Awalive Hotel Taif</title> : <title>{`${singleRoomDetails.title} - Awalive Hotel Taif`}</title>}
+        {loading ? <title> Awalive Hotel Taif</title> : <title>{`${singleRoomDetails.title} - Awaliv Hotel Taif`}</title>}
       </Helmet>
 
       {loading ? (
