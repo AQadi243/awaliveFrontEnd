@@ -182,13 +182,10 @@ const BestPrice = () => {
                   <p className="text-sm text-gray-400">{t("features.waitersDescription")}</p>
                 </div>
               </div>
+              
             </div>
           </div>
-          <div className="py-10 text-center">
-            <Link to={"/roomSearch"} className="font-semibold text-xs tracking-widest text-white bg-[#BE9874] py-3 px-6">
-              {t("book_now")}
-            </Link>
-          </div>
+          
         </div>
       </section>
     </>

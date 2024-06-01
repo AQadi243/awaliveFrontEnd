@@ -32,6 +32,8 @@ import AdminAllRooms from "./components/admin/dashboard/component/pages/Rooms/Al
 import AdminBookings from "./components/admin/dashboard/component/pages/Bookings/AdminBookings";
 import Invoice from "./components/admin/dashboard/component/pages/Invoice/Invoice";
 import Dashboard from "./components/admin/dashboard/component/pages/Dashboard/Dashboard";
+import Test1 from "./components/pages/test1/Test1";
+import Test2 from "./components/pages/test2/Test2";
 
 const router = createBrowserRouter([
   {
@@ -59,6 +61,14 @@ const router = createBrowserRouter([
       {
         path: "/banquet",
         element: <Banquet />,
+      },
+      {
+        path: "/test1",
+        element: <Test1 />,
+      },
+      {
+        path: "/test2",
+        element: <Test2 />,
       },
       {
         path: "/roomRate",

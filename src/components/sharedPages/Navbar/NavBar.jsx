@@ -30,6 +30,8 @@ const Navbar = () => {
     { title: t("bookTable"), href: "/bookTable" },
     { title: t("Restaurant & Cafe"), href: "/cafe" },
     { title: t("Banquet & Meeting"), href: "/banquet" },
+    { title: t("test1"), href: "/test1" },
+    { title: t("test2"), href: "/test2" },
     
     { title: t("about"), href: "/about" },
     { title: t("contact"), href: "/contact" },
@@ -175,6 +177,13 @@ const Navbar = () => {
             <NavLink to={"/banquet"} className={({ isActive }) => (isActive ? " text-white py-8 lg:py-6 px-4" : "hover:text-white transition duration-200 ease-in-out py-8 lg:py-6 px-4")}>
               {t("Banquet & Meeting")}
             </NavLink>
+            <NavLink to={"/test1"} className={({ isActive }) => (isActive ? " text-white py-8 lg:py-6 px-4" : "hover:text-white transition duration-200 ease-in-out py-8 lg:py-6 px-4")}>
+              {t("test1")}
+            </NavLink>
+            <NavLink to={"/test2"} className={({ isActive }) => (isActive ? " text-white py-8 lg:py-6 px-4" : "hover:text-white transition duration-200 ease-in-out py-8 lg:py-6 px-4")}>
+              {t("test2")}
+            </NavLink>
+
             <NavLink to={"/about"} className={({ isActive }) => (isActive ? " text-white py-8 lg:py-6 px-4" : "hover:text-white transition duration-200 ease-in-out py-8 lg:py-6 px-4")}>
               {t("about")}
             </NavLink>
