@@ -1,8 +1,8 @@
-import React, { useContext, useEffect, useState } from "react";
+import  { useContext, useEffect, useState } from "react";
 // import PageAnimation from "../../PageAnimation/PageAnimation";
 // import Banner from "./Banner";
 import BestPosition from "./BestPosition";
-import CheckPromotion from "./CheckPromotion";
+// import CheckPromotion from "./CheckPromotion";
 import HotelStucture from "./HotelStucture";
 import MapContact from "./MapContact";
 import Relax from "./Relax";
@@ -16,6 +16,7 @@ import { AuthContext } from "../../sharedPages/Context/AuthProvider";
 import PageAnimation from "../../PageAnimation/PageAnimation";
 import HeroBanner from "./HeroBanner";
 import Availability from "./Availability";
+import HotelVideo from "./HotelVideo";
 
 
 
@@ -38,7 +39,7 @@ function shuffleArray(array) {
 }
 
 const Home = () => {
-  const { allRooms, loadingAllRooms, setLoadingAllRooms, promotionLoading, promotionError, promotionsData } = useContext(AuthContext);
+  const { allRooms, loadingAllRooms, setLoadingAllRooms,  } = useContext(AuthContext);
   
  
   const [roomRates, setRoomRates] = useState([]);
@@ -117,7 +118,8 @@ const Home = () => {
         </div>
         <Relax />
         <RoomCards rooms={roomRates} loadingAllRooms={loadingAllRooms} />
-        <CheckPromotion promotionsData={promotionsData} promotionError={promotionError} promotionLoading={promotionLoading} />
+        <HotelVideo />
+        {/* <CheckPromotion promotionsData={promotionsData} promotionError={promotionError} promotionLoading={promotionLoading} /> */}
         <RoomPrice />
         <HotelStucture />
         <BestPosition />

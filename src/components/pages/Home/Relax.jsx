@@ -13,7 +13,7 @@ const Relax = () => {
     : 'lg:text-left text-center'; // For other languages, text is left-aligned on large screens, centered on smaller screens
 
   return (
-    <section data-aos="fade-up" className="lg:max-w-6xl mx-auto py-10 md:my-20  text-[#2E2E2E] px-4 " data-speed="2">
+    <section data-aos="fade-up" className="lg:max-w-6xl mx-auto py-10   text-[#2E2E2E] px-4 " data-speed="2">
       <div className=  {`flex flex-col md:flex-row  gap-10 lg:gap-20 items-center justify-center ${currentLanguage === 'ar' ? 'body-ar  font-medium ' : 'body-en  '}` } >
         <div
           className=" w-full lg:w-[50%]  h-[450px] md:h-[480px] xl:h-[550px]   md:py-0  flex items-center justify-center mx-auto "
