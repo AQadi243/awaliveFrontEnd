@@ -1,7 +1,6 @@
 // import relax from '../../../assets/relax.jpg'
 import relaxB from "../../../assets/relaxCom.jpg";
-import aveter from "../../../assets/check.jpg";
-import signature from "../../../assets/signature.png";
+
 import i18next from "i18next";
 import { useTranslation } from "react-i18next";
 
@@ -16,12 +15,13 @@ const Relax = () => {
     <section data-aos="fade-up" className="lg:max-w-6xl mx-auto py-10   text-[#2E2E2E] px-4 " data-speed="2">
       <div className=  {`flex flex-col md:flex-row  gap-10 lg:gap-20 items-center justify-center ${currentLanguage === 'ar' ? 'body-ar  font-medium ' : 'body-en  '}` } >
         <div
-          className=" w-full lg:w-[50%]  h-[450px] md:h-[480px] xl:h-[550px]   md:py-0  flex items-center justify-center mx-auto "
+          className=" w-full lg:w-[50%]  min-h-[600px]   md:py-0  flex items-center justify-center mx-auto "
           style={{
             backgroundImage: `url(${relaxB})`,
-            backgroundSize: "cover", // Adjust background size to fit the image within the container
             backgroundRepeat: "no-repeat", // Prevent image from repeating
-            backgroundPosition: "center", // Center the background image
+            backgroundPosition: "center center",
+            
+            backgroundSize: "cover", // Adjust background size to fit the image within the container
             // height: "100%",
             // width: "100%"
           }}

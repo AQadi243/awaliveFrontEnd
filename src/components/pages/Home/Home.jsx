@@ -16,7 +16,6 @@ import { AuthContext } from "../../sharedPages/Context/AuthProvider";
 import PageAnimation from "../../PageAnimation/PageAnimation";
 import HeroBanner from "./HeroBanner";
 import Availability from "./Availability";
-import HotelVideo from "./HotelVideo";
 
 
 
@@ -46,13 +45,7 @@ const Home = () => {
   // const [loading, setLoading] = useState(true)
   const [showButton, setShowButton] = useState(false);
 
-  // useEffect(() => {
-  //   setLoadingAllRooms(true);
-  //   if (allRooms && allRooms.length > 0) {
-  //     setRoomRates(allRooms.slice(0, 6)); // Take the first 6 rooms
-  //     setLoadingAllRooms(false);
-  //   }
-  // }, [allRooms, setLoadingAllRooms]);
+
   useEffect(() => {
     if (allRooms && allRooms.length > 0) {
       const shuffledRooms = shuffleArray([...allRooms]); // Create a shuffled copy of allRooms
@@ -97,7 +90,7 @@ const Home = () => {
             content="Discover the epitome of luxury at Awaliv Hotel with top amenities and bespoke services. Perfect for leisure and business in taif."
           />
           <meta property="og:image" content="[Link to an image showcasing your hotel]" />
-          <meta property="og:url" content="awalivehotel.com" />
+          <meta property="og:url" content="awalivhotel.com" />
           <meta property="og:type" content="website" />
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:title" content="Awaliv Hotel - Luxury Accommodation in taif" />
