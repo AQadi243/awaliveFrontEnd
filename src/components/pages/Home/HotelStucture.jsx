@@ -38,27 +38,27 @@ const HotelStucture = () => {
           >
             <div className="">
               <p className={`text-3xl font-semibold `} style={{ fontFamily: "Gilda Display, serif" }}>
-                <CountUp start={0} end={inView ? 23 : 0} duration={2.75} preserveValue />
+                <CountUp start={0} end={inView ? 260 : 0} duration={2.75} preserveValue />
               </p>
               <p className="text-xs tracking-widest uppercase">{t("rooms.label")}</p>
             </div>
             <div>
               <p className="text-3xl font-semibold" style={{ fontFamily: "Gilda Display, serif" }}>
-                <CountUp start={0} end={inView ? 12 : 0} duration={2.75} preserveValue />
+                <CountUp start={0} end={inView ? 2 : 0} duration={2.75} preserveValue />
               </p>
-              <p className="text-xs tracking-widest uppercase">{t("suites.label")}</p>
-            </div>
-            <div>
-              <p className="text-3xl font-semibold" style={{ fontFamily: "Gilda Display, serif" }}>
-                <CountUp start={0} end={inView ? 23 : 0} duration={2.75} preserveValue />
-              </p>
-              <p className="text-xs tracking-widest uppercase">{t("h24.label")}</p>
+              <p className="text-xs tracking-widest uppercase">{t("restaurant.label")}</p>
             </div>
             <div>
               <p className="text-3xl font-semibold" style={{ fontFamily: "Gilda Display, serif" }}>
                 <CountUp start={0} end={inView ? 2 : 0} duration={2.75} preserveValue />
               </p>
-              <p className="text-[10px] md:text-xs  uppercase">{t("restaurant.label")}</p>
+              <p className="text-xs tracking-widest uppercase">{t("h24.label")}</p>
+            </div>
+            <div>
+              <p className="text-3xl font-semibold" style={{ fontFamily: "Gilda Display, serif" }}>
+                <CountUp start={0} end={inView ? 1 : 0} duration={2.75} preserveValue />
+              </p>
+              <p className="text-[10px] md:text-xs  uppercase">{t("suites.label")}</p>
             </div>
           </div>
           <img src={structure2} alt="" className="w-[50%]" />
@@ -77,11 +77,11 @@ const HotelStucture = () => {
 
           <div className="flex flex-col gap-3">
           <div ref={ref} className="w-full bg-gray-200  h-8 dark:bg-gray-700">
-            <div className={`bg-[#2E2E2E] h-8  transition-all duration-1000 ease-in-out ${inView ? `w-[${95}%]` : "w-0"}`}>
+            <div className={`bg-[#2E2E2E] h-8  transition-all duration-1000 ease-in-out ${inView ? `w-[${100}%]` : "w-0"}`}>
               <div className="flex justify-between items-center h-full text-white px-2 text-xs ">
                 <p>{t("roomService.label")}</p>
                 {inView && (
-                  <CountUp start={0} end={95} delay={0} duration={2.5}>
+                  <CountUp start={0} end={100} delay={0} duration={2.5}>
                     {({ countUpRef }) => <div className="text-sm font-medium" ref={countUpRef} />}
                   </CountUp>
                 )}
@@ -90,11 +90,11 @@ const HotelStucture = () => {
           </div>
 
           <div ref={ref} className="w-full bg-gray-200  h-8 dark:bg-gray-700 my-2" >
-            <div className={`bg-[#BE9874] h-8  transition-all duration-1000 ease-in-out ${inView ? `w-[${90}%]` : "w-0"}`}>
+            <div className={`bg-[#BE9874] h-8  transition-all duration-1000 ease-in-out ${inView ? `w-[${100}%]` : "w-0"}`}>
               <div className="flex justify-between items-center h-full text-white px-2 text-xs ">
               <p>{t("breakfastIncluded.label")}</p>
                 {inView && (
-                  <CountUp start={0} end={90} delay={0} duration={2.5}>
+                  <CountUp start={0} end={100} delay={0} duration={2.5}>
                     {({ countUpRef }) => <div className="text-sm font-medium" ref={countUpRef} />}
                   </CountUp>
                 )}
@@ -102,11 +102,11 @@ const HotelStucture = () => {
             </div>
           </div>
           <div ref={ref} className="w-full bg-gray-200  h-8 dark:bg-gray-700" >
-            <div className={`bg-[#2E2E2E] h-8  transition-all duration-1000 ease-in-out ${inView ? `w-[${95}%]` : "w-0"}`}>
+            <div className={`bg-[#2E2E2E] h-8  transition-all duration-1000 ease-in-out ${inView ? `w-[${100}%]` : "w-0"}`}>
               <div className="flex justify-between items-center h-full text-white px-2 text-xs ">
               <p>{t("laundryIroning.label")}</p>
                 {inView && (
-                  <CountUp start={0} end={95} delay={0} duration={2.5}>
+                  <CountUp start={0} end={100} delay={0} duration={2.5}>
                     {({ countUpRef }) => <div className="text-sm font-medium" ref={countUpRef} />}
                   </CountUp>
                 )}

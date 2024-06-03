@@ -15,7 +15,7 @@ const HeroBanner = () => {
   const imageData = useMemo(
     () => [
       { src: bannerImageOne, title: t("enjoyALuxuryExperience"), subtitle: t("EXPERIENCE") },
-      { src: bannerImageTwo, title: t("Best Luxury Room"), subtitle: t("EXPERIENCE") },
+      { src: bannerImageTwo, title: t("Best Luxury Room"), subtitle: t("EXPERIENCE2") },
     ],
     [t]
   );

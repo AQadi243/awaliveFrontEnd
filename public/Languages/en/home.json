@@ -5,18 +5,19 @@
   "My Account": "My Account",
   "LOG IN": "LOG IN",
   "BOOK NOW": "BOOK NOW",
-  "Awalive Hotel": "Awalive Hotel",
+  "Awalive Hotel": "Awaliv Hotel",
   "home": "Home",
-  "about": "About",
-  "Banquet & Meeting":"Banquet & Meeting",
-  "test1":"test1",
-  "test2":"test2",
-  "search": "Search",
+  "about": "Facilities&Services",
+  "Banquet & Meeting":"Banquets&Meetings",
+  "test1":"t1",
+  "test2":"t2",
+  "fullaccess":"PwD comprehensive access",
+  "search": "Rooms&Suites",
   "roomSearch": "Room Search",
-  "Restaurant & Cafe":"Restaurant & Cafe",
+  "Restaurant & Cafe":"Restaurants&Cafés",
   "roomRates": "Room Rate",
   "promotions": "Promotions",
-  "restaurants": "Restaurant",
+  "restaurants": "Restaurants&Cafés",
   "bookTable": "Book Table",
   "Dashboard":"Dashboard",
   "menu": "Menu",
@@ -24,26 +25,27 @@
   "myBookings": "My Bookings",
   "Close": "Close",
 
-  "Luxury Hotel & Best Resort": "Luxury Hotel & Best Resort",
-  "enjoyALuxuryExperience": "ENJOY at awalive",
+  "Luxury Hotel & Best Resort": "Luxury hotel rooms & suites",
+  "enjoyALuxuryExperience": "ENJOY A LUXURY",
   "EXPERIENCE": "EXPERIENCE",
-  "Best Luxury Room": "Best Luxury at awaliv",
-  "roomsAndSuits": "Rooms & Suits",
+  "Best Luxury Room": "Your Happiness Is Our",
+  "EXPERIENCE2": "Hospitality",
+  "roomsAndSuits": "Rooms & Suites",
 
   "headerSemiTitleTwo": "Sky-High Dining",
   "titleSecondImage": "Panoramic Views at",
   "subTitleHeroSecond": "Revolving Sky Restaurant",
   "heroButton": "Discover Rooms & Suites",
 
-  "hotelinTaif": "Welcome to Awalive International Hotel in Taif, where comfort seamlessly blends with tranquility. ",
-  "restaurantWithAView": "Enjoy a casual yet elegant dining experience at our Sky View Restaurant. ",
-  "poolAndGym": "Revitalize both mind and body in our modern gym, then cool off in our peaceful swimming pool.",
-  "peacefulHotelStay": "Awalive International Hotel is more than just a place to sleep—it's a haven for relaxation. ",
-  "hotelRelaxSubTitle": "Unwind at Awalive International",
+  "hotelinTaif": "Welcome to the foremost resort in the Kingdom of Saudi Arabia.And we are pleased to welcome you to be our guests in Awaliv International Hotel, since it represents the epitome of hospitality the city of roses.",
+  "poolAndGym": "Besides it is remarked by its spectacular design, along with the latest innovations and the diverse models provided in its housing units.",
+  "restaurantWithAView": "In this regard, we consider providing optimum services for our guests by all our friendly and helpful employee is to be one of our main objectives.",
+  "peacefulHotelStay": "Thus, we would like to take this opportunity to welcome you warmly, and we are sure that you will find the perfect place to enjoy all our services.",
+  "hotelRelaxSubTitle": "Unwind at Awaliv International",
   "hotelRelaxTitle": "Where Comfort Meets Splendor",
   "titleManager": "Hotel Manager",
-  "Relax in our": "Relax in our",
-  "Hotel Resort": "Hotel Resort",
+  "Relax in our": "Where Hospitality",
+  "Hotel Resort": "Is Our Finest Tradition",
 
   "guest": "Guest",
   "SAR": "SAR",
@@ -107,30 +109,30 @@
   },
 
   "discover": "HOTEL FACILITIES",
-  "The Structure": "The Structure",
+  "The Structure": "Facilities & Services",
   "discoverTitle": "Discover Luxury & Comfort",
-  "discoverSubtitle": "Immerse yourself in unparalleled comfort and elegance at Awalive International Hotel. Our hotel boasts a range of state-of-the-art facilities designed to cater to your every need. From exquisite 24/7 room service to renowned on-site dining options, including complimentary breakfast and world-class laundry services, we ensure a stay that is both luxurious and convenient. Experience the pinnacle of hospitality at Awalive, nestled in the heart of Taif.",
+  "discoverSubtitle": "Our staff makes every effort to achieve your desires and aspirations. by providing all the entertainment and activities that will guarantee you a wonderful stay and a unique experience.",
   "rooms": {
-    "label": "Rooms"
+    "label": "Units"
   },
   "suites": {
-    "label": "Suites"
+    "label": "Health Club"
   },
   "h24": {
-    "label": "H/24"
+    "label": "Cafés"
   },
   "restaurant": {
-    "label": "Restaurant"
+    "label": "Restaurants"
   },
 
   "roomService": {
-    "label": "Room Service"
+    "label": "In-Room Dining"
   },
   "breakfastIncluded": {
-    "label": "Breakfast Included"
+    "label": "GYM & SPA"
   },
   "laundryIroning": {
-    "label": "Laundry & Ironing"
+    "label": "Housekeeping &Laundry"
   },
 
   "keyFeatures": {
@@ -154,7 +156,7 @@
 
   "exploreCity": "EXPLORE THE HEART OF THE CITY",
   "primeLocationTitle": "Prime Location & Convenience",
-  "primeLocationDescription": "Discover the charm of the city from our prime location. Nestled just steps away from major bus stations, awalive International hotel offers easy access to vibrant shopping, dining, and cultural landmarks. Immerse yourself in the local scene while enjoying our world-class amenities.",
+  "primeLocationDescription": "Discover the charm of the city from our prime location. Awaliv International hotel offers easy access to vibrant shopping, dining, and cultural landmarks. Immerse yourself in the local scene while enjoying our world-class amenities.",
   "paymentOptions": "DIVERSE PAYMENT OPTIONS:",
   "exclusiveOffer": {
     "label": "Up to",

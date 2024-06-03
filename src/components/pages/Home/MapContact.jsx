@@ -24,12 +24,9 @@ const MapContact = () => {
           </h2>
           <div className="text-sm">
             <p>{t("contact.reservation")} :</p>
-            <p>+ 202 303 404</p>
+            <p>+966 12 7375555</p>
           </div>
-          <div className="text-sm">
-            <p>{t("contact.reservation")}:</p>
-            <p>+ 202 303 404</p>
-          </div>
+          
         </div>
         <div className="bg-[#BE9874] w-full md:w-[25%] py-6 px-8 flex flex-col gap-6  justify-center items-center md:items-start text-center md:text-start">
         <img src={email} alt="phon-icon" className="w-16 " />
@@ -38,12 +35,9 @@ const MapContact = () => {
           </h2>
           <div className="text-sm">
             <p>{t("contact.reservation")} :</p>
-            <p>+ 202 303 404</p>
+            <p>+966 547375550</p>
           </div>
-          <div className="text-sm">
-            <p>{t("contact.reservation")} :</p>
-            <p>+ 202 303 404</p>
-          </div>
+          
         </div>
       </div>
     </section>

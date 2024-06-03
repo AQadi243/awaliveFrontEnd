@@ -32,6 +32,7 @@ const Navbar = () => {
     { title: t("Banquet & Meeting"), href: "/banquet" },
     { title: t("test1"), href: "/test1" },
     { title: t("test2"), href: "/test2" },
+    { title: t("fullaccess"), href: "/fullaccess" },
     
     { title: t("about"), href: "/about" },
     { title: t("contact"), href: "/contact" },
@@ -184,6 +185,11 @@ const Navbar = () => {
               {t("test2")}
             </NavLink>
 
+            <NavLink to={"/fullaccess"} className={({ isActive }) => (isActive ? " text-white py-8 lg:py-6 px-4" : "hover:text-white transition duration-200 ease-in-out py-8 lg:py-6 px-4")}>
+              {t("fullaccess")}
+            </NavLink>
+
+
             <NavLink to={"/about"} className={({ isActive }) => (isActive ? " text-white py-8 lg:py-6 px-4" : "hover:text-white transition duration-200 ease-in-out py-8 lg:py-6 px-4")}>
               {t("about")}
             </NavLink>
@@ -234,7 +240,7 @@ const Navbar = () => {
           >
             <div className="flex h-full flex-col">
               <div className="flex justify-between">
-                <h1 className="text-lg text-black">Awalive Hotel</h1>
+                <h1 className="text-lg text-black">Awaliv Hotel</h1>
                 <p className="cursor-pointer text-md text-black" onClick={toggleMenu}>
                   {t("Close")}
                 </p>

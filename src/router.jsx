@@ -34,6 +34,7 @@ import Invoice from "./components/admin/dashboard/component/pages/Invoice/Invoic
 import Dashboard from "./components/admin/dashboard/component/pages/Dashboard/Dashboard";
 import Test1 from "./components/pages/test1/Test1";
 import Test2 from "./components/pages/test2/Test2";
+import Fullaccess from "./components/pages/fullaccess/Fullaccess";
 
 const router = createBrowserRouter([
   {
@@ -69,6 +70,10 @@ const router = createBrowserRouter([
       {
         path: "/test2",
         element: <Test2 />,
+      },
+      {
+        path: "/fullaccess",
+        element: <Fullaccess/>,
       },
       {
         path: "/roomRate",

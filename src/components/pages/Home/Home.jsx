@@ -82,28 +82,28 @@ const Home = () => {
     <>
       <div>
         <Helmet>
-          <title>Awalive Hotel - Luxury Accommodation in Taif</title>
+          <title>Awaliv International Hotel - Luxury Accommodation in Taif</title>
           <meta
             name="description"
-            content="Experience luxury and comfort at Awalive Hotel, located in taif. Enjoy top-class amenities, exquisite dining, and exceptional service. Book your stay now!"
+            content="Experience luxury and comfort at Awaliv Hotel, located in taif. Enjoy top-class amenities, exquisite dining, and exceptional service. Book your stay now!"
           />
           <meta
             name="keywords"
-            content="luxury hotel, accommodation, Awalive Hotel, taif hotels, exclusive suites, hotel booking"
+            content="luxury hotel, accommodation, Awaliv Hotel, taif hotels, exclusive suites, hotel booking"
           />
-          <meta property="og:title" content="Awalive Hotel - Luxury Accommodation in taif" />
+          <meta property="og:title" content="Awaliv Hotel - Luxury Accommodation in taif" />
           <meta
             property="og:description"
-            content="Discover the epitome of luxury at Awalive Hotel with top amenities and bespoke services. Perfect for leisure and business in taif."
+            content="Discover the epitome of luxury at Awaliv Hotel with top amenities and bespoke services. Perfect for leisure and business in taif."
           />
           <meta property="og:image" content="[Link to an image showcasing your hotel]" />
           <meta property="og:url" content="awalivehotel.com" />
           <meta property="og:type" content="website" />
           <meta name="twitter:card" content="summary_large_image" />
-          <meta name="twitter:title" content="Awalive Hotel - Luxury Accommodation in taif" />
+          <meta name="twitter:title" content="Awaliv Hotel - Luxury Accommodation in taif" />
           <meta
             name="twitter:description"
-            content="Indulge in unparalleled luxury at Awalive Hotel, offering exquisite rooms and suites in the heart of taif."
+            content="Indulge in unparalleled luxury at Awaliv Hotel, offering exquisite rooms and suites in the heart of taif."
           />
           <meta name="twitter:image" content="[Link to an image showcasing your hotel]" />
           {/* Other head elements like canonical link, viewport, language tag */}
@@ -118,7 +118,7 @@ const Home = () => {
         </div>
         <Relax />
         <RoomCards rooms={roomRates} loadingAllRooms={loadingAllRooms} />
-        <HotelVideo />
+        
         {/* <CheckPromotion promotionsData={promotionsData} promotionError={promotionError} promotionLoading={promotionLoading} /> */}
         <RoomPrice />
         <HotelStucture />
