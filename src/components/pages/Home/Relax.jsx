@@ -42,10 +42,10 @@ const Relax = () => {
             {/* <h2>{t("hotelRelaxTitle")}</h2> */}
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs md:text-sm text-center md:text-left">
-            <p className="text-gray-400">{t("hotelinTaif")}</p>
-            <p className="text-gray-400">{t("restaurantWithAView")}</p>
-            <p className="text-gray-400">{t("poolAndGym")}</p>
-            <p className="text-gray-400">{t("peacefulHotelStay")}</p>
+            <p className="text-gray-600">{t("hotelinTaif")}</p>
+            <p className="text-gray-600">{t("restaurantWithAView")}</p>
+            <p className="text-gray-600">{t("poolAndGym")}</p>
+            <p className="text-gray-600">{t("peacefulHotelStay")}</p>
           </div>
           
 

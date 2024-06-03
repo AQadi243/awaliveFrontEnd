@@ -20,11 +20,11 @@ const BestPosition = () => {
       <div className={` bg-black bg-opacity-20   md:py-10 ${currentLanguage === "ar" ? "body-ar  font-medium " : "body-en "}`}>
         <div className="max-w-6xl mx-auto  text-white">
           <div className="md:w-[50%] flex flex-col gap-5 md:gap-8 px-5 text-center md:text-start ">
-            <p className="text-sm  tracking-widest">{t("exploreCity")}</p>
+            <p className="text-sm   tracking-widest pt-7">{t("exploreCity")}</p>
             <h2 className={`text-4xl md:text-6xl ${currentLanguage === "ar" ? "body-ar  font-medium " : "body-en-title "}`}>
               {t("primeLocationTitle")}
             </h2>
-            <p className="text-sm text-gray-300 py-6">{t("primeLocationDescription")}</p>
+            <p className="text-sm text-white py-6">{t("primeLocationDescription")}</p>
           </div>
         </div>
       </div>
