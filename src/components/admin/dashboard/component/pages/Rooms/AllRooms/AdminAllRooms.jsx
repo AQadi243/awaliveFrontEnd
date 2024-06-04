@@ -37,8 +37,7 @@ const AdminAllRooms = () => {
 
         const response = await axios.get(
           `https://server.awalivhotel.com/api/room/admin/room?lang=${currentLanguage}`,{
-          // `https://type-script-server.vercel.app/api/room/admin/room?lang=${currentLanguage}`,{
-          // `http://localhost:5000/api/room/admin/room?lang=${currentLanguage}`,{
+          
             headers: {
                 'Authorization': `${token}`
             }}
@@ -68,19 +67,14 @@ const AdminAllRooms = () => {
   return (
 
     <>
-    <p>asdasd</p>
+   
     <section className="max-w-7xl mx-auto py-16 px-2 md:px-0">
           <div className="flex flex-col md:flex-row gap-5">
             
             <AdminSingleRoom
             // viewMode={viewMode}
               allRooms={AllRooms}
-              // notFoundRoom={notFoundRoom}
-              // resetSearch={resetSearch}
-              // errorMessage={errorMessage}
-              // availableRooms={availableRooms}
-              // loadingAvailableRooms={loadingAvailableRooms}
-              // noRoomsMessage={noRoomsMessage}
+              
               loadingAllRooms={loadingAllRooms}
               setLoadingAllRooms={setLoadingAllRooms}
             />

@@ -39,7 +39,7 @@ const AddRoom = () => {
   const handleTags = (selectedTags) => {
     setFormData(prevFormData => ({
       ...prevFormData,
-      tags: selectedTags // Directly use the array from Select
+      tags: selectedTags 
     }));
   };
   
@@ -47,7 +47,7 @@ const AddRoom = () => {
     
     setFormData(prevFormData => ({
       ...prevFormData,
-      images: newImageUrls.filter(url => url !== '') // Replace with new URLs and filter out any empty strings
+      images: newImageUrls.filter(url => url !== '') 
     }));
   };
 
@@ -108,22 +108,22 @@ const AddRoom = () => {
         en: formData.descriptionEn.trim(),
         ar: formData.descriptionAR.trim()
       },
-      maxGuests: parseInt(formData.maxGuests, 10), // Convert to integer
-      roomQTY: parseInt(formData.roomQTY, 10), // Convert to integer
-      size: parseInt(formData.size, 10), // Convert to integer
-      price: parseInt(formData.price, 10), // Convert to integer
-      images: formData.images, // Assuming you have image input handling
+      maxGuests: parseInt(formData.maxGuests, 10), 
+      roomQTY: parseInt(formData.roomQTY, 10), 
+      size: parseInt(formData.size, 10), 
+      price: parseInt(formData.price, 10), 
+      images: formData.images, 
       priceOptions: [
         {
-          price: parseInt(formData.price, 10), // Assuming this is the room price per night
-          // Other details like currency, taxes, etc., need to be added here
+          price: parseInt(formData.price, 10),
+          
         }
       ],
-      tags: formData.tags, // Assuming you have tag input handling
-      priceHistory: formData.priceHistory ? parseInt(formData.priceHistory, 10) : undefined // Handle null or empty
+      tags: formData.tags, 
+      priceHistory: formData.priceHistory ? parseInt(formData.priceHistory, 10) : undefined 
     };
 
-    // Optionally omit priceHistory if it's undefined to avoid sending it altogether
+    
     if (processedData.priceHistory === undefined) {
       delete processedData.priceHistory;
     }
@@ -176,7 +176,7 @@ const AddRoom = () => {
           Authorization: `${token}`
         }
       });
-      message.error(`${response.data.message}`);
+      message.success(`${response.data.message}`);
       // Handle further actions like redirecting or showing a success message
     } catch (error) {
       console.error('Error posting data:', error);
@@ -391,7 +391,7 @@ const AddRoom = () => {
                 type="number"
                 id="priceHistory"
                 name="priceHistory"
-                value={formData.price}
+                value={formData.h}
                 onChange={handleChange}
                 className="mt-1 block py-2 px-2 w-full  border border-gray-300 shadow-sm text-black outline-none transition  dark:border-form-strokedark dark:bg-form-input dark:text-white"
               />

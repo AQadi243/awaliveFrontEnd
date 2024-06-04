@@ -17,7 +17,7 @@ const BestPosition = () => {
       }}
     >
     
-      <div className={` bg-black bg-opacity-20   md:py-15 ${currentLanguage === "ar" ? "body-ar  font-medium " : "body-en "}`}>
+      <div className={` bg-black bg-opacity-20   md:py-15 xl:py-28 ${currentLanguage === "ar" ? "body-ar  font-medium " : "body-en "}`}>
         <div className="max-w-6xl mx-auto  text-white">
           <div className="md:w-[50%] flex flex-col gap-5 md:gap-8 px-5 text-center md:text-start ">
             <p className="text-sm   tracking-widest pt-7">{t("exploreCity")}</p>
