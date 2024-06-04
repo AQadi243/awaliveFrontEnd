@@ -19,7 +19,7 @@ const Footer = () => {
               <div className="">
                 <p className="text-lg md:text-xl capitalize">{t("phoneSupport")}</p>
                 <p className="text-xs md:text-sm text-gray-400 capitalize">{t("phoneSupportSubTitle")}</p>
-                <p className="py-3 text-lg md:text-xl">+ 01 345 647 745</p>
+                <p className="py-3 text-lg md:text-xl">+ 966 127375555</p>
               </div>
               <div className="">
                 <p className="text-lg md:text-xl capitalize">{t("connectWithUs")}</p>

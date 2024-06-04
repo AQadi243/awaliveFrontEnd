@@ -3,9 +3,11 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useTranslation } from "react-i18next";
-import banquet1 from "../../../../../public/img/cafe.jpg";
-// import banquet2 from '../../../../public/img/file.jpg'
-// import banquet3 from '../../../../public/img/meeting.jpg'
+import r1 from "../../../../../public/img/res1.jpg";
+import r2 from "../../../../../public/img/res2.jpg";
+import r3 from "../../../../../public/img/res3.jpg";
+import r4 from "../../../../../public/img/res4.jpg";
+
 import i18next from "i18next";
 
 const CafeBanner = () => {
@@ -23,11 +25,12 @@ const CafeBanner = () => {
   // }, []);
 
   const slides = [
-    { img: banquet1 },
-    { img: banquet1 },
-    { img: banquet1 },
-    //   { img: banquet2 },
-    //   { img: banquet3 },
+    { img: r1 },
+    { img: r2 },
+    { img: r3 },
+    { img: r4 },
+  
+    
   ];
 
   // Settings for your main slider

@@ -3,9 +3,13 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 import { useTranslation } from 'react-i18next';
-import banquet1 from '../../../../public/img/hallRoom1.jpg'
-import banquet2 from '../../../../public/img/file.jpg'
-import banquet3 from '../../../../public/img/meeting.jpg'
+import banquet1 from '../../../../public/img/ban1.jpg'
+import banquet2 from '../../../../public/img/ban2.jpg'
+import banquet3 from '../../../../public/img/ban3.jpg'
+import banquet4 from '../../../../public/img/ban4.jpg'
+import banquet5 from '../../../../public/img/ban5.jpg'
+import banquet6 from '../../../../public/img/ban6.jpg'
+import banquet7 from '../../../../public/img/ban7.jpg'
 import placeholderImage from '../../../../public/img/awalive-Blaack.png'
 
 import i18next from 'i18next';
@@ -29,6 +33,10 @@ const BanquetBanner = () => {
       { img: banquet1  },
       { img: banquet2 },
       { img: banquet3 },
+      { img: banquet4 },
+      { img: banquet5 },
+      { img: banquet6 },
+      { img: banquet7 },
   ];
   
     // Settings for your main slider

@@ -3,9 +3,9 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 import { useTranslation } from 'react-i18next';
-import banquet1 from '../../../../public/img/hallRoom1.jpg'
-import banquet2 from '../../../../public/img/file.jpg'
-import banquet3 from '../../../../public/img/meeting.jpg'
+import banquet1 from '../../../../public/img/3_elev_pwd.jpg'
+import banquet2 from '../../../../public/img/6_room_e_pwd.jpg'
+import banquet3 from '../../../../public/img/4_room_m_pwd.jpg'
 import placeholderImage from '../../../../public/img/awalive-Blaack.png'
 
 import i18next from 'i18next';

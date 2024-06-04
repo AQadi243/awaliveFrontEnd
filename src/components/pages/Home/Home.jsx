@@ -113,7 +113,7 @@ const Home = () => {
         <RoomCards rooms={roomRates} loadingAllRooms={loadingAllRooms} />
         
         {/* <CheckPromotion promotionsData={promotionsData} promotionError={promotionError} promotionLoading={promotionLoading} /> */}
-        <RoomPrice />
+{/*        <RoomPrice />*/}
         <HotelStucture />
         <BestPosition />
         <StayTune />

@@ -1,88 +1,104 @@
-import React from "react";
 
-import img from "/img/cafe.jpg";
-import bgim from "../../../../../public/img/staff1.jpg";
-import awalive from "../../../../../public/img/awalive.png";
-import hand from "../../../../../public/img/hand.png";
-// import bgim from "../../../../assets";
+
+
+import line from "../../../../../public/img/line.jpg";
+import res1 from "../../../../../public/img/res1.jpg";
+import res3 from "../../../../../public/img/res3.jpg";
+import res4 from "../../../../../public/img/res4.jpg";
+
+import { CiWifiOn, CiRouter, CiUser, CiBank } from "react-icons/ci";
 import i18next from "i18next";
-import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 const CafeDetails = () => {
-  const currentLanguage = i18next.language;
-  const {t} = useTranslation('cafe')
+    const currentLanguage = i18next.language
+    const {t} = useTranslation('fb')
+
+
   return (
     <>
-      <section className="max-w-7xl mx-auto px-4 py-8 lg:h-[500px] my-10 md:my-20">
-        <div className="flex flex-wrap items-center h-full">
-          {/* <!-- Text Section --> */}
-          <div className="w-full lg:w-1/2 px-4 mb-8 lg:mb-0 text-black">
-            <div className={`${currentLanguage === "ar" ? "body-ar font-semibold  " : "body-en-title "}`}>
-              <h5 className="text-sm uppercase tracking-widest  mb-3">{t("Hotel Facilities")}</h5>
-              <h2 className="text-6xl  tracking-widest  mb-4">{t("Hotel Best")} </h2>
-              <h2 className="text-6xl  tracking-widest  mb-4">{t("Restaurants")}</h2>
-            </div>
-            <p className="text-base text-gray-700 mb-4">
-              {t("RestaurantDetails")}
+      <section className=" max-w-5xl mx-auto ">
+        <div className="py-10 md:py-20 flex flex-col  items-center gap-10">
+          <p className={`text-4xl lg:text-6xl text-gray-800 text-center ${currentLanguage === 'ar' ? 'body-ar  font-medium  ' : 'body-en-title'}`} >{t("What's Includes")}</p>
+          
+        </div>
+      </section>
+      <section className="max-w-7xl mx-auto pb-20">
+        <div className=" md:h-[500px] flex flex-col md:flex-row md:justify-between items-center md:items-start p-6 gap-8">
+          <div className={`w-full md:w-1/2 lg:1/3 space-y-4 text-black text-center md:text-start ${currentLanguage === 'ar' ? 'body-ar  font-medium  ' : 'body-en-title'} `}>
+            <p className="text-xs uppercase tracking-widest text-gray-500">{t("EXECUTIVE MEETINGS")}</p>
+            <h2 className="text-4xl lg:text-6xl ">{t("Our Goal is a")}</h2>
+            <h2 className="text-4xl lg:text-6xl ">{t("Elegant Banquets")} </h2>
+            <p className={`text-sm text-gray-600 ${currentLanguage === 'ar' ? 'body-ar  font-medium  ' : 'body-en'}`}>
+              {t("details")}
             </p>
-
-            <button className="px-6 py-2 bg-black text-white uppercase font-medium hover:bg-gray-800 transition duration-300">
-              {t("Menu")}
-            </button>
-          </div>
-          {/* <!-- Image and Badge Section --> */}
-          <div className="w-full lg:w-1/2 px-4 h-full">
-            <div
-              className={`flex flex-col lg:flex-row gap-4 h-full ${currentLanguage === "ar" ? "body-ar font-normal  " : "body-en-title "}`}
-            >
-              <div className="flex flex-col gap-3 lg:w-1/2 h-full">
-                <div className="col-span-2 py-7 bg-black ">
-                  <p className="text-center text-xl text-white">{t("Roof Top Cafe")}</p>
-                </div>
-                <div className="h-full w-full">
-                  <img src={img} alt="" className=" h-[300px] lg:h-full w-full object-cover" />
-                </div>
-              </div>
-              <div className="flex flex-col gap-3 lg:w-1/2 h-full">
-                <div className="h-full w-full">
-                  <img src={img} alt="" className=" w-full h-[300px] lg:h-full object-cover" />
-                </div>
-                <div className="col-span-2 py-7 bg-black ">
-                  <p className="text-center text-xl text-white">{t("Hotel Rasaureant")}</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section className=" my-20">
-        <div
-          className={`h-[calc(100vh-20vh)] flex items-center relative `}
-          style={{
-            backgroundImage: `url(${bgim})`,
-            backgroundRepeat: "no-repeat",
-            backgroundPosition: "top center",
-            backgroundSize: "cover",
             
-          }}
-        >
-          {/* <div className={`absolute top-0 left-0 w-full h-full bg-black opacity-70  `}></div> */}
-          <div className=" max-w-7xl mx-auto  lg:w-[34rem]  px-1   text-black flex flex-col gap-1 md:gap-4 absolute   lg:left-1/2 ">
-            <h1 className={`text-4xl md:text-6xl capitalize   ${currentLanguage === 'ar' ? 'body-ar  font-semibold ' : 'body-en-title '}`}>{t("Enjoy & Eat In Our")}</h1>
-            <h2 className={` text-4xl md:text-6xl capitalize  ${currentLanguage === 'ar' ? 'body-ar  font-semibold ' : 'body-en-title '}`}>{t("Hotel Restaurant")}</h2>
-            <p className={`text-sm text-gray-800 py-3 ${currentLanguage === 'ar' ? 'body-ar  font-medium ' : 'body-en '}`}>{t("RestaurantDetails")}</p>
-            <div className="py-4 flex   flex-row gap-5 items-center justify-center">
-              {/* <Link to={"/contact"} className="uppercase text-white bg-[#BE9874] py-3 px-6 text-sm ">
-                {t("contact_us")}
-              </Link> */}
-              <img src={awalive} alt="" className="w-30 md:w-48 md:h-48 object-cover" />
-              <img src={hand} alt="" className="w-30 md:w-48 md:h-48 object-cover" />
-              
-            </div>
+          </div>
+
+          <div className="w-full md:1/2 lg:w-2/3 relative ">
+            <img className="w-full h-full object-cover" src={res1} alt="" />
+           
+          </div>
+        </div>
+      
+      </section>
+
+
+      <section className="max-w-7xl mx-auto pb-20">
+         <div className=" ">
+            <img className="" src={line} alt="" />
+          </div>
+    </section>
+
+
+      <section className="max-w-7xl mx-auto pb-20">
+        <div className="md:h-[500px] flex flex-col md:flex-row md:justify-between items-center md:items-start p-6 gap-8">
+          
+
+          <div className="w-full md:1/2 lg:w-2/3 relative ">
+            <img className="w-full h-full object-cover" src={res3} alt="" />
+            
+          </div>
+
+          <div className={`w-full md:w-1/2 lg:1/3 space-y-4 text-black ${currentLanguage === 'ar' ? 'body-ar  font-medium  ' : 'body-en-title'} `}>
+            <p className="text-xs uppercase tracking-widest text-gray-500">{t("halls")}</p>
+            <h2 className="text-4xl lg:text-6xl ">{t("halls1")} </h2>
+            <h2 className="text-4xl lg:text-6xl ">{t("halls2")} </h2>
+            <p className="text-sm text-gray-600">
+            {t("hallsD")}
+            </p>
+            
           </div>
         </div>
       </section>
+
+ <section className="max-w-7xl mx-auto pb-20">
+         <div className=" ">
+            <img className="" src={line} alt="" />
+          </div>
+    </section>
+
+    <section className="max-w-7xl mx-auto pb-20">
+        <div className=" md:h-[500px] flex flex-col md:flex-row md:justify-between items-center md:items-start p-6 gap-8">
+          <div className={`w-full md:w-1/2 lg:1/3 space-y-4 text-black text-center md:text-start ${currentLanguage === 'ar' ? 'body-ar  font-medium  ' : 'body-en-title'} `}>
+            <p className="text-xs uppercase tracking-widest text-gray-500">{t("cafe")}</p>
+            <h2 className="text-4xl lg:text-6xl ">{t("cafe1")}</h2>
+            <h2 className="text-4xl lg:text-6xl ">{t("cafe2")} </h2>
+            <p className={`text-sm text-gray-600 ${currentLanguage === 'ar' ? 'body-ar  font-medium  ' : 'body-en'}`}>
+              {t("cafeD")}
+            </p>
+            
+          </div>
+
+          <div className="w-full md:1/2 lg:w-2/3 relative ">
+            <img className="w-full h-full object-cover" src={res4} alt="" />
+           
+          </div>
+        </div>
+      
+      </section>
+
+
     </>
   );
 };

@@ -26,16 +26,11 @@ const Navbar = () => {
   const navLinks = [
     { title: t("home"), href: "/" },
     { title: t("roomSearch"), href: "/roomSearch" },
-    { title: t("promotions"), href: "/promotions" },
-    { title: t("bookTable"), href: "/bookTable" },
-    { title: t("Restaurant & Cafe"), href: "/cafe" },
+        { title: t("Restaurant & Cafe"), href: "/cafe" },
     { title: t("Banquet & Meeting"), href: "/banquet" },
-    { title: t("test1"), href: "/test1" },
-    { title: t("test2"), href: "/test2" },
     { title: t("fullaccess"), href: "/fullaccess" },
-    
-    { title: t("about"), href: "/about" },
-    { title: t("contact"), href: "/contact" },
+       { title: t("about"), href: "/about" },
+    //{ title: t("contact"), href: "/contact" },
   ];
   // const navigate = useNavigate();
   // const [isDropdownOpen, setDropdownOpen] = useState(false);
@@ -114,76 +109,24 @@ const Navbar = () => {
             <NavLink to={"/"} className={({ isActive }) => (isActive ? " text-white py-8 lg:py-6 px-4" : "py-8 lg:py-6 px-4 ")}>
               {t("home")}
             </NavLink>
-            <li className="relative group list-none cursor-pointer py-8 lg:py-6 px-4">
-              <p className="flex gap-1 items-center ">
-                <span className=" hover:text-white transition duration-200 ease-in-out"> {t("search")}</span>
-                
-              </p>
-              <ul
-                className={
-                  "absolute w-36 left-0 top-17   hidden pt-2 bg-white drop-shadow-md text-md text-zinc-600 group-hover:block z-20 "
-                }
-              >
-                <li className="p-2 hover:bg-slate-50 transition duration-300 ease-in-out">
-                  <NavLink
-                    to={"/roomSearch"}
-                    // className={({ isActive }) => (isActive ? "" : "font-medium")}
-                  >
-                    {t("roomSearch")}
-                  </NavLink>
-                </li>
-                <li className="p-2 hover:bg-slate-50 transition duration-300 ease-in-out">
-                  <NavLink
-                    to={"/roomRate"}
-                    // className={({ isActive }) => (isActive ? "font-semibold text-white" : "font-medium")}
-                  >
-                    {t("roomRates")}
-                  </NavLink>
-                </li>
-              </ul>
-            </li>
 
-            <NavLink to={"/promotions"} className={({ isActive }) => (isActive ? " text-white py-8 lg:py-6 px-4" : " hover:text-white transition duration-200 ease-in-out py-8 lg:py-6 px-4")}>
-              {t("promotions")}
+
+
+            <NavLink to={"/roomSearch"} className={({ isActive }) => (isActive ? " text-white py-8 lg:py-6 px-4" : "hover:text-white transition duration-200 ease-in-out py-8 lg:py-6 px-4")}>
+              {t("search")}
             </NavLink>
-            <li className="relative group list-none py-8 lg:py-6 px-4">
-              <p className="flex gap-1 items-center cursor-pointer">
-                <span className=" hover:text-white transition duration-200 ease-in-out"> {t("restaurants")}</span>
-              </p>
+            
+            <NavLink to={"/cafe"} className={({ isActive }) => (isActive ? " text-white py-8 lg:py-6 px-4" : "hover:text-white transition duration-200 ease-in-out py-8 lg:py-6 px-4")}>
+              {t("restaurants")}
+            </NavLink>
+            
+            
 
-              <ul className="absolute w-36 left-0 top-17 hidden pt-2 bg-white drop-shadow-md text-md text-zinc-600 group-hover:block z-20 ">
-                <li className="p-2 block hover:bg-slate-50 transition duration-300 ease-in-out ">
-                  <NavLink
-                    to={"/bookTable"}
-                    className={({ isActive }) => (isActive ? " " : "")}
-                  >
-                    {t("bookTable")}
-                  </NavLink>
-                </li>
-                <li className="p-2 block hover:bg-slate-50 transition duration-300 ease-in-out ">
-                  <NavLink
-                    to={"/cafe"}
-                    className={({ isActive }) => (isActive ? " " : "")}
-                  >
-                    {t("Restaurant & Cafe")}
-                  </NavLink>
-                </li>
-                <li className="p-2 block hover:bg-slate-50 transition duration-300 ease-in-out ">
-                  <NavLink to={"/menu"} className={({ isActive }) => (isActive ? "" : "")}>
-                    {t("menu")}
-                  </NavLink>
-                </li>
-              </ul>
-            </li>
+
             <NavLink to={"/banquet"} className={({ isActive }) => (isActive ? " text-white py-8 lg:py-6 px-4" : "hover:text-white transition duration-200 ease-in-out py-8 lg:py-6 px-4")}>
               {t("Banquet & Meeting")}
             </NavLink>
-            <NavLink to={"/test1"} className={({ isActive }) => (isActive ? " text-white py-8 lg:py-6 px-4" : "hover:text-white transition duration-200 ease-in-out py-8 lg:py-6 px-4")}>
-              {t("test1")}
-            </NavLink>
-            <NavLink to={"/test2"} className={({ isActive }) => (isActive ? " text-white py-8 lg:py-6 px-4" : "hover:text-white transition duration-200 ease-in-out py-8 lg:py-6 px-4")}>
-              {t("test2")}
-            </NavLink>
+           
 
             <NavLink to={"/fullaccess"} className={({ isActive }) => (isActive ? " text-white py-8 lg:py-6 px-4" : "hover:text-white transition duration-200 ease-in-out py-8 lg:py-6 px-4")}>
               {t("fullaccess")}
@@ -193,10 +136,12 @@ const Navbar = () => {
             <NavLink to={"/about"} className={({ isActive }) => (isActive ? " text-white py-8 lg:py-6 px-4" : "hover:text-white transition duration-200 ease-in-out py-8 lg:py-6 px-4")}>
               {t("about")}
             </NavLink>
-            <NavLink to={"/contact"} className={({ isActive }) => (isActive ? " text-white py-8 lg:py-6 px-4" : " hover:text-white transition duration-200 ease-in-out py-8 lg:py-6 px-4")}>
+            
+           {/* <NavLink to={"/contact"} className={({ isActive }) => (isActive ? " text-white py-8 lg:py-6 px-4" : " hover:text-white transition duration-200 ease-in-out py-8 lg:py-6 px-4")}>
               {t("contact")}
-              {/* <AnimatedLink title={"Home"} /> */}
-            </NavLink>
+               <AnimatedLink title={"Home"} /> 
+            </NavLink>*/}
+            
             {user?.role === 'admin' &&
             <Link to={'/dashboard'} className={"py-8 lg:py-6 px-4"} >
                 {t("Dashboard")}

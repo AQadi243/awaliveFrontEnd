@@ -5,6 +5,7 @@ import BestPrice from "./BestPrice";
 // import Slider from "./Slider";
 import breadCums from '../../../assets/5.jpg'
 import StaffSlider from "./StaffSlider";
+import HotelStucture from "./HotelStucture";
 // import { LanguageContext } from "../../sharedPages/Context/LanguageProvider";
 // import i18next from "i18next";
 
@@ -41,8 +42,8 @@ const About = () => {
       <PageAnimation>
         <>
           {/* <Slider /> */}
-          <StaffSlider />
-          <BestPrice />
+          <HotelStucture/>
+
         </>
         {/* ) */}
       </PageAnimation>
