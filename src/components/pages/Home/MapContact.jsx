@@ -9,6 +9,10 @@ const MapContact = () => {
   const { t } = useTranslation("footer");
   const currentLanguage = i18next.language
   const googleMapsUrl = "https://maps.app.goo.gl/d1FkZCNpjUtvkY4t6";
+
+  // const formattedPhoneNumber = (+966127375555).toLocaleString('ar-AE');
+  // const formattedSecondPhoneNumber = (+966547375550).toLocaleString('ar-AE');
+
   return (
     <section className="">
       <div className={`flex flex-col md:flex-row text-white ${currentLanguage === 'ar' ? 'body-ar  font-medium ' : 'body-en-title '}`}>
@@ -23,8 +27,11 @@ const MapContact = () => {
             {t("contact.contactUs")}
           </h2>
           <div className="text-sm">
+            <div>
+
             <p>{t("contact.reservation")} :</p>
-            <p>+966 12 7375555</p>
+            <p dir="ltr" className={`text-xl font-semibold ${currentLanguage === 'ar' ? 'text-end ' : 'text-start '}`} >{t("contact.phone")}</p>
+            </div>
           </div>
           
         </div>
@@ -35,7 +42,7 @@ const MapContact = () => {
           </h2>
           <div className="text-sm">
             <p>{t("contact.reservation")} :</p>
-            <p>+966 547375550</p>
+            <p dir="ltr" className="text-xl font-semibold">{t("contact.AltPhone")}</p>
           </div>
           
         </div>

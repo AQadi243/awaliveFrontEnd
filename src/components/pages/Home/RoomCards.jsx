@@ -10,8 +10,6 @@ const RoomCards = ({ rooms, loadingAllRooms }) => {
   const { t } = useTranslation("home");
   const currentLanguage = i18next.language;
 
-  console.log(rooms, "rooms from home");
-
   const skeletonCount = 6;
 
   return (
@@ -45,7 +43,10 @@ const RoomCards = ({ rooms, loadingAllRooms }) => {
                   placeholderSrc={placeholderImage}
                 />
                 {/* <div className="absolute top-0 left-0 w-full h-full hover:bg-black transition duration-500 opacity-40"></div> */}
-                <p className={`bg-[#2E2E2E] py-2 px-6 absolute top-5  ${currentLanguage === "ar" ? "left-0" : "right-0"} text-white text-xs tracking-widest`}
+                <p
+                  className={`bg-[#2E2E2E] py-2 px-2 absolute top-5  ${
+                    currentLanguage === "ar" ? "left-5 md:left-10" : "right-5 md:right-10"
+                  } text-white text-xs tracking-widest`}
                 >
                   {t("from")} {room.priceOptions[0].price.toLocaleString()} {t("SAR")}
                   {/* {currentLanguage === "en"
@@ -53,19 +54,17 @@ const RoomCards = ({ rooms, loadingAllRooms }) => {
                     : room.priceOptions[0].price.toLocaleString("ar-EG")}{" "}
                   {t("SAR")} */}
                 </p>
-                {
-                  room.discount &&(
-                    <p className={`bg-[#fd4444] py-2 px-6 absolute top-5  ${currentLanguage === "ar" ? "right-0" : "left-0"} text-white text-xs tracking-widest`}
-                >
-                  {t("Upto -")} {room.discount} {t("%")}
-                  {/* {currentLanguage === "en"
-                    ? room.priceOptions[0].price.toLocaleString()
-                    : room.priceOptions[0].price.toLocaleString("ar-EG")}{" "}
-                  {t("SAR")} */}
-                </p>
-                  )
-                }
-                
+                {/* show discount  */}
+                {/* {room.discount && (
+                  <p
+                    className={`bg-[#fd4444] py-2 px-6 absolute top-5  ${
+                      currentLanguage === "ar" ? "right-0" : "left-0"
+                    } text-white text-xs tracking-widest`}
+                  >
+                    {t("Upto -")} {room.discount} {t("%")}
+                  </p>
+                )} */}
+
                 <div className={`absolute bottom-5 ${currentLanguage === "ar" ? "right-4" : "left-4"} `}>
                   <h2
                     className={`text-xl md:text-2xl text-white py-2  ${
