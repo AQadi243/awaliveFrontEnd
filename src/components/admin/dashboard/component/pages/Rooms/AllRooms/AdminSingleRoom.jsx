@@ -10,15 +10,19 @@ import bath from "/img/private-bathroom.png";
 import { useTranslation } from "react-i18next";
 import i18next from "i18next";
 import RoomDeleteButton from "./RoomDeleteButton";
-import EditRoomButton from "./EditRoomButton";
+import { Spin } from "antd";
+import PermanentDeleteRoomButton from "./PermanentDeleteRoomButton";
 
 // eslint-disable-next-line react/prop-types
-const AdminSingleRoom = ({ allRooms, loadingAllRooms, setLoadingAllRooms }) => {
+const AdminSingleRoom = ({ allRooms, loadingAllRooms, setLoadingAllRooms,onUpdate  }) => {
   const currentLanguage = i18next.language;
   const { t } = useTranslation("booking");
 
   if (loadingAllRooms) {
-    return <div>Loading</div>;
+    return <div className="flex items-center justify-center w-full h-[300px]">
+      
+      <Spin> </Spin>
+      </div>;
   }
 
   console.log(allRooms,'all rooms');
@@ -113,8 +117,9 @@ const AdminSingleRoom = ({ allRooms, loadingAllRooms, setLoadingAllRooms }) => {
 
             <LuClipboardEdit className="text-white" />
                 </button> */}
-                <EditRoomButton />
-                <RoomDeleteButton roomId={room.id} />
+                <PermanentDeleteRoomButton onUpdate={onUpdate }  roomId={room.id} />
+              
+                <RoomDeleteButton onUpdate={onUpdate } isActive={room.isActive} roomId={room.id} />
             </div>
           </div>
         ))}
