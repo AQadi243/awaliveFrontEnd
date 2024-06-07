@@ -96,21 +96,24 @@ const ActionButton = ({ record, fetchBookings, fetchNewBookings }) => {
     }
   
     try {
+       // `https://type-script-server.vercel.app/api/booking/cancelBooking/${record.id}`,{},
+        // `http://localhost:5000/api/booking/cancelBooking/${record.id}`,{},
       // eslint-disable-next-line no-unused-vars
       const response = await axios.patch(
         `https://server.awalivhotel.com/booking/cancelBooking/${record.id}`,{},
-        // `https://type-script-server.vercel.app/api/booking/cancelBooking/${record.id}`,{},
-        // `http://localhost:5000/api/booking/cancelBooking/${record.id}`,{},
         {
           headers: {
             Authorization: `${token}` // Using the token from local storage
           },
         }
       );
+
       message.success("Booking canceled successfully."); // Notification of success
       fetchBookings()
       fetchNewBookings()
     } catch (error) {
+
+      
       message.error("Failed to cancel booking."); // Notification of failure
     }
   };
