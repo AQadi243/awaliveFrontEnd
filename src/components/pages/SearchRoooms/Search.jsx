@@ -41,7 +41,6 @@ const Search = () => {
   const [viewMode, setViewMode] = useState('grid');
   // const [notFoundRoom, setNotFoundRoom] = useState('');
   
-console.log(errorMessage,'data error ');
   const formatDateString = (dateString) => {
     return dateString ? new Date(dateString).toLocaleDateString() : null;
   };
@@ -103,9 +102,9 @@ console.log(errorMessage,'data error ');
         setAvailableRooms(rooms);
         setLoadingAvailableRooms(false);
       } catch (error) {
-        console.log(error);
-        console.error(error?.response?.data?.error?.statusCode);
-        console.error(error?.response?.data?.issues[0]?.message);
+        // console.log(error);
+        // console.error(error?.response?.data?.error?.statusCode);
+        // console.error(error?.response?.data?.issues[0]?.message);
         setErrorMessage(` ${error?.response?.data?.issues[0]?.message}`);
         setAvailableRooms([]); // Clear rooms as there was an error
         setLoadingAvailableRooms(false);

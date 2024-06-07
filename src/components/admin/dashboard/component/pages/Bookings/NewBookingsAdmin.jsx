@@ -38,12 +38,10 @@ const NewBookingsAdmin = ({ allNewBookingData, newLoading, fetchNewBookings, set
   };
 
   const showInvoice = (record) => {
-    console.log(record,"record");
     // Navigate to the invoice route with a parameter, if necessary
     navigate(`/dashboard/booking/invoice/${record.id}`);  // Assuming record.id is how you identify bookings
   };
 
-  console.log(allNewBookingData,'new booking');
 
 
   const columns = [

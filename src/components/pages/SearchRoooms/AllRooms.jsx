@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 // import {  Spin } from "antd";
-import { UserOutlined, ArrowsAltOutlined } from "@ant-design/icons";
+// import { UserOutlined, ArrowsAltOutlined } from "@ant-design/icons";
 import CoverSlider from "./CoverSlider";
 import { useTranslation } from "react-i18next";
 import i18next from "i18next";
@@ -21,7 +21,6 @@ const AllRooms = ({viewMode, allRooms, loadingAllRooms, availableRooms, loadingA
   const currentLanguage = i18next.language;
   const { t } = useTranslation("booking");
   const [displayRooms, setDisplayRooms] = useState(allRooms);
-  console.log(availableRooms,'asdasdas');
   useEffect(() => {
     setDisplayRooms(allRooms);
   }, [allRooms]); // Depend on allRooms.data

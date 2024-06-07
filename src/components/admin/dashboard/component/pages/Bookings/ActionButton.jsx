@@ -100,7 +100,7 @@ const ActionButton = ({ record, fetchBookings, fetchNewBookings }) => {
         // `http://localhost:5000/api/booking/cancelBooking/${record.id}`,{},
       // eslint-disable-next-line no-unused-vars
       const response = await axios.patch(
-        `https://server.awalivhotel.com/booking/cancelBooking/${record.id}`,{},
+        `https://server.awalivhotel.com/api/booking/cancelBooking/${record.id}`,{},
         {
           headers: {
             Authorization: `${token}` // Using the token from local storage
@@ -112,8 +112,6 @@ const ActionButton = ({ record, fetchBookings, fetchNewBookings }) => {
       fetchBookings()
       fetchNewBookings()
     } catch (error) {
-
-      
       message.error("Failed to cancel booking."); // Notification of failure
     }
   };

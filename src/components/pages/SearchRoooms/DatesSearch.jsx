@@ -2,19 +2,19 @@ import { useContext, useEffect, useRef, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { addDays, format, differenceInCalendarDays } from "date-fns";
-import { FaAngleDown, FaAngleUp } from "react-icons/fa6";
+// import { FaAngleDown, FaAngleUp } from "react-icons/fa6";
 import { AuthContext } from "../../sharedPages/Context/AuthProvider";
 import { useTranslation } from "react-i18next";
 import i18next from "i18next";
 import { SlArrowDown, SlArrowUp } from "react-icons/sl";
-import { useLocation } from "react-router-dom";
+// import { useLocation } from "react-router-dom";
 
 const DatesSearch = () => {
   const authInfo = useContext(AuthContext);
  
   const currentLanguage = i18next.language;
   const { t } = useTranslation("search");
-  const { night, setNight, setCheckIn, setCheckOut, setGuests, numberOfGuests, checkIn, checkOut, } = authInfo;
+  const {  setCheckIn, setCheckOut, setGuests, numberOfGuests, checkIn, checkOut, } = authInfo;
   const [startDate, setStartDate] = useState(checkIn || new Date());
   const [endDate, setEndDate] = useState(checkOut || addDays(new Date(), 1));
   const [guest, setGuest] = useState(numberOfGuests || 1);
@@ -39,7 +39,6 @@ const DatesSearch = () => {
   },[endDate, guest, setCheckIn, setCheckOut, setGuests, startDate])
 
   const nights = differenceInCalendarDays(endDate, startDate);
-console.log(startDate, endDate, 'searche fodated formting ');
   return (
     <>
       <div className={` w-full md:w-1/3 ${currentLanguage === 'ar' ? 'body-ar font-medium ' : 'body-en-title'} `}>

@@ -105,7 +105,7 @@ const Navbar = () => {
               <img src={logo} alt="awalive-hotel-logo" className="h-20 max-w-40 " />
             {/* </Link> */}
           </Link>
-          <div className="lg:flex hidden    text-sm tracking-wider text-zinc-400">
+          <div className="lg:flex hidden    text-xs tracking-wider text-zinc-400">
             <NavLink to={"/"} className={({ isActive }) => (isActive ? " text-white py-8 lg:py-6 px-4" : "py-8 lg:py-6 px-4 ")}>
               {t("home")}
             </NavLink>
