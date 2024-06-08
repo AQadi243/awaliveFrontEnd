@@ -1,10 +1,9 @@
-import { Table, Tag, Space, } from "antd";
-import {  useState } from "react";
+import { Table, Tag, Space, Modal, message } from "antd";
+import { useState } from "react";
 import { LuMoreHorizontal, LuTrash2 } from "react-icons/lu";
 import BookingInfoAdmin from "./BookingInfoAdmin";
 import FilterBookingsByDate from "./FilterBookingsByDate";
-
-
+import axios from "axios";
 
 // Extract unique room names to create filters dynamically
 const generateRoomNameFilters = (data) => {
@@ -25,8 +24,7 @@ const generateBookingStatusFilters = (data) => {
 };
 
 // eslint-disable-next-line react/prop-types
-const AllBookingsAdmin = ({allBookingData, loading, fetchBookings, setAllBookingData}) => {
- 
+const AllBookingsAdmin = ({ allBookingData, loading, fetchBookings, setAllBookingData }) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [selectedData, setSelectedData] = useState(null);
   // const { t } = useTranslation("booking");
@@ -36,14 +34,29 @@ const AllBookingsAdmin = ({allBookingData, loading, fetchBookings, setAllBooking
     setIsModalVisible(true);
   };
 
+  const handleDelete = async (id) => {
+    const token = localStorage.getItem('token'); 
+    
+    try {
+      await axios.delete(`https://server.awalivhotel.com/api/booking/${id}`,{
+        headers:{
+          Authorization: `${token}`
+        }
+      });
+      message.success("Booking deleted successfully");
+      fetchBookings(); // Refresh bookings data
+    } catch (error) {
+      message.error("Failed to delete booking");
+    }
+  };
+  // console.log(allBookingData,'asdasd');
+
   const columns = [
     {
       title: "Room",
       dataIndex: "roomImage",
       key: "roomImage",
-      // sorter: (a, b) => a.id - b.id,
       render: (roomImage) => {
-        // Fallback to a default image if no valid URL is provided
         const defaultImage = "https://via.placeholder.com/100"; // Placeholder image or your default URL
         const imageURL = roomImage || defaultImage;
         return (
@@ -62,8 +75,6 @@ const AllBookingsAdmin = ({allBookingData, loading, fetchBookings, setAllBooking
       title: "Room Name",
       dataIndex: "roomName",
       key: "roomName",
-      // sorter: (a, b) => a.roomName.localeCompare(b.roomName),
-      // filters: roomNameFilters,
       filters: generateRoomNameFilters(allBookingData),
       onFilter: (value, record) => record.roomName.startsWith(value),
       filterSearch: true,
@@ -78,7 +89,6 @@ const AllBookingsAdmin = ({allBookingData, loading, fetchBookings, setAllBooking
       dataIndex: "checkOut",
       key: "checkOut",
     },
-
     {
       title: "Payment",
       dataIndex: "payment",
@@ -95,7 +105,7 @@ const AllBookingsAdmin = ({allBookingData, loading, fetchBookings, setAllBooking
     },
     {
       title: "Booking Status",
-      dataIndex: "status", // Correctly referencing 'status' as defined in transformData
+      dataIndex: "status",
       key: "status",
       filters: generateBookingStatusFilters(allBookingData),
       onFilter: (value, record) => record.status.startsWith(value),
@@ -127,9 +137,13 @@ const AllBookingsAdmin = ({allBookingData, loading, fetchBookings, setAllBooking
       key: "action",
       render: (_, record) => (
         <Space size="small">
-          {/* <LuFileEdit onClick={() => showModal(record)} className='text-lg cursor-pointer text-yellow-600' /> */}
           <LuMoreHorizontal onClick={() => showModal(record)} className="text-lg cursor-pointer text-yellow-600" title="Full Info" />
-          <LuTrash2 className="text-lg cursor-pointer text-red-400" title="Delete" />
+          <LuTrash2 onClick={() => {
+            Modal.confirm({
+              title: "Are you sure you want to delete this booking?",
+              onOk: () => handleDelete(record.id),
+            });
+          }} className="text-lg cursor-pointer text-red-400" title="Delete" />
         </Space>
       ),
     },
@@ -140,11 +154,10 @@ const AllBookingsAdmin = ({allBookingData, loading, fetchBookings, setAllBooking
       <div className="py-6">
         <FilterBookingsByDate fetchBookings={fetchBookings} setAllBookingData={setAllBookingData} allBookingData={allBookingData} />
       </div>
-      <div >
+      <div>
         {loading ? (
           <div className="min-h-[400px] w-full flex justify-center items-center ">
-
-          <p>Loading....</p>
+            <p>Loading....</p>
           </div>
         ) : (
           <Table scroll={{ x: "max-content" }} columns={columns} dataSource={allBookingData} pagination={{ pageSize: 5 }} size="small" />

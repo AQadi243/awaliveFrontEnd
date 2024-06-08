@@ -95,7 +95,7 @@ const AdminBookings = () => {
     <>
     <div className="border p-5 shadow-lg mb-10" >
         <div>
-            <p className="text-md font-semibold ">New Bookings</p>
+            <p className="text-md font-semibold ">Active Bookings</p>
         </div>
         <NewBookingsAdmin allNewBookingData={allNewBookingData} newLoading={newLoading} fetchNewBookings={fetchNewBookings} setAllNewBookingData={setAllNewBookingData} fetchBookings={fetchBookings} />
     </div>

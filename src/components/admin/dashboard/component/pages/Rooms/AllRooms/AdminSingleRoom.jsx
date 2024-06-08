@@ -69,7 +69,7 @@ const AdminSingleRoom = ({ allRooms, loadingAllRooms, setLoadingAllRooms,onUpdat
                     <CiViewTable className="text-gray-400" />
                   </p>{" "}
                   <p className="text-sm">
-                    {room.size} {t("ft")}{" "}
+                    {room.size}{t("m²")}{" "}
                   </p>
                 </div>
               </div>

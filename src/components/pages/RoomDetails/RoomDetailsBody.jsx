@@ -50,21 +50,26 @@ const RoomDetailsBody = ({ singleRoomDetails }) => {
                 <p className="text-xl md:text-2xl">
                   <CiViewTable className=" text-3xl md:text-4xl text-gray-400" />
                 </p>{" "}
-                <div>
+                <div className="flex gap-1">
                   <p className="uppercase tracking-widest text-sm ">{size}</p>
+                  <p className=" tracking-widest text-sm  ">
+                  {'m²'}
+                </p>
                 </div>
               </div>
               <div className="flex flex-col gap-3 items-center">
                 {/* <p className="text-xl  md:text-xl">{t("SAR")} </p>{" "} */}
                 <LuHome className="text-3xl md:text-4xl text-gray-400" />
                 <div className="flex gap-2">
-                {priceHistory && (
+                  {/* for promotion */}
+                {/* {priceHistory && (
                   <s className="uppercase tracking-widest text-sm  ">
                   {priceHistory}
                 </s>
-                )}
+                )} */}
                 <p className="uppercase tracking-widest text-sm  ">
-                  {priceOptions[0].price} {priceOptions[0].currency}
+                  {priceOptions[0].price}{" "}{t("SAR")}
+
                 </p>
                 </div>
                 
