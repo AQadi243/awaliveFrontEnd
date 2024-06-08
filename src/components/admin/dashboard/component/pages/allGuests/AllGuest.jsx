@@ -64,10 +64,7 @@ const deleteGuest = async (guestId) => {
             <GuestsTable allGuests={data} deleteGuest={handleDelete} />
             {/* <GuestListTable allGuests={data} deleteGuest={handleDelete} /> */}
           </div>
-          <div>
-            <p>asdcasdc</p>
           
-          </div>
         </div>
       </section>
     </>

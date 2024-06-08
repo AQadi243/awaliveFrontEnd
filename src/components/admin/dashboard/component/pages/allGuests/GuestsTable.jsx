@@ -1,9 +1,8 @@
 import { useRef, useState } from "react";
-import { SearchOutlined } from "@ant-design/icons";
+import { SearchOutlined, DeleteOutlined } from "@ant-design/icons";
 import { Button, Input, Popconfirm, Space, Table } from "antd";
 import Highlighter from "react-highlight-words";
 import "../../../../style/CustomStyle.css";
-import { DeleteOutlined } from "@ant-design/icons";
 
 const GuestsTable = ({ allGuests, deleteGuest }) => {
   console.log(allGuests);
@@ -20,7 +19,7 @@ const GuestsTable = ({ allGuests, deleteGuest }) => {
   const [searchedColumn, setSearchedColumn] = useState("");
   const searchInput = useRef(null);
   const [filteredInfo, setFilteredInfo] = useState({});
-  // const [sortedInfo, setSortedInfo] = useState({});
+  
   const handleChange = (pagination, filters) => {
     console.log("Various parameters", pagination, filters);
     setFilteredInfo(filters);
@@ -41,22 +40,14 @@ const GuestsTable = ({ allGuests, deleteGuest }) => {
 
   const getColumnSearchProps = (dataIndex) => ({
     filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
-      <div
-        style={{
-          padding: 8,
-        }}
-        onKeyDown={(e) => e.stopPropagation()}
-      >
+      <div style={{ padding: 8 }} onKeyDown={(e) => e.stopPropagation()}>
         <Input
           ref={searchInput}
           placeholder={`Search ${dataIndex}`}
           value={selectedKeys[0]}
           onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
           onPressEnter={() => handleSearch(selectedKeys, confirm, dataIndex)}
-          style={{
-            marginBottom: 8,
-            display: "block",
-          }}
+          style={{ marginBottom: 8, display: "block" }}
         />
         <Space>
           <Button
@@ -64,31 +55,17 @@ const GuestsTable = ({ allGuests, deleteGuest }) => {
             onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
             icon={<SearchOutlined />}
             size="small"
-            style={{
-              width: 90,
-            }}
+            style={{ width: 90 }}
           >
             Search
           </Button>
-          <Button
-            onClick={() => clearFilters && handleReset(clearFilters, confirm, dataIndex)}
-            size="small"
-            style={{
-              width: 90,
-            }}
-          >
+          <Button onClick={() => clearFilters && handleReset(clearFilters, confirm, dataIndex)} size="small" style={{ width: 90 }}>
             Reset
           </Button>
         </Space>
       </div>
     ),
-    filterIcon: (filtered) => (
-      <SearchOutlined
-        style={{
-          color: filtered ? "#1677ff" : undefined,
-        }}
-      />
-    ),
+    filterIcon: (filtered) => <SearchOutlined style={{ color: filtered ? "#1677ff" : undefined }} />,
     onFilter: (value, record) => record[dataIndex].toString().toLowerCase().includes(value.toLowerCase()),
     onFilterDropdownOpenChange: (visible) => {
       if (visible) {
@@ -98,10 +75,7 @@ const GuestsTable = ({ allGuests, deleteGuest }) => {
     render: (text) =>
       searchedColumn === dataIndex ? (
         <Highlighter
-          highlightStyle={{
-            backgroundColor: "#ffc069",
-            padding: 0,
-          }}
+          highlightStyle={{ backgroundColor: "#ffc069", padding: 0 }}
           searchWords={[searchText]}
           autoEscape
           textToHighlight={text ? text.toString() : ""}
@@ -110,6 +84,7 @@ const GuestsTable = ({ allGuests, deleteGuest }) => {
         text
       ),
   });
+
   const columns = [
     {
       title: "Name",
@@ -119,7 +94,6 @@ const GuestsTable = ({ allGuests, deleteGuest }) => {
       ...getColumnSearchProps("name"),
       filteredValue: filteredInfo.name || null,
     },
-
     {
       title: "Email",
       dataIndex: "email",
@@ -179,7 +153,7 @@ const GuestsTable = ({ allGuests, deleteGuest }) => {
           key={record.key}
           title={`Are you sure you want to delete ${record.name}?`}
           onConfirm={() => deleteGuest(record.key)}
-          onCancel={() => console.log("canled delted")}
+          onCancel={() => console.log("canceled delete")}
           okText="Yes"
           cancelText="No"
           icon={<DeleteOutlined style={{ color: "red" }} />}
@@ -191,10 +165,17 @@ const GuestsTable = ({ allGuests, deleteGuest }) => {
       ),
     },
   ];
+
   return (
     <div className="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
       <h4 className="mb-6 text-xl font-semibold text-black dark:text-white">Top Channels</h4>
-      <Table className="overflow-x-auto" columns={columns} dataSource={data} onChange={handleChange} />
+      <Table
+        className="overflow-x-auto"
+        columns={columns}
+        dataSource={data}
+        onChange={handleChange}
+        pagination={{ pageSize: 5 }} // Add pagination
+      />
     </div>
   );
 };

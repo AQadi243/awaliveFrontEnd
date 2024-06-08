@@ -72,7 +72,7 @@ const HeroBanner = () => {
 
 
   return (
-    <motion.div className={` bg-[#1C1C1D] flex justify-center items-center relative h-screen lg:h-[calc(100vh-50px)]  `}>
+    <motion.div className={` bg-inherit flex justify-center items-center relative h-[40vh] md:h-screen lg:h-[calc(100vh-50px)]  `}>
       <AnimatePresence mode="wait">
         <motion.div
           key={activeImageIndex}
@@ -94,24 +94,24 @@ const HeroBanner = () => {
           ref={magneticRef}
           onMouseMove={handleMagneticEffect}
           onMouseLeave={() => magneticRef.current.childNodes.forEach(child => child.style.transform = 'translate(0, 0)')}
-            className={`w-full h-full text-container relative z-10 text-center flex flex-col items-center justify-center pb-20 ${
+            className={`w-full h-full text-container relative z-10 mt-5 text-center flex flex-col items-center justify-center pb-20 ${
               currentLanguage === "ar" ? "body-ar  font-medium " : "body-en-title "
             }`}
             variants={textVariants}
           >
             <motion.p
-              className={`text-xs md:text-sm text-white uppercase mt-2 mb-4 tracking-[0.2rem]  ${currentLanguage === "ar" ? "body-ar text-xl font-medium " : "body-en"}`}
+              className={`text-xs md:text-sm text-white uppercase  tracking-[0.2rem]  ${currentLanguage === "ar" ? "body-ar text-xl font-medium " : "body-en"}`}
               variants={textVariants}
             >
               {t("Luxury Hotel & Best Resort")}
             </motion.p>
             <div className="w-12 h-[1px] bg-white items-center my-5 mb-5"></div>
             <motion.div className="pt-2">
-            <motion.h2 className="text-3xl md:text-6xl text-white uppercase mt-2  font-semibold" variants={textVariants}>
+            <motion.h2 className="text-2xl md:text-6xl text-white uppercase mt-2  font-semibold" variants={textVariants}>
               {imageData[activeImageIndex].title}
             </motion.h2>
             <motion.p
-              className=" text-3xl md:text-6xl text-white uppercase mt-2  tracking-widest font-semibold"
+              className=" text-2xl md:text-6xl text-white uppercase mt-2  tracking-widest font-semibold"
               variants={textVariants}
             >
               {imageData[activeImageIndex].subtitle}

@@ -41,6 +41,7 @@ const MyBookings = () => {
           }
         );
         if (response.status === 200) {
+          console.log(response.data.data);
           setBookedRooms(response.data.data);
 
           // notification["success"]({
@@ -60,6 +61,7 @@ const MyBookings = () => {
           message.error("Failed to fetch user orders")
         }
       } catch (error) {
+        console.log(error,'errom my bookings');
         let errorMessage = "Please Login";
 
         // Check if it's an Axios error with a response

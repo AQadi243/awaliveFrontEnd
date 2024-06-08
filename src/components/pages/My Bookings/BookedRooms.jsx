@@ -103,24 +103,24 @@ const BookedRooms = ({ loading, bookedData }) => {
                 )}
               </div>
               <div className="md:w-1/2 px-4 md:px-8">
-                <h2 className="text-xl font-bold mb-3">{selectedRoom?.roomId.title}</h2>
+                <h2 className="text-xl font-bold mb-3">{selectedRoom?.roomId?.title}</h2>
                 <p className="text-gray-600 mb-2">
-                  {t("Booking Number")}: <span className="font-semibold"> {selectedRoom.bookingNumber}</span>
+                  {t("Booking Number")}: <span className="font-semibold"> {selectedRoom?.bookingNumber}</span>
                 </p>
                 <p className="text-gray-600 mb-2">
-                  {t("Payment")}: <span className="font-semibold"> {selectedRoom.paymentStatus}</span>
+                  {t("Payment")}: <span className="font-semibold"> {selectedRoom?.paymentStatus}</span>
                 </p>
                 <p className="text-gray-600 mb-2">
-                  {t("Booking Status")}: <span className="font-semibold"> {selectedRoom.bookingStatus}</span>
+                  {t("Booking Status")}: <span className="font-semibold"> {selectedRoom?.bookingStatus}</span>
                 </p>
                 <p className="text-gray-600 mb-2">
-                  {t("Check In")}: <span className="font-semibold"> {dayjs(selectedRoom.checkIn).format("MMM D, YYYY")}</span>
+                  {t("Check In")}: <span className="font-semibold"> {dayjs(selectedRoom?.checkIn).format("MMM D, YYYY")}</span>
                 </p>
                 <p className="text-gray-600 mb-2">
-                  {t("Check Out")}: <span className="font-semibold">{dayjs(selectedRoom.checkOut).format("MMM D, YYYY")}</span>
+                  {t("Check Out")}: <span className="font-semibold">{dayjs(selectedRoom?.checkOut).format("MMM D, YYYY")}</span>
                 </p>
                 <p className="text-gray-600 mb-2">
-                  {t("guest")}: <span className="font-semibold">{selectedRoom.numberOfGuests}</span>
+                  {t("guest")}: <span className="font-semibold">{selectedRoom?.numberOfGuests}</span>
                 </p>
                 <p className="text-gray-600 mb-2">
                   {t("night")}: <span className=" font-semibold">{nights}</span>
