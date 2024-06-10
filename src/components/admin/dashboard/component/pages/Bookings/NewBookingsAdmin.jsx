@@ -5,6 +5,7 @@ import FilterBookingsByDate from "./FilterBookingsByDate";
 import BookingInfoAdmin from "./BookingInfoAdmin";
 import ActionButton from "./ActionButton";
 import { useNavigate } from "react-router-dom";
+import dayjs from "dayjs";
 
 // Extract unique room names to create filters dynamically
 const generateRoomNameFilters = (data) => {
@@ -42,13 +43,7 @@ const NewBookingsAdmin = ({ allNewBookingData, newLoading, fetchNewBookings, set
     navigate(`/dashboard/booking/invoice/${record.id}`);  // Assuming record.id is how you identify bookings
   };
 
-  const formatDateToSaudi = (date) => {
-    return new Intl.DateTimeFormat('en-SA', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-    }).format(new Date(date));
-  };
+ 
 
   const columns = [
     {
@@ -88,7 +83,7 @@ const NewBookingsAdmin = ({ allNewBookingData, newLoading, fetchNewBookings, set
       dataIndex: "reserveDate",
       key: "reserveDate",
       render: (reserveDate) => {
-        return <Tag >{formatDateToSaudi(reserveDate)}</Tag>;
+        return <Tag >{dayjs(reserveDate).format("MMM D, YYYY")}</Tag>;
       },
     },
     {
@@ -96,7 +91,7 @@ const NewBookingsAdmin = ({ allNewBookingData, newLoading, fetchNewBookings, set
       dataIndex: "checkIn",
       key: "checkIn",
       render: (checkIn) => {
-        return <Tag >{formatDateToSaudi(checkIn)}</Tag>;
+        return <Tag >{dayjs(checkIn).format("MMM D, YYYY")}</Tag>;
       },
     },
     {
@@ -104,7 +99,7 @@ const NewBookingsAdmin = ({ allNewBookingData, newLoading, fetchNewBookings, set
       dataIndex: "checkOut",
       key: "checkOut",
       render: (checkOut) => {
-        return <Tag >{formatDateToSaudi(checkOut)}</Tag>;
+        return <Tag >{dayjs(checkOut).format("MMM D, YYYY")}</Tag>;
       }
     },
 
@@ -164,6 +159,8 @@ const NewBookingsAdmin = ({ allNewBookingData, newLoading, fetchNewBookings, set
       ),
     },
   ];
+
+  // console.log(allNewBookingData,'');
   return (
     <>
       <div className="py-6">

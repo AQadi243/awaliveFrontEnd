@@ -171,7 +171,7 @@ const AuthProvider = ({ children }) => {
   }, [currentLanguage, t, setLoadingAllRooms]);
 
 
-
+  console.log(allRooms, 'alls rooms');
   useEffect(() => {
     
     const fetchPromotionData = async () => {

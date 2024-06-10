@@ -29,7 +29,7 @@ const BookingDate = () => {
    useEffect(() => {
     const fetchRoomDetails = async () => {
       setLoading(true);
-      const storedBookingInfo = localStorage.getItem("bookingInfo");
+      const storedBookingInfo = localStorage.getItem("bookingInfo"); 
       if (storedBookingInfo) {
         const { roomId, checkIn: storedCheckIn, checkOut: storedCheckOut, numberOfGuests: storedGuests } = JSON.parse(storedBookingInfo);
   

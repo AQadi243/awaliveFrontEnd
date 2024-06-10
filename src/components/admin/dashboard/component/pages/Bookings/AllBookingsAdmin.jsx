@@ -5,6 +5,8 @@ import BookingInfoAdmin from "./BookingInfoAdmin";
 import FilterBookingsByDate from "./FilterBookingsByDate";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import dayjs from "dayjs";
+// import moment from "moment";
 
 // Extract unique room names to create filters dynamically
 const generateRoomNameFilters = (data) => {
@@ -36,13 +38,25 @@ const AllBookingsAdmin = ({ allBookingData, loading, fetchBookings, setAllBookin
     setIsModalVisible(true);
   };
 
-  const formatDateToSaudi = (date) => {
-    return new Intl.DateTimeFormat('en-SA', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-    }).format(new Date(date));
-  };
+  // const formatDateToSaudi = (dateString) => {
+  //   console.log(dateString, 'date string');
+  //   try {
+  //     const date = moment(dateString, [
+  //       moment.ISO_8601,
+  //       "MM/DD/YYYY",
+  //       "YYYY-MM-DDTHH:mm:ss.SSSZ"
+  //     ], true);
+  
+  //     if (!date.isValid()) {
+  //       throw new Error("Invalid date");
+  //     }
+  
+  //     return date.format('D MMMM YYYY');
+  //   } catch (error) {
+  //     console.error("Error formatting date:", error);
+  //     return "Invalid date";
+  //   }
+  // };
 
   const handleDelete = async (id) => {
     const token = localStorage.getItem('token'); 
@@ -99,7 +113,9 @@ const AllBookingsAdmin = ({ allBookingData, loading, fetchBookings, setAllBookin
       key: "reserveDate",
       render: (reserveDate) => {
         // let color = payment.toLowerCase() === "pending" ? "volcano" : "green";
-        return <Tag >{formatDateToSaudi(reserveDate)}</Tag>;
+        // return <Tag >{formatDateToSaudi(reserveDate)}</Tag>;
+        return <Tag >{dayjs(reserveDate).format("MMM D, YYYY")}</Tag>;
+        // return <Tag >{reserveDate}</Tag>;
       },
     },
     {
@@ -107,7 +123,8 @@ const AllBookingsAdmin = ({ allBookingData, loading, fetchBookings, setAllBookin
       dataIndex: "checkIn",
       key: "checkIn",
       render: (checkIn) => {
-        return <Tag >{formatDateToSaudi(checkIn)}</Tag>;
+        // return <Tag >{checkIn}</Tag>;
+        return <Tag >{dayjs(checkIn).format("MMM D, YYYY")}</Tag>;
       },
     },
     {
@@ -115,7 +132,8 @@ const AllBookingsAdmin = ({ allBookingData, loading, fetchBookings, setAllBookin
       dataIndex: "checkOut",
       key: "checkOut",
       render: (checkOut) => {
-        return <Tag >{formatDateToSaudi(checkOut)}</Tag>;
+        // return <Tag >{checkOut}</Tag>;
+        return <Tag >{dayjs(checkOut).format("MMM D, YYYY")}</Tag>;
       },
     },
     {

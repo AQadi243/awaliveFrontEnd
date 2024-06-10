@@ -1,9 +1,12 @@
 import { Table, Modal, Button, Form, Input, Select, DatePicker } from "antd";
+import dayjs from "dayjs";
 
 const { Option } = Select;
 
 const BookingInfoAdmin = ({ setIsModalVisible, isModalVisible, selectedData }) => {
   
+
+
 
   return (
     <>
@@ -39,6 +42,18 @@ const BookingInfoAdmin = ({ setIsModalVisible, isModalVisible, selectedData }) =
           </div>
           <div>
             <label htmlFor="" className="font-bold capitalize">
+              Check In:
+            </label>
+            <p className="py-2 px-2 border ">{selectedData?.checkIn}</p>
+          </div>
+          <div>
+            <label htmlFor="" className="font-bold capitalize">
+            check Out:
+            </label>
+            <p className="py-2 px-2 border ">{selectedData?.checkOut}</p>
+          </div>
+          <div>
+            <label htmlFor="" className="font-bold capitalize">
               Address:
             </label>
             <p className="py-2 px-2 border ">{selectedData?.address ? selectedData?.address : 'N/A'} </p>
@@ -62,7 +77,16 @@ const BookingInfoAdmin = ({ setIsModalVisible, isModalVisible, selectedData }) =
             <p className="py-2 px-2 border ">{selectedData?.arrivalTime ? selectedData?.arrivalTime : "N/A"}</p>
           </div>
           
+          
         </div>
+        <div className="py-2 text-center">
+            <label htmlFor="" className="font-bold capitalize">
+            Reservation Date:
+            </label>
+            {/* <p className="py-2 px-2 border ">{formatDateToSaudi(selectedData?.reserveDate) }</p> */}
+            {/* <p className="py-2 px-2 border ">{selectedData?.reserveDate }</p> */}
+            <p className="py-2 px-2 border ">{dayjs(selectedData?.reserveDate).format("MMM D, YYYY")}</p>
+          </div>
         
       </Modal>
     </>

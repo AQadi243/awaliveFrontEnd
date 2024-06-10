@@ -5,6 +5,7 @@ import { Spin, message } from "antd";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import i18next from "i18next";
+import dayjs from "dayjs";
 
 const Invoice = () => {
   const navigate = useNavigate();
@@ -72,14 +73,7 @@ const Invoice = () => {
     fetchUserOrders();
   }, [id, currentLanguage, navigate]);
 
-  const formatDateToSaudi = (date) => {
-    return new Intl.DateTimeFormat('en-SA', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-    }).format(new Date(date));
-  };
-
+  
   if (loading) {
     return <div className="h-screen flex justify-center items-center"><Spin /></div>; // Or handle this case appropriately
   }
@@ -119,19 +113,19 @@ const Invoice = () => {
               </div>
               <div>
                 <p>Reservation Date</p>
-                <p className="font-semibold">{formatDateToSaudi(bookedRooms?.createdAt)}</p>
+                <p className="font-semibold">{dayjs(bookedRooms?.createdAt).format("MMM D, YYYY")}</p>
               </div>
-              <div>
+              {/* <div>
                 <p>Amount</p>
                 <p className="font-semibold">SAR {bookedRooms?.invoiceDetails?.total}</p>
-              </div>
+              </div> */}
               <div>
                 <p>CheckIn</p>
-                <p className="font-semibold">{formatDateToSaudi(bookedRooms?.checkIn)}</p>
+                <p className="font-semibold">{dayjs(bookedRooms?.checkIn).format("MMM D, YYYY")}</p>
               </div>
               <div>
                 <p>CheckOut</p>
-                <p className="font-semibold">{formatDateToSaudi(bookedRooms?.checkOut)}</p>
+                <p className="font-semibold">{dayjs(bookedRooms?.checkOut).format("MMM D, YYYY")}</p>
               </div>
             </div>
           </div>

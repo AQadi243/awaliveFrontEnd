@@ -44,9 +44,9 @@ const columns = [
 
 
 const InvoiceTable = ({bookedRooms}) => {
-  console.log(bookedRooms,'details');
+  
   // console.log(total,'details');
-  console.log(bookedRooms,'details');
+
   if (!bookedRooms) {
     return <div>Loading...</div>; // Or handle this case appropriately
   }
