@@ -15,10 +15,10 @@ const TagSelector = ({handleTags}) => {
             value: "Regular",
             label: "Regular",
           },
-          {
-            value: "Promotion",
-            label: "Promotion",
-          },
+          // {
+          //   value: "Promotion",
+          //   label: "Promotion",
+          // },
         ]}
         onChange={handleTags}
       />

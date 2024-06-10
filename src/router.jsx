@@ -35,6 +35,7 @@ import Dashboard from "./components/admin/dashboard/component/pages/Dashboard/Da
 import Test1 from "./components/pages/test1/Test1";
 import Test2 from "./components/pages/test2/Test2";
 import Fullaccess from "./components/pages/fullaccess/Fullaccess";
+import EditRoom from "./components/admin/dashboard/component/pages/Rooms/EditRoom/EditRoom";
 
 const router = createBrowserRouter([
   {
@@ -162,6 +163,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/room/add-room",
         element: <AddRoom />
+      },
+      {
+        path: "/dashboard/edit/:id",
+        element: <EditRoom />
       },
       {
         path: "/dashboard/room/all-rooms",
