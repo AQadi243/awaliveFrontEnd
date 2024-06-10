@@ -13,27 +13,25 @@ import { AuthContext } from "../Context/AuthProvider";
 import Headroom from "react-headroom";
 import { useTranslation } from "react-i18next";
 import i18next from "i18next";
-import logo from "../../../../public/img/Untitled-3.svg"
-
-
+import logo from "../../../../public/img/Untitled-3.svg";
 
 const Navbar = () => {
-  const { user,userRole, handleLogout } = useContext(AuthContext);
+  const { user, userRole, handleLogout } = useContext(AuthContext);
   const { t } = useTranslation("home");
-  const currentLanguage = i18next.language
+  const currentLanguage = i18next.language;
   const [open, setOpen] = useState(false);
 
   const navLinks = [
     { title: t("home"), href: "/" },
     { title: t("roomSearch"), href: "/roomSearch" },
-        { title: t("Restaurant & Cafe"), href: "/cafe" },
+    { title: t("Restaurant & Cafe"), href: "/cafe" },
     { title: t("Banquet & Meeting"), href: "/banquet" },
     { title: t("fullaccess"), href: "/fullaccess" },
-       { title: t("about"), href: "/about" },
+    { title: t("about"), href: "/about" },
     //{ title: t("contact"), href: "/contact" },
   ];
-  // const navigate = useNavigate();
-  // const [isDropdownOpen, setDropdownOpen] = useState(false);
+
+  
   const toggleMenu = () => {
     setOpen((prevOpen) => !prevOpen);
   };
@@ -74,35 +72,23 @@ const Navbar = () => {
     },
   };
 
-  // const toggleDropdown = () => {
-  //   setDropdownOpen(!isDropdownOpen);
-  // };
-
-  // const closeDropdown = () => {
-  //   setDropdownOpen(!isDropdownOpen);
-  // };
-
-  // const handleLogIn = () => {
-  //   navigate("/login");
-  //   setDropdownOpen(!isDropdownOpen);
-  // };
+  
 
   return (
     <Headroom
-    className=""
+      className=""
       pinStart={50}
       disableInlineStyles={false}
       upTolerance={10}
       downTolerance={10}
-      style={{ transition: "all .5s ease-in-out", backgroundColor: "#1C1C1D",    zIndex: 1000 }}
+      style={{ transition: "all .5s ease-in-out", backgroundColor: "#1C1C1D", zIndex: 1000 }}
     >
-      <nav className="max-w-7xl mx-auto" >
-        <div className={` flex items-center justify-between  px-2 ${currentLanguage === 'ar' ? 'body-ar font-normal  ' : 'body-en '}`}>
+      <nav className="max-w-7xl mx-auto">
+        <div className={` flex items-center justify-between  px-2 ${currentLanguage === "ar" ? "body-ar font-normal  " : "body-en "}`}>
           <Link to={"/"} className=" flex items-center justify-center gap-[1ch]">
-            
             {/* <Link to={"/"} className=" text-sm md:text-xl  "> */}
-              {/* {t("Awalive Hotel")} */}
-              <img src={logo} alt="awalive-hotel-logo" className="h-20 max-w-40 " />
+            {/* {t("Awalive Hotel")} */}
+            <img src={logo} alt="awalive-hotel-logo" className="h-20 max-w-40 " />
             {/* </Link> */}
           </Link>
           <div className="lg:flex hidden    text-xs tracking-wider text-zinc-400">
@@ -110,47 +96,69 @@ const Navbar = () => {
               {t("home")}
             </NavLink>
 
-
-
-            <NavLink to={"/roomSearch"} className={({ isActive }) => (isActive ? " text-white py-8 lg:py-6 px-4" : "hover:text-white transition duration-200 ease-in-out py-8 lg:py-6 px-4")}>
+            <NavLink
+              to={"/roomSearch"}
+              className={({ isActive }) =>
+                isActive ? " text-white py-8 lg:py-6 px-4" : "hover:text-white transition duration-200 ease-in-out py-8 lg:py-6 px-4"
+              }
+            >
               {t("search")}
             </NavLink>
-            
-            <NavLink to={"/cafe"} className={({ isActive }) => (isActive ? " text-white py-8 lg:py-6 px-4" : "hover:text-white transition duration-200 ease-in-out py-8 lg:py-6 px-4")}>
+
+            <NavLink
+              to={"/cafe"}
+              className={({ isActive }) =>
+                isActive ? " text-white py-8 lg:py-6 px-4" : "hover:text-white transition duration-200 ease-in-out py-8 lg:py-6 px-4"
+              }
+            >
               {t("restaurants")}
             </NavLink>
-            
-            
 
-
-            <NavLink to={"/banquet"} className={({ isActive }) => (isActive ? " text-white py-8 lg:py-6 px-4" : "hover:text-white transition duration-200 ease-in-out py-8 lg:py-6 px-4")}>
+            <NavLink
+              to={"/banquet"}
+              className={({ isActive }) =>
+                isActive ? " text-white py-8 lg:py-6 px-4" : "hover:text-white transition duration-200 ease-in-out py-8 lg:py-6 px-4"
+              }
+            >
               {t("Banquet & Meeting")}
             </NavLink>
-           
 
-            <NavLink to={"/fullaccess"} className={({ isActive }) => (isActive ? " text-white py-8 lg:py-6 px-4" : "hover:text-white transition duration-200 ease-in-out py-8 lg:py-6 px-4")}>
+            <NavLink
+              to={"/fullaccess"}
+              className={({ isActive }) =>
+                isActive ? " text-white py-8 lg:py-6 px-4" : "hover:text-white transition duration-200 ease-in-out py-8 lg:py-6 px-4"
+              }
+            >
               {t("fullaccess")}
             </NavLink>
 
-
-            <NavLink to={"/about"} className={({ isActive }) => (isActive ? " text-white py-8 lg:py-6 px-4" : "hover:text-white transition duration-200 ease-in-out py-8 lg:py-6 px-4")}>
+            <NavLink
+              to={"/about"}
+              className={({ isActive }) =>
+                isActive ? " text-white py-8 lg:py-6 px-4" : "hover:text-white transition duration-200 ease-in-out py-8 lg:py-6 px-4"
+              }
+            >
               {t("about")}
             </NavLink>
-            
-           {/* <NavLink to={"/contact"} className={({ isActive }) => (isActive ? " text-white py-8 lg:py-6 px-4" : " hover:text-white transition duration-200 ease-in-out py-8 lg:py-6 px-4")}>
+
+            {/* <NavLink to={"/contact"} className={({ isActive }) => (isActive ? " text-white py-8 lg:py-6 px-4" : " hover:text-white transition duration-200 ease-in-out py-8 lg:py-6 px-4")}>
               {t("contact")}
                <AnimatedLink title={"Home"} /> 
             </NavLink>*/}
-            
-            {user?.role === 'admin' &&
-            <Link to={'/dashboard'} className={"py-8 lg:py-6 px-4"} >
-                {t("Dashboard")}
-            </Link>
-            }
-            
-            <div className="py-8 lg:py-6">
 
-            <Link to={"/roomSearch"} className="bg-white px-3 py-1 text-black  text-[12px] font-semibold tracking-[0.2rem] cursor-pointer hover:bg-[#BE9874] hover:text-white ">{t("BOOK NOW")}</Link>
+            {user?.role === "admin" && (
+              <Link to={"/dashboard"} className={"py-8 lg:py-6 px-4"}>
+                {t("Dashboard")}
+              </Link>
+            )}
+
+            <div className="py-8 lg:py-6">
+              <Link
+                to={"/roomSearch"}
+                className="bg-white px-3 py-1 text-black  text-[12px] font-semibold tracking-[0.2rem] cursor-pointer hover:bg-[#BE9874] hover:text-white "
+              >
+                {t("BOOK NOW")}
+              </Link>
             </div>
           </div>
 
@@ -161,11 +169,7 @@ const Navbar = () => {
             </div>
             {/* mobile login button todo to solve  */}
             <div className="lg:hidden">
-              {user?.fullName ? (
-                <ButtonAfterLogin userName={user?.fullName} handleLogout={handleLogout} />
-              ) : (
-                <ButtonLoginSignUp />
-              )}
+              {user?.fullName ? <ButtonAfterLogin userName={user?.fullName} handleLogout={handleLogout} /> : <ButtonLoginSignUp />}
               {/* mobile login button todo to solve  */}
             </div>
             <div className="cursor-pointer lg:hidden text-md text-white" onClick={toggleMenu}>

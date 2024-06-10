@@ -1,4 +1,4 @@
-import { Table, Tag, Space, } from "antd";
+import { Table, Tag, Space, Spin, } from "antd";
 import { useState } from "react";
 import {  LuMoreHorizontal, } from "react-icons/lu";
 import FilterBookingsByDate from "./FilterBookingsByDate";
@@ -42,7 +42,13 @@ const NewBookingsAdmin = ({ allNewBookingData, newLoading, fetchNewBookings, set
     navigate(`/dashboard/booking/invoice/${record.id}`);  // Assuming record.id is how you identify bookings
   };
 
-
+  const formatDateToSaudi = (date) => {
+    return new Intl.DateTimeFormat('en-SA', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    }).format(new Date(date));
+  };
 
   const columns = [
     {
@@ -78,16 +84,31 @@ const NewBookingsAdmin = ({ allNewBookingData, newLoading, fetchNewBookings, set
       render: (text, record) => <a onClick={() => showInvoice(record)}>{text}</a>
     },
     {
+      title: "Reservation Date",
+      dataIndex: "reserveDate",
+      key: "reserveDate",
+      render: (reserveDate) => {
+        return <Tag >{formatDateToSaudi(reserveDate)}</Tag>;
+      },
+    },
+    {
       title: "CheckIn",
       dataIndex: "checkIn",
       key: "checkIn",
+      render: (checkIn) => {
+        return <Tag >{formatDateToSaudi(checkIn)}</Tag>;
+      },
     },
     {
       title: "CheckOut",
       dataIndex: "checkOut",
       key: "checkOut",
+      render: (checkOut) => {
+        return <Tag >{formatDateToSaudi(checkOut)}</Tag>;
+      }
     },
 
+    
     {
       title: "Payment",
       dataIndex: "payment",
@@ -154,7 +175,7 @@ const NewBookingsAdmin = ({ allNewBookingData, newLoading, fetchNewBookings, set
       </div>
       <div>
         {newLoading ? (
-          <p>Loading....</p>
+          <div className="h-40 flex justify-center items-center"><Spin /></div>
         ) : (
           <Table 
           

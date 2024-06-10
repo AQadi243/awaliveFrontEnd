@@ -15,17 +15,6 @@ const AdminNavBar = ({sidebarOpen, setSidebarOpen}) => {
   
   
 
-  // const items = [
-  //   {
-  //     key: "1",
-  //     label: <p rel="noopener noreferrer">{user?.fullName}</p>,
-  //   },
-  //   {
-  //     key: "2",
-  //     label: <p onClick={handleLogout}>Log Out</p>,
-  //   },
-  // ];
-
   return (
     <header className="sticky top-0 z-999 flex w-full bg-white drop-shadow-1 dark:bg-boxdark dark:drop-shadow-none">
       <div className="flex flex-grow items-center justify-between px-4 py-4 shadow-2 md:px-6 2xl:px-11">

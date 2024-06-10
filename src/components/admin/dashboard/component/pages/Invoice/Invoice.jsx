@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import logo from "../../../../../../../public/img/awalive-Blaack.png";
 import InvoiceTable from "./InvoiceTable";
-import { message } from "antd";
+import { Spin, message } from "antd";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import i18next from "i18next";
@@ -13,17 +13,12 @@ const Invoice = () => {
   const [loading, setLoading] = useState(true);
   const [bookedRooms, setBookedRooms] = useState([]);
 
- 
-
-
-
-
- useEffect(() => {
-  if (!id) {
-    navigate('/dashboard/room/all-bookings'); // Navigate to a fallback route if id is undefined
-    message.error("Error in finding booking id")
-    return; // Stop further execution
-  }
+  useEffect(() => {
+    if (!id) {
+      navigate("/dashboard/room/all-bookings");
+      message.error("Error in finding booking id");
+      return;
+    }
 
     const fetchUserOrders = async () => {
       try {
@@ -31,25 +26,19 @@ const Invoice = () => {
         const userToken = localStorage.getItem("token");
 
         const response = await axios.get(
-          // `https://type-script-server.vercel.app/api/booking/${userEmail}?lang=${currentLanguage}`,
           `https://server.awalivhotel.com/api/booking/invoice/${bookingId}?lang=${currentLanguage}`,
-          // `https://type-script-server.vercel.app/api/booking/invoice/${bookingId}?lang=${currentLanguage}`,
           // `http://localhost:5000/api/booking/invoice/${bookingId}?lang=${currentLanguage}`,
           {
             headers: {
               Authorization: `${userToken}`,
-              // 'Accept-Language': currentLanguage,
             },
           }
         );
         if (response.status === 200) {
           setBookedRooms(response.data.data);
-
-          
-          message.success(response.data.message)
+          message.success(response.data.message);
         } else {
-          
-          message.error("Failed to fetch user orders")
+          message.error("Failed to fetch user orders");
         }
       } catch (error) {
         let errorMessage = "Please Login";
@@ -74,7 +63,7 @@ const Invoice = () => {
           errorMessage = error.message || "An unexpected error occurred.";
         }
 
-        message.error(errorMessage)
+        message.error(errorMessage);
       } finally {
         setLoading(false);
       }
@@ -83,99 +72,74 @@ const Invoice = () => {
     fetchUserOrders();
   }, [id, currentLanguage, navigate]);
 
-
+  const formatDateToSaudi = (date) => {
+    return new Intl.DateTimeFormat('en-SA', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    }).format(new Date(date));
+  };
 
   if (loading) {
-    return <div>Loading...</div>; // Or handle this case appropriately
+    return <div className="h-screen flex justify-center items-center"><Spin /></div>; // Or handle this case appropriately
   }
+
   return (
     <>
-      <section className=" max-w-5xl mx-auto border ">
+      <section className="max-w-5xl mx-auto border">
         <div className="p-6">
-          <div className="flex flex-row justify-between items-center pb-4 border-b">
-            <div>
-              <p className="font-semibold">Invoice</p>
-            </div>
-            {
-              bookedRooms.paymentStatus==='Pending' ?(
-                <div className="flex gap-4 items-center justify-center ">
-                <button className=" py-2 px-4 text-xs">Payment :</button>
-                <button className="border py-2 px-4 bg-red-300 rounded-md  text-xs" >{bookedRooms.paymentStatus}</button>
+          <div className="flex flex-row justify-end items-center pb-4 border-b">
+            {bookedRooms.paymentStatus === "Pending" ? (
+              <div className="flex gap-4 items-center justify-center">
+                <button className="py-2 px-4 text-xs">Payment :</button>
+                <button className="border py-2 px-4 bg-red-300 rounded-md text-xs">
+                  {bookedRooms.paymentStatus}
+                </button>
               </div>
-              ):
-              <div className="flex gap-4 items-center justify-center ">
-              <button className="border py-2 px-4 bg-green-300 rounded-md text-xs">Save</button>
-              <button className="border py-2 px-4 bg-red-300 rounded-md  text-xs" >print</button>
-            </div>
-            }
-
-           
+            ) : (
+              <div className="flex gap-4 items-center justify-center">
+                <button className="border py-2 px-4 bg-green-300 rounded-md text-xs">Save</button>
+                <button className="border py-2 px-4 bg-red-300 rounded-md text-xs">Print</button>
+              </div>
+            )}
           </div>
-          {/* heaser start */}
-            <div className="flex justify-between items-center">
-              <div className="py-4">
-                {/* <Link to={"/"} className=" text-sm md:text-xl  "> */}
-                {/* {t("Awalive Hotel")} */}
-                <img src={logo} alt="awalive-hotel-logo" className=" h-24 max-w-32 " />
-                {/* </Link> */}
-              </div>
-              <div>
-                <p className="text-sm font-semibold mb-2">Details</p>
-                <div className="text-xs fl">
-                  <p>TAX : 5835FA5****5S</p>
-                  <p>Bank : Lotus bank</p>
-                  <p>IFCS : LOT125****US</p>
-                  <p>VAT: PL6541215450</p>
-                </div>
-              </div>
+          {/* header start */}
+          <div className="flex justify-start items-center">
+            <div className="py-4">
+              <img src={logo} alt="awalive-hotel-logo" className="h-24 max-w-32" />
             </div>
-          {/* heaser end */}
-        {/* dates start  */}
+          </div>
+          {/* header end */}
+          {/* dates start */}
           <div className="py-6 bg-pink-100 rounded-md">
             <div className="flex justify-around text-xs">
-            <div>
-                <p>Invoice</p>
+              <div>
+                <p>Booking Number</p>
                 <p className="font-semibold">{bookedRooms?.bookingNumber}</p>
-            </div>
-            <div>
+              </div>
+              <div>
+                <p>Reservation Date</p>
+                <p className="font-semibold">{formatDateToSaudi(bookedRooms?.createdAt)}</p>
+              </div>
+              <div>
                 <p>Amount</p>
-                <p className="font-semibold">SAR {bookedRooms?.invoiceDetails?.total} </p>
-            </div>
-            <div>
+                <p className="font-semibold">SAR {bookedRooms?.invoiceDetails?.total}</p>
+              </div>
+              <div>
                 <p>CheckIn</p>
-                <p className="font-semibold">{bookedRooms?.checkIn}</p>
-            </div>
-            <div>
+                <p className="font-semibold">{formatDateToSaudi(bookedRooms?.checkIn)}</p>
+              </div>
+              <div>
                 <p>CheckOut</p>
-                <p className="font-semibold">{bookedRooms?.checkOut}</p>
-            </div>
+                <p className="font-semibold">{formatDateToSaudi(bookedRooms?.checkOut)}</p>
+              </div>
             </div>
           </div>
-        {/* dates start  */}
-        <div className=" min-h-67  rounded-md mt-3 ">
-            <InvoiceTable  bookedRooms={bookedRooms}  />
-        </div>
-        <div className="grid grid-cols-5  gap-4">
-            <div className="bg-pink-100 rounded-md col-span-4 p-4 text-xs">
-                <p className="font-semibold mt-2">Note</p>
-                <p className="text-gray-400">Your country territory tax has been apply.</p>
-                <p className="text-gray-400">Your voucher cannot be applied, because you enter wrong code.</p>
-            </div>
-            <div className="flex flex-col gap-2 col-span-1 text-sm font-semibold">
-                <div className="flex justify-between">
-                    <p className="">Subtotal</p>
-                    <p>SAR {bookedRooms?.invoiceDetails?.subtotal}</p>
-                </div>
-                <div className="flex justify-between">
-                    <p>Vat(15%)</p>
-                    <p>SAR {bookedRooms?.invoiceDetails?.vat}</p>
-                </div>
-                <div className="flex justify-between">
-                    <p>Total</p>
-                    <p>SAR {bookedRooms?.invoiceDetails?.total}</p>
-                </div>
-            </div>
-        </div>
+          {/* dates end */}
+          <div className="min-h-40 rounded-md mt-3">
+            <InvoiceTable bookedRooms={bookedRooms} />
+          </div>
+          
         </div>
       </section>
     </>

@@ -95,13 +95,13 @@ const InvoiceTable = ({bookedRooms}) => {
       title: 'Unit Cost',
       dataIndex: 'unitCost',
       key: 'unitCost',
-      render: text => `$${text.toFixed(2)}`, // Assuming the unit cost is a number
+      render: text => `SAR ${text.toFixed(2)}`,
     },
     {
       title: 'Total',
       dataIndex: 'total',
       key: 'total',
-      render: text => `$${text.toFixed(2)}`, // Assuming the total is calculated or provided
+      render: text => `SAR ${text.toFixed(2)}`,
     },
   ];
 

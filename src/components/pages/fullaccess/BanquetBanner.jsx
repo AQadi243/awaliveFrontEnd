@@ -14,16 +14,10 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 const BanquetBanner = () => {
     const currentLanguage = i18next.language;
     const { t } = useTranslation("about");
-    // const [nav1, setNav1] = useState(null);
-    // const [nav2, setNav2] = useState(null);
-    // const sliderRef1 = useRef(null);
-    // const sliderRef2 = useRef(null);
+    
     const [currentSlide, setCurrentSlide] = useState(0);
   
-    // useEffect(() => {
-    //   setNav1(sliderRef1.current);
-    //   setNav2(sliderRef2.current);
-    // }, []);
+    
   
     const slides = [
       { img: banquet1  },
@@ -47,13 +41,13 @@ const BanquetBanner = () => {
     slidesToShow: 1,
     swipeToSlide: true,
     arrows: false,
-    autoplay: true, // Enable autoplay
+    autoplay: true, 
     infinite: slides.length > 1,
     speed: 2000,
     slidesToScroll: 1,
     // autoplay: slides.length > 1,
     autoplaySpeed: 7000,
-    // fade: true, // Use fade for smooth transition
+    // fade: true, 
     pauseOnHover: false,
       
     };

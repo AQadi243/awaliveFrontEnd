@@ -35,6 +35,7 @@ const AdminBookings = () => {
       address: item?.guestData?.address,
       city: item?.guestData?.city,
       arrivalTime: item?.guestData?.arrivalTime,
+      reserveDate: item?.createdAt
       // guestData.email,
       // guestData.phone,
       // guestData.message,
@@ -55,18 +56,20 @@ const AdminBookings = () => {
       });
       const transformedData = transformData(response?.data?.data);
       setAllNewBookingData(transformedData);
-    } catch (error) {
-      // Optionally handle the error, e.g., by setting an error message in state
-      console.log(error,'errr');
-    } finally {
-      setNewLoading(false); // Stop loading after the data is processed or an error occurred
-    }
-  };
-
-  useEffect(() => {
-    fetchNewBookings();
-  }, [currentLanguage,]);
-
+      } catch (error) {
+        // Optionally handle the error, e.g., by setting an error message in state
+        console.log(error,'errr');
+        } finally {
+          setNewLoading(false); // Stop loading after the data is processed or an error occurred
+          }
+          };
+          
+          useEffect(() => {
+            fetchNewBookings();
+            }, [currentLanguage,]);
+            
+            
+            
  
 
   const fetchBookings = async () => {
