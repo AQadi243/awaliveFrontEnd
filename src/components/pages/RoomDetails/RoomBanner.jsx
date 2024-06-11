@@ -21,18 +21,7 @@ const RoomBanner = ({ singleRoomDetails }) => {
         {/* <p className="text-3xl md:text-6xl text-white">Search Room</p>  */}
         <div className="max-w-7xl mx-auto px-2 flex flex-col md:flex-row justify-between py-10 text-white tracking-widest">
           <div className="flex flex-col md:flex-row gap-2 md:gap-5 text-xs">
-            <div className="flex gap-2 items-center">
-              <p className=" uppercase">{t("description")}</p>
-            </div>
-            <div className="flex gap-2 items-center">
-              <p className=" uppercase">{t("roomServices")}</p>
-            </div>
-            <div className="flex gap-2 items-center">
-              <p className=" uppercase">{t("aroundTheHotel")}</p>
-            </div>
-            <div className="flex gap-2 items-center">
-              <p className=" uppercase">{t("similarRooms")}</p>
-            </div>
+        
           </div>
           <div>
             <p className="uppercase">

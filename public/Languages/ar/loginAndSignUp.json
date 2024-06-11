@@ -1,13 +1,13 @@
 {
-    "welcome": "مرحبًا في أوالايف الدولية",
+    "welcome": "مرحبًا بك في أوالف إنترناشيونال",
     "loginMessage": "تسجيل الدخول إلى حسابك",
     "emailPlaceholder": "البريد الإلكتروني",
     "passwordPlaceholder": "كلمة المرور",
     "showPassword": "عرض",
     "hidePassword": "إخفاء",
-    "forgetPassword": "نسيت كلمة المرور",
-    "joinMessage": "انضم إلى أوالايف الدولية",
-    "enjoyRates": "استمتع بأقل الأسعار طوال الوقت",
+    "forgetPassword": "هل نسيت كلمة المرور؟",
+    "joinMessage": "انضم إلى فندق أوالف إنترناشيونال",
+    "enjoyRates": "استمتع بأقل الأسعار ",
     "freeWiFi": "واي فاي مجاني في الغرفة",
     "joinNow": "انضم الآن",
 
@@ -20,7 +20,7 @@
 
     "firstNameRequired": "اسم الأول مطلوب",
     "lastNameRequired": "اسم العائلة مطلوب",
-    "validEmail": "الرجاء إدخال بريد إلكتروني صحيح",
+    "validEmail": "الرجاء إدخال البريد الإلكتروني بشكل صحيح",
     "emailRequired": "البريد الإلكتروني مطلوب",
     "phoneRequired": "الهاتف مطلوب",
     "passwordRequired": "كلمة المرور مطلوبة"
