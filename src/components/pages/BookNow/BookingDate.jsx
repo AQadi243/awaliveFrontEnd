@@ -71,9 +71,9 @@ const BookingDate = () => {
 
 
   const perNightPrice = roomDetails.priceOptions?.[0]?.price ?? 0;
-  const totalPriceBeforeVAT = perNightPrice * nights;
-  const VAT = totalPriceBeforeVAT * 0.15; // 15% VAT
-  const totalPrice = totalPriceBeforeVAT + VAT;
+  const totalPrice = perNightPrice * nights;
+  // const VAT = totalPriceBeforeVAT * 0.15; // 15% VAT
+  // const totalPrice = totalPriceBeforeVAT + VAT;
 
   // console.log(moment(checkIn).format('d'), 'chek in formtmonemt ');
  
@@ -166,9 +166,9 @@ const BookingDate = () => {
           </div>
         </div>
       </div>
-      <p className="px-3 mt-4 text-xs text-center tracking-widest uppercase font-semibold">
+      {/* <p className="px-3 mt-4 text-xs text-center tracking-widest uppercase font-semibold">
         {t("INCLUDED  15 % VAT ALREADY APPLIED")}
-      </p>
+      </p> */}
     </div>
   );
 };

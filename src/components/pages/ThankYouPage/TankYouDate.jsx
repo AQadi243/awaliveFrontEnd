@@ -42,8 +42,8 @@ const [totalPrice, setTotalPrice] = useState(0);
       // Calculate total price and VAT
       const perNightPrice = bookedRoomDetails?.roomId?.priceOptions[0]?.price || 0;
       const totalPriceBeforeVAT = perNightPrice * diffDays;
-      const VAT = totalPriceBeforeVAT * 0.15; // 15% VAT
-      setTotalPrice(totalPriceBeforeVAT + VAT);
+      // const VAT = totalPriceBeforeVAT * 0.15; // 15% VAT
+      setTotalPrice(totalPriceBeforeVAT );
     }
     setThanYouLoading(false)
   }, [bookedRoomDetails , setThanYouLoading]);

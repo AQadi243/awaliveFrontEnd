@@ -144,9 +144,9 @@ const BookedRooms = ({ loading, bookedData }) => {
                       </div>
                       <div className="flex justify-between pt-4">
                         <span className="text-gray-700 text-lg font-bold">{t("total")}</span>
-                        <span className="text-gray-900 text-lg font-bold">SR{total}</span>
+                        <span className="text-gray-900 text-lg font-bold">SAR {total}</span>
                       </div>
-                      <p className="text-[10px] text-gray-400 italic "> {t("Including 15% vat")} </p>
+                      {/* <p className="text-[10px] text-gray-400 italic "> {t("Including 15% vat")} </p> */}
                     </div>
                     {/* <button className="bg-black text-white font-bold py-2 px-4  hover:bg-gray-700 focus:outline-none focus:shadow-outline">
     {selectedRoom.paymentStatus}
