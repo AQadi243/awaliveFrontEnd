@@ -2,16 +2,17 @@
 
     "contact": {
         "contactUs": "Contact Us",
-        "dropALine": "Drop A Line",
+        "dropALine": "E-mail",
         "reservation": "Reservation",
         "phone": "(+966) 12 7375555",
-        "AltPhone": "(+966) 0547375550"
+        "AltPhone": "info@awalivhotels.com",
+        "whatsapp": "(+966) 547375550"
         
       },
 
 
-    "phoneSupport": "Phone Support",
-    "phoneSupportSubTitle": "24 HOURS A DAY",
+    "phoneSupport": "Contact Us",
+    "phoneSupportSubTitle": "  ",
     "phoneSupportPhoneNumber": "+ 01 345 647 745",
     "connectWithUs": "Connect With Us",
     "connectWithUsSubTitle": "SOCIAL MEDIA CHANNELS",

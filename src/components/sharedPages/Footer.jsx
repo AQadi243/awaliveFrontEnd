@@ -1,14 +1,16 @@
 import { useTranslation } from "react-i18next";
 import PageAnimation from "../PageAnimation/PageAnimation";
-import { CiFacebook, CiInstagram, CiTwitter, CiYoutube } from "react-icons/ci";
+import { CiFacebook, CiInstagram, CiYoutube } from "react-icons/ci";
+import twitterImage from "../../assets/x.png";
+
 import i18next from "i18next";
 
 const Footer = () => {
   const currentLanguage = i18next.language;
   const { t } = useTranslation("footer");
 
-  const footerLinks_en = ["Home", "Service", "About", "Booking", "Contact"];
-  const footerLinks_ar = ["الرئيسية", "الخدمات", "حول", "الحجز", "اتصل"];
+  const footerLinks_en = ["Home", "Romms & Suites", "Restaurants & Cafés", "Facilities & Services", "Banquets & Meetings"];
+  const footerLinks_ar = ["الرئيسية", "الغرف والأجنحة", "الخدمات والمرافق", "الطاعم والمقاهي", "الحفلات والإجتماعات"];
 
   return (
     <>
@@ -27,10 +29,11 @@ const Footer = () => {
                 <ul className="py-3 text-lg md:text-xl">
                   <li className="flex gap-5 justify-center">
                     {/* <i className="fab fa-facebook"></i> */}
-                    <CiFacebook size={30} className="cursor-pointer" />
-                    <CiInstagram size={30} className="cursor-pointer" />
-                    <CiYoutube size={30} className="cursor-pointer" />
-                    <CiTwitter size={30} className="cursor-pointer" />
+                    <a href="https://www.facebook.com/awaliv.taif" target="_blank"><CiFacebook size={30} className="cursor-pointer" /></a>
+            <a href="https://www.instagram.com/awaliv.hotel/" target="_blank"><CiInstagram size={30} className="cursor-pointer" /></a>
+            <a href="https://www.youtube.com/watch?v=2AD40BCejhI" target="_blank"><CiYoutube size={30} className="cursor-pointer" /></a>
+            <a href="https://x.com/awalivhotels" target="_blank"> <img className="w-7 h-7" src={twitterImage} alt="" /></a>
+                    
                   </li>
                 </ul>
               </div>
@@ -58,20 +61,21 @@ const Footer = () => {
               {currentLanguage === "ar"
                 ? footerLinks_ar.map((link, index) => (
                     <li key={index} className="mr-2 md:mr-6">
-                      <a href="#">{t(link)}</a>
+                      <a href="/roomSearch">{t(link)}</a>
                     </li>
                   ))
                 : footerLinks_en.map((link, index) => (
                     <li key={index} className="mr-6">
-                      <a href="#">{t(link)}</a>
+                      <a href="/roomSearch">{t(link)}</a>
                     </li>
                   ))}
             </ul>
             <div className="flex gap-4 text-white justify-center">
-              <CiFacebook size={20} className="cursor-pointer" />
-              <CiInstagram size={20} className="cursor-pointer" />
-              <CiYoutube size={20} className="cursor-pointer" />
-              <CiTwitter size={20} className="cursor-pointer" />
+            <a href="https://www.facebook.com/awaliv.taif" target="_blank"><CiFacebook size={20} className="cursor-pointer" /></a>
+            <a href="https://www.instagram.com/awaliv.hotel/" target="_blank"><CiInstagram size={20} className="cursor-pointer" /></a>
+            <a href="https://www.youtube.com/watch?v=2AD40BCejhI" target="_blank"><CiYoutube size={20} className="cursor-pointer" /></a>
+            <a href="https://x.com/awalivhotels" target="_blank"> <img className="w-4.5 h-4.5" src={twitterImage} alt="" /></a>
+          
             </div>
           </div>
         </footer>

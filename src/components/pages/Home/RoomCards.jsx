@@ -91,7 +91,7 @@ const RoomCards = ({ rooms, loadingAllRooms }) => {
                       </svg>
                     </p>
                     <p className="text-sm tracking-widest">
-                      {room.maxGuests} {t("guest")}
+                       {t("guest")} {room.maxGuests}
                     </p>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"

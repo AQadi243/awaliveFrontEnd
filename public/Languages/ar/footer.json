@@ -2,16 +2,19 @@
 
     "contact": {
         "contactUs": "اتصل بنا",
-        "dropALine": "أرسل رسالة",
-        "reservation": "الحجز",
+        "dropALine": "البريد الإلكتروني",
+        "reservation": "الحجوزات",
         "phone": "(+٩٦٦) ١٢٧٣٧٥٥٥٥",
-        "AltPhone": "(+٩٦٦) ٠٥٤٧٣٧٥٥٥٠"
+        "AltPhone": "info@awalivhotels.com",
+        "whatsapp": "(+٩٦٦) ٥٤٧٣٧٥٥٥٠"
         
       },
 
 
-    "phoneSupport": "الدعم الهاتفي",
-    "phoneSupportSubTitle": "24 ساعة في اليوم",
+    
+
+    "phoneSupport": "تواصل معنا",
+    "phoneSupportSubTitle": " ",
     "phoneSupportPhoneNumber": "+ 01 345 647 745",
     "connectWithUs": "التواصل معنا",
     "connectWithUsSubTitle": "وسائل التواصل الاجتماعي",
