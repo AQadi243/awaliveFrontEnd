@@ -168,8 +168,9 @@ const AddRoom = () => {
     
     const processedData = processDataForSubmission(formData);
     // const url = 'http://localhost:5000/api/room/create';
-    const url = 'https://server.awalivhotel.com/api/room/create';
+    // const url = 'https://server.awalivhotel.com/api/room/create';
     // const url = 'https://type-script-server.vercel.app/api/room/create';
+    const url = `${import.meta.env.VITE_API_URL}/room/create`;
     try {
       const response = await axios.post(url, processedData, {
         headers: {
@@ -342,15 +343,7 @@ const AddRoom = () => {
             {/* Images */}
             <ImageField  handleImagesChange={handleImagesChange}/>
 
-            {/* Services - Repeat for each service */}
-            {/* <div className="col-span-1 md:col-span-2">
-      <label htmlFor="service" className="block text-sm font-medium text-black dark:text-white">Services</label>
-      <div className="flex items-center space-x-3">
-        <input type="text" id="serviceEn" name="serviceEn" placeholder="Service Name (EN)" className="mt-1 block flex-1  border border-gray-300 rounded-md shadow-sm" />
-        <input type="text" id="serviceAr" name="serviceAr" placeholder="Service Name (AR)" className="mt-1 block flex-1  border border-gray-300 rounded-md shadow-sm" />
-        <input type="text" id="serviceImage" name="serviceImage" placeholder="Image URL" className="mt-1 block flex-1  border border-gray-300 rounded-md shadow-sm" />
-      </div>
-    </div> */}
+             
 
             {/* Price Options */}
             <div className="flex justify-center items-center gap-7">
@@ -375,12 +368,7 @@ const AddRoom = () => {
                 <TagSelector handleTags={handleTags}  />
               </div>
             </div>
-
-            {/* Tags */}
-            {/* <div className="col-span-1 md:col-span-2">
-      <label htmlFor="tags" className="block text-sm font-medium text-gray-700">Tags</label>
-      <input type="text" id="tags" name="tags" placeholder="Use comma to separate tags" className="mt-1 block py-2 px-2 w-full  border border-gray-300 shadow-sm text-black outline-none transition  dark:border-form-strokedark dark:bg-form-input dark:text-white" />
-    </div> */}
+ 
 
             {/* Price History */}
             <div>

@@ -32,7 +32,8 @@ const AdminAllRooms = () => {
       }
 
       const response = await axios.get(
-        `https://server.awalivhotel.com/api/room/admin/room?lang=${currentLanguage}`,
+        // `https://server.awalivhotel.com/api/room/admin/room?lang=${currentLanguage}`,
+        `${import.meta.env.VITE_API_URL}/room/admin/room?lang=${currentLanguage}`,
         {
           headers: {
             Authorization: ` ${token}`,

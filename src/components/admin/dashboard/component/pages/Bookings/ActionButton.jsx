@@ -44,8 +44,9 @@ const ActionButton = ({ record, fetchBookings, fetchNewBookings }) => {
     try {
       // eslint-disable-next-line no-unused-vars
       const response = await axios.patch(
-        `https://server.awalivhotel.com/api/booking/markAsPaid/${record.id}`,{},{
-        // `https://type-script-server.vercel.app/api/booking/markAsPaid/${record.id}`,{},{
+        // `https://server.awalivhotel.com/api/booking/markAsPaid/${record.id}`,{},{
+          // `https://type-script-server.vercel.app/api/booking/markAsPaid/${record.id}`,{},{
+            `${import.meta.env.VITE_API_URL}/booking/markAsPaid/${record.id}`,{},{
           headers: { Authorization: `${token}` },
         }
         // `http://localhost:5000/api/booking/mark-as-paid/${record.id}`,
@@ -100,7 +101,8 @@ const ActionButton = ({ record, fetchBookings, fetchNewBookings }) => {
         // `http://localhost:5000/api/booking/cancelBooking/${record.id}`,{},
       // eslint-disable-next-line no-unused-vars
       const response = await axios.patch(
-        `https://server.awalivhotel.com/api/booking/cancelBooking/${record.id}`,{},
+        // `https://server.awalivhotel.com/api/booking/cancelBooking/${record.id}`,{},
+        `${import.meta.env.VITE_API_URL}/booking/cancelBooking/${record.id}`,{},
         {
           headers: {
             Authorization: `${token}` // Using the token from local storage

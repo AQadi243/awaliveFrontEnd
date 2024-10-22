@@ -30,7 +30,8 @@ const MyBookings = () => {
         const userToken = localStorage.getItem("token");
 
         const response = await axios.get(
-          `https://server.awalivhotel.com/api/booking/${userEmail}?lang=${currentLanguage}`,
+          `${import.meta.env.VITE_API_URL}/booking/${userEmail}?lang=${currentLanguage}`,
+          // `https://server.awalivhotel.com/api/booking/${userEmail}?lang=${currentLanguage}`,
           // `https://type-script-server.vercel.app/api/booking/${userEmail}?lang=${currentLanguage}`,
           // `http://localhost:5000/api/booking/${userEmail}?lang=${currentLanguage}`,
           {

@@ -19,7 +19,8 @@ const ReviewCard = ({ roomId, reviews, setReviews, reviewLoading, setReviewLoadi
       try {
         setReviewLoading(true);
         const response = await axios.get(
-          `https://server.awalivhotel.com/api/review/${roomId}?page=${currentPage}&limit=${pageSize}`
+          // `https://server.awalivhotel.com/api/review/${roomId}?page=${currentPage}&limit=${pageSize}`
+          `${import.meta.env.VITE_API_URL}/review/${roomId}?page=${currentPage}&limit=${pageSize}`
         );
         setReviews(response.data.data);
         

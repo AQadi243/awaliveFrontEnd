@@ -64,7 +64,8 @@ const SignUpPage = () => {
         try {
           
           // const response = await axios.post('https://type-script-server.vercel.app/api/auth/resister', registerData);
-          const response = await axios.post('https://server.awalivhotel.com/api/auth/resister', registerData);
+          // const response = await axios.post('https://server.awalivhotel.com/api/auth/resister', registerData);
+          const response = await axios.post(`${import.meta.env.VITE_API_URL}/auth/resister`, registerData);
           
           setErrorMessageReg('User registered successfully')
           setLoading(false)
@@ -173,21 +174,7 @@ const SignUpPage = () => {
               <p className="text-red-500 text-xs italic">{errors.phone}</p>
             )}
 
-            {/* <input
-              type="password"
-              name="password"
-              id="password"
-              placeholder="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className={`py-2 px-2 border bg-slate-50 ${
-                errors.password && "border-red-500"
-              }`}
-              required
-            />
-            {errors.password && (
-              <p className="text-red-500 text-xs">{errors.password}</p>
-            )} */}
+            
             <div className="relative">
                 <input
                     type={showPassword ? "text" : "password"}

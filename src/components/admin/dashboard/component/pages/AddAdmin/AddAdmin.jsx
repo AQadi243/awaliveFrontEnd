@@ -81,8 +81,9 @@ const AddAdmin = () => {
         try {
           
           // const response = await axios.post('https://type-script-server.vercel.app/api/user/create/admin', adminData ,{ 
-          const response = await axios.post('https://server.awalivhotel.com/api/user/create/admin', adminData ,{ 
-        //   const response = await axios.post('http://localhost:5000/api/user/create/admin', adminData, {
+          // const response = await axios.post('https://server.awalivhotel.com/api/user/create/admin', adminData ,{ 
+            //   const response = await axios.post('http://localhost:5000/api/user/create/admin', adminData, {
+              const response = await axios.post(`${import.meta.env.VITE_API_URL}/user/create/admin`, adminData ,{ 
             headers: {
                 'Authorization': `${token}`
             }
@@ -109,9 +110,7 @@ const AddAdmin = () => {
    
       <section className="max-w-2xl mx-auto">
         <div className="shadow-lg py-10 space-y-6  p-4 rounded max-w-3xl mx-auto my-8  border-stroke bg-white  dark:border-strokedark dark:bg-boxdark " style={{ fontFamily: "Gilda Display, serif" }}>
-        {/* <div className="shadow-lg py-10 " style={{ fontFamily: "Gilda Display, serif" }}> */}
-            {/* <h1 className="text-3xl nd:text-4xl px-4">{t('becomeMember')}</h1> */}
-            {/* <h1 className="text-2xl px-4">{t('itsFree')} </h1> */}
+       
             <h1 className="text-3xl nd:text-4xl px-4">{t('Create An Admin')}</h1>
             <h1 className="text-2xl px-4">{t('itsFree')} </h1>
         <div className="py-10 px-4 ">
@@ -177,21 +176,7 @@ const AddAdmin = () => {
               <p className="text-red-500 text-xs italic">{errors.phone}</p>
             )}
 
-            {/* <input
-              type="password"
-              name="password"
-              id="password"
-              placeholder="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className={`py-2 px-2 border bg-slate-50 ${
-                errors.password && "border-red-500"
-              }`}
-              required
-            />
-            {errors.password && (
-              <p className="text-red-500 text-xs">{errors.password}</p>
-            )} */}
+             
             <div className="relative">
                 <input
                     type={showPassword ? "text" : "password"}

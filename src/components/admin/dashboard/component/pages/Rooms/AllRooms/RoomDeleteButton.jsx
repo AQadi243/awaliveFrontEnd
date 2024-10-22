@@ -26,8 +26,9 @@ const RoomDeleteButton = ({onUpdate , isActive, roomId }) => {
 
   const deleteRoom = async () => {
     try {
-          await axios.delete(`https://server.awalivhotel.com/api/room/${roomId}`, {
+          // await axios.delete(`https://server.awalivhotel.com/api/room/${roomId}`, {
             // await axios.delete(`http://localhost:5000/api/room/${roomId}`, {
+              await axios.delete(`${import.meta.env.VITE_API_URL}/room/${roomId}`, {
         headers: {
           Authorization: `${token}`,
         },
@@ -42,8 +43,9 @@ const RoomDeleteButton = ({onUpdate , isActive, roomId }) => {
 
   const reactivateRoom = async () => {
     try {
-      await axios.put(`https://server.awalivhotel.com/api/room/${roomId}/reactivate`, {}, {
-    //   await axios.put(`http://localhost:5000/api/room/${roomId}/reactivate`, {}, {
+      // await axios.put(`https://server.awalivhotel.com/api/room/${roomId}/reactivate`, {}, {
+        //   await axios.put(`http://localhost:5000/api/room/${roomId}/reactivate`, {}, {
+          await axios.put(`${import.meta.env.VITE_API_URL}/room/${roomId}/reactivate`, {}, {
         headers: {
           Authorization: `${token}`,
         },

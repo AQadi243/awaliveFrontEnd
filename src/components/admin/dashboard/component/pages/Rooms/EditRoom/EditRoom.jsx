@@ -32,8 +32,9 @@ const EditRoom = () => {
     const fetchRoomData = async () => {
       if (roomId) {
         try {
-          const response = await axios.get(`https://server.awalivhotel.com/api/room/${roomId}/single`);
-        //   const response = await axios.get(`http://localhost:5000/api/room/${roomId}/single`);
+          // const response = await axios.get(`https://server.awalivhotel.com/api/room/${roomId}/single`);
+          //   const response = await axios.get(`http://localhost:5000/api/room/${roomId}/single`);
+          const response = await axios.get(`${import.meta.env.VITE_API_URL}/room/${roomId}/single`);
           const room = response.data.data;
             console.log(room, 'room');
           setFormData({
@@ -192,8 +193,9 @@ const EditRoom = () => {
     }
 
     const processedData = processDataForSubmission(formData);
-    const url = `https://server.awalivhotel.com/api/room/${roomId}/update`;
+    // const url = `https://server.awalivhotel.com/api/room/${roomId}/update`;
     // const url = `http://localhost:5000/api/room/${roomId}/update`;
+    const url = `${import.meta.env.VITE_API_URL}/room/${roomId}/update`;
 
     try {
       const response = await axios.put(url, processedData, {

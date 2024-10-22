@@ -45,8 +45,9 @@ const BookingConfirm = () => {
 
     
     try {
-      const response = await axios.post('https://server.awalivhotel.com/api/booking', bookingData,  {
-      // const response = await axios.post('https://type-script-server.vercel.app/api/booking', bookingData,  {
+      // const response = await axios.post('https://server.awalivhotel.com/api/booking', bookingData,  {
+        // const response = await axios.post('https://type-script-server.vercel.app/api/booking', bookingData,  {
+          const response = await axios.post(`${import.meta.env.VITE_API_URL}/booking`, bookingData,  {
         // httpsAgent: agent,
         headers: {
             Authorization: `${token}` // This will send your token in the Authorization header
@@ -83,37 +84,11 @@ const BookingConfirm = () => {
             {t("bookNow")}
             </button>
           
-          {/* {loading ? (
-            <Spin />
-          ) : (
-            <button className="bg-[#BE9874] py-2 px-8 text-sm text-white" onClick={() => handleBookNow("Payment on Arrival")}>
-              Book Now
-            </button>
-          )} */}
+           
         </div>
       ),
     },
-    // {
-    //   key: "3",
-    //   label: t("Booking Request"),
-    //   children: (
-    //     <div className="text-gray-500 ">
-    //       <p className="py-4">{t("Booking Request")}</p>
-         
-    //         <button className="bg-[#BE9874] py-2 px-8 text-sm text-white" onClick={() => handleBookNow("Payment on Arrival")}>
-    //           Send Request
-    //         </button>
-          
-    //       {/* {loading ? (
-    //         <Spin />
-    //       ) : (
-    //         <button className="bg-[#BE9874] py-2 px-8 text-sm text-white" onClick={() => handleBookNow("Payment on Arrival")}>
-    //           Book Now
-    //         </button>
-    //       )} */}
-    //     </div>
-    //   ),
-    // },
+    
   ];
 
   if(loading){
@@ -205,23 +180,7 @@ const BookingConfirm = () => {
           </div>
         </div>
       </section>
-      {/* {loading ? (
-        <p>Loading...</p>
-      ) : (
-        <Modal
-          title="Booking Information"
-          open={isModalVisible}
-          onCancel={handleModalCancel}
-          footer={[
-            <button key="cancel" onClick={handleModalCancel}>
-              Close
-            </button>,
-          ]}
-        >
-          <p>{order}</p>
-         
-        </Modal>
-      )} */}
+       
       
     </>
   );

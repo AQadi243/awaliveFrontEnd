@@ -38,34 +38,15 @@ const AllBookingsAdmin = ({ allBookingData, loading, fetchBookings, setAllBookin
     setIsModalVisible(true);
   };
 
-  // const formatDateToSaudi = (dateString) => {
-  //   console.log(dateString, 'date string');
-  //   try {
-  //     const date = moment(dateString, [
-  //       moment.ISO_8601,
-  //       "MM/DD/YYYY",
-  //       "YYYY-MM-DDTHH:mm:ss.SSSZ"
-  //     ], true);
-  
-  //     if (!date.isValid()) {
-  //       throw new Error("Invalid date");
-  //     }
-  
-  //     return date.format('D MMMM YYYY');
-  //   } catch (error) {
-  //     console.error("Error formatting date:", error);
-  //     return "Invalid date";
-  //   }
-  // };
-
   const handleDelete = async (id) => {
-    const token = localStorage.getItem('token'); 
-    
+    const token = localStorage.getItem("token");
+
     try {
-      await axios.delete(`https://server.awalivhotel.com/api/booking/${id}`,{
-        headers:{
-          Authorization: `${token}`
-        }
+      // await axios.delete(`https://server.awalivhotel.com/api/booking/${id}`,{
+      await axios.delete(`${import.meta.env.VITE_API_URL}/booking/${id}`, {
+        headers: {
+          Authorization: `${token}`,
+        },
       });
       message.success("Booking deleted successfully");
       fetchBookings(); // Refresh bookings data
@@ -75,7 +56,7 @@ const AllBookingsAdmin = ({ allBookingData, loading, fetchBookings, setAllBookin
   };
   const showInvoice = (record) => {
     // Navigate to the invoice route with a parameter, if necessary
-    navigate(`/dashboard/booking/invoice/${record.id}`);  // Assuming record.id is how you identify bookings
+    navigate(`/dashboard/booking/invoice/${record.id}`); // Assuming record.id is how you identify bookings
   };
 
   const columns = [
@@ -105,7 +86,7 @@ const AllBookingsAdmin = ({ allBookingData, loading, fetchBookings, setAllBookin
       filters: generateRoomNameFilters(allBookingData),
       onFilter: (value, record) => record.roomName.startsWith(value),
       filterSearch: true,
-      render: (text, record) => <a onClick={() => showInvoice(record)}>{text}</a>
+      render: (text, record) => <a onClick={() => showInvoice(record)}>{text}</a>,
     },
     {
       title: "Reservation Date",
@@ -114,7 +95,7 @@ const AllBookingsAdmin = ({ allBookingData, loading, fetchBookings, setAllBookin
       render: (reserveDate) => {
         // let color = payment.toLowerCase() === "pending" ? "volcano" : "green";
         // return <Tag >{formatDateToSaudi(reserveDate)}</Tag>;
-        return <Tag >{dayjs(reserveDate).format("MMM D, YYYY")}</Tag>;
+        return <Tag>{dayjs(reserveDate).format("MMM D, YYYY")}</Tag>;
         // return <Tag >{reserveDate}</Tag>;
       },
     },
@@ -124,7 +105,7 @@ const AllBookingsAdmin = ({ allBookingData, loading, fetchBookings, setAllBookin
       key: "checkIn",
       render: (checkIn) => {
         // return <Tag >{checkIn}</Tag>;
-        return <Tag >{dayjs(checkIn).format("MMM D, YYYY")}</Tag>;
+        return <Tag>{dayjs(checkIn).format("MMM D, YYYY")}</Tag>;
       },
     },
     {
@@ -133,7 +114,7 @@ const AllBookingsAdmin = ({ allBookingData, loading, fetchBookings, setAllBookin
       key: "checkOut",
       render: (checkOut) => {
         // return <Tag >{checkOut}</Tag>;
-        return <Tag >{dayjs(checkOut).format("MMM D, YYYY")}</Tag>;
+        return <Tag>{dayjs(checkOut).format("MMM D, YYYY")}</Tag>;
       },
     },
     {
@@ -185,12 +166,16 @@ const AllBookingsAdmin = ({ allBookingData, loading, fetchBookings, setAllBookin
       render: (_, record) => (
         <Space size="small">
           <LuMoreHorizontal onClick={() => showModal(record)} className="text-lg cursor-pointer text-yellow-600" title="Full Info" />
-          <LuTrash2 onClick={() => {
-            Modal.confirm({
-              title: "Are you sure you want to delete this booking?",
-              onOk: () => handleDelete(record.id),
-            });
-          }} className="text-lg cursor-pointer text-red-400" title="Delete" />
+          <LuTrash2
+            onClick={() => {
+              Modal.confirm({
+                title: "Are you sure you want to delete this booking?",
+                onOk: () => handleDelete(record.id),
+              });
+            }}
+            className="text-lg cursor-pointer text-red-400"
+            title="Delete"
+          />
         </Space>
       ),
     },

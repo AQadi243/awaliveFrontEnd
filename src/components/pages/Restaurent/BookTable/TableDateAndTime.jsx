@@ -134,7 +134,8 @@ const handleNextPage = async () => {
       
       setLoading(true); // Start loading
       try {
-        const response = await axios.post('https://server.awalivhotel.com/api/Table-booking/create', bookingData);
+        const response = await axios.post( `${import.meta.env.VITE_API_URL}/api/Table-booking/create`, bookingData);
+        // const response = await axios.post('https://server.awalivhotel.com/api/Table-booking/create', bookingData);
         // const response = await axios.post('https://type-script-server.vercel.app/api/Table-booking/create', bookingData);
 
         // setBookingSuccess(true);

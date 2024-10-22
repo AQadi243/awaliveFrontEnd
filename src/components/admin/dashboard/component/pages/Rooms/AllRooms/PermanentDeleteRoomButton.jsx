@@ -26,7 +26,8 @@ const PermanentDeleteRoomButton = ({onUpdate,roomId}) => {
   }
   const deleteRoomPermanently = async () => {
     try {
-      await axios.delete(`https://server.awalivhotel.com/api/room/${roomId}/permanent`, {
+      // await axios.delete(`https://server.awalivhotel.com/api/room/${roomId}/permanent`, {
+      await axios.delete(`${import.meta.env.VITE_API_URL}/room/${roomId}/permanent`, {
         headers: {
           Authorization: `${token}`,
         },
@@ -59,16 +60,7 @@ const PermanentDeleteRoomButton = ({onUpdate,roomId}) => {
             Delete Permanently
           </button>
         </Popconfirm>
-    // <Popconfirm
-    //   title="Permanent Delete"
-    //   description="Room will Delete forever"
-    //   // onConfirm={confirm}
-    //   onOpenChange={() => console.log('open change')}
-    //   okText="Delete"
-    //       cancelText="Cancel"
-    // >
-    //   <Button type="primary" className='hover:bg-slate-50' style={{color:'white', backgroundColor:'red'}} >Delete</Button>
-    // </Popconfirm>
+     
 
 
   )

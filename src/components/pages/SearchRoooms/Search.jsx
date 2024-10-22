@@ -80,31 +80,19 @@ const Search = () => {
       }
       try {
         const response = await axios.get(
-          `https://server.awalivhotel.com/api/room/available/?${params.toString()}`
+          `${import.meta.env.VITE_API_URL}/room/available/?${params.toString()}`
+          // `https://server.awalivhotel.com/api/room/available/?${params.toString()}`
           // `https://type-script-server.vercel.app/api/room/available/?${params.toString()}`
           // `https://type-script-server.vercel.app/api/room/available/?lang=${currentLanguage}&checkInDate=${formetDateCheckIn}&checkOutDate=${formetDateCheckOut}&maxGuests=${numberOfGuests}&sizeOrder=${roomSize}&sortByPrice=${sortByPrice}`
-          // `http://localhost:5000/api/room/available/?${params.toString()}`
           // `https://type-script-server.vercel.app/api/room/available/?${params.toString()}`
         );
         let rooms = response.data.data;
         setAvailableRooms(rooms);
-        // if (rooms.length === 0) {
-        //   setErrorMessage('No rooms available for the selected criteria.');
-        // } else {
-        //   // Client-side sorting based on the first price option
-        //   rooms = rooms.sort((a, b) => {
-        //    // If sizes are equal, or if size sorting is not a priority, sort by price
-        //    const priceA = a.priceOptions[0]?.price || 0;
-        //    const priceB = b.priceOptions[0]?.price || 0;
-        //    return sortByPrice === 'asc' ? priceA - priceB : priceB - priceA;
-        //   });
-        // }
+       
         setAvailableRooms(rooms);
         setLoadingAvailableRooms(false);
       } catch (error) {
-        // console.log(error);
-        // console.error(error?.response?.data?.error?.statusCode);
-        // console.error(error?.response?.data?.issues[0]?.message);
+         
         setErrorMessage(` ${error?.response?.data?.issues[0]?.message}`);
         setAvailableRooms([]); // Clear rooms as there was an error
         setLoadingAvailableRooms(false);
@@ -123,12 +111,7 @@ const Search = () => {
   tomorrow.setDate(tomorrow.getDate() + 1);
 
  
-
-  // if (sortByPrice === "asc") {
-  //   availableRooms.sort((a, b) => a.priceOptions[0]?.price - b.priceOptions[0]?.price);
-  // } else if (sortByPrice === "highPrice") {
-  //   availableRooms.sort((a, b) => b.priceOptions[0]?.price - a.priceOptions[0]?.price);
-  // }
+ 
 
   const resetSearch = () => {
     // Reset all state variables associated with the search
@@ -138,10 +121,9 @@ const Search = () => {
     // Add any other states you want to reset, for example:
     setCheckIn(new Date());
     setCheckOut(tomorrow);
-    // setSortByPrice('default'); // Assuming 'default' is your default sort order
+    
     setGuests(1); // Reset to default value
-    // setCurrentLanguage('en'); // Reset to default language
-    // setRoomSize('default'); // Assuming 'default' is your default room size filter
+   
   };
 
 
@@ -178,11 +160,7 @@ const Search = () => {
         <BannerPage text={t("search")} />
 
         <section className={`bg-[#1a1919]  py-4 px-8 lg::px-0 ${currentLanguage === 'ar' ? 'body-ar font-normal  ' : 'body-en '}  `} >
-          {/* <SearchBar
-            // setAllRooms={setAllRooms}
-            // setNoRoomsMessage={setNoRoomsMessage}
-            pageContext="search"
-          /> */}
+           
           
           <div className="max-w-7xl mx-auto px-2 md:px-0 grid md:grid-cols-2   py-4    ">
           <div className=" flex gap-4 md:justify-end justify-center">

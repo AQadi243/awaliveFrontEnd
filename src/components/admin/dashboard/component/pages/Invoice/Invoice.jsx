@@ -27,8 +27,9 @@ const Invoice = () => {
         const userToken = localStorage.getItem("token");
 
         const response = await axios.get(
-          `https://server.awalivhotel.com/api/booking/invoice/${bookingId}?lang=${currentLanguage}`,
+          // `https://server.awalivhotel.com/api/booking/invoice/${bookingId}?lang=${currentLanguage}`,
           // `http://localhost:5000/api/booking/invoice/${bookingId}?lang=${currentLanguage}`,
+          `${import.meta.env.VITE_API_URL}/booking/invoice/${bookingId}?lang=${currentLanguage}`,
           {
             headers: {
               Authorization: `${userToken}`,
