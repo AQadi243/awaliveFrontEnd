@@ -28,7 +28,6 @@ const HotelStucture = () => {
   });
 
   return (
-    
     <section className="max-w-6xl  mx-auto my-10 md:my-27 px-4">
       <div className={`flex flex-col lg:flex-row gap-10 ${currentLanguage === 'ar' ? 'body-ar  font-medium ' : 'body-en '}`}>
         <div className="lg:w-[50%]  flex flex-row gap-4 items-center  relative overflow-hidden">
@@ -72,15 +71,11 @@ const HotelStucture = () => {
 
           </h2>
           <p className="text-sm text-gray-400 text-center md:text-start">{t("discoverSubtitle")}</p>
-      </div>    
+          
 
           
 
-
-          <div className="flex flex-col gap-2">
-
           <div className="flex flex-col gap-3">
-
           <div ref={ref} className="w-full bg-gray-200  h-8 dark:bg-gray-700">
             <div className={`bg-[#2E2E2E] h-8  transition-all duration-1000 ease-in-out ${inView ? `w-[${100}%]` : "w-0"}`}>
               <div className="flex justify-between items-center h-full text-white px-2 text-xs ">
