@@ -75,7 +75,11 @@ const HotelStucture = () => {
 
           
 
+<<<<<<< HEAD
           <div className="flex flex-col gap-2">
+=======
+          <div className="flex flex-col gap-3">
+>>>>>>> d15ce0daa98aa381567ee57bd2a391599f147737
           <div ref={ref} className="w-full bg-gray-200  h-8 dark:bg-gray-700">
             <div className={`bg-[#2E2E2E] h-8  transition-all duration-1000 ease-in-out ${inView ? `w-[${100}%]` : "w-0"}`}>
               <div className="flex justify-between items-center h-full text-white px-2 text-xs ">
