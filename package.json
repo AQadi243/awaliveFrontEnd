@@ -7,7 +7,7 @@
     "test": "jest",
     "dev": "vite",
     "build": "vite build",
-    "serve": "vite preview --host"
+    "serve": "vite preview --host",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
