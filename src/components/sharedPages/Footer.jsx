@@ -76,7 +76,7 @@ const Footer = () => {
             <a href="https://www.instagram.com/awaliv.hotel/" target="_blank"><CiInstagram size={20} className="cursor-pointer" /></a>
             <a href="https://www.youtube.com/watch?v=2AD40BCejhI" target="_blank"><CiYoutube size={20} className="cursor-pointer" /></a>
             <a href="https://x.com/awalivhotels" target="_blank"> <img className="w-4.5 h-4.5" src={twitterImage} alt="" /></a>
-            <a href="https://x.com/awalivhotels" target="_blank"> <img className="w-4.5 h-4.5" src={twitterImage} alt="" /></a>
+            
           
             </div>
           </div>
