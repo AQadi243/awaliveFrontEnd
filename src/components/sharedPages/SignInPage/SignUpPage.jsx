@@ -132,7 +132,7 @@ const SignUpPage = () => {
               type="name"
               name="lastName"
               id="lastName"
-              placeholder={t('firstNamePlaceholder')}
+              placeholder={t('lastNamePlaceholder')}
               value={lastName}
               onChange={(e) => setLastName(e.target.value)}
               className={`py-2 px-2 border bg-slate-50 ${

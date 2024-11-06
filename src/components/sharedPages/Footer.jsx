@@ -38,7 +38,7 @@ const Footer = () => {
                   </li>
                 </ul>
               </div>
-              <div className="" style={{ fontFamily: "Gilda Display, serif" }}>
+         {/*      <div className="" style={{ fontFamily: "Gilda Display, serif" }}>
                 <p className="text-lg md:text-xl capitalize">{t("newsletter")}</p>
                 <p className="text-xs md:text-sm text-gray-400 capitalize">{t("newsletterSubTitle")}</p>
                 <div className="py-3 text-lg md:text-xl flex justify-center  ">
@@ -51,14 +51,15 @@ const Footer = () => {
                   />
                   <button className="uppercase bg-[#BE9874] py-2 px-4 text-sm  ">{t("subscribeButton")}</button>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </section>
 
         <footer className="bg-[#151516] py-4">
           <div className="container mx-auto px-2 md:px-12 flex flex-col md:flex-row justify-between ">
-            <ul className="flex flex-wrap text-white text-xs md:text-sm mb-4 md:mb-0">
+          <p>copyright © 2024 all rights reserved</p>
+           {/*  <ul className="flex flex-wrap text-white text-xs md:text-sm mb-4 md:mb-0">
               {currentLanguage === "ar"
                 ? footerLinks_ar.map((link, index) => (
                     <li key={index} className="mr-2 md:mr-6">
@@ -78,7 +79,7 @@ const Footer = () => {
             <a href="https://x.com/awalivhotels" target="_blank"> <img className="w-4.5 h-4.5" src={twitterImage} alt="" /></a>
             
           
-            </div>
+            </div> */}
           </div>
         </footer>
       </PageAnimation>

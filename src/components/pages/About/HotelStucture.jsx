@@ -3,7 +3,7 @@ import structure2 from "../../../assets/structure-2.webp";
 import key16 from "../../../assets/icon-16.png";
 import Lag15 from "../../../assets/icon-15.png";
 import Ser17 from "../../../assets/icon-17.png";
-import Wait18 from "../../../assets/icon-18.png";
+import Wait18 from "../../../assets/icon-19.png";
 import { useTranslation } from "react-i18next";
 import i18next from "i18next";
 import CountUp from "react-countup";
