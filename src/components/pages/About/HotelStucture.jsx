@@ -1,9 +1,34 @@
 import structure from "../../../assets/Structure.webp";
 import structure2 from "../../../assets/structure-2.webp";
-import key16 from "../../../assets/icon-16.png";
+import valet from "../../../assets/valet.png";
+import hk from "../../../assets/i-hk.png";
+import minib from "../../../assets/i-minib.png";
+import wifi from "../../../assets/i-wifi.png";
+import safe from "../../../assets/i-safe.png";
+import iron from "../../../assets/i-iron.png";
+import airport from "../../../assets/i-airport.png";
+import bc from "../../../assets/i-bc.png";
+import bed from "../../../assets/i-bed.png";
+import conc from "../../../assets/i-conc.png";
+import cur from "../../../assets/i-cur.png";
+import dining from "../../../assets/i-dining.png";
+import gym from "../../../assets/i-gym.png";
+import laundry from "../../../assets/i-laundry.png";
+import pillow from "../../../assets/i-pillow.png";
+import quran from "../../../assets/i-quran.png";
+import sewing from "../../../assets/i-sewing.png";
+import shoes from "../../../assets/i-shoes.png";
+import taxi from "../../../assets/i-taxi.png";
+import wake from "../../../assets/i-wake.png";
 import Lag15 from "../../../assets/icon-15.png";
-import Ser17 from "../../../assets/icon-17.png";
-import Wait18 from "../../../assets/icon-19.png";
+ import Ser17 from "../../../assets/icon-17.png";
+ import Wait18 from "../../../assets/icon-19.png";
+
+
+
+
+
+
 import { useTranslation } from "react-i18next";
 import i18next from "i18next";
 import CountUp from "react-countup";
@@ -76,7 +101,7 @@ const HotelStucture = () => {
 
           
 
-
+{/* 
           <div className="flex flex-col gap-2">
 
           <div className="flex flex-col gap-3">
@@ -119,50 +144,282 @@ const HotelStucture = () => {
             </div>
           </div>
           </div>
+
+
+
+
         </div>
+ */}
+
+
+
+
       </div>
       <div className={`mt-10 md:mt-20 ${currentLanguage === 'ar' ? 'body-ar  font-medium ' : 'body-en '}`}>
-        <div className="grid gap-5 md:gap-0 grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+        
+        
+        {/* --- */}
+        <div className="grid gap-5 md:gap-0 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           <div className="flex flex-col md:flex-row gap-2 md:gap-5 items-center text-center md:text-start">
-            <img src={key16} alt="Smart Key Icon" className="w-20 md:w-28" />
+            <img src={hk} alt="" className="w-20 md:w-28" />
             <div>
               <p className={`text-xl md:text-xl font-semibold py-4 ${currentLanguage === 'ar' ? 'body-ar  font-medium ' : 'body-en-title '}`} >
-                {t("keyFeatures.smartKey.title")}
+                {t("keyFeatures.Housekeeping.title")}
               </p>
-              <p className="text-xs text-gray-400">{t("keyFeatures.smartKey.description")}</p>
+              <p className="text-xs text-gray-400">{t("keyFeatures.Housekeeping.description")}</p>
             </div>
           </div>
 
           <div className="flex flex-col md:flex-row gap-2 md:gap-5 items-center text-center md:text-start ">
-            <img src={Lag15} alt="Luggage Storage Icon" className="w-20 md:w-28" />
+            <img src={wifi} alt="" className="w-20 md:w-28" />
             <div>
               <p className={`text-xl md:text-xl font-semibold py-4 ${currentLanguage === 'ar' ? 'body-ar  font-medium ' : 'body-en-title '}`}>
-                {t("keyFeatures.luggageStorage.title")}
+                {t("keyFeatures.Free Wi-Fi.title")}
               </p>
-              <p className="text-xs text-gray-400">{t("keyFeatures.luggageStorage.description")}</p>
+              <p className="text-xs text-gray-400">{t("keyFeatures.Free Wi-Fi.description")}</p>
             </div>
           </div>
 
           <div className="flex flex-col md:flex-row gap-2 md:gap-5 items-center text-center md:text-start ">
-            <img src={Ser17} alt="Room Service Icon" className="w-20 md:w-28" />
+            <img src={minib} alt="" className="w-20 md:w-28" />
             <div>
               <p className={`text-xl md:text-xl font-semibold py-4 ${currentLanguage === 'ar' ? 'body-ar  font-medium ' : 'body-en-title '}`}>
-                {t("keyFeatures.roomService.title")}
+                {t("keyFeatures.Mini Bar.title")}
               </p>
-              <p className="text-xs text-gray-400">{t("keyFeatures.roomService.description")}</p>
+              <p className="text-xs text-gray-400">{t("keyFeatures.Mini Bar.description")}</p>
+              
+            </div>
+          </div>
+
+        </div>
+        <br></br>
+        <br></br>
+        
+        {/* --- */}
+        <div className="grid gap-5 md:gap-0 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+          <div className="flex flex-col md:flex-row gap-2 md:gap-5 items-center text-center md:text-start">
+            <img src={iron} alt="" className="w-20 md:w-28" />
+            <div>
+              <p className={`text-xl md:text-xl font-semibold py-4 ${currentLanguage === 'ar' ? 'body-ar  font-medium ' : 'body-en-title '}`} >
+                {t("keyFeatures.Iron and Board.title")}
+              </p>
+              <p className="text-xs text-gray-400">{t("keyFeatures.Iron and Board.description")}</p>
+            </div>
+          </div>
+
+          <div className="flex flex-col md:flex-row gap-2 md:gap-5 items-center text-center md:text-start ">
+            <img src={quran} alt="" className="w-20 md:w-28" />
+            <div>
+              <p className={`text-xl md:text-xl font-semibold py-4 ${currentLanguage === 'ar' ? 'body-ar  font-medium ' : 'body-en-title '}`}>
+                {t("keyFeatures.Qiblah, and Tools of Worship.title")}
+              </p>
+              <p className="text-xs text-gray-400">{t("keyFeatures.Qiblah, and Tools of Worship.description")}</p>
+            </div>
+          </div>
+
+          <div className="flex flex-col md:flex-row gap-2 md:gap-5 items-center text-center md:text-start ">
+            <img src={wake} alt="" className="w-20 md:w-28" />
+            <div>
+              <p className={`text-xl md:text-xl font-semibold py-4 ${currentLanguage === 'ar' ? 'body-ar  font-medium ' : 'body-en-title '}`}>
+                {t("keyFeatures.Wake-Up Call.title")}
+              </p>
+              <p className="text-xs text-gray-400">{t("keyFeatures.Wake-Up Call.description")}</p>
+            </div>
+          </div>
+
+         
+        </div>
+        <br></br>
+        <br></br>
+        {/* --- */}
+        <div className="grid gap-5 md:gap-0 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+          <div className="flex flex-col md:flex-row gap-2 md:gap-5 items-center text-center md:text-start">
+            <img src={pillow} alt="" className="w-20 md:w-28" />
+            <div>
+              <p className={`text-xl md:text-xl font-semibold py-4 ${currentLanguage === 'ar' ? 'body-ar  font-medium ' : 'body-en-title '}`} >
+                {t("keyFeatures.Extra Pillows.title")}
+              </p>
+              <p className="text-xs text-gray-400">{t("keyFeatures.Extra Pillows.description")}</p>
+            </div>
+          </div>
+
+          <div className="flex flex-col md:flex-row gap-2 md:gap-5 items-center text-center md:text-start ">
+            <img src={bed} alt="" className="w-20 md:w-28" />
+            <div>
+              <p className={`text-xl md:text-xl font-semibold py-4 ${currentLanguage === 'ar' ? 'body-ar  font-medium ' : 'body-en-title '}`}>
+                {t("keyFeatures.Bed making service.title")}
+              </p>
+              <p className="text-xs text-gray-400">{t("keyFeatures.Bed making service.description")}</p>
+            </div>
+          </div>
+
+          <div className="flex flex-col md:flex-row gap-2 md:gap-5 items-center text-center md:text-start ">
+            <img src={shoes} alt="" className="w-20 md:w-28" />
+            <div>
+              <p className={`text-xl md:text-xl font-semibold py-4 ${currentLanguage === 'ar' ? 'body-ar  font-medium ' : 'body-en-title '}`}>
+                {t("keyFeatures.Shoe polishing service upon request.title")}
+              </p>
+              <p className="text-xs text-gray-400">{t("keyFeatures.Shoe polishing service upon request.description")}</p>
+            </div>
+          </div>
+
+        
+        </div>
+        <br></br>
+        <br></br>
+        {/* --- */}
+        <div className="grid gap-5 md:gap-0 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+         
+
+          <div className="flex flex-col md:flex-row gap-2 md:gap-5 items-center text-center md:text-start ">
+            <img src={sewing}  className="w-20 md:w-28" />
+            <div>
+              <p className={`text-xl md:text-xl font-semibold py-4 ${currentLanguage === 'ar' ? 'body-ar  font-medium ' : 'body-en-title '}`}>
+                {t("keyFeatures.On-demand tailoring service.title")}
+              </p>
+              <p className="text-xs text-gray-400">{t("keyFeatures.On-demand tailoring service.description")}</p>
+            </div>
+          </div>
+
+          <div className="flex flex-col md:flex-row gap-2 md:gap-5 items-center text-center md:text-start ">
+            <img src={valet}  className="w-20 md:w-28" />
+            <div>
+              <p className={`text-xl md:text-xl font-semibold py-4 ${currentLanguage === 'ar' ? 'body-ar  font-medium ' : 'body-en-title '}`}>
+                {t("keyFeatures.Valet parking service.title")}
+              </p>
+              <p className="text-xs text-gray-400">{t("keyFeatures.Valet parking service.description")}</p>
             </div>
           </div>
 
           <div className="flex flex-col md:flex-row gap-2 md:gap-5 items-center  text-center md:text-start">
-            <img src={Wait18} alt="Disinfection Icon" className="w-20 md:w-28" />
+            <img src={safe}  className="w-20 md:w-28" />
             <div>
               <p className={`text-xl md:text-xl font-semibold py-4 ${currentLanguage === 'ar' ? 'body-ar  font-medium ' : 'body-en-title '}`}>
-                {t("keyFeatures.disinfection.title")}
+                {t("keyFeatures.Central safe.title")}
               </p>
-              <p className="text-xs text-gray-400">{t("keyFeatures.disinfection.description")}</p>
+              <p className="text-xs text-gray-400">{t("keyFeatures.Central safe.description")}</p>
+
             </div>
           </div>
         </div>
+        <br></br>
+        <br></br>
+        {/* --- */}
+        <div className="grid gap-5 md:gap-0 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+          <div className="flex flex-col md:flex-row gap-2 md:gap-5 items-center text-center md:text-start">
+            <img src={taxi}  className="w-20 md:w-28" />
+            <div>
+              <p className={`text-xl md:text-xl font-semibold py-4 ${currentLanguage === 'ar' ? 'body-ar  font-medium ' : 'body-en-title '}`} >
+                {t("keyFeatures.Limousine service.title")}
+              </p>
+              <p className="text-xs text-gray-400">{t("keyFeatures.Limousine service.description")}</p>
+            </div>
+          </div>
+
+          
+
+          <div className="flex flex-col md:flex-row gap-2 md:gap-5 items-center text-center md:text-start ">
+            <img src={conc}  className="w-20 md:w-28" />
+            <div>
+              <p className={`text-xl md:text-xl font-semibold py-4 ${currentLanguage === 'ar' ? 'body-ar  font-medium ' : 'body-en-title '}`}>
+                {t("keyFeatures.Concierge service.title")}
+              </p>
+              <p className="text-xs text-gray-400">{t("keyFeatures.Concierge service.description")}</p>
+            </div>
+          </div>
+
+          <div className="flex flex-col md:flex-row gap-2 md:gap-5 items-center  text-center md:text-start">
+            <img src={cur} alt="Disinfection Icon" className="w-20 md:w-28" />
+            <div>
+              <p className={`text-xl md:text-xl font-semibold py-4 ${currentLanguage === 'ar' ? 'body-ar  font-medium ' : 'body-en-title '}`}>
+                {t("keyFeatures.Currency Exchange.title")}
+              </p>
+              <p className="text-xs text-gray-400">{t("keyFeatures.Currency Exchange.description")}</p>
+
+            </div>
+          </div>
+        </div>
+        
+        <br></br>
+        <br></br>
+        {/* --- */}
+        <div className="grid gap-5 md:gap-0 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+          <div className="flex flex-col md:flex-row gap-2 md:gap-5 items-center text-center md:text-start">
+            <img src={bc}  className="w-20 md:w-28" />
+            <div>
+              <p className={`text-xl md:text-xl font-semibold py-4 ${currentLanguage === 'ar' ? 'body-ar  font-medium ' : 'body-en-title '}`} >
+                {t("keyFeatures.Business Center.title")}
+              </p>
+              <p className="text-xs text-gray-400">{t("keyFeatures.Business Center.description")}</p>
+            </div>
+          </div>
+
+          <div className="flex flex-col md:flex-row gap-2 md:gap-5 items-center text-center md:text-start ">
+            <img src={Lag15}  className="w-20 md:w-28" />
+            <div>
+              <p className={`text-xl md:text-xl font-semibold py-4 ${currentLanguage === 'ar' ? 'body-ar  font-medium ' : 'body-en-title '}`}>
+                {t("keyFeatures.Personal Luggage Service.title")}
+              </p>
+              <p className="text-xs text-gray-400">{t("keyFeatures.Personal Luggage Service.description")}</p>
+            </div>
+          </div>
+
+        
+
+          <div className="flex flex-col md:flex-row gap-2 md:gap-5 items-center  text-center md:text-start">
+            <img src={airport}  className="w-20 md:w-28" />
+            <div>
+              <p className={`text-xl md:text-xl font-semibold py-4 ${currentLanguage === 'ar' ? 'body-ar  font-medium ' : 'body-en-title '}`}>
+                {t("keyFeatures.Transportation From/to the Airport.title")}
+              </p>
+              <p className="text-xs text-gray-400">{t("keyFeatures.Transportation From/to the Airport.description")}</p>
+
+            </div>
+          </div>
+        </div>
+        {/* --- */}
+
+        <br></br>
+        <br></br>
+        {/* --- */}
+        <div className="grid gap-5 md:gap-0 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+          <div className="flex flex-col md:flex-row gap-2 md:gap-5 items-center text-center md:text-start">
+            <img src={laundry}  className="w-20 md:w-28" />
+            <div>
+              <p className={`text-xl md:text-xl font-semibold py-4 ${currentLanguage === 'ar' ? 'body-ar  font-medium ' : 'body-en-title '}`} >
+                {t("keyFeatures.Laundry.title")}
+              </p>
+              <p className="text-xs text-gray-400">{t("keyFeatures.Laundry.description")}</p>
+            </div>
+          </div>
+
+          <div className="flex flex-col md:flex-row gap-2 md:gap-5 items-center text-center md:text-start ">
+            <img src={gym}  className="w-20 md:w-28" />
+            <div>
+              <p className={`text-xl md:text-xl font-semibold py-4 ${currentLanguage === 'ar' ? 'body-ar  font-medium ' : 'body-en-title '}`}>
+                {t("keyFeatures.Health Club.title")}
+              </p>
+              <p className="text-xs text-gray-400">{t("keyFeatures.Health Club.description")}</p>
+            </div>
+          </div>
+
+        
+
+          <div className="flex flex-col md:flex-row gap-2 md:gap-5 items-center  text-center md:text-start">
+            <img src={dining}  className="w-20 md:w-28" />
+            <div>
+              <p className={`text-xl md:text-xl font-semibold py-4 ${currentLanguage === 'ar' ? 'body-ar  font-medium ' : 'body-en-title '}`}>
+                {t("keyFeatures.In-room dining service.title")}
+              </p>
+              <p className="text-xs text-gray-400">{t("keyFeatures.In-room dining service.description")}</p>
+
+            </div>
+          </div>
+        </div>
+        {/* --- */}
+      
+
+
       </div>
     </section>
   );

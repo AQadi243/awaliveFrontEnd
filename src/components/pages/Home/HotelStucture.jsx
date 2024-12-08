@@ -111,12 +111,16 @@ const HotelStucture = () => {
                   </CountUp>
                 )}
               </div>
-            </div>
-          </div>
+           </div>
+         </div>
+
+
+        
+         
           </div>
         </div>
       </div>
-      <div className={`mt-10 md:mt-20 ${currentLanguage === 'ar' ? 'body-ar  font-medium ' : 'body-en '}`}>
+    {/*   <div className={`mt-10 md:mt-20 ${currentLanguage === 'ar' ? 'body-ar  font-medium ' : 'body-en '}`}>
         <div className="grid gap-5 md:gap-0 grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
           <div className="flex flex-col md:flex-row gap-2 md:gap-5 items-center text-center md:text-start">
             <img src={key16} alt="Smart Key Icon" className="w-20 md:w-28" />
@@ -158,7 +162,8 @@ const HotelStucture = () => {
             </div>
           </div>
         </div>
-      </div>
+
+      </div> */}
     </section>
   );
 };

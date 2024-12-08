@@ -136,22 +136,137 @@
   },
 
   "keyFeatures": {
-    "smartKey": {
-      "title": "Smart Key",
-      "description": "Experience seamless access with our state-of-the-art smart key system, ensuring security and convenience."
+    "In-room dining service": {
+      "title": "In-room dining service",
+      "description": "You can scan the QR code on your mobile to show you the in-room dining menu."
     },
-    "luggageStorage": {
-      "title": "Store Luggage",
-      "description": "Safely store your belongings with our secure luggage service, giving you the freedom to explore."
+   
+    
+    "Housekeeping": {
+      "title": "Housekeeping",
+      "description": "Housekeeping service is provided daily, and could be more when needed."
     },
-    "roomService": {
-      "title": "Room Service",
-      "description": "Indulge in the comfort of your room with our 24/7 room service, offering a variety of gourmet options."
+
+
+    "Free Wi-Fi": {
+      "title": "Free Wi-Fi",
+      "description": "Free Wi-Fi is available at the hotel."
     },
-    "disinfection": {
-      "title": "Valet Parking",
-      "description": "Arrive at Awaliv without having to think where to park. Your vehicle is in best hands, while you enjoy your experience."
+
+    "Safe": {
+      "title": "Safe",
+      "description": "Each room contains a private safe to keep your belongings."
+    },
+
+    
+    "Mini Bar": {
+      "title": "Mini Bar",
+      "description": "It contains a collection of snacks and drinks."
+    },
+    
+
+    "Iron and Board": {
+      "title": "Iron and Board",
+      "description": "The room is provided with an iron with an ironing board, kept inside your closet."
+    },
+    
+
+    "Qiblah, and Tools of Worship": {
+      "title": "Qiblah, and Tools of Worship",
+      "description": "Each room is equipped with the direction of prayer Qiblah, a prayer rug, and a Mus'haf (a copy of the Holy Quran)."
+    },
+    
+
+    "Wake-Up Call": {
+      "title": "Wake-Up Call",
+      "description": "Wake-Up Call service is provided."
+    },
+    
+
+    "Extra Pillows": {
+      "title": "Extra Pillows",
+      "description": "For your convenience, you can have different types of pillows upon request."
+    },
+    
+
+    "Bed making service": {
+      "title": "Bed making service",
+      "description": "This service is provided in the evening to ensure a comfortable stay by closing the curtains, placing cloth shoes next to the bed, and preparing the beds for sleeping."
+    },
+    
+
+    "Shoe polishing service upon request": {
+      "title": "Shoe polishing service upon request",
+      "description": "Cleaning shoes from dirt and dust, applying varnish to the shoes that matches the color of the shoes and polishing them, and polishing the shoes with a hand brush and a dry cloth."
+    },
+    
+
+    "On-demand tailoring service": {
+      "title": "On-demand tailoring service",
+      "description": "Providing simple alteration and repair services for clothes based on guests’ requests to ensure their comfort."
+    },
+    
+
+    "Valet parking service": {
+      "title": "Valet parking service",
+      "description": "Where customers’ cars are parked by professional staff to meet guests’ requirements and park their cars in safe parking lots."
+    },
+    
+
+    "Central safe": {
+      "title": "Central safe",
+      "description": "Located in the reception area where you can keep your valuables in your own safes with complete confidentiality and security."
+    },
+    
+
+    "Limousine service": {
+      "title": "Limousine service",
+      "description": "Limousine service is available upon request."
+    },
+    
+
+    "Concierge service": {
+      "title": "Concierge service",
+      "description": "Providing special services to guests such as restaurant reservations, coordinating trips and events, and providing transportation solutions for guests."
+    },
+    
+
+    "Currency Exchange": {
+      "title": "Currency Exchange",
+      "description": "Since Saudi Arabia's local currency, you can exchange currency at the reception desk."
+    },
+    
+
+    "Business Center": {
+      "title": "Business Center",
+      "description": "The business center provides all secretariat functions and business services."
+    },
+    
+
+    "Personal Luggage Service": {
+      "title": "Personal Luggage Service",
+      "description": "Luggage porters in the hotel would be pleased to help you carrying your luggage to your room and store them."
+    },
+    
+
+    "Transportation From/to the Airport": {
+      "title": "Transportation From/to the Airport",
+      "description": "Transportation From/to the Airport is available upon request."
+    },
+    
+
+    "Laundry": {
+      "title": "laundry",
+      "description": "Laundry - laundryIroning - Dry cleaining"
+    },
+    
+
+    "Health Club": {
+      "title": "Health Club",
+      "description": "Sauna, steam room, massages, swimming pool And GYM."
     }
+    
+
   },
 
   "exploreCity": "EXPLORE THE HEART OF THE CITY",
