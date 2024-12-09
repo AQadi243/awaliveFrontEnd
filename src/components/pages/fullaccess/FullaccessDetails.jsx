@@ -7,6 +7,13 @@ import room_m_pwd from "../../../../public/img/4_room_m_pwd.jpg";
 import bath_m_pwd from "../../../../public/img/5_bath_m_pwd.jpg";
 import room_e_pwd from "../../../../public/img/6_room_e_pwd.jpg";
 import bath_e_pwd from "../../../../public/img/7_bath_e_pwd.jpg";
+import hca1 from "../../../assets/hca1.png";
+import hca2 from "../../../assets/hca2.png";
+import hca3 from "../../../assets/hca3.png";
+import hca4 from "../../../assets/hca4.png";
+import hca5 from "../../../assets/hca5.png";
+import hca6 from "../../../assets/hca6.png";
+
 import { CiWifiOn, CiRouter, CiUser, CiBank } from "react-icons/ci";
 import i18next from "i18next";
 import { useTranslation } from "react-i18next";
@@ -18,14 +25,101 @@ const FullaccessDetails = () => {
 
   return (
     <>
+
+  
       <section className=" max-w-5xl mx-auto ">
         <div className="py-10 md:py-20 flex flex-col  items-center gap-10">
           <p className={`text-4xl lg:text-6xl text-gray-800 text-center ${currentLanguage === 'ar' ? 'body-ar  font-medium  ' : 'body-en-title'}`} >{t("What's Includes")}</p>
           <div className="flex flex-wrap gap-4 p-4">
             
+            {/* --- */}
+<div className={`mt-10 md:mt-20 ${currentLanguage === 'ar' ? 'body-ar  font-medium ' : 'body-en '}`}>
+      
+      <div className="grid gap-5 md:gap-0 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+        <div className="flex flex-col md:flex-row gap-2 md:gap-5 items-center text-center md:text-start">
+          <img src={hca1} alt="" className="w-20 md:w-28" />
+          <div>
+            <p className={`text-xl md:text-xl font-semibold py-4 ${currentLanguage === 'ar' ? 'body-ar  font-medium ' : 'body-en-title '}`} >
+              {t("keyFeatures.hca1.title")}
+            </p>
+            <p className="text-xs text-gray-400">{t("keyFeatures.hca1.description1")}</p>
+            <p className="text-xs text-gray-400">{t("keyFeatures.hca1.description2")}</p>
+          </div>
+        </div>
+
+        <div className="flex flex-col md:flex-row gap-2 md:gap-5 items-center text-center md:text-start ">
+          <img src={hca2} alt="" className="w-20 md:w-28" />
+          <div>
+            <p className={`text-xl md:text-xl font-semibold py-4 ${currentLanguage === 'ar' ? 'body-ar  font-medium ' : 'body-en-title '}`}>
+              {t("keyFeatures.hca2.title")}
+            </p>
+            <p className="text-xs text-gray-400">{t("keyFeatures.hca2.description1")}</p>
+            <p className="text-xs text-gray-400">{t("keyFeatures.hca2.description2")}</p>
+
+          </div>
+          
+        </div>
+
+        <div className="flex flex-col md:flex-row gap-2 md:gap-5 items-center text-center md:text-start ">
+          <img src={hca3} alt="" className="w-20 md:w-28" />
+          <div>
+            <p className={`text-xl md:text-xl font-semibold py-4 ${currentLanguage === 'ar' ? 'body-ar  font-medium ' : 'body-en-title '}`}>
+              {t("keyFeatures.hca3.title")}
+            </p>
+            <p className="text-xs text-gray-400">{t("keyFeatures.hca3.description")}</p>
             
           </div>
         </div>
+
+      </div>
+      <br></br>
+      <br></br>
+
+      <div className="grid gap-5 md:gap-0 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+        <div className="flex flex-col md:flex-row gap-2 md:gap-5 items-center text-center md:text-start">
+          <img src={hca4} alt="" className="w-20 md:w-28" />
+          <div>
+            <p className={`text-xl md:text-xl font-semibold py-4 ${currentLanguage === 'ar' ? 'body-ar  font-medium ' : 'body-en-title '}`} >
+              {t("keyFeatures.hca4.title")}
+            </p>
+            <p className="text-xs text-gray-400">{t("keyFeatures.hca4.description")}</p>
+          </div>
+        </div>
+
+        <div className="flex flex-col md:flex-row gap-2 md:gap-5 items-center text-center md:text-start ">
+          <img src={hca5} alt="" className="w-20 md:w-28" />
+          <div>
+            <p className={`text-xl md:text-xl font-semibold py-4 ${currentLanguage === 'ar' ? 'body-ar  font-medium ' : 'body-en-title '}`}>
+              {t("keyFeatures.hca5.title")}
+            </p>
+            <p className="text-xs text-gray-400">{t("keyFeatures.hca5.description")}</p>
+          </div>
+        </div>
+
+        <div className="flex flex-col md:flex-row gap-2 md:gap-5 items-center text-center md:text-start ">
+          <img src={hca6} alt="" className="w-20 md:w-28" />
+          <div>
+            <p className={`text-xl md:text-xl font-semibold py-4 ${currentLanguage === 'ar' ? 'body-ar  font-medium ' : 'body-en-title '}`}>
+              {t("keyFeatures.hca6.title")}
+            </p>
+            <p className="text-xs text-gray-400">{t("keyFeatures.hca6.description")}</p>
+            
+          </div>
+        </div>
+
+      </div>
+      <br></br>
+      <br></br>
+    
+      </div>
+        {/* --- */}
+
+                       
+          </div>
+        </div>
+
+
+
       </section>
       <section className="max-w-7xl mx-auto pb-20">
         <div className=" md:h-[500px] flex flex-col md:flex-row md:justify-between items-center md:items-start p-6 gap-8">

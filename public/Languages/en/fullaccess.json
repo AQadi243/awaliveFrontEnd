@@ -1,5 +1,49 @@
 {
     
+    "keyFeatures": {
+        "hca1": {
+            "title": "Parking for disability people",
+            "description1": "Located in the main area parking - ground floor",
+            "description2": "Also located in the lower area parking - basement"
+        },
+       
+        
+
+
+        "hca2": {
+          "title": "Dedicated entrance for disability people",
+          "description1": "Located in the main entrance - ground floor",
+          "description2": "Also located in the basement entrance"
+        },
+       
+        
+        "hca3": {
+            "title": " Bathroom for disability people",
+            "description": "Located in the lobby - ground floor"
+            
+          },
+
+          "hca4": {
+            "title": "Dedicated elevator for disability people",
+            "description": "No. C - on all floors"
+            
+          },
+          
+          
+          "hca5": {
+            "title": "Special Rooms For Blindness & Hearing impairment",
+            "description": "Located in the 12th and 18th floors"
+          },
+        
+         
+
+        "hca6": {
+          "title": " Special Rooms For Locomotor disability",
+          "description": "Located in the 13th and 18th floors"
+        }
+    
+    },
+
     "One":"1",
     "Easy Entrance":"Easy",
     "Easy Entrance2":"Entrance",
@@ -56,4 +100,8 @@
     "details":"Awaliv International Hotel provides the perfect backdrop for corporate gatherings and celebratory events. Our meeting room, bathed in natural light, offers a sophisticated space equipped with cutting-edge technology and comfortable seating.Whether it's a high-profile conference or an intimate strategy session.",
     "VIEW INFO": "VIEW INFO",
     "Daily Cleaning":"Daily Cleaning"
+
+
+    
+    
 }
