@@ -54,7 +54,7 @@ const HotelStucture = () => {
 
   return (
     
-    <section className="max-w-6xl  mx-auto my-10 md:my-27 px-4">
+    <section className="max-w-6xl  mx-auto my-9 md:my-27 px-4">
       <div className={`flex flex-col lg:flex-row gap-10 ${currentLanguage === 'ar' ? 'body-ar  font-medium ' : 'body-en '}`}>
         <div className="lg:w-[50%]  flex flex-row gap-4 items-center  relative overflow-hidden">
           <img src={structure} alt="" className="w-[50%]" />
